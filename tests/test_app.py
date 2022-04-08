@@ -1,6 +1,9 @@
+import json
 import os
 import subprocess
 import sys
+import tempfile
+
 import pytest
 
 from credsweeper import CredSweeper, ByteContentProvider, StringContentProvider, TextContentProvider
@@ -112,7 +115,7 @@ class TestApp:
         output = " ".join(stderr.decode("UTF-8").split())
 
         expected = """
-                   usage: python -m credsweeper [-h] (--path PATH [PATH ...] | --diff_path PATH [PATH ...]) [--rules [PATH]] [--ml_validation] [--ml_threshold FLOAT_OR_STR] [-b POSITIVE_INT] [--api_validation] [-j POSITIVE_INT] [--skip_ignored] [--save-json [PATH]] [-l LOG_LEVEL]
+                   usage: python -m credsweeper [-h] (--path PATH [PATH ...] | --diff_path PATH [PATH ...]) [--rules [PATH]] [--find-by-ext] [--skip-find-by-ext] [--ml_validation] [--ml_threshold FLOAT_OR_STR] [-b POSITIVE_INT] [--api_validation] [-j POSITIVE_INT] [--skip_ignored] [--save-json [PATH]] [-l LOG_LEVEL]
                    python -m credsweeper: error: one of the arguments --path --diff_path is required
                    """
         expected = " ".join(expected.split())
@@ -165,3 +168,23 @@ class TestApp:
         assert results[0].rule_name == "Password"
         assert results[0].line_data_list[0].variable == "password"
         assert results[0].line_data_list[0].value == "in_line_2"
+
+    def test_find_by_ext_p(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            for f in [".pem", ".crt", ".cer", ".csr", ".der", ".pfx", ".p12", ".key", ".jks"]:
+                file_path = os.path.join(tmp_dir, f'dummy{f}')
+                if not os.path.exists(file_path):
+                    open(file_path, 'a').close()
+            json_filename = os.path.join(tmp_dir, 'dummy.json')
+            proc = subprocess.Popen(
+                [sys.executable, "-m", "credsweeper", "--path", tmp_dir, "--find-by-ext", "--save-json", json_filename,
+                 "--log", "silence"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE)
+            _stdout, _stderr = proc.communicate()
+            assert os.path.exists(json_filename)
+            with open(json_filename, "r") as json_file:
+                report = json.load(json_file)
+                assert len(report) == 9
+                for t in report:
+                    assert t['line_data_list'][0]['line_num'] == -1

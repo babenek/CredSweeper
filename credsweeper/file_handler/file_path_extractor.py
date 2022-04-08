@@ -41,14 +41,15 @@ class FilePathExtractor:
         path = os.path.expanduser(path)  # Replace ~ character with a full path to the home directory
         file_paths = []
         if os.path.isfile(path):
-            if not FilePathExtractor.check_exclude_file(config, path):
+            if cls.is_find_by_ext_file(config, path) or not FilePathExtractor.check_exclude_file(config, path):
                 file_paths.append(path)
             return file_paths
 
         for dirpath, _, filenames in os.walk(path):
             for filename in filenames:
-                file_path = f"{dirpath}/{filename}"
-                if FilePathExtractor.check_exclude_file(config, file_path):
+                file_path = os.path.join(f"{dirpath}", f"{filename}")
+                if not cls.is_find_by_ext_file(config, file_path) \
+                        or FilePathExtractor.check_exclude_file(config, file_path):
                     continue
                 if os.path.isfile(file_path):
                     file_paths.append(file_path)
@@ -88,6 +89,10 @@ class FilePathExtractor:
                 if new_parent == parent_directory:
                     return True
                 parent_directory = new_parent
+
+    @staticmethod
+    def is_find_by_ext_file(config: Config, path: str) -> bool:
+        return config.find_by_ext and Util.get_extension(path) in config.find_by_ext_list
 
     @classmethod
     def check_exclude_file(cls, config: Config, path: str) -> bool:
