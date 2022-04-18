@@ -188,3 +188,22 @@ class TestApp:
                 assert len(report) == 9
                 for t in report:
                     assert t['line_data_list'][0]['line_num'] == -1
+
+    def test_find_by_ext_n(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            for f in [".pem", ".crt", ".cer", ".csr", ".der", ".pfx", ".p12", ".key", ".jks"]:
+                file_path = os.path.join(tmp_dir, f'dummy{f}')
+                if not os.path.exists(file_path):
+                    open(file_path, 'a').close()
+            json_filename = os.path.join(tmp_dir, 'dummy.json')
+            proc = subprocess.Popen(
+                [sys.executable, "-m", "credsweeper", "--path", tmp_dir, "--skip-find-by-ext", "--save-json",
+                 json_filename,
+                 "--log", "silence"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE)
+            _stdout, _stderr = proc.communicate()
+            assert os.path.exists(json_filename)
+            with open(json_filename, "r") as json_file:
+                report = json.load(json_file)
+                assert len(report) == 0
