@@ -136,6 +136,25 @@ class TestApp:
         os.remove("unittest_output_added.json")
         os.remove("unittest_output_deleted.json")
 
+    def test_find_tests_p(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            json_filename = os.path.join(tmp_dir, 'test_find_tests_p.json')
+            tests_path = os.path.dirname(__file__)
+            assert os.path.exists(tests_path)
+            assert os.path.isdir(tests_path)
+            proc = subprocess.Popen([sys.executable,
+                                     "-m", "credsweeper",
+                                     "--path", tests_path,
+                                     "--save-json", json_filename,
+                                     "--log", "silence"],
+                                    stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            _stdout, _stderr = proc.communicate()
+            assert os.path.exists(json_filename)
+            with open(json_filename, "r") as json_file:
+                report = json.load(json_file)
+                assert len(report) > 111
+
     def test_patch_save_json_n(self) -> None:
         dir_path = os.path.dirname(os.path.realpath(__file__))
         target_path = os.path.join(dir_path, "samples", "password.patch")

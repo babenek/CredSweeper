@@ -48,11 +48,10 @@ class FilePathExtractor:
         for dirpath, _, filenames in os.walk(path):
             for filename in filenames:
                 file_path = os.path.join(f"{dirpath}", f"{filename}")
-                if not cls.is_find_by_ext_file(config, file_path) \
-                        or FilePathExtractor.check_exclude_file(config, file_path):
-                    continue
-                if os.path.isfile(file_path):
-                    file_paths.append(file_path)
+                if cls.is_find_by_ext_file(config, file_path) \
+                        or not FilePathExtractor.check_exclude_file(config, file_path):
+                    if os.path.isfile(file_path):
+                        file_paths.append(file_path)
         return file_paths
 
     @classmethod
