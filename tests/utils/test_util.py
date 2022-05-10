@@ -1,9 +1,7 @@
 import os
 import random
-import string
 import tempfile
 
-from credsweeper.common.constants import AVAILABLE_ENCODINGS
 from credsweeper.utils import Util
 
 
@@ -81,7 +79,7 @@ class TestUtils:
 
     def test_util_read_utf16le_bin_p(self):
         bin_text = bytearray()
-        n = random.randint(1000, 1000)
+        n = random.randint(10000, 100000)
         i = 0
         while 0 < n:
             bin_char = bytearray()
@@ -119,11 +117,11 @@ class TestUtils:
 
     def test_util_read_utf16le_txt_p(self):
         unicode_text = ""
-        n = random.randint(1000, 1000)
+        n = random.randint(10000, 100000)
         i = 0
         while 0 < n:
             try:
-                unicode_char = chr(random.randint(0, 0xFFFF))
+                unicode_char = chr(random.randint(0, 0x10FFFF))
                 encoded_bin = unicode_char.encode('utf-16-le')
                 utf16_char = encoded_bin.decode('utf-16-le')
                 if unicode_char != utf16_char:
@@ -150,3 +148,39 @@ class TestUtils:
             read_lines = Util.read_file(tmp_file.name)
             test_lines = unicode_text.replace('\r\n', '\n').split('\n')
             assert read_lines == test_lines
+
+
+    def test_util_read_utf16be_txt_p(self):
+        unicode_text = ""
+        n = random.randint(10000, 100000)
+        i = 0
+        while 0 < n:
+            try:
+                unicode_char = chr(random.randint(0, 0x10FFFF))
+                encoded_bin = unicode_char.encode('utf-16-be')
+                utf16_char = encoded_bin.decode('utf-16-be')
+                if unicode_char != utf16_char:
+                    raise Exception(f"Wrong refurb:{unicode_char} {encoded_bin} {utf16_char}")
+                i += 1
+                unicode_text += unicode_char
+                if 0 == i % 100:
+                    unicode_text += '\n'
+            except Exception as exc:
+                print(f'{exc}')
+                continue
+            # the byte sequence is correct for UTF-16-BE and is added to data
+            unicode_text += unicode_char
+            n -= 1
+
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            assert os.path.isdir(tmp_dir)
+            file_path = os.path.join(tmp_dir, 'test_util_read_utf16le_bin_p.tmp')
+            tmp_file = open(file_path, "wb")
+            tmp_file.write(bytes([0xfe, 0xff]))  # BOM BE
+            tmp_file.write(unicode_text.encode('utf-16-be'))
+            tmp_file.close()
+            assert os.path.isfile(tmp_file.name)
+            read_lines = Util.read_file(tmp_file.name)
+            test_lines = unicode_text.replace('\r\n', '\n').split('\n')
+            assert read_lines == test_lines
+
