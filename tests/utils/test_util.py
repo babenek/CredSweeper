@@ -104,7 +104,7 @@ class TestUtils:
 
         with tempfile.TemporaryDirectory() as tmp_dir:
             assert os.path.isdir(tmp_dir)
-            with tempfile.NamedTemporaryFile(mode='wb', dir=tmp_dir, suffix='.bin') as tmp_file:
+            with tempfile.NamedTemporaryFile(mode='wb', dir=tmp_dir, suffix='.dat') as tmp_file:
                 tmp_file.write(bin_text)
                 tmp_file.flush()
                 assert os.path.isfile(tmp_file.name)
