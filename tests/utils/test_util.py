@@ -148,7 +148,6 @@ class TestUtils:
             test_lines = unicode_text.replace('\r\n', '\n').split('\n')
             assert read_lines == test_lines
 
-
     def test_util_read_utf16be_txt_p(self):
         unicode_text = ""
         n = random.randint(10000, 100000)
@@ -182,4 +181,3 @@ class TestUtils:
             read_lines = Util.read_file(tmp_file.name)
             test_lines = unicode_text.replace('\r\n', '\n').split('\n')
             assert read_lines == test_lines
-
