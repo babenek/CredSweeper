@@ -73,9 +73,8 @@ class TestUtils:
             tmp_file.close()
             assert os.path.isfile(tmp_file.name)
             read_lines = Util.read_file(tmp_file.name)
-            decoded_text = bin_text.decode('utf-8')
-            test_lines = decoded_text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
-            assert test_lines == read_lines
+            decoded_lines = Util.decode_bytes(bin_text)
+            assert decoded_lines == read_lines
 
     def test_util_read_utf16le_bin_p(self):
         bin_text = bytearray()
