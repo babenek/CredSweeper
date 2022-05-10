@@ -16,15 +16,16 @@ class TestUtils:
     def test_util_read_file_p(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
             assert os.path.isdir(tmp_dir)
-            with tempfile.NamedTemporaryFile(mode='w+t', dir=tmp_dir, suffix='txt') as tmp_file:
-                az_string = 'The quick brown fox jumps over the lazy dog'
-                tmp_file.write(az_string)
-                tmp_file.flush()
-                assert os.path.isfile(tmp_file.name)
-                test_tuple = ('latin_1', None)
-                test_result = Util.read_file(tmp_file.name, test_tuple)
-                assert 1 == len(test_result)
-                assert az_string == test_result[0]
+            file_path = os.path.join(tmp_dir, 'test_util_read_file_p.tmp')
+            tmp_file = open(file_path, "wt")
+            az_string = "The quick brown fox jumps over the lazy dog"
+            tmp_file.write(az_string)
+            tmp_file.close()
+            assert os.path.isfile(file_path)
+            test_tuple = ('latin_1', None)
+            test_result = Util.read_file(file_path, test_tuple)
+            assert 1 == len(test_result)
+            assert az_string == test_result[0]
 
     def test_util_read_utf8_bin_p(self):
         IOOOOOOO = int('10000000', 2)
@@ -68,14 +69,15 @@ class TestUtils:
 
         with tempfile.TemporaryDirectory() as tmp_dir:
             assert os.path.isdir(tmp_dir)
-            with tempfile.NamedTemporaryFile(mode='wb', dir=tmp_dir, suffix='.bin') as tmp_file:
-                tmp_file.write(bin_text)
-                tmp_file.flush()
-                assert os.path.isfile(tmp_file.name)
-                read_lines = Util.read_file(tmp_file.name)
-                decoded_text = bin_text.decode('utf-8')
-                test_lines = decoded_text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
-                assert test_lines == read_lines
+            file_path = os.path.join(tmp_dir, 'test_util_read_utf8_bin_p.tmp')
+            tmp_file = open(file_path, "wb")
+            tmp_file.write(bin_text)
+            tmp_file.close()
+            assert os.path.isfile(tmp_file.name)
+            read_lines = Util.read_file(tmp_file.name)
+            decoded_text = bin_text.decode('utf-8')
+            test_lines = decoded_text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
+            assert test_lines == read_lines
 
     def test_util_read_utf16le_bin_p(self):
         bin_text = bytearray()
@@ -104,11 +106,12 @@ class TestUtils:
 
         with tempfile.TemporaryDirectory() as tmp_dir:
             assert os.path.isdir(tmp_dir)
-            with tempfile.NamedTemporaryFile(mode='wb', dir=tmp_dir, suffix='.dat') as tmp_file:
-                tmp_file.write(bin_text)
-                tmp_file.flush()
-                assert os.path.isfile(tmp_file.name)
-                read_lines = Util.read_file(tmp_file.name)
-                decoded_text = bin_text.decode('utf-16-le')
-                test_lines = decoded_text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
-                assert test_lines == read_lines
+            file_path = os.path.join(tmp_dir, 'test_util_read_utf16le_bin_p.tmp')
+            tmp_file = open(file_path, "wb")
+            tmp_file.write(bin_text)
+            tmp_file.close()
+            assert os.path.isfile(tmp_file.name)
+            read_lines = Util.read_file(tmp_file.name)
+            decoded_text = bin_text.decode('utf-16-le')
+            test_lines = decoded_text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
+            assert test_lines == read_lines
