@@ -28,7 +28,7 @@ jobs:
       run: |
         API_STATUSES_URL=$(echo "${{ github.event.pull_request.base.repo.statuses_url }}")
         echo "'$API_STATUSES_URL'" # dbg
-        API_STATUSES_URL=$(echo "${API_STATUSES_URL}" | cut -c -5)
+        API_STATUSES_URL=$(echo "${API_STATUSES_URL}" | sed 's|.....$||')
         echo "'$API_STATUSES_URL'" # dbg
         API_STATUSES_URL=$(echo "${API_STATUSES_URL}${{ github.event.pull_request.head.sha }}")
         echo "'$API_STATUSES_URL'" # dbg
