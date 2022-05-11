@@ -26,11 +26,11 @@ jobs:
 
     - name: Set API_STATUSES_URL to GITHUB_ENV
       run: |
-        API_STATUSES_URL=echo "${{ github.event.pull_request.base.repo.statuses_url }}"
+        API_STATUSES_URL=$(echo "${{ github.event.pull_request.base.repo.statuses_url }}")
         echo "'$API_STATUSES_URL'" # dbg
-        API_STATUSES_URL=echo "${API_STATUSES_URL}" | cut -c -5
+        API_STATUSES_URL=$(echo "${API_STATUSES_URL}" | cut -c -5)
         echo "'$API_STATUSES_URL'" # dbg
-        API_STATUSES_URL=echo "${API_STATUSES_URL}${{ github.event.pull_request.head.sha }}"
+        API_STATUSES_URL=$(echo "${API_STATUSES_URL}${{ github.event.pull_request.head.sha }}")
         echo "'$API_STATUSES_URL'" # dbg
         echo "API_STATUSES_URL=${API_STATUSES_URL}" >>${GITHUB_ENV}
 
