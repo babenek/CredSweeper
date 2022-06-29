@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from typing import List, Dict
 
+import filetype
 from git import InvalidGitRepositoryError, NoSuchPathError, Repo
 
 from credsweeper.config import Config
@@ -41,13 +42,20 @@ class FilePathExtractor:
         path = os.path.expanduser(path)  # Replace ~ character with a full path to the home directory
         file_paths = []
         if os.path.isfile(path):
-            if not FilePathExtractor.check_exclude_file(config, path):
+            mime_file_type = filetype.guess(path)
+            if mime_file_type and "application/zip" == mime_file_type.mime:
+                file_paths.append(path)
+            elif not FilePathExtractor.check_exclude_file(config, path):
                 file_paths.append(path)
             return file_paths
 
         for dirpath, _, filenames in os.walk(path):
             for filename in filenames:
                 file_path = os.path.join(f"{dirpath}", f"{filename}")
+                mime_file_type = filetype.guess(file_path)
+                if mime_file_type and "application/zip" == mime_file_type.mime:
+                    file_paths.append(file_path)
+                    continue
                 if FilePathExtractor.check_exclude_file(config, file_path) or FilePathExtractor.check_file_size(
                         config, file_path):
                     continue

@@ -59,6 +59,7 @@ def get_arguments() -> Namespace:
                         help="find files by predefined extension.",
                         dest="find_by_ext",
                         action="store_true")
+    parser.add_argument("--unzip", help="search in zip archives.", dest="unzip", action="store_true")
     parser.add_argument("--ml_threshold",
                         help="setup threshold for the ml model. "
                         "The lower the threshold - the more credentials will be reported. "

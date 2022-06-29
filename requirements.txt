@@ -1,4 +1,5 @@
 # Common requirements
+filetype~=1.0.13
 GitPython~=3.1.27
 google-auth-oauthlib~=0.5.2
 humanfriendly~=10.0

@@ -1,3 +1,4 @@
+import io
 import itertools
 import json
 import multiprocessing
@@ -5,7 +6,8 @@ import os
 import signal
 import sys
 from typing import List, Optional, Union
-
+from zipfile import ZipFile
+import filetype
 import regex
 
 from credsweeper.common.constants import KeyValidationOption, ThresholdPreset, DEFAULT_ENCODING, Severity
@@ -14,8 +16,12 @@ from credsweeper.credentials import Candidate, CredentialManager, LineData
 from credsweeper.file_handler.content_provider import ContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
 from credsweeper.file_handler.files_provider import FilesProvider
+from credsweeper.file_handler.data_content_provider import DataContentProvider
+from credsweeper.file_handler.byte_content_provider import ByteContentProvider
+from credsweeper.file_handler.text_content_provider import TextContentProvider
 from credsweeper.logger.logger import logging
 from credsweeper.scanner import Scanner
+from credsweeper.utils import Util
 from credsweeper.validations.apply_validation import ApplyValidation
 
 
@@ -39,6 +45,7 @@ class CredSweeper:
                  pool_count: int = 1,
                  ml_batch_size: Optional[int] = 16,
                  ml_threshold: Union[float, ThresholdPreset] = ThresholdPreset.medium,
+                 unzip: bool = False,
                  find_by_ext: bool = False,
                  size_limit: Optional[str] = None) -> None:
         """Initialize Advanced credential scanner.
@@ -64,6 +71,7 @@ class CredSweeper:
         config_dict["validation"] = {}
         config_dict["validation"]["api_validation"] = api_validation
         config_dict["use_filters"] = use_filters
+        config_dict["unzip"] = unzip
         config_dict["find_by_ext"] = find_by_ext
         config_dict["size_limit"] = size_limit
 
@@ -104,7 +112,12 @@ class CredSweeper:
             content_provider: path objects to scan
 
         """
-        file_extractors = []
+
+        # temp.workaround
+        if self.config.unzip:
+            self.config.exclude_extensions.remove(".zip")
+
+        file_extractors: List[ContentProvider] = []
         if content_provider:
             file_extractors = content_provider.get_scannable_files(self.config)
         logging.info("Start Scanner")
@@ -136,39 +149,74 @@ class CredSweeper:
                 pool.join()
                 sys.exit()
 
-    def file_scan(self, file_provider: ContentProvider) -> List[Candidate]:
+    def file_scan(self, content_provider: ContentProvider) -> List[Candidate]:
         """Run scanning of file from 'file_provider'.
 
         Args:
-            file_provider: file provider object to scan
+            content_provider: file provider object to scan
 
         Return:
             list of credential candidates from scanned file
 
         """
         # Get list credentials for each file
-        logging.debug(f"Start scan file: {file_provider.file_path}")
+        logging.debug(f"Start scan file: {content_provider.file_path}")
 
         if self.config.find_by_ext:
-            if FilePathExtractor.is_find_by_ext_file(self.config, file_provider.file_path):
-                candidate = Candidate(line_data_list=[
-                    LineData(self.config,
-                             line="dummy line",
-                             line_num=-1,
-                             path=file_provider.file_path,
-                             pattern=regex.compile(".*"))
-                ],
-                                      patterns=[regex.compile(".*")],
-                                      rule_name="Dummy candidate",
-                                      severity=Severity.INFO,
-                                      config=self.config)
+            if FilePathExtractor.is_find_by_ext_file(self.config, content_provider.file_path):
+                candidate = Candidate(
+                    line_data_list=[  #
+                        LineData(
+                            self.config,  #
+                            line="dummy line",  #
+                            line_num=-1,  #
+                            path=content_provider.file_path,  #
+                            pattern=regex.compile(".*"))  #
+                    ],  #
+                    patterns=[regex.compile(".*")],  #
+                    rule_name="Dummy candidate",  #
+                    severity=Severity.INFO,  #
+                    config=self.config)  #
                 return [candidate]
 
+        if ".zip" == Util.get_extension(content_provider.file_path):
+            mime_file_type = filetype.guess(content_provider.file_path)
+            if mime_file_type is None or "application/zip" != mime_file_type.mime:
+                logging.warning(f"File '{content_provider.file_path}' is not an archive! type:'{mime_file_type}'")
+                return []
+            try:
+                candidates: List[Candidate] = []
+                zip_data: bytes = bytearray()
+                if isinstance(content_provider, DataContentProvider):
+                    zip_data = content_provider.data
+                elif isinstance(content_provider, TextContentProvider):
+                    with open(content_provider.file_path, 'rb') as f:
+                        zip_data = f.read()
+                else:
+                    logging.warning(f"Provider \"{content_provider.__class__.__name__}\" does not support archives.")
+
+                with ZipFile(io.BytesIO(zip_data)) as zf:
+                    for zfil in zf.infolist():
+                        with zf.open(zfil) as f:
+                            # todo: filter here with  file path extractor
+                            inner_file_path = f"{content_provider.file_path}/{zfil}"
+                            if ".zip" == Util.get_extension(inner_file_path):
+                                candidates += self.file_scan(
+                                    DataContentProvider(content=f.read(), file_path=inner_file_path))
+                            else:
+                                candidates += self.file_scan(
+                                    ByteContentProvider(content=f.read(), file_path=inner_file_path))
+
+                return candidates
+            except UnicodeDecodeError:
+                logging.warning(f"Can't read file content from \"{content_provider.file_path}\".")
+                return []
+
         try:
-            scan_context = file_provider.get_analysis_target()
+            scan_context = content_provider.get_analysis_target()
             return self.scanner.scan(scan_context)
         except UnicodeDecodeError:
-            logging.warning(f"Can't read file content from \"{file_provider.file_path}\".")
+            logging.warning(f"Can't read file content from \"{content_provider.file_path}\".")
             return []
 
     def post_processing(self) -> None:

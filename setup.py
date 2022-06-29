@@ -4,6 +4,7 @@ with open("README.md", "r", encoding="utf8") as fh:
     long_description = fh.read()
 
 install_requires = [
+    "filetype",  #
     "GitPython",  #
     "google_auth_oauthlib",  #
     "humanfriendly",  #
