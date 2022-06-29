@@ -192,6 +192,6 @@ class TestMain:
                 post_credentials = cred_sweeper.credential_manager.get_credentials()
                 post_credentials_number += len(post_credentials)
 
-        assert files_counter == 39
+        assert files_counter == 41
         assert candidates_number == 48
         assert post_credentials_number == 18

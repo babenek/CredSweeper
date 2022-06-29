@@ -38,4 +38,4 @@ class TestByteContentProvider:
                     bin_data = f.read()
                 provider = ByteContentProvider(bin_data)
                 assert util_text == provider.lines
-        assert files_counter == 39
+        assert files_counter == 41
