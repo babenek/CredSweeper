@@ -23,7 +23,7 @@ def test_scan_zip_p() -> None:
                         with open(os.path.join(dirpath, filename), "rb") as input_file:
                             output_file.write(input_file.read())
 
-        cs = app.CredSweeper(unzip=True, json_filename=report_path, ml_validation=True)
+        cs = app.CredSweeper(unzip=True, json_filename=report_path)
         cs.config.exclude_extensions.remove(".zip")
 
         # calculate samples
