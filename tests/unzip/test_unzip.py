@@ -9,19 +9,29 @@ from credsweeper.credentials import Candidate
 from credsweeper.file_handler.text_provider import TextProvider
 
 
+def test_scan_zip_n() -> None:
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        report_path = os.path.join(tmp_dir, f"report.json")
+        file_path = os.path.join(tmp_dir, f"test_n.zip")
+        assert not os.path.exists(file_path)
+        open(file_path, "wb").write(b"PK_WRONG_ZIP_FILE")
+
+        content_provider = TextProvider([tmp_dir])
+        cs = app.CredSweeper(unzip=True, json_filename=report_path)
+        cs.config.exclude_extensions.remove(".zip")
+
+        file_extractors = content_provider.get_scannable_files(cs.config)
+        assert len(file_extractors) == 1
+        scan_results = cs.file_scan(file_extractors[0])
+        assert len(scan_results) == 0
+        assert not os.path.isfile(report_path)
+
+
 def test_scan_zip_p() -> None:
     with tempfile.TemporaryDirectory() as tmp_dir:
         report_path = os.path.join(tmp_dir, f"report.json")
-        zip_file_path = os.path.join(tmp_dir, f"test_p.zip")
-        assert not os.path.exists(zip_file_path)
         this_dir = os.path.dirname(os.path.realpath(__file__))
         samples_dir = os.path.join(this_dir, "..", "samples")
-        with zipfile.ZipFile(zip_file_path, "a", zipfile.ZIP_DEFLATED, compresslevel=9) as zip_file:
-            for dirpath, dirnames, filenames in os.walk(samples_dir):
-                for filename in filenames:
-                    with zip_file.open(f"1/{filename}", "w") as output_file:
-                        with open(os.path.join(dirpath, filename), "rb") as input_file:
-                            output_file.write(input_file.read())
 
         cs = app.CredSweeper(unzip=True, json_filename=report_path)
         cs.config.exclude_extensions.remove(".zip")
@@ -54,7 +64,15 @@ def test_scan_zip_p() -> None:
         cs.credential_manager.candidates.clear()
         assert len(cs.credential_manager.get_credentials()) == 0
 
-        # use the same approach but with single zip file
+        # use the same approach but with single zip file wich is made from the samples
+        zip_file_path = os.path.join(tmp_dir, f"test_p.zip")
+        assert not os.path.exists(zip_file_path)
+        with zipfile.ZipFile(zip_file_path, "a", zipfile.ZIP_DEFLATED, compresslevel=9) as zip_file:
+            for dirpath, dirnames, filenames in os.walk(samples_dir):
+                for filename in filenames:
+                    with zip_file.open(f"1/{filename}", "w") as output_file:
+                        with open(os.path.join(dirpath, filename), "rb") as input_file:
+                            output_file.write(input_file.read())
         content_provider = TextProvider([zip_file_path])
         file_extractors = content_provider.get_scannable_files(cs.config)
         assert len(file_extractors) == 1
@@ -71,21 +89,3 @@ def test_scan_zip_p() -> None:
         len_samples_report = len(report)
         assert len_samples_report < len_samples_scan_results
         assert len_samples_report > 1
-
-
-def test_scan_zip_n() -> None:
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        report_path = os.path.join(tmp_dir, f"report.json")
-        file_path = os.path.join(tmp_dir, f"test_n.zip")
-        assert not os.path.exists(file_path)
-        open(file_path, "wb").write(b"PK_WRONG_ZIP_FILE")
-
-        content_provider = TextProvider([tmp_dir])
-        cs = app.CredSweeper(unzip=True, json_filename=report_path)
-        cs.config.exclude_extensions.remove(".zip")
-
-        file_extractors = content_provider.get_scannable_files(cs.config)
-        assert len(file_extractors) == 1
-        scan_results = cs.file_scan(file_extractors[0])
-        assert len(scan_results) == 0
-        assert not os.path.isfile(report_path)

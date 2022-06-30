@@ -164,7 +164,7 @@ class CredSweeper:
 
         if self.config.find_by_ext:
             if FilePathExtractor.is_find_by_ext_file(self.config, content_provider.file_path):
-                candidate = Candidate(
+                return [Candidate(
                     line_data_list=[  #
                         LineData(
                             self.config,  #
@@ -177,40 +177,60 @@ class CredSweeper:
                     rule_name="Dummy candidate",  #
                     severity=Severity.INFO,  #
                     config=self.config)  #
-                return [candidate]
+                ]
 
-        if ".zip" == Util.get_extension(content_provider.file_path):
-            mime_file_type = filetype.guess(content_provider.file_path)
-            if mime_file_type is None or "application/zip" != mime_file_type.mime:
-                logging.warning(f"File '{content_provider.file_path}' is not an archive! type:'{mime_file_type}'")
-                return []
+        if isinstance(content_provider, TextContentProvider):
+            mime_file_type = None
             try:
-                candidates: List[Candidate] = []
-                zip_data: bytes = bytearray()
-                if isinstance(content_provider, DataContentProvider):
-                    zip_data = content_provider.data
-                elif isinstance(content_provider, TextContentProvider):
-                    with open(content_provider.file_path, 'rb') as f:
-                        zip_data = f.read()
-                else:
-                    logging.warning(f"Provider \"{content_provider.__class__.__name__}\" does not support archives.")
+                mime_file_type = filetype.guess_mime(content_provider.file_path)
+            except (TypeError, UnicodeDecodeError, IndexError):
+                # possibly exceptions from filetype library
+                pass
+            if "application/zip" == mime_file_type:
+                with open(content_provider.file_path, 'rb') as f:
+                    return self.file_scan(  #
+                        DataContentProvider(  #
+                            content=f.read(),  #
+                            file_path=content_provider.file_path  #
+                        )  #
+                    )
 
-                with ZipFile(io.BytesIO(zip_data)) as zf:
-                    for zfil in zf.infolist():
-                        with zf.open(zfil) as f:
+        if isinstance(content_provider, DataContentProvider):
+            candidates: List[Candidate] = []
+            try:
+                with ZipFile(io.BytesIO(content_provider.data)) as zf:
+                    for zfl in zf.infolist():
+                        with zf.open(zfl) as f:
                             # todo: filter here with  file path extractor
-                            inner_file_path = f"{content_provider.file_path}/{zfil}"
-                            if ".zip" == Util.get_extension(inner_file_path):
-                                candidates += self.file_scan(
-                                    DataContentProvider(content=f.read(), file_path=inner_file_path))
+                            inner_file_path = f"{content_provider.file_path}/{zfl.filename}"
+                            data = f.read()
+                            mime_file_type = None
+                            try:
+                                mime_file_type = filetype.guess_mime(data)
+                            except (TypeError, UnicodeDecodeError, IndexError):
+                                # possibly exceptions from filetype library
+                                pass
+                            if "application/zip" == mime_file_type:
+                                candidates.extend(  #
+                                    self.file_scan(
+                                        DataContentProvider(  #
+                                            content=data,  #
+                                            file_path=inner_file_path  #
+                                        )  #
+                                    )  #
+                                )
                             else:
-                                candidates += self.file_scan(
-                                    ByteContentProvider(content=f.read(), file_path=inner_file_path))
-
-                return candidates
-            except UnicodeDecodeError:
-                logging.warning(f"Can't read file content from \"{content_provider.file_path}\".")
-                return []
+                                candidates.extend(  #
+                                    self.file_scan(
+                                        ByteContentProvider(  #
+                                            content=data,  #
+                                            file_path=inner_file_path  #
+                                        )  #
+                                    )  #
+                                )
+            except Exception as exc:
+                logging.error(exc)
+            return candidates
 
         try:
             scan_context = content_provider.get_analysis_target()
