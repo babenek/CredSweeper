@@ -202,6 +202,6 @@ class TestMain:
         # real result might be shown in code coverage
         dir_path = os.path.dirname(os.path.realpath(__file__))
         content_provider: FilesProvider = TextProvider([os.path.join(dir_path, "samples")])
-        cred_sweeper = CredSweeper(pool_count=3)
+        cred_sweeper = CredSweeper(pool_count=1)
         cred_sweeper.run(content_provider=content_provider)
         assert len(cred_sweeper.credential_manager.get_credentials()) == SAMPLES_POST_CRED_COUNT

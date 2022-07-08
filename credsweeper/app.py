@@ -1,22 +1,27 @@
 from typing import List, Optional, Union
+import io
 import itertools
 import json
 import multiprocessing
 import os
 import signal
 import sys
-import regex
 
-from credsweeper.common.constants import KeyValidationOption, ThresholdPreset, DEFAULT_ENCODING, Severity
+import zipfile
+
+from credsweeper.common.constants import KeyValidationOption, ThresholdPreset, DEFAULT_ENCODING
 from credsweeper.config import Config
-from credsweeper.credentials import Candidate, CredentialManager, LineData
+from credsweeper.credentials import Candidate, CredentialManager
 from credsweeper.file_handler.content_provider import ContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
 from credsweeper.file_handler.files_provider import FilesProvider
+from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.diff_content_provider import DiffContentProvider
+from credsweeper.file_handler.byte_content_provider import ByteContentProvider
 from credsweeper.file_handler.text_content_provider import TextContentProvider
 from credsweeper.logger.logger import logging
 from credsweeper.scanner import Scanner
+from credsweeper.utils import Util
 from credsweeper.validations.apply_validation import ApplyValidation
 
 
@@ -41,6 +46,7 @@ class CredSweeper:
                  ml_batch_size: Optional[int] = 16,
                  ml_threshold: Union[float, ThresholdPreset] = ThresholdPreset.medium,
                  find_by_ext: bool = False,
+                 max_depth: int = 0,
                  size_limit: Optional[str] = None) -> None:
         """Initialize Advanced credential scanner.
 
@@ -56,6 +62,7 @@ class CredSweeper:
             ml_batch_size: int value, size of the batch for model inference
             ml_threshold: float or string value to specify threshold for the ml model
             find_by_ext: boolean - files will be reported by extension
+            max_depth: int - how deep container files will be researched
             size_limit: optional string integer or human-readable format to skip oversize files
 
         """
@@ -69,6 +76,7 @@ class CredSweeper:
         config_dict["use_filters"] = use_filters
         config_dict["find_by_ext"] = find_by_ext
         config_dict["size_limit"] = size_limit
+        config_dict["max_depth"] = max_depth
 
         self.config = Config(config_dict)
         self.credential_manager = CredentialManager()
@@ -78,14 +86,20 @@ class CredSweeper:
         self.ml_threshold = ml_threshold
         self.ml_validator = None
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     def _use_ml_validation(self) -> bool:
         if isinstance(self.ml_threshold, float) and self.ml_threshold <= 0:
             return False
         return True
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     # the import cannot be done on top due
     # TypeError: cannot pickle 'onnxruntime.capi.onnxruntime_pybind11_state.InferenceSession' object
     from credsweeper.ml_model import MlValidator
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     @property
     def ml_validator(self) -> MlValidator:
@@ -96,25 +110,35 @@ class CredSweeper:
         assert self.__ml_validator, "self.__ml_validator was not initialized"
         return self.__ml_validator
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     @ml_validator.setter
     def ml_validator(self, _ml_validator: Optional[MlValidator]) -> None:
         """ml_validator setter"""
         self.__ml_validator = _ml_validator
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     @classmethod
     def pool_initializer(cls) -> None:
         """Ignore SIGINT in child processes."""
         signal.signal(signal.SIGINT, signal.SIG_IGN)
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     @property
     def config(self) -> Config:
         """config getter"""
         return self.__config
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     @config.setter
     def config(self, config: Config) -> None:
         """config setter"""
         self.__config = config
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def run(self, content_provider: FilesProvider) -> None:
         """Run an analysis of 'content_provider' object.
@@ -131,6 +155,8 @@ class CredSweeper:
         self.post_processing()
         self.export_results()
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     def scan(self, content_providers: Union[List[DiffContentProvider], List[TextContentProvider]]) -> None:
         """Run scanning of files from an argument "content_providers".
 
@@ -142,6 +168,8 @@ class CredSweeper:
             self.__multi_jobs_scan(content_providers)
         else:
             self.__single_job_scan(content_providers)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def __single_job_scan(self, content_providers: Union[List[DiffContentProvider], List[TextContentProvider]]):
         """Performs scan in main thread"""
@@ -157,6 +185,8 @@ class CredSweeper:
                 self.credential_manager.add_credential(cred)
         else:
             self.credential_manager.set_credentials(all_cred)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def __multi_jobs_scan(self, content_providers: Union[List[DiffContentProvider], List[TextContentProvider]]):
         """Performs scan with multiple jobs"""
@@ -177,42 +207,88 @@ class CredSweeper:
                 pool.join()
                 sys.exit()
 
-    def file_scan(self, file_provider: ContentProvider) -> List[Candidate]:
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+    def file_scan(self, content_provider: ContentProvider) -> List[Candidate]:
         """Run scanning of file from 'file_provider'.
 
         Args:
-            file_provider: file provider object to scan
+            content_provider: content provider object to scan
 
         Return:
             list of credential candidates from scanned file
 
         """
         # Get list credentials for each file
-        logging.debug(f"Start scan file: {file_provider.file_path}")
+        logging.debug(f"Start scan file: {content_provider.file_path}")
 
-        if self.config.find_by_ext:
-            if FilePathExtractor.is_find_by_ext_file(self.config, file_provider.file_path):
-                candidate = Candidate(
-                    line_data_list=[
-                        LineData(  #
-                            self.config,  #
-                            line="dummy line",  #
-                            line_num=-1,  #
-                            path=file_provider.file_path,  #
-                            pattern=regex.compile(".*"))
-                    ],
-                    patterns=[regex.compile(".*")],  #
-                    rule_name="Dummy candidate",  #
-                    severity=Severity.INFO,  #
-                    config=self.config)
-                return [candidate]
+        if self.config.find_by_ext and FilePathExtractor.is_find_by_ext_file(self.config, content_provider.file_path):
+            candidate = Candidate.get_dummy_candidate(self.config, content_provider.file_path)
+            return [candidate]
 
-        try:
-            scan_context = file_provider.get_analysis_target()
-            return self.scanner.scan(scan_context)
-        except UnicodeDecodeError:
-            logging.warning(f"Can't read file content from \"{file_provider.file_path}\".")
-            return []
+        if self.config.max_depth > 0 and isinstance(content_provider, TextContentProvider):
+            data = Util.read_data(content_provider.file_path)
+            if not data:
+                return []
+            data_provider = DataContentProvider(data=data, file_path=content_provider.file_path)
+            # use limit with 1Gb
+            return self.data_scan(data_provider, self.config.max_depth, 1 << 30)
+
+        analysis_targets = content_provider.get_analysis_target()
+        return self.scanner.scan(analysis_targets)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+    def data_scan(self, data_provider: DataContentProvider, depth: int, recursive_limit: int) -> List[Candidate]:
+        """Recursive function to scan ZIP files
+
+            Args:
+                data_provider: DataContentProvider object may be a container
+                depth: maximal level of recursion
+                recursive_limit: maximal bytes of opened files to prevent recursive zip-bomb attack
+        """
+        candidates: List[Candidate] = []
+
+        if 0 > depth:
+            # break recursion if maximal depth is reached
+            logging.error(f"bottom reached {data_provider.file_path} recursive_limit:{recursive_limit}")
+            return candidates
+
+        depth -= 1
+
+        if Util.is_zip(data_provider.data):
+            # detected zip signature
+            try:
+                with zipfile.ZipFile(io.BytesIO(data_provider.data)) as zf:
+                    for zfl in zf.infolist():
+                        file_path = f"{data_provider.file_path}/{zfl.filename}"
+                        # skip directory
+                        if "/" == file_path[-1:]:
+                            continue
+                        if FilePathExtractor.check_exclude_file(self.config, file_path):
+                            continue
+                        if 0 > recursive_limit - zfl.file_size:
+                            logging.error(
+                                f"{file_path}: size {zfl.file_size} is over limit {recursive_limit} depth:{depth}")
+                            continue
+                        with zf.open(zfl) as f:
+                            zip_content_provider = DataContentProvider(data=f.read(), file_path=file_path)
+                            # nevertheless use extracted data size
+                            new_limit = recursive_limit - len(zip_content_provider.data)
+                            candidates.extend(self.data_scan(zip_content_provider, depth, new_limit))
+
+            except (zipfile.LargeZipFile, zipfile.BadZipFile, RuntimeError) as zip_exc:
+                # RuntimeError is possible when zip file is encrypted
+                logging.error(f"{data_provider.file_path}:{zip_exc}")
+        else:
+            # finally try scan the date via byte content provider
+            byte_content_provider = ByteContentProvider(content=data_provider.data, file_path=data_provider.file_path)
+            scan_context = byte_content_provider.get_analysis_target()
+            candidates.extend(self.scanner.scan(scan_context))
+
+        return candidates
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def post_processing(self) -> None:
         """Machine learning validation for received credential candidates."""
@@ -240,6 +316,8 @@ class CredSweeper:
                     new_cred_list += group_candidates
 
             self.credential_manager.set_credentials(new_cred_list)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def export_results(self) -> None:
         """Save credential candidates to json file or print them to a console."""

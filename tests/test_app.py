@@ -118,6 +118,7 @@ class TestApp:
         expected = "usage: python -m credsweeper [-h] (--path PATH [PATH ...] | --diff_path PATH [PATH ...])" \
                    " [--rules [PATH]]" \
                    " [--find-by-ext]" \
+                   " [--max_depth POSITIVE_INT]" \
                    " [--ml_threshold FLOAT_OR_STR]" \
                    " [-b POSITIVE_INT]" \
                    " [--api_validation]" \

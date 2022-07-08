@@ -59,6 +59,13 @@ def get_arguments() -> Namespace:
                         help="find files by predefined extension.",
                         dest="find_by_ext",
                         action="store_true")
+    parser.add_argument("--max_depth",
+                        help="search in archives.",
+                        type=positive_int,
+                        dest="max_depth",
+                        default=0,
+                        required=False,
+                        metavar="POSITIVE_INT")
     parser.add_argument("--ml_threshold",
                         help="setup threshold for the ml model. "
                         "The lower the threshold - the more credentials will be reported. "
