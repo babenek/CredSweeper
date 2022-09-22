@@ -55,21 +55,21 @@ jobs:
         
 
     - name: Checkout current code of default branch
-      if: ${{ success() && env.RELEASE_AGE > env.OVERAGE }}
+      if: ${{ success() && env.RELEASE_AGE > 0 }}
       uses: actions/checkout@v3
       with:
         ref: ${{ github.event.repository.default_branch }}
         path: ${{ github.event.repository.default_branch }}
 
     - name: Checkout last release code
-      if: ${{ success() && env.RELEASE_AGE > env.OVERAGE }}
+      if: ${{ success() && env.RELEASE_AGE > 25000 }}
       uses: actions/checkout@v3
       with:
         ref: ${{ env.TAG_NAME }}
         path: ${{ env.TAG_NAME }}
 
     - name: Compare source code of versions
-      if: ${{ success() && env.RELEASE_AGE > env.OVERAGE }}
+      if: ${{ success() && env.RELEASE_AGE > 40000 }}
       run: diff ${{ env.TAG_NAME }}/credsweeper ${{ github.event.repository.default_branch }}/credsweeper
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
