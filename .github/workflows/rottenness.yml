@@ -11,7 +11,7 @@ on:
     - cron: '59 23 * * 0'
 
 env:
-  OVERAGE: 600000
+  OVERAGE: 600
 
 jobs:
 
