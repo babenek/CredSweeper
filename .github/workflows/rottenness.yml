@@ -47,6 +47,13 @@ jobs:
         echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
         echo "RELEASE_AGE=${release_age}" >> $GITHUB_ENV
 
+    - name: dbg
+      run: |
+        echo "OVERAGE=${{ env.OVERAGE }}"
+        echo "RELEASE_AGE=${{ env.RELEASE_AGE }}"
+        echo "TAG_NAME=${{ env.TAG_NAME }}"
+        
+
     - name: Checkout current code of default branch
       if: ${{ env.RELEASE_AGE > env.OVERAGE }}
       uses: actions/checkout@v3
