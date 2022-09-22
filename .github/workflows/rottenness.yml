@@ -23,7 +23,7 @@ jobs:
         run: echo "STEP_VAR=9" >> $GITHUB_ENV
       - name: second
         if: env.STEP_VAR > 2
-        run: echo "STEP_VAR=${{ STEP_VAR }}, GLOBAL_VAR=${{ GLOBAL_VAR }}"
+        run: echo "STEP_VAR=${{ env.STEP_VAR }}, GLOBAL_VAR=${{ env.GLOBAL_VAR }}"
       - name: third
         if: env.STEP_VAR > env.GLOBAL_VAR
         run: echo "env.STEP_VAR > env.GLOBAL_VAR"
