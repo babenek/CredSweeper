@@ -23,7 +23,7 @@ jobs:
         if: env.GLOBAL_VAR > 3
         run: |
           step_var=$((  $(date +%s) - 222 ))
-          echo "STEP_VAR=${step_var}" >> $GITHUB_ENV
+          echo "STEP_VAR=$step_var" >> $GITHUB_ENV
       - name: second
         if: env.STEP_VAR > 2
         run: echo "STEP_VAR=${{ env.STEP_VAR }}, GLOBAL_VAR=${{ env.GLOBAL_VAR }}"
