@@ -11,9 +11,25 @@ on:
     - cron: '59 23 * * 0'
 
 env:
-  OVERAGE: 600
+  GLOBAL_VAR: 5
 
 jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first
+        if: env.GLOBAL_VAR > 3
+        run: echo "STEP_VAR=9" >> $GITHUB_ENV
+      - name: second
+        if: env.STEP_VAR > 2
+        run: echo "STEP_VAR=${{ STEP_VAR }}, GLOBAL_VAR=${{ GLOBAL_VAR }}"
+      - name: third
+        if: env.STEP_VAR > env.GLOBAL_VAR
+        run: echo "env.STEP_VAR > env.GLOBAL_VAR"
+      - name: fourth
+        if: env.STEP_VAR < env.GLOBAL_VAR
+        run: echo "env.STEP_VAR < env.GLOBAL_VAR"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -44,11 +60,18 @@ jobs:
         fi
         tag_name=$(echo "${latest_release}" | jq --raw-output '.tag_name')
         echo "tag_name=$tag_name" #dbg
+        if [ 600 -gt ${release_age} ]; then
+            echo "Release is fresh"
+            echo "TAG_NAME=" >> $GITHUB_ENV
+        else
+            echo "Release is rotten"
+            echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
+        fi
         echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
         echo "RELEASE_AGE=${release_age}" >> $GITHUB_ENV
 
     - name: dbg
-      if: ${{ env.OVERAGE > 0 }}
+      if: env.TAG_NAME
       run: |
         echo "OVERAGE=${{ env.OVERAGE }}"
         echo "RELEASE_AGE=${{ env.RELEASE_AGE }}"
@@ -56,7 +79,7 @@ jobs:
         
 
     - name: Checkout current code of default branch
-      if: ${{ success() && env.RELEASE_AGE > env.OVERAGE }}
+      if: env.TAG_NAME
       uses: actions/checkout@v3
       with:
         repository: Samsung/CredSweeper
@@ -64,7 +87,7 @@ jobs:
         path: main
 
     - name: Checkout last release code
-      if: ${{ success() && env.RELEASE_AGE > 25000 }}
+      if: env.TAG_NAME
       uses: actions/checkout@v3
       with:
         repository: Samsung/CredSweeper
@@ -72,7 +95,7 @@ jobs:
         path: ${{ env.TAG_NAME }}
 
     - name: Compare source code of versions
-      if: ${{ success() && env.RELEASE_AGE > 40000 }}
+      if: env.TAG_NAME
       run: diff ${{ env.TAG_NAME }}/credsweeper ${{ github.event.repository.default_branch }}/credsweeper
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
