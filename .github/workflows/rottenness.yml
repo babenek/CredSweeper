@@ -20,7 +20,6 @@ jobs:
 
     steps:
 
-
     - name: Dump GitHub context - DEBUG
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
