@@ -32,13 +32,17 @@ jobs:
       continue-on-error: true
       run: |
         latest_release="$(curl --silent https://api.github.com/repos/Samsung/CredSweeper/releases/latest)"
+        echo "latest_release=$latest_release" #dbg
         published_date=$(echo "${latest_release}" | jq --raw-output '.published_at')
+        echo "published_date=published_date" #dbg
         release_age=$(( $(date +%s) - $(date --date="${published_date}" +%s) ))
+        echo "release_age=release_age" #dbg
         if [ 0 -ge ${release_age} ]; then
             echo "Probably, release: ${published_date} and current timezone confuse me"
             release_age=0
         fi
         tag_name=$(echo "${latest_release}" | jq --raw-output '.tag_name')
+        echo "tag_name=tag_name" #dbg
         echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
         echo "RELEASE_AGE=${release_age}" >> $GITHUB_ENV
 
