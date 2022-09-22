@@ -12,6 +12,7 @@ on:
 
 env:
   GLOBAL_VAR: 5
+  AGE_LIMIT: 6000
 
 jobs:
 
@@ -60,26 +61,19 @@ jobs:
         fi
         tag_name=$(echo "${latest_release}" | jq --raw-output '.tag_name')
         echo "tag_name=$tag_name" #dbg
-        if [ 600 -gt ${release_age} ]; then
-            echo "Release is fresh"
-            echo "TAG_NAME=" >> $GITHUB_ENV
-        else
-            echo "Release is rotten"
-            echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
-        fi
         echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
         echo "RELEASE_AGE=${release_age}" >> $GITHUB_ENV
 
     - name: dbg
-      if: env.TAG_NAME
+      if: env.RELEASE_AGE > env.AGE_LIMIT
       run: |
-        echo "OVERAGE=${{ env.OVERAGE }}"
+        echo "AGE_LIMIT=${{ env.AGE_LIMIT }}"
         echo "RELEASE_AGE=${{ env.RELEASE_AGE }}"
         echo "TAG_NAME=${{ env.TAG_NAME }}"
         
 
     - name: Checkout current code of default branch
-      if: env.TAG_NAME
+      if: env.RELEASE_AGE > env.AGE_LIMIT
       uses: actions/checkout@v3
       with:
         repository: Samsung/CredSweeper
@@ -87,7 +81,7 @@ jobs:
         path: main
 
     - name: Checkout last release code
-      if: env.TAG_NAME
+      if: env.RELEASE_AGE > env.AGE_LIMIT
       uses: actions/checkout@v3
       with:
         repository: Samsung/CredSweeper
@@ -95,7 +89,7 @@ jobs:
         path: ${{ env.TAG_NAME }}
 
     - name: Compare source code of versions
-      if: env.TAG_NAME
+      if: env.RELEASE_AGE > env.AGE_LIMIT
       run: diff ${{ env.TAG_NAME }}/credsweeper ${{ github.event.repository.default_branch }}/credsweeper
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
