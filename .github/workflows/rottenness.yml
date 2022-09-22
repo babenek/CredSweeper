@@ -1,0 +1,87 @@
+# This workflow checks whether last release is not too old
+
+name: Check last release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '59 23 * * 0'
+
+jobs:
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  rottenness:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+
+    - name: Dump GitHub context - DEBUG
+      env:
+        GITHUB_CONTEXT: ${{ toJSON(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Check last release date
+      run: |
+        if [ "pull_request" == "${{ github.event_name }}" ]; then
+            API_RELEASE_URL=$(echo "${{ github.event.pull_request.base.repo.releases_url }}")
+        else
+            API_RELEASE_URL=$(echo "${{ github.event.repository.releases_url }}")
+        fi
+        echo "'${API_RELEASE_URL}'" # dbg
+        API_RELEASE_URL=$(echo "${API_RELEASE_URL}" | sed 's|.....$||')
+        echo "'${API_RELEASE_URL}'" # dbg
+        API_RELEASE_URL=$(echo "${API_RELEASE_URL}/latest")
+        echo "'${API_RELEASE_URL}'" # dbg
+        LATEST_RELEASE_TAG=$(
+            curl \
+                --silent \
+                --header "Accept: application/vnd.github.v3+json" \
+                --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                ${API_RELEASE_URL} \
+            | \
+            jq \
+                --raw-output \
+                '.tag_name' \
+            )
+        echo "LATEST_RELEASE_TAG='${LATEST_RELEASE_TAG}'"
+        export GIT_ANCESTOR=${LATEST_RELEASE_TAG}
+        python -m credsweeper --banner --export_config /dev/null
+        CredSweeper 1.4.2 crc32:f41482a7
+
+      
+        for asset in $( \
+            curl \
+                --silent \
+                --header "Accept: application/vnd.github.v3+json" \
+                --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                ${API_RELEASE_URL} \
+            | jq --raw-output '.assets[] | select(.name | match("^Source code'\\.zip$")) | { url: .url, name: .name}' \
+            );
+        do
+            file_name=$(echo "${asset}" | jq -c -M '.name' | tr -d '"')
+            rm -vf $file_name
+            url=$(echo "${asset}" | jq -c -M '.url' | tr -d '"')
+            curl -H "Authorization: token ${GIT_ACCESS_TOKEN}" -LJOH "Accept: application/octet-stream" "${url}"
+        done
+
+        if diff credsweeper last_release; then
+            echo "GIT workflow OK"
+        else
+            echo "Please, rebase the branch after ${LATEST_RELEASE_TAG}"
+            exit 1
+        fi
+
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        path: ${{ github.event.pull_request.head.sha }}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
