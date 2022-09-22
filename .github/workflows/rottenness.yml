@@ -4,11 +4,14 @@ name: Check last release
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ${{ github.event.repository.default_branch }} ]
   pull_request:
-    branches: [ main ]
+    branches: [ ${{ github.event.repository.default_branch }} ]
   schedule:
     - cron: '59 23 * * 0'
+
+env:
+  OVERAGE: 600000
 
 jobs:
 
@@ -26,61 +29,35 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Check last release date
+      continue-on-error: true
       run: |
-        if [ "pull_request" == "${{ github.event_name }}" ]; then
-            API_RELEASE_URL=$(echo "${{ github.event.pull_request.base.repo.releases_url }}")
-        else
-            API_RELEASE_URL=$(echo "${{ github.event.repository.releases_url }}")
+        latest_release="$(curl --silent https://api.github.com/repos/Samsung/CredSweeper/releases/latest)"
+        published_date=$(echo "${latest_release}" | jq --raw-output '.published_at')
+        release_age=$(( $(date +%s) - $(date --date="${published_date}" +%s) ))
+        if [ 0 -ge ${release_age} ]; then
+            echo "Probably, release: ${published_date} and current timezone confuse me"
+            release_age=0
         fi
-        echo "'${API_RELEASE_URL}'" # dbg
-        API_RELEASE_URL=$(echo "${API_RELEASE_URL}" | sed 's|.....$||')
-        echo "'${API_RELEASE_URL}'" # dbg
-        API_RELEASE_URL=$(echo "${API_RELEASE_URL}/latest")
-        echo "'${API_RELEASE_URL}'" # dbg
-        LATEST_RELEASE_TAG=$(
-            curl \
-                --silent \
-                --header "Accept: application/vnd.github.v3+json" \
-                --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                ${API_RELEASE_URL} \
-            | \
-            jq \
-                --raw-output \
-                '.tag_name' \
-            )
-        echo "LATEST_RELEASE_TAG='${LATEST_RELEASE_TAG}'"
-        export GIT_ANCESTOR=${LATEST_RELEASE_TAG}
-        python -m credsweeper --banner --export_config /dev/null
-        CredSweeper 1.4.2 crc32:f41482a7
+        tag_name=$(echo "${latest_release}" | jq --raw-output '.tag_name')
+        echo "TAG_NAME=${tag_name}" >> $GITHUB_ENV
+        echo "RELEASE_AGE=${release_age}" >> $GITHUB_ENV
 
-      
-        for asset in $( \
-            curl \
-                --silent \
-                --header "Accept: application/vnd.github.v3+json" \
-                --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                ${API_RELEASE_URL} \
-            | jq --raw-output '.assets[] | select(.name | match("^Source code'\\.zip$")) | { url: .url, name: .name}' \
-            );
-        do
-            file_name=$(echo "${asset}" | jq -c -M '.name' | tr -d '"')
-            rm -vf $file_name
-            url=$(echo "${asset}" | jq -c -M '.url' | tr -d '"')
-            curl -H "Authorization: token ${GIT_ACCESS_TOKEN}" -LJOH "Accept: application/octet-stream" "${url}"
-        done
-
-        if diff credsweeper last_release; then
-            echo "GIT workflow OK"
-        else
-            echo "Please, rebase the branch after ${LATEST_RELEASE_TAG}"
-            exit 1
-        fi
-
-
-    - name: Checkout
+    - name: Checkout current code of default branch
+      if: ${{ env.RELEASE_AGE > env.OVERAGE }}
       uses: actions/checkout@v3
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
-        path: ${{ github.event.pull_request.head.sha }}
+        ref: ${{ github.event.repository.default_branch }}
+        path: ${{ github.event.repository.default_branch }}
+
+    - name: Checkout last release code
+      if: ${{ env.RELEASE_AGE > env.OVERAGE }}
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ env.TAG_NAME }}
+        path: ${{ env.TAG_NAME }}
+
+    - name: Compare source code of versions
+      if: ${{ env.RELEASE_AGE > env.OVERAGE }}
+      run: diff ${{ env.TAG_NAME }}/credsweeper ${{ github.event.repository.default_branch }}/credsweeper
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
