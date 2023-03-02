@@ -8,6 +8,7 @@ from credsweeper.config import Config
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
 from credsweeper.file_handler.files_provider import FilesProvider
 from credsweeper.file_handler.text_content_provider import TextContentProvider
+from credsweeper.utils import Util
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ class TextProvider(FilesProvider):
         """
         text_content_provider_list: List[Union[DiffContentProvider, TextContentProvider]] = []
         for path in self.paths:
-            if isinstance(path, str) or isinstance(path, Path):
+            if Util.is_likewise_path(path):
                 new_files = FilePathExtractor.get_file_paths(config, path)
                 if self.skip_ignored:
                     new_files = FilePathExtractor.apply_gitignore(new_files)
@@ -58,9 +59,7 @@ class TextProvider(FilesProvider):
                     text_content_provider_list.append(TextContentProvider(_file))
             elif isinstance(path, io.BytesIO):
                 text_content_provider_list.append(TextContentProvider((":memory:", path)))
-            elif isinstance(path, tuple) \
-                    and (isinstance(path[0], str) or isinstance(path[0], Path)) \
-                    and isinstance(path[1], io.BytesIO):
+            elif isinstance(path, tuple) and Util.is_likewise_path(path[0]) and isinstance(path[1], io.BytesIO):
                 # suppose, all the files must be scanned
                 text_content_provider_list.append(TextContentProvider(path))
             else:

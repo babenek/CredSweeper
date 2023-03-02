@@ -157,7 +157,7 @@ class FilePathExtractor:
             return False
         file_size = None
         path = reference[1] if isinstance(reference, tuple) else reference
-        if isinstance(path, str) or isinstance(path, Path):
+        if Util.is_likewise_path(path):
             file_size = os.path.getsize(path)
         elif isinstance(path, io.BytesIO):
             current_pos = path.tell()

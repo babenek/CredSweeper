@@ -1,3 +1,4 @@
+import io
 import os
 import random
 import string
@@ -13,6 +14,16 @@ from tests import AZ_DATA, AZ_STRING, SAMPLES_DIR
 
 
 class TestUtils(unittest.TestCase):
+
+    def test_is_likewise_path_p(self):
+        self.assertTrue(Util.is_likewise_path("a path"))
+        self.assertTrue(Util.is_likewise_path(Path("a path")))
+
+    def test_is_likewise_path_n(self):
+        self.assertFalse(Util.is_likewise_path(None))
+        self.assertFalse(Util.is_likewise_path([]))
+        self.assertFalse(Util.is_likewise_path(b"a path"))
+        self.assertFalse(Util.is_likewise_path(io.BytesIO(b"a path")))
 
     def test_get_extension_n(self):
         self.assertEqual("", Util.get_extension(None))
@@ -313,9 +324,10 @@ class TestUtils(unittest.TestCase):
         xml_lines = Util.read_data(target_path).decode().splitlines(True)
         result = Util.get_xml_from_lines(xml_lines)
         assert result == ([
-            "Countries : ", "Country : ", "City : Seoul", "password : cackle!", "Country : ", "City : Kyiv",
-            "password : peace_for_ukraine"
-        ], [2, 3, 4, 5, 7, 8, 9])
+                              "Countries : ", "Country : ", "City : Seoul", "password : cackle!", "Country : ",
+                              "City : Kyiv",
+                              "password : peace_for_ukraine"
+                          ], [2, 3, 4, 5, 7, 8, 9])
 
     def test_get_xml_data_n(self):
         target_path = str(SAMPLES_DIR / "bad.xml")

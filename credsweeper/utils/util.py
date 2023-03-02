@@ -6,7 +6,7 @@ import os
 import tarfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, Any, Union
+from typing import Dict, List, Tuple, Optional, Any, Union, TypeGuard
 
 import whatthepatch
 import yaml
@@ -260,6 +260,13 @@ class Util:
                 logger.error(f"Unknown type of line {type(line)}")
 
         return rows_data
+
+    @staticmethod
+    def is_likewise_path(path: Union[str, Path]) -> TypeGuard[Union[str, Path]]:
+        """Returns true do determine whether path might be a path"""
+        if isinstance(path, str) or isinstance(path, Path):
+            return True
+        return False
 
     @staticmethod
     def is_zip(data: bytes) -> bool:
