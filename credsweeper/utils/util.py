@@ -6,7 +6,7 @@ import os
 import tarfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, Any, Union, TypeGuard
+from typing import Dict, List, Tuple, Optional, Any, Union, TypeGuard, Annotated
 
 import whatthepatch
 import yaml
@@ -262,11 +262,9 @@ class Util:
         return rows_data
 
     @staticmethod
-    def is_likewise_path(path: Union[str, Path]) -> TypeGuard[Union[str, Path]]:
+    def is_likewise_path(path) -> TypeGuard[Union[str, Path]]:
         """Returns true do determine whether path might be a path"""
-        if isinstance(path, str) or isinstance(path, Path):
-            return True
-        return False
+        return isinstance(path, str) or isinstance(path, Path)
 
     @staticmethod
     def is_zip(data: bytes) -> bool:
