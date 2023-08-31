@@ -44,6 +44,21 @@ class Scanner:
                            MIN_VARIABLE_LENGTH + MIN_SEPARATOR_LENGTH + MIN_VALUE_LENGTH)
         self.__keyword_rules_required_substrings = self._get_required_substrings(RuleType.KEYWORD)
 
+    def _get_required_substrings(self, rule_type: RuleType) -> Set[str]:
+        """init set of required substrings for custom rule type"""
+        required_substrings: Set[str] = set()
+        for rule in (x[0] for x in self.rules_scanners if rule_type == x[0].rule_type):
+            required_substrings.update(set(rule.required_substrings))
+        return required_substrings
+
+    @staticmethod
+    def _substring_check(substrings: Set[str], text: str) -> bool:
+        """checks whether `text` has any required substring. Set is used to reduce extra transformations"""
+        for substring in substrings:
+            if substring in text:
+                return True
+        return False
+
     def keyword_substrings_check(self, text: str) -> bool:
         """check whether `text` has any required substring for all keyword type rules"""
         return self._substring_check(self.__keyword_rules_required_substrings, text)
