@@ -33,7 +33,7 @@ R_DELIMITER = fr"(?:{R_PAREN}|{R_BRACKET})"
 
 S_DELIMITER = fr"(?:{DASH}|{COLON}|{SLASH}|{DOUBLE_SLASH}?|{COMMA}|{BLANK}+|{EQUAL_SIGN}|({DASH}|{EQUAL_SIGN})+{BLANK}*{GT_SIGN}{BLANK}*|{VERB})"
 
-PASSWD_STR = fr"((User|user|Default|default)?{BLANK}*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)"
+PASSWD_STR = fr"((User|user|Default|default)?{BLANK}*(Passwords|(Password|password|paasword|PASSWORD)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)[\"']*"
 ID_PAIR = fr"{ID_STR}{S_DELIMITER}{ID_VALUE}"
 SECRET_STR = r"(TOKEN|Token|token)|(secret|Secret)|(Key|KEY)|키|암호|암호화|토큰"
 

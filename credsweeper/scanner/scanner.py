@@ -161,6 +161,7 @@ class Scanner:
 
             if not (matched_keyword or matched_pem_key or matched_pattern or matched_multi):
                 # target may be skipped only with length because not all rules have required_substrings
+                logger.debug("Skip too short (%d) line %s:%d", target_line_stripped, target.file_path, target.line_num)
                 continue
 
             # use lower case for required substring
