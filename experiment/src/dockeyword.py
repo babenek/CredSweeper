@@ -1,17 +1,17 @@
 import re
 import sys
 
-BLANK = ' '
-DASH = '-'
-DOUBLE_DASH = '--'
+BLANK = r'\s'
+DASH = r'-'
+DOUBLE_DASH = r'--'
 COLON = ':'
 SLASH = '/'
 DOUBLE_SLASH = '//'
 EQUAL_SIGN = '='
-L_PAREN = '('
-R_PAREN = ')'
-L_BRACKET = '['
-R_BRACKET = ']'
+L_PAREN = r'\('
+R_PAREN = r'\)'
+L_BRACKET = r'\['
+R_BRACKET = r'\]'
 GT_SIGN = '>'
 LT_SIGN = '<'
 COMMA = ','
@@ -29,22 +29,30 @@ ID_STR = fr"(:?((Username|username|user_name|User|user)|(UserId|userid|userId))|
 
 PREFIX = fr"(?:{DASH}|{DOUBLE_DASH})"
 L_DELIMITER = fr"(?:{L_PAREN}|{L_BRACKET})"
-R_DELIMITER = fr"(?:{R_BRACKET}|{R_BRACKET})"
+R_DELIMITER = fr"(?:{R_PAREN}|{R_BRACKET})"
 
 S_DELIMITER = fr"(?:{DASH}|{COLON}|{SLASH}|{DOUBLE_SLASH}?|{COMMA}|{BLANK}+|{EQUAL_SIGN}|({DASH}|{EQUAL_SIGN})+{BLANK}*{GT_SIGN}{BLANK}*|{VERB})"
 
-PASSWD_STR = fr"(User|user|Default|default)*{BLANK}*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호"
+PASSWD_STR = fr"((User|user|Default|default)?{BLANK}*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)"
 ID_PAIR = fr"{ID_STR}{S_DELIMITER}{ID_VALUE}"
 SECRET_STR = r"(TOKEN|Token|token)|(secret|Secret)|(Key|KEY)|키|암호|암호화|토큰"
 
-PASSWD_PAIR = fr"{PASSWD_STR}{S_DELIMITER}{PASSWD_VALUE}|{PASSWD_STR}{BLANK}*{L_DELIMITER}{PASSWD_VALUE}{BLANK}*{R_DELIMITER}"
+# PASSWD_PAIR = fr"({PASSWD_STR}{S_DELIMITER}{PASSWD_VALUE})|({PASSWD_STR}{BLANK}*{L_DELIMITER}{PASSWD_VALUE}{BLANK}*{R_DELIMITER})"
+PASSWD_PAIR_1 = fr"{PASSWD_STR}{S_DELIMITER}{PASSWD_VALUE}"
+PASSWD_PAIR_2 = fr"{PASSWD_STR}{BLANK}*{L_DELIMITER}{PASSWD_VALUE}{BLANK}*{R_DELIMITER}"
 ID_PASSWD_PAIR = fr"{ID_STR}{S_DELIMITER}{PASSWD_STR}{S_DELIMITER}({ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}|{L_DELIMITER}{BLANK}*{ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}{BLANK}*{R_DELIMITER})|{ID_STR}{L_DELIMITER}{PASSWD_STR}{R_DELIMITER}{S_DELIMITER}{ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}"
 SECRET_PAIR = fr"{SECRET_STR}{S_DELIMITER}{SECRET_VALUE}|{SECRET_STR}{BLANK}*{L_DELIMITER}{SECRET_VALUE}{BLANK}*{R_DELIMITER}"
 SINGLE_STR_PAIR = fr"{ID_STR}{S_DELIMITER}{ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}|{ID_STR}{L_DELIMITER}{ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}{R_DELIMITER}"
-ID_PAIR_PASSWD_PAIR = fr"{ID_PAIR}{S_DELIMITER}{PASSWD_PAIR}|{PASSWD_PAIR}{S_DELIMITER}{ID_PAIR}"
+# ID_PAIR_PASSWD_PAIR = fr"{ID_PAIR}{S_DELIMITER}{PASSWD_PAIR}|{PASSWD_PAIR}{S_DELIMITER}{ID_PAIR}"
 
 IP_ID_PASSWD_TRIPLE = fr"({IP_STR}{S_DELIMITER}{ID_STR}{S_DELIMITER}{PASSWD_STR})*{BLANK}*{IP_VALUE}{S_DELIMITER}{ID_VALUE}{S_DELIMITER}{PASSWD_VALUE}"
 
+
+def passwd_pair():
+    if re.compile(PASSWD_PAIR_1):
+        print(PASSWD_PAIR_1)
+    if re.compile(PASSWD_PAIR_2):
+        print(PASSWD_PAIR_2)
 
 def ip_id_passwd_triple():
     if re.compile(IP_ID_PASSWD_TRIPLE):
@@ -52,7 +60,8 @@ def ip_id_passwd_triple():
 
 
 def main() -> int:
-    ip_id_passwd_triple()
+    passwd_pair()
+    # ip_id_passwd_triple()
     return 0
 
 
