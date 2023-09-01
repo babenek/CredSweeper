@@ -1,3 +1,12 @@
+- name: IP_ID_PASSWD_TRIPLE
+  severity: critical
+  type: pattern
+  values:
+    - ((:?IP|ip|Ip)(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(:?((Username|username|user_name|User|user)|(UserId|userid|userId))|(User)* *((ID|id|Id)|(Name|name)|(login|Login|Loging|Login as)|(account|Acccount))|role|root|telnet|아이디|계정)(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(User|user|Default|default)* *(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)* *(?P<value_ip>[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2})(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(?P<value_id>\S{3,})(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(?P<value>\S{3,})
+  filter_type:
+    - ValueLengthCheck
+  min_line_len: 22
+
 - name: PII
   severity: info
   type: keyword
