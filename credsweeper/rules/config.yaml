@@ -2,7 +2,7 @@
   severity: critical
   type: pattern
   values:
-    - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)[\"']*(?:-|:|/|//?|,|\s+|=|(-|=)+\s*>\s*| *(is|는|은|설정은) *)(?P<value>\S{3,})
+    - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword|PASSWORD)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)[\"']*(?:-|:|/|//?|,|\s+|=|(-|=)+\s*>\s*| *(is|는|은|설정은) *)(?P<value>\S{3,})
   filter_type:
     - ValueLengthCheck
   min_line_len: 10
