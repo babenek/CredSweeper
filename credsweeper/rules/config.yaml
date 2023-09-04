@@ -1,5 +1,26 @@
-- name: PASSWD_PAIR_1
+- name: PASSWD_PAIR_
   severity: critical
+  type: pattern
+  values:
+    - (\W(?i:(pa[as]swords?|passwd|pwd|pin|p/w|pw|비밀번호|비번|패스워드|암호))\s*(([:=/]+|=>)|(is|는|은|설정은))\s*(?P<quote>[`'"]+)(?P<value>\S{3,})(?P=quote)(\s|$))
+    - (?P<value>\s(?i:(root|admin|user|default))\s)
+  filter_type:
+    - ValueLengthCheck
+  min_line_len: 10
+  required_substrings:
+    - sword
+    - passwd
+    - pwd
+    - pin
+    - p/w
+    - pw
+    - 비밀번호
+    - 비번
+    - 패스워드
+    - 암호
+
+- name: PASSWD_PAIR_1
+  severity: info
   type: pattern
   values:
     - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword|PASSWORD)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)[\"']*(?:-|:|/|//?|,|\s+|=|(-|=)+\s*>\s*| *(is|는|은|설정은) *)(?P<value>\S{3,})
@@ -8,7 +29,7 @@
   min_line_len: 10
 
 - name: PASSWD_PAIR_2
-  severity: critical
+  severity: info
   type: pattern
   values:
     - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)\s*(?:\(|\[)(?P<value>\S{3,})\s*(?:\)|\])
