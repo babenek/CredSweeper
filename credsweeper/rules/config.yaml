@@ -1,9 +1,9 @@
-- name: PASSWD_PAIR_
+- name: ID PAIR PASSWD PAIR
   severity: critical
   type: pattern
   values:
-    - (\W(?i:(pa[as]swords?|passwd|pwd|pin|p/w|pw|비밀번호|비번|패스워드|암호))\s*(([:=/]+|=>)|(is|는|은|설정은))\s*(?P<quote>[`'"]+)?(?P<value>\S{3,})(?(quote)(?P=quote)|(\s|$)))
-    - (?P<value>\s(?i:(root|admin|user|default))\s)
+    - (\W(?i:pa[as]swords?|passwd|pwd|pin|p/w|pw|비밀번호|비번|패스워드|암호)\s*(([:=/]+|=>)|(is|는|은|설정은))\s*(?P<quote>[`'"]+)?(?P<value>\S{3,})(?(quote)(?P=quote)|(\s|$)))
+    - (^|\s)(?i:id|account|root|admin|user(name)?|default|계정|아이디)(?P<value>.*)
   filter_type:
     - ValueLengthCheck
   min_line_len: 10
