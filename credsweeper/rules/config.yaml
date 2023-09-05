@@ -1,8 +1,8 @@
-- name: ID PAIR PASSWD PAIR
+- name: ID PASSWORD PAIR
   severity: critical
   type: pattern
   values:
-    - (?P<variable>(?i:pa[as]swords?|passwd|pwd|pin|p/w|pw|비밀번호|비번|패스워드|암호))\s*(([:=/]+|=>)|(is|는|은|설정은))\s*(?P<quote>[`'"]+)?(?P<value>\S{3,})(?(quote)(?P=quote)|(\s|$))
+    - (?P<variable>(?i:pa[as]swords?|passwd|pwd|pin|\bp/w|\bpw|비밀번호|비번|패스워드|암호))\s*([:=/>-]+|is|는|은|설정은)\s*(?P<quote>[`'"]+)?(?P<value>\S{3,})(?(quote)(?P=quote)|(\s|$))
     - (^|\s)(?i:id|account|root|admin|user(name)?|default|계정|아이디)\s*(?P<value>\S+)
   filter_type:
     - ValueLengthCheck
@@ -19,33 +19,6 @@
     - 비번
     - 패스워드
     - 암호
-
-- name: PASSWD_PAIR_1
-  severity: info
-  type: pattern
-  values:
-    - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword|PASSWORD)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)[\"']*(?:-|:|/|//?|,|\s+|=|(-|=)+\s*>\s*| *(is|는|은|설정은) *)(?P<value>\S{3,})
-  filter_type:
-    - ValueLengthCheck
-  min_line_len: 10
-
-- name: PASSWD_PAIR_2
-  severity: info
-  type: pattern
-  values:
-    - ((User|user|Default|default)?\s*(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)\s*(?:\(|\[)(?P<value>\S{3,})\s*(?:\)|\])
-  filter_type:
-    - ValueLengthCheck
-  min_line_len: 10
-
-- name: IP_ID_PASSWD_TRIPLE
-  severity: info
-  type: pattern
-  values:
-    - ((:?IP|ip|Ip)(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(:?((Username|username|user_name|User|user)|(UserId|userid|userId))|(User)* *((ID|id|Id)|(Name|name)|(login|Login|Loging|Login as)|(account|Acccount))|role|root|telnet|아이디|계정)(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(User|user|Default|default)* *(Passwords|(Password|password|paasword)|(Pw|pw)|(Pass|pass|PASS)|(Passwd|passwd)|(PWD|pwd|Pwd)|PIN|p/w)|-p|비밀번호|비번|패스워드|암호)* *(?P<value_ip>[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2})(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(?P<value_id>\S{3,})(?:-|:|/|//?|,| +|=|(-|=)+ *> *| *(is|는|은|설정은) *)(?P<value>\S{3,})
-  filter_type:
-    - ValueLengthCheck
-  min_line_len: 10
 
 - name: PII
   severity: info
