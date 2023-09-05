@@ -2,14 +2,14 @@
   severity: critical
   type: pattern
   values:
-    - (?P<anydash>-+)?(?P<variable>\w*(?i:pa[as]swords?|pass(wd)?|pwd|pin|(\b|_)p/w|(\b|_)pw|비밀번호|비번|패스워드|암호))\s*((?(anydash) )|[:=/>-]+|is|는|은|설정은)\s*(?P<quote>[`'\"]+)?(?P<value>\S{3,}?)(?(quote)(?P=quote)|(\s|$))
-    - (\b|_)(?i:id|login|account|root|admin|user|name|wifi|role|host|default|계정|아이디)
+    - (?P<anydash>-+)?(?P<variable>\w*(?i:pa[as]swords?|pass(wd)?|pwd|pin|(\b|_)p/w|(\b|_)pw|비밀번호|비번|패스워드|암호))\s*((?(anydash) )|[:=/>-]+|is|는|은|설정은)\s*(?P<quote>[`'\"]+)?(?P<value>\S{3,}?)(?(quote)(?P=quote)|\b)
+    - (?i:id|login|account|root|admin|user|name|wifi|role|host|default|계정|아이디)
   filter_type:
     - ValueNothingCheck
   min_line_len: 10
   required_substrings:
     - sword
-    - passwd
+    - pass
     - pwd
     - pin
     - p/w
