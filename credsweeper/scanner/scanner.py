@@ -44,21 +44,6 @@ class Scanner:
                            MIN_VARIABLE_LENGTH + MIN_SEPARATOR_LENGTH + MIN_VALUE_LENGTH)
         self.__keyword_rules_required_substrings = self._get_required_substrings(RuleType.KEYWORD)
 
-    def _get_required_substrings(self, rule_type: RuleType) -> Set[str]:
-        """init set of required substrings for custom rule type"""
-        required_substrings: Set[str] = set()
-        for rule in (x[0] for x in self.rules_scanners if rule_type == x[0].rule_type):
-            required_substrings.update(set(rule.required_substrings))
-        return required_substrings
-
-    @staticmethod
-    def _substring_check(substrings: Set[str], text: str) -> bool:
-        """checks whether `text` has any required substring. Set is used to reduce extra transformations"""
-        for substring in substrings:
-            if substring in text:
-                return True
-        return False
-
     def keyword_substrings_check(self, text: str) -> bool:
         """check whether `text` has any required substring for all keyword type rules"""
         return self._substring_check(self.__keyword_rules_required_substrings, text)
@@ -147,7 +132,7 @@ class Scanner:
         for target in provider.yield_analysis_target(self.min_len):
             # Trim string from outer spaces to make future `x in str` checks faster
             target_line_stripped = target.line_strip
-            target_line_stripped_len = len(target_line_stripped)
+            target_line_stripped_len = target.line_strip_len
 
             # "cache" - YAPF and pycharm formatters ...
             matched_keyword = \
@@ -161,7 +146,8 @@ class Scanner:
 
             if not (matched_keyword or matched_pem_key or matched_pattern or matched_multi):
                 # target may be skipped only with length because not all rules have required_substrings
-                logger.debug("Skip too short (%d) line %s:%d", target_line_stripped, target.file_path, target.line_num)
+                logger.debug("Skip too short (%d) line %s:%d", target_line_stripped_len, target.file_path,
+                             target.line_num)
                 continue
 
             # use lower case for required substring
