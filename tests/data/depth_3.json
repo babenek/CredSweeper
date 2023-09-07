@@ -2,6 +2,28 @@
     {
         "api_validation": "NOT_AVAILABLE",
         "ml_validation": "VALIDATED_KEY",
+        "ml_probability": 0.98535,
+        "rule": "Password",
+        "severity": "medium",
+        "line_data_list": [
+            {
+                "line": "password = \"VeRy5tR0nG\";",
+                "line_num": 1,
+                "path": "tests/samples/HelloWorld.java",
+                "info": "tests/samples/HelloWorld.java|STRUCT|STRING:1|RAW",
+                "value": "VeRy5tR0nG",
+                "variable": "password",
+                "entropy_validation": {
+                    "iterator": "BASE64_CHARS",
+                    "entropy": 3.121928094887362,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
+        "api_validation": "NOT_AVAILABLE",
+        "ml_validation": "VALIDATED_KEY",
         "ml_probability": 0.9844,
         "rule": "API",
         "severity": "medium",

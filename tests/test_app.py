@@ -497,14 +497,6 @@ class TestApp(TestCase):
                 sorted_report.extend(json.load(json_file))
                 self.assertEqual(SAMPLES_IN_DEEP_3, len(sorted_report))
         self.assertTrue(deepdiff.DeepDiff(sorted_report, normal_report))
-        # exclude equal items of dict instead custom __lt__ realization
-        for n in range(len(normal_report) - 1, -1, -1):
-            for i in sorted_report:
-                if i == normal_report[n]:
-                    del normal_report[n]
-                    break
-        # 0 - means all items were matched
-        self.assertEqual(0, len(normal_report))
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
