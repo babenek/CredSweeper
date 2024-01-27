@@ -100,7 +100,7 @@
   doc_only: true
 
 - name: API
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - api
@@ -313,7 +313,7 @@
   min_line_len: 36
 
 - name: Password
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - (?<!by)pass(?!ed|ing|es|\s+[a-z]{3,80})|pw(d|\b)
@@ -476,7 +476,7 @@
   min_line_len: 50
 
 - name: Token
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - token
@@ -498,7 +498,7 @@
   min_line_len: 34
 
 - name: URL Credentials
-  severity: critical
+  severity: high
   type: pattern
   values:
     - ://[^:\s]*(?P<separator>:)(?P<value>[^@\s]+)@
@@ -510,7 +510,7 @@
   doc_available: false
 
 - name: Auth
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - auth(?!(or|ors)(?!i[tz]))
@@ -522,7 +522,7 @@
   doc_available: false
 
 - name: Key
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - key(?!word)
@@ -604,7 +604,7 @@
   min_line_len: 14
 
 - name: Nonce
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - nonce
@@ -616,7 +616,7 @@
   doc_available: false
 
 - name: Salt
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - salt
@@ -628,7 +628,7 @@
   doc_available: false
 
 - name: Certificate
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - cert
