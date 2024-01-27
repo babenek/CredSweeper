@@ -169,7 +169,7 @@
   min_line_len: 30
 
 - name: Credential
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - credential
@@ -201,7 +201,7 @@
   min_line_len: 31
 
 - name: Github Old Token
-  severity: critical
+  severity: high
   type: pattern
   values:
     - (?i)((git)[\w\-]*(token|key|api)[\w\-]*(\s)*(=|:|:=)(\s)*(["']?)(?P<value>[a-z|\d]{40})(["']?))
@@ -279,7 +279,7 @@
   min_line_len: 105
 
 - name: JSON Web Token
-  severity: critical
+  severity: medium
   type: pattern
   values:
     - (^|[^.0-9A-Za-z_+-])(?P<value>eyJ[0-9A-Za-z_=-]{15,8000}([.0-9A-Za-z_=-]{1,8000})?)
@@ -366,7 +366,7 @@
   min_line_len: 40
 
 - name: Secret
-  severity: critical
+  severity: medium
   type: keyword
   values:
     - secret
