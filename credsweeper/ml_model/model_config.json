@@ -64,8 +64,7 @@
           "URL Credentials",
           "Nonce",
           "Salt",
-          "Certificate",
-          "Jira 2FA"
+          "Certificate"
         ]
       }
     }

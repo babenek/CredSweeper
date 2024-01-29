@@ -902,6 +902,5 @@
     - ValueEntropyBase32Check
     - ValueBase32DataCheck
     - ValueTokenBase32Check
-  use_ml: true
   min_line_len: 16
   required_regex: "[a-zA-Z0-9_/+-]{15,80}"
