@@ -7,8 +7,7 @@ from credsweeper.filters import (Filter, LineSpecificKeyCheck, ValueAllowlistChe
                                  ValueBlocklistCheck, ValueCamelCaseCheck, ValueFilePathCheck, ValueFirstWordCheck,
                                  ValueLastWordCheck, ValueLengthCheck, ValueMethodCheck, ValueNotAllowedPatternCheck,
                                  ValuePatternCheck, ValueSimilarityCheck, ValueStringTypeCheck, ValueTokenCheck,
-                                 VariableNotAllowedPatternCheck, ValuePatternLengthCheck, ValueHexNumberCheck,
-                                 ValueBase64PartCheck)
+                                 VariableNotAllowedPatternCheck, ValuePatternLengthCheck, ValueHexNumberCheck)
 
 
 class Group(ABC):
@@ -59,8 +58,7 @@ class Group(ABC):
     def get_pattern_base_filters(config: Config) -> List[Filter]:
         """return base filters for pattern"""
         return [  #
-            LineSpecificKeyCheck(),
-            ValuePatternCheck(config),
-            ValuePatternLengthCheck(config),
-            # ValueBase64PartCheck(),
+            LineSpecificKeyCheck(),  #
+            ValuePatternCheck(config),  #
+            ValuePatternLengthCheck(config),  #
         ]
