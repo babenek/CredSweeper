@@ -12744,33 +12744,6 @@
         "api_validation": "NOT_AVAILABLE",
         "ml_validation": "NOT_AVAILABLE",
         "ml_probability": null,
-        "rule": "PASSWD_PAIR",
-        "severity": "medium",
-        "confidence": "moderate",
-        "line_data_list": [
-            {
-                "line": "td : Password:            MU$T6Ef09#D!",
-                "line_num": 1,
-                "path": "tests/samples/test.html",
-                "info": "tests/samples/test.html|XML",
-                "value": "MU$T6Ef09#D!",
-                "value_start": 26,
-                "value_end": 38,
-                "variable": "Password",
-                "variable_start": 5,
-                "variable_end": 13,
-                "entropy_validation": {
-                    "iterator": "BASE64_CHARS",
-                    "entropy": 2.688721875540867,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
-        "api_validation": "NOT_AVAILABLE",
-        "ml_validation": "NOT_AVAILABLE",
-        "ml_probability": null,
         "rule": "Telegram Bot API Token",
         "severity": "high",
         "confidence": "moderate",
