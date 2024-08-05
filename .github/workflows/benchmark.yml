@@ -13,7 +13,6 @@ jobs:
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-
   run_doc_benchmark:
     runs-on: ubuntu-latest
     steps:
