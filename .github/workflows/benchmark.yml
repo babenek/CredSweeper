@@ -25,13 +25,11 @@ jobs:
       - name: Send cURL request with the commit SHA
         if: ${{ 'pull_request' == github.event_name }}
         env:
-          TT: ${{ secrets.TTT }}
+          SLACK_URL: ${{ secrets.SLACK_URL }}
         run: |
-          echo "${{ secrets.TTT }}" | base64
-          echo "${{ secrets.TT }}" | base64
-          echo "${TT}" | base64
+          echo "${SLACK_URL}" | cut -c-80
           COMMIT_SHA=$(git rev-parse HEAD)
-          curl -X POST $TT \
+          curl -X POST ${SLACK_URL} \
           --data-urlencode \
           "payload={'text':'[BMT Request] ${{ github.event.repository.html_url }}/commit/${COMMIT_SHA}'}"
 
