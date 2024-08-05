@@ -7,15 +7,14 @@ from tests.filters.conftest import DUMMY_ANALYSIS_TARGET
 
 
 class TestValueBase64PartCheck(unittest.TestCase):
-    EAA_PATTERN = re.compile(
-        r"(?P<value>\bEAA[0-9A-Za-z]{32})")
+    EAA_PATTERN = re.compile(r"(?P<value>\bEAA[0-9A-Za-z]{32})")
 
     def test_value_check_n(self) -> None:
         line_data = LineData(config=None,
                              path="dummy",
                              file_type="",
                              line="qcE81rS+FJHuvg39lz4T/EAACEb00Kse0BAlGy7KeQ5YnaCEd09Eo"
-                                  "se0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD",
+                             "se0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD",
                              info="",
                              line_num=1,
                              line_pos=0,
