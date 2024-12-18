@@ -13,6 +13,7 @@ dependencies = [
     "humanfriendly",
     "lxml",
     "numpy<2.0.0",
+    "urllib3==1.26.16",
     "odfpy",
     "onnxruntime",
     "openpyxl",
