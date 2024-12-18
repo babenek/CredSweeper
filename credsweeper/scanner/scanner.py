@@ -80,12 +80,12 @@ class Scanner:
                 if 0 < rule.min_line_len:
                     if rule.rule_type == RuleType.KEYWORD:
                         self.min_keyword_len = min(self.min_keyword_len, rule.min_line_len)
-                    elif rule.rule_type == RuleType.PATTERN:
-                        self.min_pattern_len = min(self.min_pattern_len, rule.min_line_len)
-                    elif rule.rule_type == RuleType.PEM_KEY:
-                        self.min_pem_key_len = min(self.min_pem_key_len, rule.min_line_len)
-                    elif rule.rule_type == RuleType.MULTI:
-                        self.min_multi_len = min(self.min_multi_len, rule.min_line_len)
+                    # elif rule.rule_type == RuleType.PATTERN:
+                    #     self.min_pattern_len = min(self.min_pattern_len, rule.min_line_len)
+                    # elif rule.rule_type == RuleType.PEM_KEY:
+                    #     self.min_pem_key_len = min(self.min_pem_key_len, rule.min_line_len)
+                    # elif rule.rule_type == RuleType.MULTI:
+                    #     self.min_multi_len = min(self.min_multi_len, rule.min_line_len)
                     else:
                         logger.warning(f"Unknown rule type:{rule.rule_type}")
                 self.rules_scanners.append((rule, self.get_scanner(rule)))
