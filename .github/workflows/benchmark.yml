@@ -1,0 +1,493 @@
+# This workflow runs benchmark
+# Separation of jobs helps to cache data even benchmark is fail
+
+name: Benchmark
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  download_data:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout CredData
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Samsung/CredData
+          ref: main
+
+      - name: Markup hashing
+        run: |
+          md5sum snapshot.yaml >checksums.md5
+          for f in $(find meta -type f|sort); do md5sum $f; done >>checksums.md5
+          for f in $(find . -maxdepth 1 -type f -name "*.py"|sort); do md5sum $f; done >>checksums.md5
+          cat checksums.md5
+          sha256sum checksums.md5
+
+      - name: Cache data
+        id: cache-data
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        with:
+          path: data
+          key: cred-data-${{ hashFiles('checksums.md5') }}
+
+      - name: Set up Python 3.10
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
+        with:
+          python-version: "3.10"
+
+      - name: Update PIP
+        run: python -m pip install --upgrade pip
+
+      - name: Install requirements of CredData
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Generate Data Asset
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        run: python download_data.py --data_dir data --jobs $(nproc)
+
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  run_benchmark:
+
+    if: ${{ 'pull_request' == github.event_name }}
+
+    needs: [ download_data ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout CredData
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Samsung/CredData
+          ref: main
+
+      - name: Markup hashing
+        run: |
+          md5sum snapshot.yaml >checksums.md5
+          for f in $(find meta -type f|sort); do md5sum $f; done >>checksums.md5
+          for f in $(find . -maxdepth 1 -type f -name "*.py"|sort); do md5sum $f; done >>checksums.md5
+          cat checksums.md5
+          sha256sum checksums.md5
+
+      - name: Cache data
+        id: cache-data
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        with:
+          path: data
+          key: cred-data-${{ hashFiles('checksums.md5') }}
+
+      - name: Failure in case when cache missed
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        run: exit 1
+
+      - name: Check Data Asset - DEBUG
+        if: steps.cache-data.outputs.cache-hit == 'true'
+        run: ls -al . && ls -al data
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
+        with:
+          python-version: "3.10"
+
+      - name: Update PIP
+        run: python -m pip install --upgrade pip
+
+      - name: Install requirements of CredData
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Checkout CredSweeper
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: temp/CredSweeper
+
+      - name: Install CredSweeper
+        run: |
+          python -m pip install temp/CredSweeper
+          python -m credsweeper --banner
+
+      - name: Run CredSweeper tool
+        run: |
+          credsweeper --banner --log info --jobs $(nproc) --sort --subtext --path data --save-json report.${{ github.event.pull_request.head.sha }}.json | tee credsweeper.${{ github.event.pull_request.head.sha }}.log
+
+      - name: Run Benchmark
+        run: |
+          python -m benchmark --scanner credsweeper --load report.${{ github.event.pull_request.head.sha }}.json | tee benchmark.${{ github.event.pull_request.head.sha }}.log
+
+      - name: Upload CredSweeper log
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: credsweeper
+          path: credsweeper.${{ github.event.pull_request.head.sha }}.log
+
+      - name: Upload CredSweeper report
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: report
+          path: report.${{ github.event.pull_request.head.sha }}.json
+
+      - name: Upload benchmark output
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: benchmark
+          path: benchmark.${{ github.event.pull_request.head.sha }}.log
+
+      - name: Verify benchmark scores of the PR
+        run: |
+          diff --unified=3 --ignore-all-space --ignore-blank-lines temp/CredSweeper/.ci/benchmark.txt benchmark.${{ github.event.pull_request.head.sha }}.log
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  performance_benchmark:
+    # put the benchmark in single job to keep constant environment during test python 3.8 is not applicable
+    needs: [ download_data ]
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.9", "3.10", "3.11", "3.12" ]
+
+    steps:
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout CredData
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Samsung/CredData
+          ref: main
+
+      - name: Markup hashing
+        run: |
+          md5sum snapshot.yaml >checksums.md5
+          for f in $(find meta -type f|sort); do md5sum $f; done >>checksums.md5
+          for f in $(find . -maxdepth 1 -type f -name "*.py"|sort); do md5sum $f; done >>checksums.md5
+          cat checksums.md5
+          sha256sum checksums.md5
+
+      - name: Cache data
+        id: cache-data
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        with:
+          path: data
+          key: cred-data-${{ hashFiles('checksums.md5') }}
+
+      - name: Failure in case when cache missed
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        run: exit 1
+
+      - name: Exclude very huge data
+        if: steps.cache-data.outputs.cache-hit == 'true'
+        run: rm -rf data/0* data/2* data/7* data/8* data/a* data/b* data/d* data/e* data/f*
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Add synthetic huge data
+        if: steps.cache-data.outputs.cache-hit == 'true'
+        run: python -c "for n in range(7654321):print(f'{n:08x}')" >data/test.text
+
+      - name: Update PIP
+        run: python -m pip install --upgrade pip
+
+      - name: Install released CredSweeper
+        run: |
+          python -m pip install credsweeper
+          # check the banner
+          credsweeper --banner
+
+      - name: Run performance benchmark RELEASE
+        run: |
+          START_TIME=$(date +%s)
+          /usr/bin/time --verbose credsweeper --log error --path data --save-json /dev/null
+          FINISH_TIME=$(date +%s)
+          RELEASE_TIME=$(( ${FINISH_TIME} - ${START_TIME} ))
+          if [ 0 -lt ${RELEASE_TIME} ]; then
+            echo Elapsed $(date -ud "@${RELEASE_TIME}" +"%H:%M:%S")
+          else
+            echo "Wrong result '${RELEASE_TIME}'"
+            exit 1
+          fi
+          echo "RELEASE_TIME=${RELEASE_TIME}" >> $GITHUB_ENV
+
+      - name: Uninstall released CredSweeper
+        run: |
+          python -m pip uninstall -y credsweeper
+
+      - name: Checkout base CredSweeper
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: temp/CredSweeper.base
+
+      - name: Install base CredSweeper
+        run: |
+          python -m pip install temp/CredSweeper.base
+          # check the banner
+          credsweeper --banner
+
+      - name: Run performance benchmark BASE
+        run: |
+          START_TIME=$(date +%s)
+          /usr/bin/time --verbose credsweeper --log error --path data --save-json /dev/null
+          FINISH_TIME=$(date +%s)
+          BASE_TIME=$(( ${FINISH_TIME} - ${START_TIME} ))
+          if [ 0 -lt ${BASE_TIME} ]; then
+            echo Elapsed $(date -ud "@${BASE_TIME}" +"%H:%M:%S")
+          else
+            echo "Wrong result '${BASE_TIME}'"
+            exit 1
+          fi
+          echo "BASE_TIME=${BASE_TIME}" >> $GITHUB_ENV
+
+      - name: Checkout current CredSweeper
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: temp/CredSweeper.head
+
+      - name: Install current CredSweeper
+        run: |
+          python -m pip install temp/CredSweeper.head
+          # check the banner
+          credsweeper --banner
+
+      - name: Run performance benchmark CURRENT
+        run: |
+          START_TIME=$(date +%s)
+          /usr/bin/time --verbose credsweeper --log error --path data --save-json /dev/null
+          FINISH_TIME=$(date +%s)
+          HEAD_TIME=$(( ${FINISH_TIME} - ${START_TIME} ))
+          if [ 0 -lt ${HEAD_TIME} ]; then
+            echo Elapsed $(date -ud "@${HEAD_TIME}" +"%H:%M:%S")
+          else
+            echo "Wrong result '${HEAD_TIME}'"
+            exit 1
+          fi
+          echo "HEAD_TIME=${HEAD_TIME}" >> $GITHUB_ENV
+
+      - name: Compare results
+        run: |
+          exit_code=0
+          LOW_DELTA=10
+          THRESHOLD=250
+
+          # RELEASE
+          if [ ${RELEASE_TIME} -le ${HEAD_TIME} ]; then
+            d=$(( 1000 * ( ${HEAD_TIME} - ${RELEASE_TIME} ) / ${RELEASE_TIME} ))
+            echo "RELEASE_TIME (sec) = ${RELEASE_TIME}, current (sec) = ${HEAD_TIME}. Diff (% * 10): ${d}"
+            if [ $LOW_DELTA -ge ${d} ]; then
+              echo "Almost the same."
+            elif [ $THRESHOLD -lt ${d} ]; then
+              echo "Significantly Slowdown."
+              exit_code=1
+            else
+              echo "Slowdown."
+            fi
+          else
+            d=$(( 1000 * ( ${RELEASE_TIME} - ${HEAD_TIME} ) / ${RELEASE_TIME} ))
+            echo "RELEASE_TIME (sec) = ${RELEASE_TIME}, current (sec) = ${HEAD_TIME}. Diff (% * 10): ${d}"
+            if [ $LOW_DELTA -ge ${d} ]; then
+              echo "Almost the same."
+            elif [ $THRESHOLD -lt ${d} ]; then
+              echo "Significantly speed-up."
+            else
+              echo "Speed-up."
+            fi
+          fi
+
+          # BASE
+          if [ ${BASE_TIME} -le ${HEAD_TIME} ]; then
+            d=$(( 1000 * ( ${HEAD_TIME} - ${BASE_TIME} ) / ${BASE_TIME} ))
+            echo "BASE_TIME (sec) = ${BASE_TIME}, current (sec) = ${HEAD_TIME}. Diff (% * 10): ${d}"
+            if [ $LOW_DELTA -ge ${d} ]; then
+              echo "Almost the same."
+            elif [ $THRESHOLD -lt ${d} ]; then
+              echo "Significantly Slowdown."
+              exit_code=1
+            else
+              echo "Slowdown."
+            fi
+          else
+            d=$(( 1000 * ( ${BASE_TIME} - ${HEAD_TIME} ) / ${BASE_TIME} ))
+            echo "BASE_TIME (sec) = ${BASE_TIME}, current (sec) = ${HEAD_TIME}. Diff (% * 10): ${d}"
+            if [ $LOW_DELTA -ge ${d} ]; then
+              echo "Almost the same."
+            elif [ $THRESHOLD -lt ${d} ]; then
+              echo "Significantly speed-up."
+            else
+              echo "Speed-up."
+            fi
+          fi
+
+          exit ${exit_code}
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  experiment:
+    # the ml train test is placed here to use cached data set
+    needs: [ download_data ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout CredData
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Samsung/CredData
+          ref: main
+
+      - name: Markup hashing
+        run: |
+          md5sum snapshot.yaml >checksums.md5
+          for f in $(find meta -type f|sort); do md5sum $f; done >>checksums.md5
+          for f in $(find . -maxdepth 1 -type f -name "*.py"|sort); do md5sum $f; done >>checksums.md5
+          cat checksums.md5
+          sha256sum checksums.md5
+
+      - name: Cache data
+        id: cache-data
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        with:
+          path: data
+          key: cred-data-${{ hashFiles('checksums.md5') }}
+
+      - name: Failure in case when cache missed
+        if: steps.cache-data.outputs.cache-hit != 'true'
+        run: exit 1
+
+      - name: Exclude some sets for speed-up
+        run: |
+          rm -rf data/4* data/5* data/6* data/7* data/8* data/9* data/a* data/b* data/c* data/d* data/e* data/f*
+          rm -rf meta/4* meta/5* meta/6* meta/7* meta/8* meta/9* meta/a* meta/b* meta/c* meta/d* meta/e* meta/f*
+          mkdir -vp ${{ github.workspace }}/CredData
+          mv data ${{ github.workspace }}/CredData/
+          mv meta ${{ github.workspace }}/CredData/
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
+        with:
+          python-version: "3.10"
+
+      - name: Update PIP
+        run: python -m pip install --upgrade pip
+
+      - name: Checkout current CredSweeper
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: CredSweeper.head
+
+      - name: Install development packages
+        run: python -m pip install --requirement CredSweeper.head/requirements.txt
+
+      - name: Install experimental packages
+        # some versions will be changed for compatibility
+        run: python -m pip install --requirement CredSweeper.head/experiment/requirements.txt
+
+      - name: dbg
+        run: echo ${{ github.workspace }} && ls -al ${{ github.workspace }} && tree ${{ github.workspace }}
+
+      - name: Run the experiment
+        run: |
+          cd CredSweeper.head
+          ls -al #dbg
+          pwd #dbg
+          export PYTHONPATH=$(pwd):${PYTHONPATH}
+          cd experiment
+          # check whether credsweeper is available as module
+          python -m credsweeper --banner
+          # use only 2 epochs for the test
+          sed -i 's/max_epochs = .*/max_epochs = 2/' main.py
+          python main.py --data ${{ github.workspace }}/CredData -j $(( 2 * $(nproc) ))
+          # dbg
+          git diff
+          # crc32 should be changed
+          python -m credsweeper --banner
+          # run quick scan
+          python -m credsweeper --ml_providers AzureExecutionProvider,CPUExecutionProvider --log debug --path ../tests/samples --save-json
+          NEW_MODEL_FOUND_SAMPLES=$(jq '.|length' output.json)
+          if [ 10 -gt ${NEW_MODEL_FOUND_SAMPLES} ]; then
+            echo "Failure: found ${NEW_MODEL_FOUND_SAMPLES} credentials"
+            exit 1
+          fi
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  run_doc_benchmark:
+    runs-on: ubuntu-latest
+    if: ${{ 'push' == github.event_name }} or ${{ 'Samsung/CredSweeper' == github.event.pull_request.head.repo.full_name }}
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout CredSweeper PR
+        if: ${{ 'pull_request' == github.event_name }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout CredSweeper HEAD
+        if: ${{ 'push' == github.event_name }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.head }}
+
+      - name: Send cURL request with the commit SHA
+        run: |
+          if [[ "${{ secrets.SLACK_URL }}" =~ http.*/.*/.* ]]; then
+            COMMIT_SHA=$(git rev-parse HEAD)
+            echo ${COMMIT_SHA}
+            curl -X POST ${{ secrets.SLACK_URL }} \
+            --data-urlencode \
+            "payload={'text':'[BMT Request] ${{ github.event.repository.html_url }}/commit/${COMMIT_SHA}'}"
+          else
+            echo "secrets.SLACK_URL is not available"
+          fi
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
