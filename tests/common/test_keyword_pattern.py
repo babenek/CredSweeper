@@ -44,6 +44,7 @@ class TestKeywordPattern:
             # ['''password=f"\\"secret=2\\""''', '''\\"secret=2\\"'''],  # todo
             # ['''password=r"\\\\"secret=3\\\\""''', '''\\"secret=3\\"'''],  # todo
             # ['''"password = 'sec;$2`\\'[\\/*;ret';";''', '''sec;$2`\\'[\\/*;ret'''],  # todo
+            ['''"SELECT * FROM users WHERE password = 'r2d2;$2`\\'[/*;';";''', '''r2d2;$2`\\'[/*;'''],
             ['''"$password = "10qoakxncnfh47t_''', '''10qoakxncnfh47t_'''],  #
             [
                 '''copes\":[\"user\"],\"note\":\"Note\",\"password\":\"cc6323cb2223f82f01\",\"upd_at\":\"1765....\",''',
@@ -91,8 +92,8 @@ class TestKeywordPattern:
             ["""\\'password\\': \\'secret\\'""", """secret"""],  #
             ['''db.setCred("{ \"password\" : \"" + SECRET + "\" }");''', ''' + SECRET + '''],
             ['''\\"password\\": \\"{\\\\"secret\\\\": \\\\"test\\\\"}\\"''', '{\\\\"secret\\\\": \\\\"test\\\\"}'],  #
-            ['''"password": "{\\\\"secret\\\\": \\\\"test\\\\"}"''', '{\\\\"secret\\\\": \\\\"test\\\\"}'],  #
-            #normal_str = "First line.\nSecond line.\nEnd of message.\n";
+            ['''"password": "{\\\\"secret\\\\": \\\\"test22\\\\"}"''', '{\\\\"secret\\\\": \\\\"test22\\\\"}'],  #
+            # normal_str = "First line.\nSecond line.\nEnd of message.\n";
             ['''std::string password = R"multiline\\npassword";''', '''multiline\\npassword'''],  #
             ['''const wchar_t* password = L"wchar_t*secret";''', '''wchar_t*secret'''],  #
             ['''const char16_t* password = U"char16_t*secret";''', '''char16_t*secret'''],  #
@@ -125,7 +126,7 @@ class TestKeywordPattern:
                              Util.get_extension(file_path),
                              info="dummy",
                              pattern=pattern)
-        assert line_data.value == value
+        assert line_data.value == value, (line, str(pattern.pattern))
 
     @pytest.mark.parametrize("line", [
         "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@300;400;500;700;900"

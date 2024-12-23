@@ -14,22 +14,25 @@ from tests import AZ_STRING
 class TestLineData:
 
     @pytest.mark.parametrize("line", [
-        '"url" : "https://my.site?a=b&{}=ngh679x&c=d"',
-        '"url" : "https://my.site?{}=ngh679x&c=d"',
-        '"url" : "https://my.site?a=b&{}=ngh679x"',
+        '"url" : "https://my.site?a=b&{}={}&c=d"',
+        '"url" : "https://my.site?{}={}&c=d"',
+        '"url" : "https://my.site?a=b&{}={}"',
+        '"url" : "https://my.site?a=b&{}%3D{}"',
     ])
-    @pytest.mark.parametrize("var_name, rule_name", [("mysecret", "Secret"), ("password", "Password"),
-                                                     ("aws_token", "Token")])
+    @pytest.mark.parametrize("var_name, val_data, rule_name", [("mysecret", "ngh679_", "Secret"),
+                                                               ("password", "n-h679x", "Password"),
+                                                               ("aws_token", "ngX679x", "Token")])
     def test_url_params_p(self, file_path: pytest.fixture, rule: pytest.fixture, line: str, var_name: str,
+                          val_data: str,
                           rule_name: str, config: Config) -> None:
         """
         Test that URL args are parsed correctly with regard to ? and & characters.
         Rerun few times with different variable names to assure that different rules behave in a same way
         """
-        formatted_line = line.format(var_name)
+        formatted_line = line.format(var_name, val_data)
         line_data = LineData(config, formatted_line, 0, 1, file_path, Util.get_extension(file_path), "test_info",
                              rule.patterns[0])
-        assert line_data.value == "ngh679x"
+        assert line_data.value == val_data
         assert line_data.variable == var_name
 
     @pytest.mark.parametrize("line", ['{} = "ngh679x"'])
