@@ -902,7 +902,7 @@
     {
         "ml_validation": "NOT_AVAILABLE",
         "ml_probability": null,
-        "rule": "Azure DevPAT",
+        "rule": "Azure Storage Account Key",
         "severity": "critical",
         "confidence": "weak",
         "line_data_list": [
