@@ -4,11 +4,27 @@ author: "r.babenko@samsung.com"
 branding:
   icon: "terminal"
   color: "gray-dark"
-runs:
-  using: "docker"
-  image: "Dockerfile"
 inputs:
+  python_version:
+    description: "Python Version. 3.10 - default"
+    default: "3.10"
   args:
     description: "Arguments passed to credsweeper"
     default: "--path . --save-json"
     required: true
+runs:
+  using: "composite"
+  steps:
+    - id: setup-python
+      name: Setup Python
+      uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0 - 2025.01.28
+      with:
+        python-version: ${{ inputs.python_version }}
+    - id: credsweeper-run
+      name: CredSweeper run
+      shell: bash
+      run: python -m credsweeper ${{ inputs.args }}
+    - id: check-output
+      name: Check output
+      shell: bash
+      run: python -c "import json; import sys; sys.exit(0 if json.load(open('output.json')) else 0)"
