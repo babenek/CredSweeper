@@ -6,8 +6,8 @@ import sys
 OLD_SEED_SIZE = 2048
 NEW_SEED_SIZE = 4096 - 256
 
-
 # run in fuzz: for f in $(find corpus -type f); do python3 auxilary.py $f; done
+
 
 def main(argv):
     ascii_chars = string.digits + string.ascii_letters + string.punctuation + ' '

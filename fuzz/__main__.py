@@ -40,8 +40,13 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger(__name__)
 
 # Use depth=3 to deep scan in .zip and .gz files + find by extension feature
-cred_sweeper = CredSweeper(find_by_ext=True, ml_threshold=NEGLIGIBLE_ML_THRESHOLD, color=True, hashed=True,
-                           subtext=True, sort_output=True, thrifty=True)
+cred_sweeper = CredSweeper(find_by_ext=True,
+                           ml_threshold=NEGLIGIBLE_ML_THRESHOLD,
+                           color=True,
+                           hashed=True,
+                           subtext=True,
+                           sort_output=True,
+                           thrifty=True)
 
 INPUT_DATA_SIZE = 0x1000
 
