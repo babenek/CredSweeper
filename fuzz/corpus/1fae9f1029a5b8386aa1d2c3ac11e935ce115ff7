@@ -1,0 +1,40 @@
+# various line ending for sanitize
+str value = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDflqhcT1IH8BLD4SHn+  \f"
+	+ "WuRIzXdiff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+r   "
+		"9lfCb8cWq0eoOk3UUO9P+1nZNHjE/iDhuTi3x/5naW4SzdkZfxHo/NMI6i5w1ZnQ60CQQD9d0G9gBy6lPhC  \\
+""" mbHzYovVjSnyfzUtyWPNSrXNiUCR5vu2f6eCgSVzFZ0oHAv8nLaYnXrhyT77lwzNK5OhR/oPAkEA8tep3NmfxV """ +
+QSBfKG·fotblIG709xxfd6vHfDS0eZuTFUxkZDcawWGvFMaXeOFY5xOTs3PWsnhRFakQFbAuI/
+        DaJSTVnp3ObjJPZhJs/P/XPWIKRNIgthlJJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts
+        AQO2QIgdaBFvkXDrADkry4rpVBU17ETcKzNvej4/Y0MYuTM54ECIGtT
+        EBUWuiacAxz/WKHbyZDhMTDjMZxP8rokSbMaOSqUseUeYhx5TqFPwJAAhC0smyWz1ZjZ3eFIayN4yGRU+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g9RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH90AOG0QOQ1Jp6yBMKgYIB\\
+Uaxk9J5Th¹¹¹¹OW ENTROPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPE@GRq
+username/passwordANYID(PW):master(iPp1@GRq)
+ID/Password:master/iP„ì •/PW:mast iPp23@GRq
+User/Password master/iPp24@GRq
+user/pass:master/iPp25@GRNSSH EMPTY PRq
+id/pwd mastIer/iPp26@GRq
+ID/Password=master/iPp27@GRq
+ID/PW:mastVATer/iPp2E K8@GRq
+ID/PW->master/iPp29@EYGRq
+
+Default ID/PW are wpasp/wpasp.
+
+# FP:
+password: <-----PostgreSQL PW>"

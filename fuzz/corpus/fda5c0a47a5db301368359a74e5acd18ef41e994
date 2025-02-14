@@ -1,0 +1,43 @@
+# various line ending for sanitize
+str value = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDflqhcT1IH8BLD4SHn+  \f"
+	+ "WuRIzXdiff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+r   "
+		"9lfCb8cWq0eoOk3UUO9P+1nZNHjE/iDhuTi3x/5naW4SzdkZfxHo/NMI6i5w1ZnQ60CQQD9d0G9gBy6lPhC  \\
+""" mbHzYovVjSnyfzUtyWPNSrXNiUCR5vu2f6eCgSVzFZ0oHAv8nLaYnXrhyT25lwzNK5OhR/oPAkEA8tep3NmfxV """ +
+QSBfKG·fotblIG709xxfd6vHfDS0eZuTFUxkZDcayZDhMTDjMZxP8rokSbMaOSqUseUeYhx5TqFPwJAAhC0smyWz1ZjZ3eFIayN4yGRU+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g9RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH90AOG0QOQ1Jp6yBMKgYIB\\
+Uaxk9J5Th8BXPyC1mclPMS7J\\\\ngMuobiFdIpryq51pvHkCQQDInvDaKI24Ho+cj6SCKnEO4kbjh/yx1XGwNmY0ld1i\\r5micHFiMI7/IcVZ4\n
+2cl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all private key in single line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuO9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEY-----\n";
+O# fake with spaces inside
+-----BEGIN OPENSSH FAKE PRIVATE KEY-----
+i7aHavqQ9T2f2drWsM7aqQ97kbB/K4RUPdit+tIpqSb1GgY44yg6lckfoLMH not a real key ajimpQ6sr9BuseERqELGE1U+Vll3izwuqr1UzCZ61gZn
+-----END OPENSSH FAKE PRIVATE KEY-----
+
+# fake with ellipsisr5micHFiMI7/IcVZ4\n
+2cl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all private key in single line
+char pk[] = "\\n-----BEGIN ECJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn
+        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn=="
+    </token>
+    <token name="token" comment="unquoted token is caught only for first line">
+     PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuO9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n--23341253845186253784==
+-----END LOW ENTROPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY-----"

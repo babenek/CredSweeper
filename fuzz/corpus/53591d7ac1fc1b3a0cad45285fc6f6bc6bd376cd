@@ -1,0 +1,3 @@
+salt1 = b"\u0020827634876"
+salt4 = {"salt5": "my124%#$@s\x04clt\0"}
+json_escaped = "{\\\"salt8\\\":\\\"4b9a6d8b638eb0c6\\\"}"
