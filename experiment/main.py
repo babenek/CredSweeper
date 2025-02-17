@@ -16,6 +16,9 @@ from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import f1_score, precision_score, recall_score, log_loss, accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.utils import compute_class_weight
+import optuna
+from optuna.samplers import TPESampler
+from optuna.pruners import HyperbandPruner
 
 from experiment.plot import save_plot
 from experiment.src.data_loader import read_detected_data, read_metadata, join_label, get_y_labels
@@ -23,6 +26,36 @@ from experiment.src.features import prepare_data
 from experiment.src.lstm_model import MlModel
 from experiment.src.model_config_preprocess import model_config_preprocess
 from experiment.src.prepare_data import prepare_train_data, data_checksum
+
+
+def objective(trial, x_train, y_train, x_test, y_test, hp, device):
+    params = {}
+    for param_name, ((low, high, step), default) in hp.items():
+        params[param_name] = trial.suggest_float(param_name, low, high, step=step)
+
+    model = MlModel(*[x.shape for x in x_train], params).to(device)
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    criterion = nn.BCELoss()
+
+    dataset = TensorDataset(*[torch.tensor(x, dtype=torch.float32) for x in x_train],
+                            torch.tensor(y_train, dtype=torch.float32))
+    data_loader = DataLoader(dataset, batch_size=1024, shuffle=True)
+
+    model.train()
+    for _ in range(5):
+        for batch in data_loader:
+            x_tensors = [x.to(device) for x in batch[:-1]]
+            y_batch = batch[-1].to(device)
+            optimizer.zero_grad()
+            outputs = model(*x_tensors).squeeze()
+            loss = criterion(outputs, y_batch)
+            loss.backward()
+            optimizer.step()
+
+    predictions = model(*[torch.tensor(x, dtype=torch.float32, device=device)
+                          for x in x_test]).cpu().detach().numpy().ravel()
+    val_loss = criterion(y_test, predictions)
+    return val_loss
 
 
 def evaluate_model(thresholds: dict,
@@ -169,9 +202,16 @@ def main(cred_data_location: str,
     x_train = [x_train_line, x_train_variable, x_train_value, x_train_features]
     x_test = [x_test_line, x_test_variable, x_test_value, x_test_features]
 
-    param_kwargs = {k: v[1] for k, v in hp_dict.items()}
+    if use_tuner:
+        print(f"Start model train with optimization")
+        study = optuna.create_study(sampler=TPESampler(), pruner=HyperbandPruner(), direction="minimize")
+        study.optimize(lambda trial: objective(trial, x_train, y_train, x_test, y_test, hp_dict, device), n_trials=20)
+        param_kwargs = study.best_params
+        print(f"Best hyperparameters: {param_kwargs}")
+    else:
+        param_kwargs = {k: v[1] for k, v in hp_dict.items()}
 
-    print(f"Model is trained with params from dict:{param_kwargs}")
+    print(f"Model will be trained using the following params:{param_kwargs}")
 
     # repeat train step to obtain actual history chart
     ml_model = MlModel(x_full_line.shape, x_full_variable.shape, x_full_value.shape, x_full_features.shape,
