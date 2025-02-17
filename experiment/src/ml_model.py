@@ -12,12 +12,7 @@ dtype = torch.float32
 
 class MlModel(nn.Module):
 
-    def __init__(self,
-                 line_shape: tuple,
-                 variable_shape: tuple,
-                 value_shape: tuple,
-                 feature_shape: tuple,
-                 hp=None):
+    def __init__(self, line_shape: tuple, variable_shape: tuple, value_shape: tuple, feature_shape: tuple, hp=None):
         super(MlModel, self).__init__()
         if hp is None:
             hp = {}
@@ -56,8 +51,8 @@ class MlModel(nn.Module):
         self.b_dropout = nn.Dropout(dense_b_dropout_rate)
 
     @staticmethod
-    def __get_hyperparam(param_name: str, hp=None) -> Any:
-        if param := hp.get(param_name):
+    def __get_hyperparam(param_name: str, hyperparameters=None) -> Any:
+        if param := hyperparameters.get(param_name):
             if isinstance(param, float):
                 print(f"'{param_name}' is {param}")
                 return param
@@ -66,10 +61,7 @@ class MlModel(nn.Module):
         else:
             raise ValueError(f"'{param_name}' was not defined during initialization of the model.")
 
-    def forward(self,
-                line_input: torch.Tensor,
-                variable_input: torch.Tensor,
-                value_input: torch.Tensor,
+    def forward(self, line_input: torch.Tensor, variable_input: torch.Tensor, value_input: torch.Tensor,
                 feature_input: torch.Tensor):
         line_out, _ = self.line_lstm(line_input)
         line_out = self.line_dropout(line_out[:, -1, :])
