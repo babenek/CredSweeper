@@ -2,17 +2,12 @@
 # pip 24.3.1
 
 # version sensetive
-h5py==3.12.1
-numpy==1.26.4
 onnx==1.17.0
-protobuf==3.20.3
 scikit-learn==1.6.1
-wrapt==1.14.1
 torch==2.6.0
 optuna==4.2.1
 
 # version insensetive
-types-tensorflow
 matplotlib
 colorama
 psutil

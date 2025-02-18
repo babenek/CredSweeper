@@ -45,7 +45,7 @@ mkdir -vp "${RESULT_DIR}"
 #TUNER=--tuner
 # set env DOC to apply doc dataset
 #DOC=--doc
-"${CREDSWEEPER_DIR}"/.venv/bin/python main.py --data "${CREDDATA_DIR}" --jobs ${JOBS} ${TUNER} ${DOC} --batch_size 4096 | tee "${RESULT_DIR}/${NOW}.train.log"
+"${CREDSWEEPER_DIR}"/.venv/bin/python main.py --data "${CREDDATA_DIR}" --jobs ${JOBS} ${TUNER} ${DOC} --batch_size 2048 | tee "${RESULT_DIR}/${NOW}.train.log"
 error_code=${PIPESTATUS}
 if [ 0 -ne ${error_code} ]; then exit ${error_code}; fi
 
