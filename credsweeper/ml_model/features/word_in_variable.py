@@ -21,6 +21,7 @@ class WordInVariable(WordIn):
     def extract(self, candidate: Candidate) -> np.ndarray:
         """Returns array of matching words for first line"""
         if variable := candidate.line_data_list[0].variable:
+            print(self.__class__.__name__)
             return self.word_in_str(variable.lower())
         else:
             return np.zeros(shape=[self.dimension], dtype=np.int8)

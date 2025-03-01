@@ -25,6 +25,7 @@ class WordInPath(WordIn):
             path = Path(file_path)
             # apply ./ for normalised path to detect "/src" for relative path
             posix_lower_path = path.as_posix().lower() if path.is_absolute() else f"./{path.as_posix().lower()}"
+            print (self.__class__.__name__)
             return self.word_in_str(posix_lower_path)
         else:
             return np.array([np.zeros(shape=[self.dimension], dtype=np.int8)])

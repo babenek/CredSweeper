@@ -27,6 +27,7 @@ class WordInPostamble(WordIn):
         postamble = candidate.line_data_list[0].line[candidate.line_data_list[0].value_end:postamble_end].strip()
 
         if postamble:
+            print(self.__class__.__name__)
             return self.word_in_str(postamble.lower())
         else:
             return np.array([np.zeros(shape=[self.dimension], dtype=np.int8)])

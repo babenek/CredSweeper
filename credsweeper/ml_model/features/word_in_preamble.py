@@ -32,6 +32,7 @@ class WordInPreamble(WordIn):
             preamble = candidate.line_data_list[0].line[preamble_start:candidate.line_data_list[0].value_start].strip()
 
         if preamble:
+            print(self.__class__.__name__)
             return self.word_in_str(preamble.lower())
         else:
             return np.array([np.zeros(shape=[self.dimension], dtype=np.int8)])

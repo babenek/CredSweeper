@@ -15,6 +15,7 @@ class WordIn(Feature):
         self.dimension = len(words)
         self.words = sorted(list(set(words)))
         self.enumerated_words = list(enumerate(self.words))
+        self.dbg_words={x:0 for x in self.words}
         if len(self.enumerated_words) != self.dimension:
             raise RuntimeError(f"Check duplicates:{words}")
 
@@ -48,6 +49,8 @@ class WordIn(Feature):
         for i, word in self.enumerated_words:
             if word in a_string:
                 result[i] = 1
+                self.dbg_words[word]+=1
+        print(f"No triggers for {[x for x,y in self.dbg_words.items() if 0==y]}")
         return np.array([result])
 
     def word_in_set(self, a_strings_set: Set[str]) -> np.ndarray:

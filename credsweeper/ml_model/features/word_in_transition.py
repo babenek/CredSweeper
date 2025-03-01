@@ -27,6 +27,7 @@ class WordInTransition(WordIn):
             transition = ''
 
         if transition:
+            print(self.__class__.__name__)
             return self.word_in_str(transition.lower())
         else:
             return np.array([np.zeros(shape=[self.dimension], dtype=np.int8)])
