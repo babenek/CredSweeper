@@ -163,7 +163,7 @@
   use_ml: true
 
 - name: API
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -242,7 +242,7 @@
     - doc
 
 - name: Credential
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -444,7 +444,7 @@
     - doc
 
 - name: Password
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -530,7 +530,7 @@
     - doc
 
 - name: Secret
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -646,7 +646,7 @@
     - doc
 
 - name: Token
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -768,7 +768,7 @@
     - code
 
 - name: Auth
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -782,7 +782,7 @@
     - code
 
 - name: Key
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -886,7 +886,7 @@
     - doc
 
 - name: Nonce
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -900,7 +900,7 @@
     - code
 
 - name: Salt
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -914,7 +914,7 @@
     - code
 
 - name: Certificate
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
