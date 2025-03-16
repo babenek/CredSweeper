@@ -25,6 +25,7 @@ class ValueAllowlistCheck(Filter):
 
     ALLOWED_QUOTED = [
         r"\$[a-z_]+[0-9a-z_]*([$\s]|$)",  #
+        r"\$\([^)]+\)",  #
         r".*\*\*\*",  #
     ]
 
@@ -33,6 +34,7 @@ class ValueAllowlistCheck(Filter):
     ALLOWED_UNQUOTED = [
         r"[~a-z0-9_]+((\.|->)[a-z0-9_]+)+\(.*$",  #
         r"\$[a-z_]+[0-9a-z_]*\b",  #
+        r"\$\([.0-9a-z_-]+",  #
         r".*\*\*\*\*\*",  #
     ]
 

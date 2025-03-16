@@ -60,6 +60,7 @@ class TestKeywordPattern:
                 '''var request = {"password": "{\\"wks\\": \\"8x9s3ga7\\", \\"uzr\": \\"wbm\\"}","Any-Tail":"x\r"};''',
                 '''{\\"wks\\": \\"8x9s3ga7\\", \\"uzr": \\"wbm\\"}'''
             ],
+            ['''passwords: $[ "1029384756",''', '''1029384756'''],  #
             ['''passwords: ["1029384756",''', '''1029384756'''],  #
             ['''passwords:[ "1029384756", "9801726354" ]''', '''1029384756'''],  #
             ['''password="\\"secret-line-wrap\\''', '''secret-line-wrap'''],  #
@@ -121,11 +122,26 @@ class TestKeywordPattern:
             ],
             ["password%3dDmsfdsq452!&user%5Bpassword_", "Dmsfdsq452!"],
             ["MY_TEST_PASSWORD={MY_TEST_PASSWORD}", "MY_TEST_PASSWORD"],
+            # https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
+            ["MY_TEST_PASSWORD={MY_VAR:?THE VAR IS UNSET}", "{MY_VAR:?THE"],
             ["MY_TEST_PASSWORD=(MY_TEST_PASSWORD)", "MY_TEST_PASSWORD"],
+            ["MY_TEST_PASSWORD='(MY_TEST_PASSWORD)'", "(MY_TEST_PASSWORD)"],
+            ["MY_TEST_PASSWORD=$(MY_TEST_PASSWORD)", "$(MY_TEST_PASSWORD)"],
+            ["MY_TEST_PASSWORD='$(MY_TEST_PASSWORD)'", "$(MY_TEST_PASSWORD)"],
             ["MY_TEST_PASSWORD=<MY_TEST_PASSWORD>", "<MY_TEST_PASSWORD>"],  # <> are used in future to detect a template
             ["MY_TEST_PASSWORD=[MY_TEST_PASSWORD]", "MY_TEST_PASSWORD"],
             ["MY_TEST_PASSWORD=MY_TEST&PASSWORD!", "MY_TEST&PASSWORD!"],
             ["MY_TEST_PASSWORD='MY_TEST&PASSWORD!'", "MY_TEST&PASSWORD!"],
+            ["password=${REMOVE_PREFIX#prefix}", "${REMOVE_PREFIX#prefix}"],
+            ["password='${REMOVE_PREFIX#prefix}'", "${REMOVE_PREFIX#prefix}"],
+            ["password=${cat pass}", "${cat"],
+            ["password='$(( 1 + 2 + 3 + 4 ))'", "$(( 1 + 2 + 3 + 4 ))"],
+            ["password=$(( 1 + 2 + 3 + 4 ))", "$(("],
+            ["password='$[[ 1 + 2 + 3 + 4 ]]'", "$[[ 1 + 2 + 3 + 4 ]]"],
+            ["password=$[[ 1 + 2 + 3 + 4 ]]", "$[["],
+            ["password=$[[_1_+_2_+_3_+_4_]]", "$[[_1_+_2_+_3_+_4_]]"],
+            ["password=${array[@]:7:2}", "${array[@]:7:2}"],
+            ["password=${1#*=}", "${1#*=}"]
         ])
     def test_keyword_pattern_p(self, config: Config, file_path: pytest.fixture, line: str, value: str) -> None:
         pattern = KeywordPattern.get_keyword_pattern("password")
