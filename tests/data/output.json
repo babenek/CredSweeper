@@ -26,7 +26,7 @@
     },
     {
         "rule": "API",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -176,7 +176,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -201,7 +201,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -226,7 +226,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -251,7 +251,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -276,7 +276,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -301,7 +301,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -443,7 +443,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.992,
         "line_data_list": [
@@ -468,7 +468,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.992,
         "line_data_list": [
@@ -560,7 +560,7 @@
     },
     {
         "rule": "Credential",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -609,6 +609,56 @@
         ]
     },
     {
+        "rule": "Key",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 0.993,
+        "line_data_list": [
+            {
+                "line": "        \"AwsSecretKey\": \"CrackleGiReoGi123CrackleGiReoGi321AWSkey\",",
+                "line_num": 52,
+                "path": "./tests/samples/aws_multi.json",
+                "info": "",
+                "value": "CrackleGiReoGi123CrackleGiReoGi321AWSkey",
+                "value_start": 25,
+                "value_end": 65,
+                "variable": "AwsSecretKey",
+                "variable_start": 9,
+                "variable_end": 21,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 4.012814895472355,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
+        "rule": "Secret",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 0.993,
+        "line_data_list": [
+            {
+                "line": "        \"AwsSecretKey\": \"CrackleGiReoGi123CrackleGiReoGi321AWSkey\",",
+                "line_num": 52,
+                "path": "./tests/samples/aws_multi.json",
+                "info": "",
+                "value": "CrackleGiReoGi123CrackleGiReoGi321AWSkey",
+                "value_start": 25,
+                "value_end": 65,
+                "variable": "AwsSecretKey",
+                "variable_start": 9,
+                "variable_end": 21,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 4.012814895472355,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
         "rule": "AWS Multi",
         "severity": "high",
         "confidence": "moderate",
@@ -651,56 +701,6 @@
         ]
     },
     {
-        "rule": "Key",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.993,
-        "line_data_list": [
-            {
-                "line": "        \"AwsSecretKey\": \"CrackleGiReoGi123CrackleGiReoGi321AWSkey\",",
-                "line_num": 52,
-                "path": "./tests/samples/aws_multi.json",
-                "info": "",
-                "value": "CrackleGiReoGi123CrackleGiReoGi321AWSkey",
-                "value_start": 25,
-                "value_end": 65,
-                "variable": "AwsSecretKey",
-                "variable_start": 9,
-                "variable_end": 21,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 4.012814895472355,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Secret",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.993,
-        "line_data_list": [
-            {
-                "line": "        \"AwsSecretKey\": \"CrackleGiReoGi123CrackleGiReoGi321AWSkey\",",
-                "line_num": 52,
-                "path": "./tests/samples/aws_multi.json",
-                "info": "",
-                "value": "CrackleGiReoGi123CrackleGiReoGi321AWSkey",
-                "value_start": 25,
-                "value_end": 65,
-                "variable": "AwsSecretKey",
-                "variable_start": 9,
-                "variable_end": 21,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 4.012814895472355,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
         "rule": "AWS Client ID",
         "severity": "high",
         "confidence": "moderate",
@@ -720,6 +720,31 @@
                 "entropy_validation": {
                     "iterator": "BASE64STDPAD_CHARS",
                     "entropy": 3.5464393446710156,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
+        "rule": "Key",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "    \"AccessKeyId\" : \"AKIA0ON7V2DD57PL3JXM\",",
+                "line_num": 7,
+                "path": "./tests/samples/aws_multi.md",
+                "info": "",
+                "value": "AKIA0ON7V2DD57PL3JXM",
+                "value_start": 21,
+                "value_end": 41,
+                "variable": "AccessKeyId",
+                "variable_start": 5,
+                "variable_end": 16,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 4.021928094887362,
                     "valid": false
                 }
             }
@@ -794,32 +819,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "    \"AccessKeyId\" : \"AKIA0ON7V2DD57PL3JXM\",",
-                "line_num": 7,
-                "path": "./tests/samples/aws_multi.md",
-                "info": "",
-                "value": "AKIA0ON7V2DD57PL3JXM",
-                "value_start": 21,
-                "value_end": 41,
-                "variable": "AccessKeyId",
-                "variable_start": 5,
-                "variable_end": 16,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 4.021928094887362,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -844,7 +844,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -869,7 +869,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -893,6 +893,31 @@
         ]
     },
     {
+        "rule": "Key",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "AWS_MWS_KEY = \"amzn.mws.c1dg4haz-6xd6-4gqi-vna2-ed3whf71x9k6\"",
+                "line_num": 1,
+                "path": "./tests/samples/aws_mws_key",
+                "info": "",
+                "value": "amzn.mws.c1dg4haz-6xd6-4gqi-vna2-ed3whf71x9k6",
+                "value_start": 15,
+                "value_end": 60,
+                "variable": "AWS_MWS_KEY",
+                "variable_start": 0,
+                "variable_end": 11,
+                "entropy_validation": {
+                    "iterator": "BASE36_CHARS",
+                    "entropy": 4.042613516674821,
+                    "valid": true
+                }
+            }
+        ]
+    },
+    {
         "rule": "AWS MWS Key",
         "severity": "high",
         "confidence": "strong",
@@ -909,31 +934,6 @@
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
-                "entropy_validation": {
-                    "iterator": "BASE36_CHARS",
-                    "entropy": 4.042613516674821,
-                    "valid": true
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AWS_MWS_KEY = \"amzn.mws.c1dg4haz-6xd6-4gqi-vna2-ed3whf71x9k6\"",
-                "line_num": 1,
-                "path": "./tests/samples/aws_mws_key",
-                "info": "",
-                "value": "amzn.mws.c1dg4haz-6xd6-4gqi-vna2-ed3whf71x9k6",
-                "value_start": 15,
-                "value_end": 60,
-                "variable": "AWS_MWS_KEY",
-                "variable_start": 0,
-                "variable_end": 11,
                 "entropy_validation": {
                     "iterator": "BASE36_CHARS",
                     "entropy": 4.042613516674821,
@@ -1268,6 +1268,31 @@
         ]
     },
     {
+        "rule": "Token",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 0.999,
+        "line_data_list": [
+            {
+                "line": "\"Bitbucket Repository Access Token\" : \"ATCTT3xFfGN0zXtbKHz2POF86xa-2aBiYC4o_T3-myk01bmFVluUIFtGm_VFQwLizp4o1FKw-AMZhtdA0NzizshnA8WzRdfgv6GeTyowCD101oqKbJ4nx9DFsar5YyUNkwO9maR9-00tQvfciyfOHtPKG6K1d76Ki3iFo7roGeyJu4j1jM3GwQ4=EDDE81AD\"",
+                "line_num": 1,
+                "path": "./tests/samples/bitbucket_repository_access_token",
+                "info": "",
+                "value": "ATCTT3xFfGN0zXtbKHz2POF86xa-2aBiYC4o_T3-myk01bmFVluUIFtGm_VFQwLizp4o1FKw-AMZhtdA0NzizshnA8WzRdfgv6GeTyowCD101oqKbJ4nx9DFsar5YyUNkwO9maR9-00tQvfciyfOHtPKG6K1d76Ki3iFo7roGeyJu4j1jM3GwQ4=EDDE81AD",
+                "value_start": 39,
+                "value_end": 231,
+                "variable": "Bitbucket Repository Access Token",
+                "variable_start": 1,
+                "variable_end": 34,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 5.573080311527303,
+                    "valid": true
+                }
+            }
+        ]
+    },
+    {
         "rule": "Bitbucket Repository Access Token",
         "severity": "high",
         "confidence": "strong",
@@ -1293,33 +1318,8 @@
         ]
     },
     {
-        "rule": "Token",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.999,
-        "line_data_list": [
-            {
-                "line": "\"Bitbucket Repository Access Token\" : \"ATCTT3xFfGN0zXtbKHz2POF86xa-2aBiYC4o_T3-myk01bmFVluUIFtGm_VFQwLizp4o1FKw-AMZhtdA0NzizshnA8WzRdfgv6GeTyowCD101oqKbJ4nx9DFsar5YyUNkwO9maR9-00tQvfciyfOHtPKG6K1d76Ki3iFo7roGeyJu4j1jM3GwQ4=EDDE81AD\"",
-                "line_num": 1,
-                "path": "./tests/samples/bitbucket_repository_access_token",
-                "info": "",
-                "value": "ATCTT3xFfGN0zXtbKHz2POF86xa-2aBiYC4o_T3-myk01bmFVluUIFtGm_VFQwLizp4o1FKw-AMZhtdA0NzizshnA8WzRdfgv6GeTyowCD101oqKbJ4nx9DFsar5YyUNkwO9maR9-00tQvfciyfOHtPKG6K1d76Ki3iFo7roGeyJu4j1jM3GwQ4=EDDE81AD",
-                "value_start": 39,
-                "value_end": 231,
-                "variable": "Bitbucket Repository Access Token",
-                "variable_start": 1,
-                "variable_end": 34,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 5.573080311527303,
-                    "valid": true
-                }
-            }
-        ]
-    },
-    {
         "rule": "Certificate",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -1544,7 +1544,7 @@
     },
     {
         "rule": "Credential",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -1669,7 +1669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.911,
         "line_data_list": [
@@ -1694,7 +1694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.953,
         "line_data_list": [
@@ -1719,7 +1719,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.92,
         "line_data_list": [
@@ -1744,7 +1744,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -1769,7 +1769,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -1794,7 +1794,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.97,
         "line_data_list": [
@@ -1819,7 +1819,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -1844,7 +1844,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -1869,7 +1869,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -1894,7 +1894,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.813,
         "line_data_list": [
@@ -1919,7 +1919,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.923,
         "line_data_list": [
@@ -1944,7 +1944,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.943,
         "line_data_list": [
@@ -1969,7 +1969,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -1994,7 +1994,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -2019,7 +2019,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2044,7 +2044,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2069,7 +2069,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2094,7 +2094,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2119,7 +2119,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2144,7 +2144,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -2169,7 +2169,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2194,7 +2194,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.992,
         "line_data_list": [
@@ -2219,7 +2219,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.883,
         "line_data_list": [
@@ -2244,7 +2244,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -2269,7 +2269,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -2319,7 +2319,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2344,7 +2344,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.905,
         "line_data_list": [
@@ -2369,7 +2369,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.858,
         "line_data_list": [
@@ -2394,7 +2394,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2419,7 +2419,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -2444,7 +2444,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.987,
         "line_data_list": [
@@ -2469,7 +2469,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.964,
         "line_data_list": [
@@ -2494,7 +2494,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2544,7 +2544,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2569,7 +2569,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2594,7 +2594,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.955,
         "line_data_list": [
@@ -2619,7 +2619,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2644,7 +2644,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2669,7 +2669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -2694,7 +2694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -2719,7 +2719,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2744,7 +2744,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2769,7 +2769,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -2794,7 +2794,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.931,
         "line_data_list": [
@@ -2819,7 +2819,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.98,
         "line_data_list": [
@@ -2844,7 +2844,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.89,
         "line_data_list": [
@@ -2869,7 +2869,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.958,
         "line_data_list": [
@@ -2894,7 +2894,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2919,7 +2919,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2944,7 +2944,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2969,7 +2969,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -2994,7 +2994,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.938,
         "line_data_list": [
@@ -3019,7 +3019,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3044,7 +3044,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -3069,7 +3069,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -3094,7 +3094,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -3119,7 +3119,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.849,
         "line_data_list": [
@@ -3144,7 +3144,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3169,7 +3169,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3194,7 +3194,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -3219,7 +3219,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.946,
         "line_data_list": [
@@ -3244,7 +3244,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.958,
         "line_data_list": [
@@ -3269,7 +3269,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -3294,7 +3294,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3319,7 +3319,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3344,7 +3344,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -3369,7 +3369,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.97,
         "line_data_list": [
@@ -3394,7 +3394,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -3419,7 +3419,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -3444,7 +3444,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -3469,7 +3469,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.643,
         "line_data_list": [
@@ -3494,7 +3494,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.894,
         "line_data_list": [
@@ -3519,7 +3519,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.907,
         "line_data_list": [
@@ -3544,7 +3544,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.818,
         "line_data_list": [
@@ -3569,7 +3569,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.808,
         "line_data_list": [
@@ -3594,7 +3594,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.954,
         "line_data_list": [
@@ -3619,7 +3619,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.629,
         "line_data_list": [
@@ -3644,7 +3644,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.977,
         "line_data_list": [
@@ -3669,7 +3669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.985,
         "line_data_list": [
@@ -3694,7 +3694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -3719,7 +3719,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.935,
         "line_data_list": [
@@ -3744,7 +3744,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.947,
         "line_data_list": [
@@ -3769,7 +3769,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.834,
         "line_data_list": [
@@ -3794,7 +3794,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.993,
         "line_data_list": [
@@ -3819,7 +3819,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.937,
         "line_data_list": [
@@ -3844,7 +3844,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.939,
         "line_data_list": [
@@ -3869,7 +3869,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.785,
         "line_data_list": [
@@ -3894,7 +3894,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.821,
         "line_data_list": [
@@ -3919,7 +3919,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.989,
         "line_data_list": [
@@ -3944,7 +3944,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.97,
         "line_data_list": [
@@ -3969,7 +3969,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -3994,7 +3994,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -4019,7 +4019,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.702,
         "line_data_list": [
@@ -4044,7 +4044,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -4069,7 +4069,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.845,
         "line_data_list": [
@@ -4094,7 +4094,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -4119,7 +4119,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.982,
         "line_data_list": [
@@ -4144,7 +4144,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -4169,7 +4169,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4219,7 +4219,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4244,7 +4244,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4269,7 +4269,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.989,
         "line_data_list": [
@@ -4294,7 +4294,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.989,
         "line_data_list": [
@@ -4319,7 +4319,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4344,7 +4344,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.993,
         "line_data_list": [
@@ -4369,7 +4369,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4394,7 +4394,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -4419,7 +4419,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.986,
         "line_data_list": [
@@ -4444,7 +4444,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.936,
         "line_data_list": [
@@ -4494,7 +4494,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.992,
         "line_data_list": [
@@ -4519,7 +4519,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -4544,7 +4544,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.993,
         "line_data_list": [
@@ -4569,7 +4569,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4594,7 +4594,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.972,
         "line_data_list": [
@@ -4619,7 +4619,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -4644,7 +4644,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4669,7 +4669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4694,7 +4694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -4719,7 +4719,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4744,7 +4744,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4769,7 +4769,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4794,7 +4794,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4819,7 +4819,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4869,7 +4869,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4894,7 +4894,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4944,7 +4944,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4969,7 +4969,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -4994,7 +4994,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5019,7 +5019,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5044,7 +5044,7 @@
     },
     {
         "rule": "API",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5069,7 +5069,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5094,7 +5094,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5119,7 +5119,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5144,7 +5144,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5169,7 +5169,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5194,7 +5194,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5219,7 +5219,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5244,7 +5244,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5269,7 +5269,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5294,7 +5294,7 @@
     },
     {
         "rule": "Auth",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5319,7 +5319,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5344,7 +5344,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -5369,7 +5369,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.934,
         "line_data_list": [
@@ -5394,7 +5394,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5419,7 +5419,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5444,7 +5444,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5469,7 +5469,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5494,7 +5494,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -5519,7 +5519,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5544,7 +5544,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5569,7 +5569,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5594,7 +5594,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.966,
         "line_data_list": [
@@ -5619,7 +5619,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.874,
         "line_data_list": [
@@ -5644,7 +5644,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5669,7 +5669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -5694,7 +5694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.848,
         "line_data_list": [
@@ -5719,7 +5719,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5744,7 +5744,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -5769,7 +5769,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5794,7 +5794,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5819,7 +5819,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5844,7 +5844,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5869,7 +5869,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -5894,7 +5894,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -5919,7 +5919,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -5944,7 +5944,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -5969,7 +5969,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -5994,7 +5994,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6019,7 +6019,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6044,7 +6044,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6069,7 +6069,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6094,7 +6094,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6119,7 +6119,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6144,7 +6144,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6169,7 +6169,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6194,7 +6194,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.966,
         "line_data_list": [
@@ -6219,7 +6219,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.8,
         "line_data_list": [
@@ -6244,7 +6244,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6269,7 +6269,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6294,7 +6294,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6319,7 +6319,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6344,7 +6344,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6369,7 +6369,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6394,7 +6394,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -6419,7 +6419,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6444,7 +6444,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6469,7 +6469,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6494,7 +6494,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6519,7 +6519,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6544,7 +6544,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6569,7 +6569,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6594,7 +6594,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6619,7 +6619,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6644,7 +6644,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6669,7 +6669,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6694,7 +6694,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.924,
         "line_data_list": [
@@ -6719,7 +6719,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6744,7 +6744,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -6769,7 +6769,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6819,7 +6819,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6844,7 +6844,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -6993,6 +6993,31 @@
         ]
     },
     {
+        "rule": "Token",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "GI_REO_GI_FACEBOOK_TOKEN = \"EAACEb00Kse0BAlGy7KeQ5YnaCEd09Eose0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD\"",
+                "line_num": 1,
+                "path": "./tests/samples/facebook_key",
+                "info": "",
+                "value": "EAACEb00Kse0BAlGy7KeQ5YnaCEd09Eose0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD",
+                "value_start": 28,
+                "value_end": 115,
+                "variable": "GI_REO_GI_FACEBOOK_TOKEN",
+                "variable_start": 0,
+                "variable_end": 24,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 4.936120692057916,
+                    "valid": true
+                }
+            }
+        ]
+    },
+    {
         "rule": "Facebook Access Token",
         "severity": "high",
         "confidence": "moderate",
@@ -7009,31 +7034,6 @@
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 4.936120692057916,
-                    "valid": true
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "GI_REO_GI_FACEBOOK_TOKEN = \"EAACEb00Kse0BAlGy7KeQ5YnaCEd09Eose0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD\"",
-                "line_num": 1,
-                "path": "./tests/samples/facebook_key",
-                "info": "",
-                "value": "EAACEb00Kse0BAlGy7KeQ5YnaCEd09Eose0cBAlGy7KeQ5Yna9CoDsup39tiYdoQ4jH9Coup39tiYdWoQ4jHFZD",
-                "value_start": 28,
-                "value_end": 115,
-                "variable": "GI_REO_GI_FACEBOOK_TOKEN",
-                "variable_start": 0,
-                "variable_end": 24,
                 "entropy_validation": {
                     "iterator": "BASE64STDPAD_CHARS",
                     "entropy": 4.936120692057916,
@@ -7168,6 +7168,31 @@
         ]
     },
     {
+        "rule": "Token",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "GITHUB_ACCESS_TOKEN = \"lbyxnhqjfnzhlpnvcvaxjumgvdlnktgugdofmzyy\"",
+                "line_num": 1,
+                "path": "./tests/samples/github_key.groovy",
+                "info": "",
+                "value": "lbyxnhqjfnzhlpnvcvaxjumgvdlnktgugdofmzyy",
+                "value_start": 23,
+                "value_end": 63,
+                "variable": "GITHUB_ACCESS_TOKEN",
+                "variable_start": 0,
+                "variable_end": 19,
+                "entropy_validation": {
+                    "iterator": "BASE36_CHARS",
+                    "entropy": 4.246439344671015,
+                    "valid": true
+                }
+            }
+        ]
+    },
+    {
         "rule": "Github Old Token",
         "severity": "high",
         "confidence": "moderate",
@@ -7184,31 +7209,6 @@
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
-                "entropy_validation": {
-                    "iterator": "BASE36_CHARS",
-                    "entropy": 4.246439344671015,
-                    "valid": true
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "GITHUB_ACCESS_TOKEN = \"lbyxnhqjfnzhlpnvcvaxjumgvdlnktgugdofmzyy\"",
-                "line_num": 1,
-                "path": "./tests/samples/github_key.groovy",
-                "info": "",
-                "value": "lbyxnhqjfnzhlpnvcvaxjumgvdlnktgugdofmzyy",
-                "value_start": 23,
-                "value_end": 63,
-                "variable": "GITHUB_ACCESS_TOKEN",
-                "variable_start": 0,
-                "variable_end": 19,
                 "entropy_validation": {
                     "iterator": "BASE36_CHARS",
                     "entropy": 4.246439344671015,
@@ -8078,7 +8078,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -8253,7 +8253,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -8278,7 +8278,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8303,7 +8303,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8328,7 +8328,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8353,7 +8353,7 @@
     },
     {
         "rule": "Secret",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8378,7 +8378,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8403,7 +8403,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8545,7 +8545,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -8637,7 +8637,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -8662,7 +8662,7 @@
     },
     {
         "rule": "Nonce",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8687,7 +8687,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8712,7 +8712,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8737,7 +8737,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8837,7 +8837,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -8862,7 +8862,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8887,7 +8887,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.915,
         "line_data_list": [
@@ -8912,7 +8912,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -8937,7 +8937,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -8962,7 +8962,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.999,
         "line_data_list": [
@@ -8987,7 +8987,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.994,
         "line_data_list": [
@@ -9012,7 +9012,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9037,7 +9037,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -9062,7 +9062,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9087,7 +9087,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9112,7 +9112,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9130,6 +9130,31 @@
                 "entropy_validation": {
                     "iterator": "BASE64STDPAD_CHARS",
                     "entropy": 3.521640636343319,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
+        "rule": "Password",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "RUN openssl x509 -req -days 365 -passin \"pass:nCzx8A8#!\" -sha256 -in server.csr -CA ca.pem -CAkey ca-key",
+                "line_num": 8,
+                "path": "./tests/samples/password_TRUE",
+                "info": "",
+                "value": "nCzx8A8#!",
+                "value_start": 46,
+                "value_end": 55,
+                "variable": "pass",
+                "variable_start": 41,
+                "variable_end": 45,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 2.2432750011217983,
                     "valid": false
                 }
             }
@@ -9162,32 +9187,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "RUN openssl x509 -req -days 365 -passin \"pass:nCzx8A8#!\" -sha256 -in server.csr -CA ca.pem -CAkey ca-key",
-                "line_num": 8,
-                "path": "./tests/samples/password_TRUE",
-                "info": "",
-                "value": "nCzx8A8#!",
-                "value_start": 46,
-                "value_end": 55,
-                "variable": "pass",
-                "variable_start": 41,
-                "variable_end": 45,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 2.2432750011217983,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9212,7 +9212,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -9237,7 +9237,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.878,
         "line_data_list": [
@@ -9624,7 +9624,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9649,7 +9649,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9674,7 +9674,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9774,7 +9774,7 @@
     },
     {
         "rule": "Salt",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.997,
         "line_data_list": [
@@ -9799,7 +9799,7 @@
     },
     {
         "rule": "Salt",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.864,
         "line_data_list": [
@@ -9824,7 +9824,7 @@
     },
     {
         "rule": "Salt",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.985,
         "line_data_list": [
@@ -9849,7 +9849,7 @@
     },
     {
         "rule": "Salt",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -9874,7 +9874,7 @@
     },
     {
         "rule": "Salt",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.991,
         "line_data_list": [
@@ -9899,7 +9899,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -9924,7 +9924,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -9949,7 +9949,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -10024,7 +10024,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.996,
         "line_data_list": [
@@ -10374,7 +10374,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -10474,7 +10474,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11373,6 +11373,31 @@
         ]
     },
     {
+        "rule": "Token",
+        "severity": "critical",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "token in text: eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
+                "line_num": 18,
+                "path": "./tests/samples/test2.eml",
+                "info": "",
+                "value": "eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
+                "value_start": 15,
+                "value_end": 109,
+                "variable": "token in text",
+                "variable_start": 0,
+                "variable_end": 13,
+                "entropy_validation": {
+                    "iterator": "BASE64STDPAD_CHARS",
+                    "entropy": 4.0296677144829305,
+                    "valid": false
+                }
+            }
+        ]
+    },
+    {
         "rule": "Grafana Provisioned API Key",
         "severity": "high",
         "confidence": "strong",
@@ -11399,32 +11424,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "token in text: eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 18,
-                "path": "./tests/samples/test2.eml",
-                "info": "",
-                "value": "eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "value_start": 15,
-                "value_end": 109,
-                "variable": "token in text",
-                "variable_start": 0,
-                "variable_end": 13,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 4.0296677144829305,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11449,7 +11449,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11474,7 +11474,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11624,7 +11624,7 @@
     },
     {
         "rule": "Credential",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11649,7 +11649,7 @@
     },
     {
         "rule": "Key",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.998,
         "line_data_list": [
@@ -11674,7 +11674,7 @@
     },
     {
         "rule": "Credential",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11724,7 +11724,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -11749,7 +11749,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 0.995,
         "line_data_list": [
@@ -11899,7 +11899,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11924,7 +11924,7 @@
     },
     {
         "rule": "Token",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
@@ -11949,7 +11949,7 @@
     },
     {
         "rule": "Password",
-        "severity": "medium",
+        "severity": "critical",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [

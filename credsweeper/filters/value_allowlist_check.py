@@ -54,14 +54,11 @@ class ValueAllowlistCheck(Filter):
             True, if need to filter candidate and False if left
 
         """
-
-        if self.ALLOWED_PATTERN.match(line_data.value):
-            return True
-        elif line_data.is_well_quoted_value:
-            if self.ALLOWED_QUOTED_PATTERN.match(line_data.value):
+        if line_data.is_well_quoted_value:
+            if self.ALLOWED_PATTERN.match(line_data.value) or self.ALLOWED_QUOTED_PATTERN.match(line_data.value):
                 return True
         else:
-            if self.ALLOWED_UNQUOTED_PATTERN.match(line_data.value):
+            value = line_data.wrap + line_data.value if line_data.wrap else line_data.value
+            if self.ALLOWED_PATTERN.match(value) or self.ALLOWED_UNQUOTED_PATTERN.match(value):
                 return True
-
         return False

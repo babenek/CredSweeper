@@ -890,7 +890,7 @@
   confidence: moderate
   type: keyword
   values:
-    - nonce
+    - (?<!\\)nonce
   filter_type: GeneralKeyword
   use_ml: true
   min_line_len: 13

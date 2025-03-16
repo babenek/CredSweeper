@@ -4,6 +4,7 @@ from credsweeper.common.keyword_pattern import KeywordPattern
 from credsweeper.config import Config
 from credsweeper.credentials import LineData
 from credsweeper.utils import Util
+from tests.filters.conftest import KEYWORD_PASSWORD_PATTERN
 
 
 class TestKeywordPattern:
@@ -143,9 +144,10 @@ class TestKeywordPattern:
             ["password=${array[@]:7:2}", "${array[@]:7:2}"],
             ["password=${1#*=}", "${1#*=}"],
             ["A2 ID:master,PW:dipPr10Gg!","dipPr10Gg!"],
+            ["pass=get->pass(arg1='seCreT', arg2='secRet2'...","seCreT"]
         ])
     def test_keyword_pattern_p(self, config: Config, file_path: pytest.fixture, line: str, value: str) -> None:
-        pattern = KeywordPattern.get_keyword_pattern(r"(?<!by)pass(?!ed|ing|es|\s+[a-z]{3,80})|pw(d|\b)")
+
         line_data = LineData(config,
                              line,
                              0,
@@ -153,8 +155,8 @@ class TestKeywordPattern:
                              file_path,
                              Util.get_extension(file_path),
                              info="dummy",
-                             pattern=pattern)
-        assert line_data.value == value, pattern.pattern
+                             pattern=KEYWORD_PASSWORD_PATTERN)
+        assert line_data.value == value, KEYWORD_PASSWORD_PATTERN.pattern
 
     @pytest.mark.parametrize("line", [
         "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@300;400;500;700;900"
