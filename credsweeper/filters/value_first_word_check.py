@@ -8,7 +8,7 @@ from credsweeper.utils import Util
 
 
 class ValueFirstWordCheck(Filter):
-    """Check that secret doesn't starts with special character."""
+    """Check that secret doesn't start with special character."""
 
     NOT_ALLOWED = [
         r"\=", r"\{", r"\)", r"\<", r"\>", r"\#", r"\:", r"\\\\", r"\\/\\/", r"\_", r"\/\*", r"\%[deflspuvxz]"

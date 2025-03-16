@@ -46,7 +46,8 @@ class KeywordPattern:
     right_quote = r"(?(value_leftquote)" \
                   r"(?P<value_rightquote>(?<!\\)(?P=value_leftquote)|\\$|(?<=[0-9a-z+_/-])$)" \
                   r"|" \
-                  r"(?(wrap)[\]\)\},;]))"
+                  r"(?(wrap)(\]|\)|\}|,|;|\\|$))" \
+                  r")"
 
     @classmethod
     def get_keyword_pattern(cls, keyword: str) -> re.Pattern:

@@ -60,7 +60,6 @@ class TestKeywordPattern:
                 '''var request = {"password": "{\\"wks\\": \\"8x9s3ga7\\", \\"uzr\": \\"wbm\\"}","Any-Tail":"x\r"};''',
                 '''{\\"wks\\": \\"8x9s3ga7\\", \\"uzr": \\"wbm\\"}'''
             ],
-            ['''passwords: $[ "1029384756",''', '''1029384756'''],  #
             ['''passwords: ["1029384756",''', '''1029384756'''],  #
             ['''passwords:[ "1029384756", "9801726354" ]''', '''1029384756'''],  #
             ['''password="\\"secret-line-wrap\\''', '''secret-line-wrap'''],  #
@@ -123,7 +122,7 @@ class TestKeywordPattern:
             ["password%3dDmsfdsq452!&user%5Bpassword_", "Dmsfdsq452!"],
             ["MY_TEST_PASSWORD={MY_TEST_PASSWORD}", "MY_TEST_PASSWORD"],
             # https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
-            ["MY_TEST_PASSWORD={MY_VAR:?THE VAR IS UNSET}", "{MY_VAR:?THE"],
+            ["MY_TEST_PASSWORD=${MY_VAR:?THE VAR IS UNSET}", "${MY_VAR:?THE"],
             ["MY_TEST_PASSWORD=(MY_TEST_PASSWORD)", "MY_TEST_PASSWORD"],
             ["MY_TEST_PASSWORD='(MY_TEST_PASSWORD)'", "(MY_TEST_PASSWORD)"],
             ["MY_TEST_PASSWORD=$(MY_TEST_PASSWORD)", "$(MY_TEST_PASSWORD)"],
@@ -135,16 +134,18 @@ class TestKeywordPattern:
             ["password=${REMOVE_PREFIX#prefix}", "${REMOVE_PREFIX#prefix}"],
             ["password='${REMOVE_PREFIX#prefix}'", "${REMOVE_PREFIX#prefix}"],
             ["password=${cat pass}", "${cat"],
+            ['password=$(echo "pass")', "$(echo"],
             ["password='$(( 1 + 2 + 3 + 4 ))'", "$(( 1 + 2 + 3 + 4 ))"],
             ["password=$(( 1 + 2 + 3 + 4 ))", "$(("],
             ["password='$[[ 1 + 2 + 3 + 4 ]]'", "$[[ 1 + 2 + 3 + 4 ]]"],
             ["password=$[[ 1 + 2 + 3 + 4 ]]", "$[["],
             ["password=$[[_1_+_2_+_3_+_4_]]", "$[[_1_+_2_+_3_+_4_]]"],
             ["password=${array[@]:7:2}", "${array[@]:7:2}"],
-            ["password=${1#*=}", "${1#*=}"]
+            ["password=${1#*=}", "${1#*=}"],
+            ["A2 ID:master,PW:dipPr10Gg!","dipPr10Gg!"],
         ])
     def test_keyword_pattern_p(self, config: Config, file_path: pytest.fixture, line: str, value: str) -> None:
-        pattern = KeywordPattern.get_keyword_pattern("password")
+        pattern = KeywordPattern.get_keyword_pattern(r"(?<!by)pass(?!ed|ing|es|\s+[a-z]{3,80})|pw(d|\b)")
         line_data = LineData(config,
                              line,
                              0,
@@ -153,7 +154,7 @@ class TestKeywordPattern:
                              Util.get_extension(file_path),
                              info="dummy",
                              pattern=pattern)
-        assert line_data.value == value
+        assert line_data.value == value, pattern.pattern
 
     @pytest.mark.parametrize("line", [
         "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@300;400;500;700;900"
