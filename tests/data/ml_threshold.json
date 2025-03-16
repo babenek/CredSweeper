@@ -6068,31 +6068,6 @@
         ]
     },
     {
-        "rule": "Password",
-        "severity": "critical",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "ANY_password,default:IhqSb1Gg",
-                "line_num": 31,
-                "path": "./tests/samples/doc_various",
-                "info": "",
-                "value": "IhqSb1Gg",
-                "value_start": 21,
-                "value_end": 29,
-                "variable": "ANY_password,default",
-                "variable_start": 0,
-                "variable_end": 20,
-                "entropy_validation": {
-                    "iterator": "BASE64STDPAD_CHARS",
-                    "entropy": 3.0,
-                    "valid": false
-                }
-            }
-        ]
-    },
-    {
         "rule": "Key",
         "severity": "critical",
         "confidence": "moderate",
