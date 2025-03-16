@@ -145,7 +145,8 @@ class TestKeywordPattern:
             ["password=${1#*=}", "${1#*=}"],
             ["A2 ID:master,PW:dipPr10Gg!","dipPr10Gg!"],
             ["pass=get->pass(arg1='seCreT', arg2='secRet2'...","seCreT"],
-            ["The login name is test@ror-e.com with a password => skvu810","skvu810"]
+            ["The test password => skWu850","skWu850"],
+            ["password, _ = hex.DecodeString('e1efa5ca09a6beac387c04a5cdc1d491')", "e1efa5ca09a6beac387c04a5cdc1d491"]
         ])
     def test_keyword_pattern_p(self, config: Config, file_path: pytest.fixture, line: str, value: str) -> None:
 
