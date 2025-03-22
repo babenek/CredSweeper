@@ -52,6 +52,29 @@ class TestKeywordPattern:
             ["char[] password = new char[]{023, 010, 041, 033, 043, 000};", "023, 010, 041, 033, 043, 000"],
             ['final String [] password = new String [] { "GehE1mNi5",', 'GehE1mNi5'],
             ["private static readonly byte[] password = new byte[] { 'X','3', '4', '0'   \\", "X','3', '4', '0'   "],
+            ["password=${REMOVE_PREFIX#prefix}", "${REMOVE_PREFIX#prefix}"],
+            ["password='${REMOVE_PREFIX#prefix}'", "${REMOVE_PREFIX#prefix}"],
+            ["password=${cat pass}", "${cat"],
+            ['password=$(echo "pass")', "$(echo"],
+            ["password='$(( 1 + 2 + 3 + 4 ))'", "$(( 1 + 2 + 3 + 4 ))"],
+            ["password=$(( 1 + 2 + 3 + 4 ))", ""],
+            ["password='$[[ 1 + 2 + 3 + 4 ]]'", "$[[ 1 + 2 + 3 + 4 ]]"],
+            ["password=$[[ 1 + 2 + 3 + 4 ]]", ""],
+            ["password=$[[_1_+_2_+_3_+_4_]]", "$[[_1_+_2_+_3_+_4_]]"],
+            ["password=${array[@]:7:2}", "${array[@]:7:2}"],
+            ["password=${1#*=}", "${1#*=}"],
+            ["A2 ID:master,PW:dipPr10Gg!", "dipPr10Gg!"],
+            ["pass=get->pass(arg1='seCreT', arg2='secRet2'...", "seCreT"],
+            ["The test password => skWu850", "skWu850"],
+            ["$password = Hash::make('GehE1mNi5');", "GehE1mNi5"],
+            ['password = new[] {"GehE1mNi5"}', "GehE1mNi5"],
+            ["password, _ = hex.DecodeString('e1efa5ca09a6beac387c04a5cdc1d491')", "e1efa5ca09a6beac387c04a5cdc1d491"],
+            ["MY_TEST_PASSWORD='(MY_TEST_PASSWORD)'", "(MY_TEST_PASSWORD)"],
+            ["MY_TEST_PASSWORD=$(MY_TEST_PASSWORD)", "$(MY_TEST_PASSWORD)"],
+            ["MY_TEST_PASSWORD='$(MY_TEST_PASSWORD)'", "$(MY_TEST_PASSWORD)"],
+            # https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
+            ["MY_TEST_PASSWORD=${MY_VAR:?THE VAR IS UNSET}", "${MY_VAR:?THE"],
+            ['''ClientPasswords = new[] { new Password( "SECRET".Sha256() ) },''', "SECRET"],
             ['''"$password = "10qoakxncnfh47t_''', '''10qoakxncnfh47t_'''],  #
             [
                 '''copes\":[\"user\"],\"note\":\"Note\",\"password\":\"cc6323cb2223f82f01\",\"upd_at\":\"1765....\",''',
@@ -104,16 +127,13 @@ class TestKeywordPattern:
             ['''std::string password = R"multiline\\npassword";''', '''multiline\\npassword'''],  #
             ['''const wchar_t* password = L"wchar_t*secret";''', '''wchar_t*secret'''],  #
             ['''const char16_t* password = U"char16_t*secret";''', '''char16_t*secret'''],  #
-            [
-                """char password[] = {'S', 'E', 'C', 'R', 'E', 'T', '\\0'};""",
-                """S', 'E', 'C', 'R', 'E', 'T', '\\0"""
-            ],  #
+            ["""char password[] = {'S', 'E', 'C', 'R', 'E', 'T', '\\0'};""", """S', 'E', 'C', 'R', 'E', 'T', '\\0"""
+             ],  #
             ['''"password": "{8vi6wL+10fI/eibC7wFwc}"''', '{8vi6wL+10fI/eibC7wFwc}'],  #
             ['''final String password = new String("SECRET") {''', '''SECRET'''],  #
             ['''final OAuth2AccessToken password = new OAuth2AccessToken(\"SEC.RET\");''', '''SEC.RET'''],  #
             ['''password = obfuscate(arg="SECRET") {''', '''SECRET'''],  #
             ['''final String password = new String(Super(Encrypted("SECRET"))) {''', '''SECRET'''],  #
-            ['''ClientPasswords = new[] { new Password( "SECRET".Sha256() ) },''', "SECRET"],  #
             ['''final String password = new String(Super( Encrypted("SECRET", "dummy"))) {''', '''SECRET'''],  #
             ["""'password': 'ENC(lqjdoxlandicpfpqk)'""", """ENC(lqjdoxlandicpfpqk)"""],  #
             ["""'password': 'ENC[lqjdoxlandicpfpqk]'""", """ENC[lqjdoxlandicpfpqk]"""],  #
@@ -129,33 +149,11 @@ class TestKeywordPattern:
             ],
             ["password%3dDmsfdsq452!&user%5Bpassword_", "Dmsfdsq452!"],
             ["MY_TEST_PASSWORD={MY_TEST_PASSWORD}", "MY_TEST_PASSWORD"],
-            # https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
-            ["MY_TEST_PASSWORD=${MY_VAR:?THE VAR IS UNSET}", "${MY_VAR:?THE"],
             ["MY_TEST_PASSWORD=(MY_TEST_PASSWORD)", "MY_TEST_PASSWORD"],
-            ["MY_TEST_PASSWORD='(MY_TEST_PASSWORD)'", "(MY_TEST_PASSWORD)"],
-            ["MY_TEST_PASSWORD=$(MY_TEST_PASSWORD)", "$(MY_TEST_PASSWORD)"],
-            ["MY_TEST_PASSWORD='$(MY_TEST_PASSWORD)'", "$(MY_TEST_PASSWORD)"],
             ["MY_TEST_PASSWORD=<MY_TEST_PASSWORD>", "<MY_TEST_PASSWORD>"],  # <> are used in future to detect a template
             ["MY_TEST_PASSWORD=[MY_TEST_PASSWORD]", "MY_TEST_PASSWORD"],
             ["MY_TEST_PASSWORD=MY_TEST&PASSWORD!", "MY_TEST&PASSWORD!"],
             ["MY_TEST_PASSWORD='MY_TEST&PASSWORD!'", "MY_TEST&PASSWORD!"],
-            ["password=${REMOVE_PREFIX#prefix}", "${REMOVE_PREFIX#prefix}"],
-            ["password='${REMOVE_PREFIX#prefix}'", "${REMOVE_PREFIX#prefix}"],
-            ["password=${cat pass}", "${cat"],
-            ['password=$(echo "pass")', "$(echo"],
-            ["password='$(( 1 + 2 + 3 + 4 ))'", "$(( 1 + 2 + 3 + 4 ))"],
-            ["password=$(( 1 + 2 + 3 + 4 ))", ""],
-            ["password='$[[ 1 + 2 + 3 + 4 ]]'", "$[[ 1 + 2 + 3 + 4 ]]"],
-            ["password=$[[ 1 + 2 + 3 + 4 ]]", ""],
-            ["password=$[[_1_+_2_+_3_+_4_]]", "$[[_1_+_2_+_3_+_4_]]"],
-            ["password=${array[@]:7:2}", "${array[@]:7:2}"],
-            ["password=${1#*=}", "${1#*=}"],
-            ["A2 ID:master,PW:dipPr10Gg!", "dipPr10Gg!"],
-            ["pass=get->pass(arg1='seCreT', arg2='secRet2'...", "seCreT"],
-            ["The test password => skWu850", "skWu850"],
-            ["$password = Hash::make('GehE1mNi5');", "GehE1mNi5"],
-            ['password = new[] {"GehE1mNi5"}', "GehE1mNi5"],
-            ["password, _ = hex.DecodeString('e1efa5ca09a6beac387c04a5cdc1d491')", "e1efa5ca09a6beac387c04a5cdc1d491"]
         ])
     def test_keyword_pattern_p(self, config: Config, file_path: pytest.fixture, line: str, value: str) -> None:
         line_data = LineData(config,
