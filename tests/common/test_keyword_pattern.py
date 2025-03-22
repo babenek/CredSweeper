@@ -51,10 +51,7 @@ class TestKeywordPattern:
             ["char[] password = new char[]{'b', 'y', 't', 'e', 's', '\\0'};", "b', 'y', 't', 'e', 's', '\\0"],
             ["char[] password = new char[]{023, 010, 041, 033, 043, 000};", "023, 010, 041, 033, 043, 000"],
             ['final String [] password = new String [] { "GehE1mNi5",', 'GehE1mNi5'],
-            [
-                "private static readonly byte[] password = new byte[] { (byte)'X', (byte)'3', (byte)'4', (byte)'0' };",
-                ""
-            ],
+            ["private static readonly byte[] password = new byte[] { 'X','3', '4', '0'   \\", "X','3', '4', '0'   "],
             ['''"$password = "10qoakxncnfh47t_''', '''10qoakxncnfh47t_'''],  #
             [
                 '''copes\":[\"user\"],\"note\":\"Note\",\"password\":\"cc6323cb2223f82f01\",\"upd_at\":\"1765....\",''',
