@@ -17,8 +17,8 @@ class KeywordPattern:
                 r"(\s|\\{1,8}[tnr])*"
     # might be curly, square or parenthesis with words before
     wrap = r"(?P<wrap>(" \
-           r"(new(\s|\\{1,8}[tnr]|\[\]){1,8})?" \
-           r"([0-9a-z_.]|-(>|(&|\\\\*u0026)gt;))*" \
+           r"(new(\s|\\{1,8}[tnr]|byte|char|string|\[\]){1,8})?" \
+           r"([0-9a-z_.]|::|-(>|(&|\\\\*u0026)gt;))*" \
            r"[\[\(\{]" \
            r"(\s|\\{1,8}[tnr])*" \
            r"([0-9a-z_]{1,32}=)?" \
@@ -39,9 +39,10 @@ class KeywordPattern:
             r"(?P<url_esc>%[0-9a-f]{2})" \
             r"|" \
             r"(?(url_esc)[^\s`'\",;\\&]|[^\s`'\",;\\])" \
-            r")){3,8000}" \
-            r"|(\$?\{[^}]{3,8000}\})" \
-            r"|(<[^>]{3,8000}>)" \
+            r")){4,8000}" \
+            r"|(\$?\{[^}]{4,8000}\})" \
+            r"|(<[^>]{4,8000}>)" \
+            r"|(?(wrap)[^\])}]{16,8000})" \
             r")"  # <value>
     right_quote = r"(?(value_leftquote)" \
                   r"(?P<value_rightquote>(?<!\\)(?P=value_leftquote)|\\$|(?<=[0-9a-z+_/-])$)" \
