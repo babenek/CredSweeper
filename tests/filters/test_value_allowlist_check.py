@@ -23,7 +23,7 @@ class TestValueAllowlistCheck:
             "password = !t->(pass);",  #
             "password = ***test***",  #
             "password = .*@@@@@@",  #
-            "pass=get->pass('''ARG",  #
+            "pass=get->pass('''ARGS",  #
             "password = '$34%4reGE_'",  #
             "password = '$D34%4reGE_'",  #
         ])
