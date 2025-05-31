@@ -16,13 +16,11 @@ class TestValueJsonWebKeyCheck(unittest.TestCase):
         self.assertTrue(ValueJsonWebKeyCheck().run(
             get_line_data(line="eyJ1234567890qwertyu#@$^$^&iopasdfghjklzxc", pattern=LINE_VALUE_PATTERN),
             DUMMY_ANALYSIS_TARGET))
-        self.assertTrue(
-            ValueJsonWebKeyCheck().run(
-                get_line_data(line=base64.b64encode(b'{"kty": "oct","x": "WrMwQfoNaHTgXU5fZvRGAD"}').decode(),
-                              pattern=LINE_VALUE_PATTERN), DUMMY_ANALYSIS_TARGET))
+        self.assertTrue(ValueJsonWebKeyCheck().run(
+            get_line_data(line=base64.b64encode(b'{"kty": "oct","x": "WrMwQfoNaHTgXU5fZvRGAD"}').decode(),
+                          pattern=LINE_VALUE_PATTERN), DUMMY_ANALYSIS_TARGET))
 
     def test_value_jwt_check_p(self):
-        self.assertFalse(
-            ValueJsonWebKeyCheck().run(
-                get_line_data(line=base64.b64encode(b'{"kty": "oct","k": "WrMwQfoNaHTgXU5fZvRGAD"}').decode(),
-                              pattern=LINE_VALUE_PATTERN), DUMMY_ANALYSIS_TARGET))
+        self.assertFalse(ValueJsonWebKeyCheck().run(
+            get_line_data(line=base64.b64encode(b'{"kty": "oct","k": "WrMwQfoNaHTgXU5fZvRGAD"}').decode(),
+                          pattern=LINE_VALUE_PATTERN), DUMMY_ANALYSIS_TARGET))
