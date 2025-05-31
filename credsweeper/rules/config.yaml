@@ -448,8 +448,8 @@
   confidence: moderate
   type: multi
   values:
-    - (?P<value>['"]?\bkty\b[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
-    - (?P<variable>\b[dk]\b)[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
+    - (?P<value>['"]?\bkty[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
+    - (?P<variable>\b[dk])[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
   filter_type:
     - ValuePatternCheck
     - ValueCoupleKeywordCheck(3)

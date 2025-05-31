@@ -31,11 +31,10 @@ class ValueJsonWebKeyCheck(Filter):
 
         """
         with contextlib.suppress(Exception):
-            data = Util.decode_base64(line_data.value, padding_safe=True, urlsafe_detect=True)
-            if b'"kty":' in data:
-                if (b'"EC"' in data or b'"RSA"' in data) and b'"d":' in data:
+            if data := Util.decode_base64(line_data.value, padding_safe=True, urlsafe_detect=True):
+                if b'"kty":' in data and (  #
+                        b'"oct"' in data and b'"k":' in data  #
+                        or  #
+                        (b'"EC"' in data or b'"RSA"' in data) and b'"d":' in data):  #
                     return False
-                if b'"oct"' in data and b'"k":' in data:
-                    return False
-                logging.critical(f"{line_data.path}\n{str(data)}")
         return True
