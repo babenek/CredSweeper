@@ -448,7 +448,7 @@
   confidence: moderate
   type: multi
   values:
-    - (?P<value>['"]?\bkty[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
+    - (?P<value>['"]?\b(?P<variable>kty)[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
     - (?P<variable>\b[dk])[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
   filter_type:
     - ValuePatternCheck
