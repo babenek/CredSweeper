@@ -448,16 +448,14 @@
   confidence: moderate
   type: multi
   values:
-    - (?P<variable>\b[dk]\b)[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
     - (?P<value>['"]?\bkty\b[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
+    - (?P<variable>\b[dk]\b)[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
   filter_type:
     - ValuePatternCheck
     - ValueCoupleKeywordCheck(3)
   required_substrings:
-    - k
-    - d
-  required_regex: "[0-9A-Za-z_/+-]{15}"
-  min_line_len: 25
+    - kty
+  min_line_len: 8
   target:
     - code
     - doc
