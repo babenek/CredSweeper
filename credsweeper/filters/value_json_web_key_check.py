@@ -31,9 +31,7 @@ class ValueJsonWebKeyCheck(Filter):
         """
         with contextlib.suppress(Exception):
             if data := Util.decode_base64(line_data.value, padding_safe=True, urlsafe_detect=True):
-                if b'"kty":' in data and (  #
-                        b'"oct"' in data and b'"k":' in data  #
-                        or  #
-                        (b'"EC"' in data or b'"RSA"' in data) and b'"d":' in data):  #
+                if b'"kty":' in data and (b'"oct"' in data and b'"k":' in data or
+                                          (b'"EC"' in data or b'"RSA"' in data) and b'"d":' in data):
                     return False
         return True
