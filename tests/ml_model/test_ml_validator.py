@@ -40,30 +40,33 @@ class TestMlValidator(unittest.TestCase):
         return is_cred_batch[0], probability_batch[0]
 
     def test_ml_validator_simple_n(self):
-        candidate = Candidate.get_dummy_candidate(self.config, "main.py", ".py", "info", "Password")
-        candidate.line_data_list[0].line = 'password="Ahga%$FiQ@Ei8"'
-        candidate.line_data_list[0].variable = "password"
-        candidate.line_data_list[0].value_start = 16
-        candidate.line_data_list[0].value_end = 25
-        candidate.line_data_list[0].value = "Ahga%$FiQ@Ei8"
+        candidate = Candidate.get_dummy_candidate(self.config, "./src/main.java", ".java", "info", "Password")
+        value = "admin"
+        variable = "password"
+        line = f'{variable}="{value}"'
+        candidate.line_data_list[0].line = line
+        candidate.line_data_list[0].variable = variable
+        candidate.line_data_list[0].variable_start = line.find(variable)
+        candidate.line_data_list[0].variable_end = candidate.line_data_list[0].variable_start + len(variable)
+        candidate.line_data_list[0].value = value
+        candidate.line_data_list[0].value_start = line.find(value)
+        candidate.line_data_list[0].value_end = candidate.line_data_list[0].value_start + len(value)
 
         decision, probability = self.validate(candidate)
-        self.assertAlmostEqual(0.999975323677063, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
+        self.assertAlmostEqual(2.9802322387695312e-08, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
 
-        candidate.line_data_list[0].path = "main.yaml"
-        candidate.line_data_list[0].file_type = ".yaml"
+        candidate.line_data_list[0].path = "./test/main.java"
         decision, probability = self.validate(candidate)
-        self.assertAlmostEqual(0.9996751546859741, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
+        self.assertAlmostEqual(0.00022214651107788086, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
 
-        candidate.line_data_list[0].path = "main.zip"
-        candidate.line_data_list[0].file_type = ".zip"
+        candidate.line_data_list[0].path = "./src/test/main.java"
         decision, probability = self.validate(candidate)
-        self.assertAlmostEqual(0.9999386072158813, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
+        self.assertAlmostEqual(0.00012031197547912598, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
 
-        candidate.line_data_list[0].path = "main.txt"
+        candidate.line_data_list[0].path = "./test/main.txt"
         candidate.line_data_list[0].file_type = ".txt"
         decision, probability = self.validate(candidate)
-        self.assertAlmostEqual(0.9995052218437195, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
+        self.assertAlmostEqual(3.725290298461914e-06, probability, delta=NEGLIGIBLE_ML_THRESHOLD)
 
     def test_ml_validator_auxiliary_p(self):
         candidate = Candidate.get_dummy_candidate(self.config, "mycred", "", "", "Secret")
