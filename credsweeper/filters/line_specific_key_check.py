@@ -1,11 +1,12 @@
 import re
+from typing import Optional
 
 from credsweeper.common.constants import ML_HUNK
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.utils.util import Util
 
 
 class LineSpecificKeyCheck(Filter):
@@ -14,7 +15,7 @@ class LineSpecificKeyCheck(Filter):
     NOT_ALLOWED = [r"example", r"\benc[\(\[]", r"\btrue\b", r"\bfalse\b"]
     NOT_ALLOWED_PATTERN = re.compile(Util.get_regex_combine_or(NOT_ALLOWED), re.IGNORECASE)
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     def run(self, line_data: LineData, target: AnalysisTarget) -> bool:

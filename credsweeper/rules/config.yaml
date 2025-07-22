@@ -3,14 +3,14 @@
   confidence: weak
   type: pattern
   values:
-    - (?P<variable>(\w*(?i:비밀번호|비번|패스워드|키|암호화?|토큰|(?<!by)pass(?!ed|ing|ion|es|age)|\bpwd?\b|token|secret|key|cred)\w*)\s*(설정은|[=:!]{1,3}))?\s*([._0-9A-Za-z\[\]]*get(env)?\s*\(\s*(?(variable)[^,]+)|[\"'\\]*(\\*(['\"]|&(quot|apos);)){0,4}(\w*(?i:(?<!by)pass(?!ed|ing|ion|es|age|\s+[a-z]{3,80})|\bpwd?\b|token|secret|key|cred)\w*)(\\*(['\"]|&(quot|apos);)){0,4})\s*,\s*(default\s*=\s*)?([brufl@]{1,2}(?=\\*['\"&]))?(?P<lq>(\\*(['\"]|&(quot|apos);)){1,4})(?P<value>(.(?!(?P=lq))){4,80}.?)
+    - (?P<variable>(\w*(?i:비밀번호|비번|패스워드|키|암호화?|토큰|(?<!by)pass(?!ed|ing|ion|es|age)|\bpwd?\b|token|secret|key|cred)\w*)\s*(설정은|[=:!]{1,3}))?\s*([._0-9A-Za-z\[\]]*get(env)?\s*\(\s*(?(variable)[^,]+|[\"'\\]*(\\*([\"']|&(quot|apos|#3[49]);)){0,4}(\w*(?i:(?<!by)pass(?!ed|ing|ion|es|age|\s+[a-z]{3,80})|\bpwd?\b|token|secret|key|cred)\w*))(\\*([\"']|&(quot|apos|#3[49]);)){0,4})\s*,\s*(default\s*=\s*)?([brufl@]{1,2}(?=\\*[\"'&]))?(?P<lq>(\\*([\"']|&(quot|apos|#3[49]);)){1,4})(?P<value>(.(?!(?P=lq))){4,80}.?)
   filter_type:
     - ValueAllowlistCheck
     - LineGitBinaryCheck
     - LineUUEPartCheck
     - ValueFilePathCheck
     - ValuePatternCheck(5)
-    - ValueDictionaryValueLengthCheck(4,80)
+    - ValueLengthCheck(4,80)
   min_line_len: 8
   required_substrings:
     - pass
@@ -34,14 +34,14 @@
   confidence: weak
   type: pattern
   values:
-    - (?P<wrap>[`'\"(])?\s*(?P<variable>(\w*(?i:(?<!by)passw?o?r?d?s?(?!ed|ing|ion|es|age)|pwd?\b|\bp/w\b|token|secret|key|credential)\w*|비밀번호|비번|패스워드|키|암호화?|토큰))[`'\"]*(\s+(?i:is|are|was|were)(\s*[:-])?\s+|\s*(설정은|[=:!]{1,3})\s*)(?P<quote>[`'\"]{1,6})?(?P<value>(?(quote)(?(wrap)[^`'\")]{4,80}|[^`'\"]{4,80})|(?(wrap)[^`'\")]{4,80}|\S{4,80})))
+    - (?P<wrap>[\"'`(])?\s*(?P<variable>(\w*(?i:(?<!by)passw?o?r?d?s?(?!ed|ing|ion|es|age)|pwd?\b|\bp/w\b|token|secret|key|credential)\w*|비밀번호|비번|패스워드|키|암호화?|토큰))[\"'`]*(\s+(?i:is|are|was|were)(\s*[:-])?\s+|\s*(설정은|[=:!]{1,3})\s*)(?P<quote>[\"'`]{1,6})?(?P<value>(?(quote)(?(wrap)[^\"'`)]{4,80}|[^\"'`]{4,80})|(?(wrap)[^\"'`)]{4,80}|\S{4,80})))
   filter_type:
     - ValueAllowlistCheck
     - LineGitBinaryCheck
     - LineUUEPartCheck
     - ValueFilePathCheck
     - ValuePatternCheck(5)
-    - ValueDictionaryValueLengthCheck(4,80)
+    - ValueLengthCheck(4,80)
   min_line_len: 8
   required_substrings:
     - pass
@@ -68,10 +68,10 @@
   confidence: moderate
   type: pattern
   values:
-    - (?P<variable>[`'\"]?(?i:token|secret|key|키|암호화?|토큰)[`'\"]?)((\s)*[=:](\s)*)(?P<quote>[`'\"(])?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){8,80}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)[)`'\"])
+    - (?P<variable>[\"'`]?(?i:token|secret|key|키|암호화?|토큰)[\"'`]?)((\s)*[=:](\s)*)(?P<quote>[\"'`(])?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){8,80}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)[)\"'`])
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
     - ValueEntropyBase64Check
     - ValueCoupleKeywordCheck
   min_line_len: 16
@@ -90,10 +90,10 @@
   confidence: moderate
   type: pattern
   values:
-    - (?P<variable>[`'\"]?(?i:(?<!id[ :/])pa[as]swo?r?ds?|pwd?|p/w|비밀번호|비번|패스워드|암호)[`'\"]?)((\s)*[=:](\s)*)(?P<quote>[`'\"(])?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){8,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)[)`'\"])
+    - (?P<variable>[\"'`]?(?i:(?<!id[ :/])pa[as]swo?r?ds?|pwd?|p/w|비밀번호|비번|패스워드|암호)[\"'`]?)((\s)*[=:](\s)*)(?P<quote>[\"'`(])?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){8,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)[)\"'`])
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
     - ValueDictionaryKeywordCheck
     - LineGitBinaryCheck
     - LineUUEPartCheck
@@ -121,7 +121,7 @@
     - (^|\s|(?P<variable>(?i:\bip[\s/]{1,80}id[\s/]{1,80}pw[\s/:]{0,80}))|(?P<url>://))(?P<ip>(?<![0-9.])[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}\.[0-2]?[0-9]{1,2}(?![0-9.]))((\s*[(])?|(?(variable)[\s,/]{1,80}|(?(url)[,]|[,/])))\s*\w[\w.-]{3,80}[\s,/]{1,80}(?P<value>(?(url)(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9_+=~!@#$%^&*;?-])){7,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x)|(?-i:(?P<e>[A-Z])|(?P<f>[a-z])|(?P<g>[0-9/_+=~!@#$%^&*;?-])){7,31}(?(e)(?(f)(?(g)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x)))(?:\s|[^/]|$)
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
     - ValueDictionaryKeywordCheck
   min_line_len: 10
   required_substrings:
@@ -134,11 +134,11 @@
   confidence: moderate
   type: pattern
   values:
-    - (?P<ddash>--)?(?P<variable>\w*(?i:pa[as]swords?|passwd?|pwd|\bp/w|\bpw|비밀번호|비번|패스워드|암호))\s*?(?(ddash)[ =]|[:=/>-]{1,2})\s*(?P<quote>[`'\"]{1,8})?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){4,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)(?P=quote)|(\s|$))
+    - (?P<ddash>--)?(?P<variable>\w*(?i:pa[as]swords?|passwd?|pwd|\bp/w|\bpw|비밀번호|비번|패스워드|암호))\s*?(?(ddash)[ =]|[:=/>-]{1,2})\s*(?P<quote>[\"'`]{1,8})?(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){4,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))(?(quote)(?P=quote)|(\s|$))
     - (?P<ddash>--)?(?P<variable>(?i:user\s*)?(?i:id|login|account|root|admin|user|name|wifi|role|host|default|계정|아이디))\s*?(?(ddash)[ =]|[ :=])\s*?(?P<value>\S+)
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
   min_line_len: 10
   required_substrings:
     - pass
@@ -160,7 +160,7 @@
     - (?P<variable>[\w.-]{0,80}(?i:(?P<id>\bid\b)|id\b|user|name|계정|아이디)[\w.-]{0,80}(?(id)[ :(/]{1,80}|[:(/]{1,80})(?i:pa[as]swo?r?ds?|pwd?|비밀번호|비번|패스워드|암호))\)?(\s*->\s*|[ =:)(/]{1,80}|\s+is\s+|\s+are\s+|\s*는\s*|\s*은\s*|\s*설정은\s*)\(?(?P<id_value>[\w.-]{2,31})[ :\(/\"',]{1,80}(?P<value>(?-i:(?P<a>[A-Z])|(?P<b>[a-z])|(?P<c>[0-9/_+=~!@#$%^&*;:?-])){4,31}(?(a)(?(b)(?(c)(\S|$)|(?!x)x)|(?!x)x)|(?!x)x))
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
     - ValueDictionaryKeywordCheck
   min_line_len: 10
   required_substrings:
@@ -179,10 +179,10 @@
   confidence: weak
   type: pattern
   values:
-    - (\\[nrt]|\b)(?i:(?P<variable>(CREATE|ALTER|SET\s{1,8}PASSWORD|INSERT(\s{1,8}IGNORE)?|UPDATE\s{1,8}[^\s;]{1,80})\s{1,8}(LOGIN|USER|ROLE|FOR|INTO|SET)\s{1,8}([^\s;]{1,80}\s{1,8}|VALUES\s*\(){1,8}(IDENTIFIED((\s{1,8}WITH\s{1,8}\S{1,80})?\s{1,8}(BY|AS))|(=|WITH)?\s*PASSWORD\b(\s*=)?)))\s*(?P<wrap>[(]\s*)?(?P<value_leftquote>((?P<esq>\\{1,8})?([`'\"]|&(quot|apos);)){1,4})?(?P<value>(?(value_leftquote)((?!(?P=value_leftquote))(?(esq)((?!(?P=esq)([`'\"]|&(quot|apos);)).)|((?!(?P=value_leftquote)).)))|(?!&(quot|apos);)(\\+([ tnr]|[^\s`'\"])|[^\s`'\",;\\])){3,80})(?(value_leftquote)(?P<value_rightquote>(?<!\\)(?P=value_leftquote))|(?(wrap)[)]|[\s`'\",;]))
+    - (\\[nrt]|\b)(?i:(?P<variable>(CREATE|ALTER|SET\s{1,8}PASSWORD|INSERT(\s{1,8}IGNORE)?|UPDATE\s{1,8}[^\s;]{1,80})\s{1,8}(LOGIN|USER|ROLE|FOR|INTO|SET)\s{1,8}([^\s;]{1,80}\s{1,8}|VALUES\s*\(){1,8}(IDENTIFIED((\s{1,8}WITH\s{1,8}\S{1,80})?\s{1,8}(BY|AS))|(=|WITH)?\s*PASSWORD\b(\s*=)?)))\s*(?P<wrap>[(]\s*)?(?P<value_leftquote>((?P<esq>\\{1,8})?([\"'`]|&(quot|apos|#3[49]);)){1,4})?(?P<value>(?(value_leftquote)((?!(?P=value_leftquote))(?(esq)((?!(?P=esq)([\"'`]|&(quot|apos|#3[49]);)).)|((?!(?P=value_leftquote)).)))|(?!&(quot|apos|#3[49]);)(\\+([ tnr]|[^\s\"'`])|[^\s\"'`,;\\])){3,80})(?(value_leftquote)(?P<value_rightquote>(?<!\\)(?P=value_leftquote))|(?(wrap)[)]|[\s\"'`,;]))
   filter_type:
     - ValueAllowlistCheck
-    - ValuePatternCheck(4)
+    - ValuePatternCheck
   min_line_len: 8
   required_substrings:
     - password
@@ -203,8 +203,22 @@
     - "-"
   required_regex: "[0-9A-Za-z_/+-]{15}"
   filter_type:
-    - ValuePatternCheck
+    - ValuePatternCheck(4)
   use_ml: false
+  target:
+    - code
+    - doc
+
+- name: Akamai Credentials
+  severity: high
+  confidence: strong
+  type: pattern
+  values:
+    - (?P<value>akab-[0-9a-z]{16}-[0-9a-z]{16})(?!\.[0-9a-z-]{1,80}\.akamaiapis\.net)
+  filter_type: GeneralPattern
+  required_substrings:
+    - akab-
+  min_line_len: 38
   target:
     - code
     - doc
@@ -375,16 +389,16 @@
     - code
     - doc
 
-- name: Heroku API Key
+- name: Heroku Credentials
   severity: high
-  confidence: moderate
+  confidence: strong
   type: pattern
   values:
-    - (?i)(?P<value>heroku(.{0,20})?[0-9a-f]{8}(-[0-9a-f]{4})+-[0-9a-f]{12})(?![0-9A-Za-z_-])
+    - (?P<value>HRKU-([0-9A-Za-z_-]{60}|[0-9A-Fa-f]{8}(-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}))
   filter_type: GeneralPattern
   required_substrings:
-    - heroku
-  min_line_len: 24
+    - HRKU-
+  min_line_len: 41
   target:
     - code
     - doc
@@ -413,7 +427,49 @@
     - ValueJsonWebTokenCheck
   required_substrings:
     - eyJ
-  min_line_len: 18
+  min_line_len: 64
+  target:
+    - code
+    - doc
+
+- name: JSON Web Key
+  severity: medium
+  confidence: strong
+  type: pattern
+  values:
+    - (?P<value>\b(e(yJ|yAi|woi|wog|w0K)|W(yJ|3si|wp7|wog|w0K|3sK))[0-9A-Za-z_+/-]{60,8000})
+  filter_type:
+    - ValueJsonWebKeyCheck
+  required_substrings:
+    - eyJ
+    - eyAi
+    - ewoi
+    - ewog
+    - ew0K
+    - WyJ
+    - W3si
+    - Wwp7
+    - Wwog
+    - Ww0K
+    - W3sK
+  min_line_len: 64
+  target:
+    - code
+    - doc
+
+- name: JWK
+  severity: medium
+  confidence: moderate
+  type: multi
+  values:
+    - (?P<value>['"]?\b(?P<variable>kty)[^0-9A-Za-z_-]{1,8}(RSA|EC|oct)\b['"]?)
+    - (?P<variable>\b[dk])[^0-9A-Za-z_-]{1,8}(?P<value>[0-9A-Za-z_-]{22,8000})(?![=0-9A-Za-z_-])
+  filter_type:
+    - ValuePatternCheck
+    - ValueCoupleKeywordCheck(3)
+  required_substrings:
+    - kty
+  min_line_len: 8
   target:
     - code
     - doc
@@ -676,7 +732,7 @@
   confidence: moderate
   type: pattern
   values:
-    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:pass(in|out|word|phrase)))\s\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(pass:)?(?!file:|env:|fd:)(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,80})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
+    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:pass(in|out|word|phrase)))(\s|\\?[\"'],)\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(pass:)?(?!file:|env:|fd:)(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,80})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
   filter_type: GeneralKeyword
   use_ml: true
   required_substrings:
@@ -690,7 +746,7 @@
   confidence: moderate
   type: pattern
   values:
-    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:token))\s\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,4000})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
+    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:token))(\s|\\?[\"'],)\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,4000})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
   filter_type: GeneralKeyword
   use_ml: true
   required_substrings:
@@ -704,7 +760,7 @@
   confidence: moderate
   type: pattern
   values:
-    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:secret)[A-Za-z_-]*)\s\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(pass:)?(?!file:|env:|fd:)(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,4000})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
+    - (^|\W|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<variable>-[A-Za-z_-]*(?i:secret)[A-Za-z_-]*)(\s|\\?[\"'],)\s*(?!-)(?P<value_leftquote>(\\?[\"']){1,3})?(pass:)?(?!file:|env:|fd:)(?P<value>(?(value_leftquote)[^\"'\\]|[^\s\"'\\]){4,4000})(?(value_leftquote)(?P<value_rightquote>(\\?[\"']){1,3}))
   filter_type: GeneralKeyword
   use_ml: true
   required_substrings:
@@ -1016,7 +1072,7 @@
   confidence: moderate
   type: pattern
   values:
-    - (?:^|[^0-9A-Za-z_+-]|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<value>sl.[0-9A-Za-z_-]{135})(?![0-9A-Za-z_-])
+    - (?:^|[^0-9A-Za-z_+-]|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<value>sl\.(u\.)?[0-9A-Za-z_-]{135})(?![0-9A-Za-z_-])
   filter_type: TokenPattern
   min_line_len: 138
   required_substrings:
@@ -1198,6 +1254,32 @@
     - code
     - doc
 
+- name: NKEY Seed
+  severity: high
+  confidence: weak
+  type: pattern
+  values:
+    - (?:^|[^0-9A-Za-z_+-]|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<value>S[ACNOPUX][A-Z2-7]{40,200})(?![=0-9A-Za-z_+-])
+  min_line_len: 42
+  filter_type:
+    - ValueCoupleKeywordCheck
+    - ValuePatternCheck
+    - ValueEntropyBase32Check
+    - ValueBase32DataCheck
+    - ValueTokenBase32Check
+  required_substrings:
+    - SA
+    - SC
+    - SN
+    - SO
+    - SP
+    - SU
+    - SX
+  required_regex: "[0-9A-Za-z_/+-]{15}"
+  target:
+    - code
+    - doc
+
 - name: Jira 2FA
   severity: info
   confidence: weak
@@ -1230,6 +1312,23 @@
     - T3BlbkFJ
     - 9wZW5BS
     - PcGVuQU
+  target:
+    - code
+    - doc
+
+- name: Docker Access Token
+  severity: high
+  confidence: strong
+  type: pattern
+  values:
+    - (?P<value>dckr_[op]at_[0-9A-Za-z_-]{27,32})
+  min_line_len: 36
+  filter_type:
+    - ValuePatternCheck
+    - ValueEntropyBase64Check
+  required_substrings:
+    - dckr_pat_
+    - dckr_oat_
   target:
     - code
     - doc
@@ -1289,7 +1388,7 @@
     - (?P<value>tvly-[0-9A-Za-z_-]{32,40})(?![0-9A-Za-z_-])
   min_line_len: 37
   filter_type:
-    - ValuePatternCheck(5)
+    - ValuePatternCheck
     - ValueEntropyBase64Check
   required_substrings:
     - tvly-
@@ -1305,7 +1404,7 @@
     - (?P<value>sntrys_eyJ[0-9A-Za-z_-]{80,8000}=*([0-9A-Za-z_-]{32,256})?)(?![0-9A-Za-z_-])
   min_line_len: 37
   filter_type:
-    - ValuePatternCheck(5)
+    - ValuePatternCheck
   required_substrings:
     - sntrys_eyJ
   target:
@@ -1320,7 +1419,7 @@
     - (?P<value>sntryu_[0-9a-f]{64})(?![0-9A-Za-z_-])
   min_line_len: 37
   filter_type:
-    - ValuePatternCheck(5)
+    - ValuePatternCheck
   required_substrings:
     - sntryu_
   target:
@@ -1380,7 +1479,7 @@
   confidence: weak
   type: pattern
   values:
-    - (?:^|[^0-9A-Za-z_+-]|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<value>00D[0-9A-Za-z]{9,15}(![.0-9A-Za-z_-]{24,200})?)(?![0-9A-Za-z_-])
+    - (?:^|[^0-9A-Za-z_+-]|\\[0abfnrtv]|(?:%|\\x)[0-9A-Fa-f]{2}|\\[0-7]{3}|\\[Uu][0-9A-Fa-f]{4}|\x1B\[[0-9;]{0,80}m)(?P<value>(3MVG[0-9A-Za-z_.]{24,200}|00D[0-9A-Za-z]{9,15}(![0-9A-Za-z_.]{24,200})?))(?![0-9A-Za-z_.])
   min_line_len: 12
   filter_type:
     - ValuePatternCheck(9)
@@ -1388,12 +1487,43 @@
     - ValueBase64PartCheck
   required_substrings:
     - 00D
+    - 3MVG
+  target:
+    - code
+    - doc
+
+- name: Basic Authorization
+  severity: medium
+  confidence: strong
+  type: pattern
+  values:
+    - (?P<variable>(?i:basic))(?P<separator>\s+)(?P<value>[=0-9A-Za-z_/+-]{8,8000})(?![0-9A-Za-z_/+-])
+  min_line_len: 18
+  filter_type:
+    - ValueBasicAuthCheck
+  required_substrings:
+    - basic
+  target:
+    - code
+    - doc
+
+- name: Bearer Authorization
+  severity: medium
+  confidence: moderate
+  type: pattern
+  values:
+    - (?P<variable>(?i:bearer|ntlm))(?P<separator>\s+)(?P<value>[.0-9A-Za-z_/+-]{32,8000}=*)(?![0-9A-Za-z_/+-])
+  min_line_len: 37
+  filter_type: GeneralKeyword
+  required_substrings:
+    - bearer
+    - ntlm
   target:
     - code
     - doc
 
 - name: API
-  severity: medium
+  severity: low
   confidence: moderate
   type: keyword
   values:
@@ -1420,20 +1550,6 @@
   target:
     - code
 
-- name: Certificate
-  severity: medium
-  confidence: moderate
-  type: keyword
-  values:
-    - cert
-  filter_type: GeneralKeyword
-  use_ml: true
-  min_line_len: 12
-  required_substrings:
-    - cert
-  target:
-    - code
-
 - name: Credential
   severity: medium
   confidence: moderate
@@ -1449,7 +1565,7 @@
     - code
 
 - name: Key
-  severity: medium
+  severity: high
   confidence: moderate
   type: keyword
   values:
@@ -1463,7 +1579,7 @@
     - code
 
 - name: Nonce
-  severity: medium
+  severity: low
   confidence: moderate
   type: keyword
   values:
@@ -1477,7 +1593,7 @@
     - code
 
 - name: Password
-  severity: medium
+  severity: high
   confidence: moderate
   type: keyword
   values:
@@ -1492,7 +1608,7 @@
     - code
 
 - name: Salt
-  severity: medium
+  severity: low
   confidence: moderate
   type: keyword
   values:
@@ -1520,7 +1636,7 @@
     - code
 
 - name: Token
-  severity: medium
+  severity: high
   confidence: moderate
   type: keyword
   values:

@@ -1,5 +1,3 @@
-from credsweeper.filters.filter import Filter  # isort:skip
-
 from credsweeper.filters.line_git_binary_check import LineGitBinaryCheck
 from credsweeper.filters.line_specific_key_check import LineSpecificKeyCheck
 from credsweeper.filters.line_uue_part_check import LineUUEPartCheck
@@ -12,11 +10,11 @@ from credsweeper.filters.value_base64_data_check import ValueBase64DataCheck
 from credsweeper.filters.value_base64_encoded_pem_check import ValueBase64EncodedPem
 from credsweeper.filters.value_base64_key_check import ValueBase64KeyCheck
 from credsweeper.filters.value_base64_part_check import ValueBase64PartCheck
+from credsweeper.filters.value_basic_auth_check import ValueBasicAuthCheck
 from credsweeper.filters.value_blocklist_check import ValueBlocklistCheck
 from credsweeper.filters.value_camel_case_check import ValueCamelCaseCheck
 from credsweeper.filters.value_couple_keyword_check import ValueCoupleKeywordCheck
 from credsweeper.filters.value_dictionary_keyword_check import ValueDictionaryKeywordCheck
-from credsweeper.filters.value_dictionary_value_length_check import ValueDictionaryValueLengthCheck
 from credsweeper.filters.value_discord_bot_check import ValueDiscordBotCheck
 from credsweeper.filters.value_entropy_base32_check import ValueEntropyBase32Check
 from credsweeper.filters.value_entropy_base36_check import ValueEntropyBase36Check
@@ -27,8 +25,10 @@ from credsweeper.filters.value_grafana_check import ValueGrafanaCheck
 from credsweeper.filters.value_grafana_service_check import ValueGrafanaServiceCheck
 from credsweeper.filters.value_hex_number_check import ValueHexNumberCheck
 from credsweeper.filters.value_jfrog_token_check import ValueJfrogTokenCheck
+from credsweeper.filters.value_json_web_key_check import ValueJsonWebKeyCheck
 from credsweeper.filters.value_json_web_token_check import ValueJsonWebTokenCheck
 from credsweeper.filters.value_last_word_check import ValueLastWordCheck
+from credsweeper.filters.value_length_check import ValueLengthCheck
 from credsweeper.filters.value_method_check import ValueMethodCheck
 from credsweeper.filters.value_not_allowed_pattern_check import ValueNotAllowedPatternCheck
 from credsweeper.filters.value_not_part_encoded_check import ValueNotPartEncodedCheck

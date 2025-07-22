@@ -2,10 +2,10 @@ import re
 from typing import Optional
 
 from credsweeper.common import static_keyword_checklist
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
+from credsweeper.filters.filter import Filter
 
 
 class ValueNotPartEncodedCheck(Filter):
@@ -16,7 +16,7 @@ class ValueNotPartEncodedCheck(Filter):
     BASE64_ENCODED_DATA_PATTERN_AFTER = re.compile(
         r"(^|[^A-Za-z0-9]+)(?P<val>(([A-Za-z0-9=_-]{4}){4,64})|(([A-Za-z0-9=+/]{4}){4,64}))([^=A-Za-z0-9]+|$)")
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     @staticmethod

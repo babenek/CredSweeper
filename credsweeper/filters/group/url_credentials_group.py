@@ -1,10 +1,10 @@
 from credsweeper.common.constants import GroupType
-from credsweeper.config import Config
+from credsweeper.config.config import Config
 from credsweeper.filters import (ValueAllowlistCheck, ValueArrayDictionaryCheck, ValueBlocklistCheck,
-                                 ValueCamelCaseCheck, ValueDictionaryValueLengthCheck, ValueFilePathCheck,
-                                 ValueLastWordCheck, ValueMethodCheck, ValueNotAllowedPatternCheck, ValuePatternCheck,
-                                 ValueStringTypeCheck, ValueTokenCheck)
-from credsweeper.filters.group import Group
+                                 ValueCamelCaseCheck, ValueLengthCheck, ValueFilePathCheck, ValueLastWordCheck,
+                                 ValueMethodCheck, ValueNotAllowedPatternCheck, ValuePatternCheck, ValueStringTypeCheck,
+                                 ValueTokenCheck)
+from credsweeper.filters.group.group import Group
 
 
 class UrlCredentialsGroup(Group):
@@ -25,9 +25,9 @@ class UrlCredentialsGroup(Group):
             ValueFilePathCheck(),
             ValueLastWordCheck(),
             ValueMethodCheck(),
-            ValueStringTypeCheck(config),
+            ValueStringTypeCheck(check_for_literals=config.check_for_literals),
             ValueNotAllowedPatternCheck(),
             ValueTokenCheck(),
-            ValueDictionaryValueLengthCheck(min_len=4, max_len=80),
-            ValuePatternCheck(pattern_len=config.pattern_len)
+            ValueLengthCheck(max_len=config.max_url_cred_value_length),
+            ValuePatternCheck()
         ]

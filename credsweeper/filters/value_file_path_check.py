@@ -1,10 +1,13 @@
+from typing import Optional
+
 from credsweeper.common import static_keyword_checklist
 from credsweeper.common.constants import Chars
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter, ValueEntropyBase64Check
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.filters.value_entropy_base64_check import ValueEntropyBase64Check
+from credsweeper.utils.util import Util
 
 
 class ValueFilePathCheck(Filter):
@@ -17,7 +20,7 @@ class ValueFilePathCheck(Filter):
     unusual_windows_symbols_in_path = "\t\n\r!$@`&*(){}<>+=;,~^"
     unusual_linux_symbols_in_path = "\t\n\r!@`&*<>+=;,~^:\\"
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     def run(self, line_data: LineData, target: AnalysisTarget) -> bool:

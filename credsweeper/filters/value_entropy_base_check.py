@@ -1,16 +1,17 @@
 from abc import abstractmethod
+from typing import Optional
 
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.utils.util import Util
 
 
 class ValueEntropyBaseCheck(Filter):
     """Check that candidate value has minimal Shanon Entropy for appropriated base"""
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     @staticmethod

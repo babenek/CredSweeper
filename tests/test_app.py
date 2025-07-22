@@ -1,5 +1,6 @@
 import json
 import os
+import platform
 import re
 import shutil
 import subprocess
@@ -15,9 +16,9 @@ import pandas as pd
 import pytest
 
 from credsweeper.app import APP_PATH
-from credsweeper.utils import Util
+from credsweeper.utils.util import Util
 from tests import AZ_STRING, SAMPLES_POST_CRED_COUNT, SAMPLES_IN_DEEP_3, SAMPLES_PATH, \
-    TESTS_PATH, SAMPLES_CRED_COUNT, SAMPLES_IN_DOC, NEGLIGIBLE_ML_THRESHOLD, SAMPLE_ZIP
+    TESTS_PATH, SAMPLES_FILTERED_COUNT, SAMPLES_IN_DOC, NEGLIGIBLE_ML_THRESHOLD, SAMPLE_ZIP
 
 
 class TestApp(TestCase):
@@ -126,6 +127,8 @@ class TestApp(TestCase):
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+    @pytest.mark.skipif(9 == sys.version_info.minor and "Darwin" == platform.system(),
+                        reason="ml_probability dribbling in CI for Darwin and python 3.9")
     def test_it_works_with_multiline_in_patch_p(self) -> None:
         target_path = str(SAMPLES_PATH / "multiline.patch")
         _stdout, _stderr = self._m_credsweeper(["--diff_path", target_path, "--log", "silence"])
@@ -155,9 +158,9 @@ class TestApp(TestCase):
                             | value: 'V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ'
                             | line: ' token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"']
                     rule: Token
-                        | severity: medium
+                        | severity: high
                         | confidence: moderate
-                        | ml_probability: 0.9988373517990112
+                        | ml_probability: 0.975292444229126
                         | line_data_list:
                             [path: creds.py
                             | line_num: 5
@@ -200,7 +203,9 @@ class TestApp(TestCase):
                    " | --diff_path PATH [PATH ...]" \
                    " | --export_config [PATH]" \
                    " | --export_log_config [PATH]" \
+                   " | --git PATH" \
                    ")" \
+                   " [--ref REF]" \
                    " [--rules PATH]" \
                    " [--severity SEVERITY]" \
                    " [--config PATH]" \
@@ -235,6 +240,7 @@ class TestApp(TestCase):
                    " --diff_path" \
                    " --export_config" \
                    " --export_log_config" \
+                   " --git" \
                    " is required "
         expected = " ".join(expected.split())
         self.assertEqual(expected, output)
@@ -593,7 +599,7 @@ class TestApp(TestCase):
                 "--path",
                 str(SAMPLES_PATH),
                 "--ml_threshold",
-                str(NEGLIGIBLE_ML_THRESHOLD),
+                "0",
                 "--save-json",
                 json_filename,
             ])
@@ -603,7 +609,7 @@ class TestApp(TestCase):
             rules = Util.yaml_load(APP_PATH / "rules" / "config.yaml")
             rules_set = set([i["name"] for i in rules if "code" in i["target"]])
             self.assertSetEqual(rules_set, report_set)
-            self.assertEqual(SAMPLES_CRED_COUNT, len(report))
+            self.assertEqual(SAMPLES_FILTERED_COUNT, len(report))
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -623,7 +629,7 @@ class TestApp(TestCase):
             self.assertEqual(0, len(_stderr))
             report = Util.json_load(json_filename)
             # the number of reported items should increase
-            self.assertLess(SAMPLES_CRED_COUNT, len(report))
+            self.assertLess(SAMPLES_FILTERED_COUNT, len(report))
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

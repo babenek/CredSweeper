@@ -1,45 +1,37 @@
 import ast
 import base64
+import contextlib
 import json
 import logging
 import math
 import os
+import random
 import re
 import string
-import struct
 import tarfile
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Tuple, Optional, Union
 
 import numpy as np
-import whatthepatch
 import yaml
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.asymmetric.dh import DHPrivateKey, DHPublicKey
+from cryptography.hazmat.primitives.asymmetric.dsa import DSAPrivateKey, DSAPublicKey
+from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePrivateKey, EllipticCurvePublicKey
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
+from cryptography.hazmat.primitives.asymmetric.ed448 import Ed448PrivateKey, Ed448PublicKey
+from cryptography.hazmat.primitives.asymmetric.types import PrivateKeyTypes
+from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PublicKey, X25519PrivateKey
+from cryptography.hazmat.primitives.asymmetric.x448 import X448PublicKey, X448PrivateKey
+from cryptography.hazmat.primitives.serialization import load_der_private_key
+from cryptography.hazmat.primitives.serialization.pkcs12 import load_key_and_certificates
 from lxml import etree
-from typing_extensions import TypedDict
 
-from credsweeper.common.constants import DiffRowType, AVAILABLE_ENCODINGS, \
+from credsweeper.common.constants import AVAILABLE_ENCODINGS, \
     DEFAULT_ENCODING, LATIN_1, CHUNK_SIZE, MAX_LINE_LENGTH, CHUNK_STEP_SIZE, ASCII
 
 logger = logging.getLogger(__name__)
-
-DiffDict = TypedDict(
-    "DiffDict",
-    {
-        "old": Optional[int],  #
-        "new": Optional[int],  #
-        "line": Union[str, bytes],  # bytes are possibly since whatthepatch v1.0.4
-        "hunk": Any  # not used
-    })
-
-
-@dataclass(frozen=True)
-class DiffRowData:
-    """Class for keeping data of diff row."""
-
-    line_type: DiffRowType
-    line_numb: int
-    line: str
 
 
 class Util:
@@ -152,11 +144,10 @@ class Util:
     @staticmethod
     def is_known(data: Union[bytes, bytearray]) -> bool:
         """Returns True if any known binary format is found to prevent extra scan a file without an extension."""
-        if isinstance(data, (bytes, bytearray)):
-            if 127 <= len(data) and data.startswith(b"\x7f\x45\x4c\x46"):
-                # https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
-                # minimal ELF is 127 bytes https://github.com/tchajed/minimal-elf
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\x7f\x45\x4c\x46") and 127 <= len(data):
+            # https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
+            # minimal ELF is 127 bytes https://github.com/tchajed/minimal-elf
+            return True
         return False
 
     @staticmethod
@@ -165,10 +156,9 @@ class Util:
         Returns True when two zeroes sequence is found in begin of data.
         The sequence never exists in text format (UTF-8, UTF-16). UTF-32 is not supported.
         """
-        if 0 <= data.find(b"\0\0", 0, MAX_LINE_LENGTH):
+        if isinstance(data, (bytes, bytearray)) and 0 <= data.find(b"\0\0", 0, MAX_LINE_LENGTH):
             return True
-        else:
-            return False
+        return False
 
     NOT_LATIN1_PRINTABLE_SET = set(range(0, 256)) \
         .difference(set(x for x in string.printable.encode(ASCII))) \
@@ -182,7 +172,7 @@ class Util:
             non_latin1_cnt = sum(1 for x in data[:MAX_LINE_LENGTH] if x in Util.NOT_LATIN1_PRINTABLE_SET)
             # experiment for 255217 binary files shown avg = 0.268264 ± 0.168767, so let choose minimal
             chunk_len = min(MAX_LINE_LENGTH, len(data))
-            result = 0.1 > non_latin1_cnt / chunk_len
+            result = bool(0.1 > non_latin1_cnt / chunk_len)
         return result
 
     @staticmethod
@@ -267,138 +257,33 @@ class Util:
         return lines
 
     @staticmethod
-    def patch2files_diff(raw_patch: List[str], change_type: DiffRowType) -> Dict[str, List[DiffDict]]:
-        """Generate files changes from patch for added or deleted filepaths.
-
-        Args:
-            raw_patch: git patch file content
-            change_type: change type to select, DiffRowType.ADDED or DiffRowType.DELETED
-
-        Return:
-            return dict with ``{file paths: list of file row changes}``, where
-            elements of list of file row changes represented as::
-
-                {
-                    "old": line number before diff,
-                    "new": line number after diff,
-                    "line": line text,
-                    "hunk": diff hunk number
-                }
-
-        """
-        if not raw_patch:
-            return {}
-
-        added_files, deleted_files = {}, {}
-        try:
-            for patch in whatthepatch.parse_patch(raw_patch):
-                if patch.changes is None:
-                    logger.warning(f"Patch '{str(patch.header)}' cannot be scanned")
-                    continue
-                changes = []
-                for change in patch.changes:
-                    change_dict = change._asdict()
-                    changes.append(change_dict)
-
-                added_files[patch.header.new_path] = changes
-                deleted_files[patch.header.old_path] = changes
-            if change_type == DiffRowType.ADDED:
-                return added_files
-            elif change_type == DiffRowType.DELETED:
-                return deleted_files
-            else:
-                logger.error(f"Change type should be one of: '{DiffRowType.ADDED}', '{DiffRowType.DELETED}';"
-                             f" but received {change_type}")
-        except Exception as exc:
-            logger.exception(exc)
-        return {}
-
-    @staticmethod
-    def preprocess_diff_rows(
-            added_line_number: Optional[int],  #
-            deleted_line_number: Optional[int],  #
-            line: str) -> List[DiffRowData]:
-        """Auxiliary function to extend diff changes.
-
-        Args:
-            added_line_number: number of added line or None
-            deleted_line_number: number of deleted line or None
-            line: the text line
-
-        Return:
-            diff rows data with as list of row change type, line number, row content
-
-        """
-        rows_data: List[DiffRowData] = []
-        if isinstance(added_line_number, int):
-            # indicates line was inserted
-            rows_data.append(DiffRowData(DiffRowType.ADDED, added_line_number, line))
-        if isinstance(deleted_line_number, int):
-            # indicates line was removed
-            rows_data.append(DiffRowData(DiffRowType.DELETED, deleted_line_number, line))
-        return rows_data
-
-    @staticmethod
-    def wrong_change(change: DiffDict) -> bool:
-        """Returns True if the change is wrong"""
-        for i in ["line", "new", "old"]:
-            if i not in change:
-                logger.error(f"Skipping wrong change {change}")
-                return True
-        return False
-
-    @staticmethod
-    def preprocess_file_diff(changes: List[DiffDict]) -> List[DiffRowData]:
-        """Generate changed file rows from diff data with changed lines (e.g. marked + or - in diff).
-
-        Args:
-            changes: git diff by file rows data
-
-        Return:
-            diff rows data with as list of row change type, line number, row content
-
-        """
-        if not changes:
-            return []
-
-        rows_data = []
-        # process diff to restore lines and their positions
-        for change in changes:
-            if Util.wrong_change(change):
-                continue
-            line = change["line"]
-            if isinstance(line, str):
-                rows_data.extend(Util.preprocess_diff_rows(change.get("new"), change.get("old"), line))
-            elif isinstance(line, (bytes, bytearray)):
-                logger.warning("The feature is available with the deep scan option")
-            else:
-                logger.error(f"Unknown type of line {type(line)}")
-
-        return rows_data
-
-    @staticmethod
     def is_zip(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
-        if isinstance(data, (bytes, bytearray)) and 3 < len(data):
-            # PK
-            if data.startswith(b"PK"):
-                if 0x03 == data[2] and 0x04 == data[3]:
-                    return True
-                # empty archive - no sense to scan
-                elif 0x05 == data[2] and 0x06 == data[3]:
-                    return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"PK") and 4 <= len(data):
+            if 0x03 == data[2] and 0x04 == data[3]:
+                # normal PK
+                return True
+            elif 0x05 == data[2] and 0x06 == data[3]:
+                # empty archive - no sense to scan in other scanners, so let it be a zip
+                return True
+            elif 0x07 == data[2] and 0x08 == data[3]:
                 # spanned archive - NOT SUPPORTED
-                elif 0x07 == data[2] and 0x08 == data[3]:
-                    return False
+                return False
         return False
 
     @staticmethod
     def is_com(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
-        if isinstance(data, (bytes, bytearray)) and 8 < len(data):
-            if data.startswith(b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"):
-                # Compound File Binary Format: doc, xls, ppt, msi, msg
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"):
+            # Compound File Binary Format: doc, xls, ppt, msi, msg
+            return True
+        return False
+
+    @staticmethod
+    def is_rpm(data: Union[bytes, bytearray]) -> bool:
+        """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\xED\xAB\xEE\xDB"):
+            return True
         return False
 
     @staticmethod
@@ -411,88 +296,105 @@ class Util:
                     or
                     0x20 == data[262] and 0x20 == data[263] and 0x00 == data[264]
             ):
-                try:
+                with contextlib.suppress(Exception):
                     chksum = tarfile.nti(data[148:156])  # type: ignore
                     unsigned_chksum, signed_chksum = tarfile.calc_chksums(data)  # type: ignore
-                    return bool(chksum == unsigned_chksum or chksum == signed_chksum)
-                except Exception as exc:
-                    logger.exception(f"Corrupted TAR ? {exc}")
+                    if chksum == unsigned_chksum or chksum == signed_chksum:
+                        return True
         return False
 
     @staticmethod
     def is_deb(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/Deb_(file_format)"""
-        if isinstance(data, (bytes, bytearray)) and 512 <= len(data) and data.startswith(b"!<arch>\n"):
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"!<arch>\n"):
             return True
         return False
 
     @staticmethod
     def is_bzip2(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/Bzip2"""
-        if isinstance(data, (bytes, bytearray)) and 10 <= len(data):
-            if data.startswith(b"\x42\x5A\x68") \
-                    and 0x31 <= data[3] <= 0x39 \
-                    and 0x31 == data[4] and 0x41 == data[5] and 0x59 == data[6] \
-                    and 0x26 == data[7] and 0x53 == data[8] and 0x59 == data[9]:
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\x42\x5A\x68") and 10 <= len(data) \
+                and 0x31 <= data[3] <= 0x39 \
+                and 0x31 == data[4] and 0x41 == data[5] and 0x59 == data[6] \
+                and 0x26 == data[7] and 0x53 == data[8] and 0x59 == data[9]:
+            return True
         return False
 
     @staticmethod
     def is_gzip(data: Union[bytes, bytearray]) -> bool:
         """According https://www.rfc-editor.org/rfc/rfc1952"""
-        if isinstance(data, (bytes, bytearray)) and 3 <= len(data):
-            if data.startswith(b"\x1F\x8B\x08"):
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\x1F\x8B\x08"):
+            return True
         return False
 
     @staticmethod
     def is_pdf(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - pdf"""
-        if isinstance(data, (bytes, bytearray)) and 5 <= len(data):
-            if data.startswith(b"\x25\x50\x44\x46\x2D"):
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"%PDF-"):
+            return True
+        return False
+
+    @staticmethod
+    def is_jclass(data: Union[bytes, bytearray]) -> bool:
+        """According https://en.wikipedia.org/wiki/List_of_file_signatures - java class"""
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\xCA\xFE\xBA\xBE"):
+            return True
         return False
 
     @staticmethod
     def is_jks(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - jks"""
-        if isinstance(data, (bytes, bytearray)) and 4 <= len(data):
-            if data.startswith(b"\xFE\xED\xFE\xED"):
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"\xFE\xED\xFE\xED"):
+            return True
         return False
 
     @staticmethod
     def is_lzma(data: Union[bytes, bytearray]) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - lzma also xz"""
-        if isinstance(data, (bytes, bytearray)) and 6 <= len(data):
-            if data.startswith((b"\xFD\x37\x7A\x58\x5A\x00", b"\x5D\x00\x00")):
-                return True
+        if isinstance(data, (bytes, bytearray)) and data.startswith((b"\xFD7zXZ\x00", b"\x5D\x00\x00")):
+            return True
+        return False
+
+    @classmethod
+    def is_sqlite3(cls, data):
+        """According https://en.wikipedia.org/wiki/List_of_file_signatures - SQLite Database"""
+        if isinstance(data, (bytes, bytearray)) and data.startswith(b"SQLite format 3\0"):
+            return True
         return False
 
     @staticmethod
-    def is_asn1(data: Union[bytes, bytearray]) -> bool:
-        """Only sequence type 0x30 and size correctness is checked"""
-        if isinstance(data, (bytes, bytearray)) and 4 <= len(data):
-            # sequence
-            if 0x30 == data[0]:
-                # https://www.oss.com/asn1/resources/asn1-made-simple/asn1-quick-reference/basic-encoding-rules.html#Lengths
-                length = data[1]
-                byte_len = 0x7F & length
-                if 0x80 == length and data.endswith(b"\x00\x00"):
-                    return True
-                elif 0x80 < length and 1 < byte_len < len(data):  # additional check
-                    len_bytes = data[2:2 + byte_len]
-                    try:
-                        long_size = struct.unpack(">h", len_bytes)
-                    except struct.error:
-                        long_size = (-1,)  # yapf: disable
-                    length = long_size[0]
-                elif 0x80 < length and 1 == byte_len:  # small size
-                    length = data[2]
+    def is_asn1(data: Union[bytes, bytearray]) -> int:
+        """Only sequence type 0x30 and size correctness are checked
+        Returns size of ASN1 data over 128 bytes or 0 if no interested data
+        """
+        if isinstance(data, (bytes, bytearray)) and 2 <= len(data) and 0x30 == data[0]:
+            # https://www.oss.com/asn1/resources/asn1-made-simple/asn1-quick-reference/basic-encoding-rules.html#Lengths
+            length = data[1]
+            if 0x80 == length:
+                if data.endswith(b"\x00\x00"):
+                    # assume, all data are ASN1 of various size
+                    return len(data)
                 else:
-                    byte_len = 0
-                return len(data) == length + 2 + byte_len
-        return False
+                    # skip the case where the ASN1 size is smaller than the actual data
+                    return 0
+            elif 0x80 < length:
+                byte_len = 0x7F & length
+                len_limit = 2 + byte_len
+                if 4 >= byte_len and len(data) >= len_limit:
+                    length = 0
+                    for i in range(2, len_limit):
+                        length <<= 8
+                        length |= data[i]
+                    if len(data) >= length + len_limit:
+                        return length + len_limit
+                else:
+                    # unsupported huge size
+                    return 0
+            else:
+                # less than 0x80
+                if len(data) >= length + 2:
+                    return length + 2
+        return 0
 
     @staticmethod
     def is_html(data: Union[bytes, bytearray]) -> bool:
@@ -547,12 +449,12 @@ class Util:
     @staticmethod
     def is_eml(data: Union[bytes, bytearray]) -> bool:
         """According to https://datatracker.ietf.org/doc/html/rfc822 lookup the fields: Date, From, To or Subject"""
-        if isinstance(data, (bytes, bytearray)):
-            if (b"\nDate:" in data or data.startswith(b"Date:")) \
-                    and (b"\nFrom:" in data or data.startswith(b"From:")) \
-                    and (b"\nTo:" in data or data.startswith(b"To:")) \
-                    and (b"\nSubject:" in data or data.startswith(b"Subject:")):
-                return True
+        if isinstance(data, (bytes, bytearray)) \
+                and (b"\nDate:" in data or data.startswith(b"Date:")) \
+                and (b"\nFrom:" in data or data.startswith(b"From:")) \
+                and (b"\nTo:" in data or data.startswith(b"To:")) \
+                and (b"\nSubject:" in data or data.startswith(b"Subject:")):
+            return True
         return False
 
     @staticmethod
@@ -665,10 +567,13 @@ class Util:
         result = ast.unparse(src).splitlines()
         return result
 
+    PEM_CLEANING_PATTERN = re.compile(r"\\[tnrvf]")
+    WHITESPACE_TRANS_TABLE = str.maketrans('', '', string.whitespace)
+
     @staticmethod
     def decode_base64(text: str, padding_safe: bool = False, urlsafe_detect=False) -> bytes:
         """decode text to bytes with / without padding detect and urlsafe symbols"""
-        value = text
+        value = text.translate(Util.WHITESPACE_TRANS_TABLE)
         if padding_safe:
             pad_num = 0x3 & len(value)
             if pad_num:
@@ -678,6 +583,38 @@ class Util:
         else:
             decoded = base64.b64decode(value, validate=True)
         return decoded
+
+    @staticmethod
+    def load_pk(data: bytes, password: Optional[bytes] = None) -> Optional[PrivateKeyTypes]:
+        """Try to load private key from PKCS1, PKCS8 and PKCS12 formats"""
+        with contextlib.suppress(Exception):
+            # PKCS1, PKCS8 probes
+            private_key = load_der_private_key(data, password)
+            return private_key
+        with contextlib.suppress(Exception):
+            # PKCS12 probe
+            private_key, _certificate, _additional_certificates = load_key_and_certificates(data, password)
+            return private_key
+        return None
+
+    RANDOM_DATA = random.randbytes(20)
+
+    @staticmethod
+    def check_pk(pkey: PrivateKeyTypes) -> bool:
+        """Check private key with encrypt-decrypt random data"""
+        if isinstance(pkey, (EllipticCurvePrivateKey, DSAPrivateKey, Ed448PrivateKey, Ed25519PrivateKey, DHPrivateKey,
+                             X448PrivateKey, X25519PrivateKey)):
+            # One does not simply perform check the keys
+            return True
+        if isinstance(pkey, (EllipticCurvePublicKey, DSAPublicKey, Ed448PublicKey, Ed25519PublicKey, DHPublicKey,
+                             X448PublicKey, X25519PublicKey)) or not pkey:
+            # These aren't the keys we're looking for
+            return False
+            # DSA, RSA
+        pd = padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA1(), label=None)
+        ciphertext = pkey.public_key().encrypt(Util.RANDOM_DATA, padding=pd)
+        refurb = pkey.decrypt(ciphertext, padding=pd)
+        return bool(refurb == Util.RANDOM_DATA)
 
     @staticmethod
     def get_chunks(line_len: int) -> List[Tuple[int, int]]:
@@ -701,6 +638,8 @@ class Util:
     @staticmethod
     def subtext(text: str, pos: int, hunk_size: int) -> str:
         """cut text symmetrically for given position or use remained quota to be fitted in 2x hunk_size"""
+        # cut trailed whitespaces to obtain more informative data
+        text = text.rstrip()
         if hunk_size <= pos:
             left_quota = 0
             left_pos = pos - hunk_size

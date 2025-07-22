@@ -2,14 +2,15 @@ import contextlib
 import re
 import statistics
 from itertools import takewhile
+from typing import Optional
 
 from credsweeper.common.constants import Chars
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
+from credsweeper.filters.filter import Filter
 from credsweeper.filters.value_entropy_base64_check import ValueEntropyBase64Check
-from credsweeper.utils import Util
+from credsweeper.utils.util import Util
 
 
 class ValueBase64PartCheck(Filter):
@@ -20,7 +21,7 @@ class ValueBase64PartCheck(Filter):
     base64_pattern = re.compile(r"^(\\{1,8}[0abfnrtv]|[0-9A-Za-z+/=]){1,4000}$")
     base64_char_set = set(Chars.BASE64STDPAD_CHARS.value + '\\')
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     def run(self, line_data: LineData, target: AnalysisTarget) -> bool:

@@ -11,7 +11,7 @@ import pandas as pd
 from colorama import Fore, Style, Back
 
 from credsweeper.common.constants import ML_HUNK
-from credsweeper.utils import Util
+from credsweeper.utils.util import Util
 
 # path, line, val_start, val_end
 identifier = Tuple[str, int, int, int]
@@ -92,7 +92,7 @@ def read_metadata(meta_dir: str) -> Dict[identifier, Dict]:
         df["ValueStart"] = df["ValueStart"].fillna(-1).astype(int)
         df["ValueEnd"] = df["ValueEnd"].fillna(-1).astype(int)
         # all templates are false
-        df.loc[df["GroundTruth"] == "Template", "GroundTruth"] = 'F'
+        df.loc[df["GroundTruth"] != 'T', "GroundTruth"] = 'F'
         for _, row in df.iterrows():
             j += 1
             if row["LineStart"] != row["LineEnd"] \
@@ -190,9 +190,8 @@ def join_label(detected_data: Dict[identifier, Dict], meta_data: Dict[identifier
                 print(f"3.CHECK CATEGORIES\n{markup_rules}, {line_data['RuleName']}\n{str(markup)}" +
                       get_colored_line(line_data))
         elif (index[0], index[1]) in positive_lines:
-            print(f"WARNING: {index} is not in meta!!! Skip due the line in positive dataset\n" +
+            print(f"WARNING: {index} is not in meta!!! {Fore.LIGHTRED_EX}CHECK THE NEGATIVE CASE{Style.RESET_ALL}\n" +
                   get_colored_line(line_data))
-            continue
         else:
             print(f"WARNING: {index} is not in meta!!! IT WILL BE USED AS NEGATIVE CASE\n" +
                   get_colored_line(line_data))

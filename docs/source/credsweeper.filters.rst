@@ -116,6 +116,14 @@ credsweeper.filters.value\_base64\_part\_check module
    :undoc-members:
    :show-inheritance:
 
+credsweeper.filters.value\_basic\_auth\_check module
+----------------------------------------------------
+
+.. automodule:: credsweeper.filters.value_basic_auth_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 credsweeper.filters.value\_blocklist\_check module
 --------------------------------------------------
 
@@ -144,14 +152,6 @@ credsweeper.filters.value\_dictionary\_keyword\_check module
 ------------------------------------------------------------
 
 .. automodule:: credsweeper.filters.value_dictionary_keyword_check
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-credsweeper.filters.value\_dictionary\_value\_length\_check module
-------------------------------------------------------------------
-
-.. automodule:: credsweeper.filters.value_dictionary_value_length_check
    :members:
    :undoc-members:
    :show-inheritance:
@@ -244,6 +244,14 @@ credsweeper.filters.value\_jfrog\_token\_check module
    :undoc-members:
    :show-inheritance:
 
+credsweeper.filters.value\_json\_web\_key\_check module
+-------------------------------------------------------
+
+.. automodule:: credsweeper.filters.value_json_web_key_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 credsweeper.filters.value\_json\_web\_token\_check module
 ---------------------------------------------------------
 
@@ -256,6 +264,14 @@ credsweeper.filters.value\_last\_word\_check module
 ---------------------------------------------------
 
 .. automodule:: credsweeper.filters.value_last_word_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+credsweeper.filters.value\_length\_check module
+-----------------------------------------------
+
+.. automodule:: credsweeper.filters.value_length_check
    :members:
    :undoc-members:
    :show-inheritance:

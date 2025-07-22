@@ -1,12 +1,13 @@
 import base64
 import contextlib
 import string
+from typing import Optional
 
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.utils.util import Util
 
 
 class ValueBase32DataCheck(Filter):
@@ -14,7 +15,7 @@ class ValueBase32DataCheck(Filter):
     Check that candidate is NOT an ascii encoded string with entropy check
     """
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     def run(self, line_data: LineData, target: AnalysisTarget) -> bool:
@@ -38,6 +39,8 @@ class ValueBase32DataCheck(Filter):
                 return True
         # check whether decoded bytes have enough entropy
         with contextlib.suppress(Exception):
+            if pad_remain := len(value) % 8:
+                value += '=' * (8 - pad_remain)
             decoded = base64.b32decode(value)
             return Util.is_ascii_entropy_validate(decoded)
         return True

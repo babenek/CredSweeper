@@ -1,11 +1,11 @@
 from typing import List
 
 from credsweeper.common.constants import RuleType
-from credsweeper.config import Config
-from credsweeper.credentials import Candidate
+from credsweeper.config.config import Config
+from credsweeper.credentials.candidate import Candidate
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.rules import Rule
-from credsweeper.scanner.scan_type import ScanType
+from credsweeper.rules.rule import Rule
+from credsweeper.scanner.scan_type.scan_type import ScanType
 
 
 class MultiPattern(ScanType):
@@ -37,8 +37,7 @@ class MultiPattern(ScanType):
             "Rules provided to MultiPattern.run should have pattern_type equal to MULTI_PATTERN"
 
         candidates = cls._get_candidates(config, rule, target)
-        if not candidates:
-            return candidates
+
         for candidate in candidates:
             line_pos_margin = 1
             while line_pos_margin <= cls.MAX_SEARCH_MARGIN:

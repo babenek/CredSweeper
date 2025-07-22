@@ -1,6 +1,5 @@
 import json
 import logging
-import string
 import warnings
 from functools import cached_property
 from typing import List, Optional, Any, Generator, Callable, Tuple
@@ -11,7 +10,7 @@ from bs4 import BeautifulSoup, Tag, XMLParsedAsHTMLWarning
 from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.file_handler.analysis_target import AnalysisTarget
 from credsweeper.file_handler.content_provider import ContentProvider
-from credsweeper.utils import Util
+from credsweeper.utils.util import Util
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning, module='bs4')
 logger = logging.getLogger(__name__)
@@ -385,7 +384,7 @@ class DataContentProvider(ContentProvider):
             return False
         try:
             self.decoded = Util.decode_base64(  #
-                self.text.translate(str.maketrans('', '', string.whitespace)),  #
+                text=Util.PEM_CLEANING_PATTERN.sub(r'', self.text).replace('\\', ''),  #
                 padding_safe=True,  #
                 urlsafe_detect=True)  #
         except Exception as exc:

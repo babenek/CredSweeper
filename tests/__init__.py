@@ -1,28 +1,27 @@
 from pathlib import Path
 
 # total number of files in test samples
-SAMPLES_FILES_COUNT = 156
+SAMPLES_FILES_COUNT = 165
 
 # the lowest value of ML threshold is used to display possible lowest values
 NEGLIGIBLE_ML_THRESHOLD = 0.0001
 
-# credentials count after scan with negligible ML threshold
-SAMPLES_CRED_COUNT = 498
-SAMPLES_CRED_LINE_COUNT = SAMPLES_CRED_COUNT + 19
-
-# Number of filtered credentials with ML
-ML_FILTERED = 22
-
-# credentials count after post-processing
-SAMPLES_POST_CRED_COUNT = SAMPLES_CRED_COUNT - ML_FILTERED
-
 # with option --doc & NEGLIGIBLE_ML_THRESHOLD
-SAMPLES_IN_DOC = 849
+SAMPLES_IN_DOC = 860
+
+# credentials count after scan without filters and ML validations
+SAMPLES_REGEX_COUNT = 718
+
+# credentials count after scan with filters and without ML validation
+SAMPLES_FILTERED_COUNT = 528
+
+# credentials count after default post-processing
+SAMPLES_POST_CRED_COUNT = 425
 
 # archived credentials that are not found without --depth
-SAMPLES_IN_DEEP_1 = SAMPLES_POST_CRED_COUNT + 113
-SAMPLES_IN_DEEP_2 = SAMPLES_IN_DEEP_1 + 5
-SAMPLES_IN_DEEP_3 = SAMPLES_IN_DEEP_2 + 2
+SAMPLES_IN_DEEP_1 = SAMPLES_POST_CRED_COUNT + 124
+SAMPLES_IN_DEEP_2 = SAMPLES_IN_DEEP_1 + 3
+SAMPLES_IN_DEEP_3 = SAMPLES_IN_DEEP_2 + 4
 
 # well known string with all latin letters
 AZ_DATA = b"The quick brown fox jumps over the lazy dog"
@@ -38,3 +37,5 @@ SAMPLE_ZIP = SAMPLES_PATH / "pem_key.zip"
 SAMPLE_HTML = SAMPLES_PATH / "test.html"
 SAMPLE_DOCX = SAMPLES_PATH / "sample.docx"
 SAMPLE_PY = SAMPLES_PATH / "sample.py"
+SAMPLE_DEB = SAMPLES_PATH / "sample.deb"
+SAMPLE_SQLITE = SAMPLES_PATH / "sample.sqlite"

@@ -1,20 +1,21 @@
 import contextlib
 import re
+from typing import Optional
 
 import base58
 
 from credsweeper.common.constants import ASCII
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.utils.util import Util
 
 
 class ValueJfrogTokenCheck(Filter):
     """Check that candidate have a known structure JFROG token"""
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         # reftkn:01:0123456789:abcdefGhijklmnoPqrstuVwxyz0
         self._pattern = re.compile(r"reftkn:\d+:\d+:[\w_/+-]+")
 

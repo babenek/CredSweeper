@@ -84,6 +84,14 @@ credsweeper.deep\_scanner.html\_scanner module
    :undoc-members:
    :show-inheritance:
 
+credsweeper.deep\_scanner.jclass\_scanner module
+------------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.jclass_scanner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 credsweeper.deep\_scanner.jks\_scanner module
 ---------------------------------------------
 
@@ -116,6 +124,14 @@ credsweeper.deep\_scanner.mxfile\_scanner module
    :undoc-members:
    :show-inheritance:
 
+credsweeper.deep\_scanner.patch\_scanner module
+-----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.patch_scanner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 credsweeper.deep\_scanner.pdf\_scanner module
 ---------------------------------------------
 
@@ -124,10 +140,10 @@ credsweeper.deep\_scanner.pdf\_scanner module
    :undoc-members:
    :show-inheritance:
 
-credsweeper.deep\_scanner.pkcs12\_scanner module
-------------------------------------------------
+credsweeper.deep\_scanner.pkcs\_scanner module
+----------------------------------------------
 
-.. automodule:: credsweeper.deep_scanner.pkcs12_scanner
+.. automodule:: credsweeper.deep_scanner.pkcs_scanner
    :members:
    :undoc-members:
    :show-inheritance:
@@ -136,6 +152,22 @@ credsweeper.deep\_scanner.pptx\_scanner module
 ----------------------------------------------
 
 .. automodule:: credsweeper.deep_scanner.pptx_scanner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+credsweeper.deep\_scanner.rpm\_scanner module
+---------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.rpm_scanner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+credsweeper.deep\_scanner.sqlite3\_scanner module
+-------------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.sqlite3_scanner
    :members:
    :undoc-members:
    :show-inheritance:

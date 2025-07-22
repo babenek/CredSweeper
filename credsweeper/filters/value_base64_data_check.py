@@ -1,11 +1,12 @@
 import contextlib
 import string
+from typing import Optional
 
-from credsweeper.config import Config
-from credsweeper.credentials import LineData
+from credsweeper.config.config import Config
+from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
-from credsweeper.filters import Filter
-from credsweeper.utils import Util
+from credsweeper.filters.filter import Filter
+from credsweeper.utils.util import Util
 
 
 class ValueBase64DataCheck(Filter):
@@ -13,7 +14,7 @@ class ValueBase64DataCheck(Filter):
     Check that candidate is NOT an ascii encoded string with entropy check
     """
 
-    def __init__(self, config: Config = None) -> None:
+    def __init__(self, config: Optional[Config] = None) -> None:
         pass
 
     def run(self, line_data: LineData, target: AnalysisTarget) -> bool:

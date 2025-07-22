@@ -6,10 +6,10 @@ import pytest
 
 from credsweeper.app import APP_PATH
 from credsweeper.common.constants import Severity
-from credsweeper.config import Config
-from credsweeper.rules import Rule
-from credsweeper.scanner import Scanner
-from credsweeper.utils import Util
+from credsweeper.config.config import Config
+from credsweeper.rules.rule import Rule
+from credsweeper.scanner.scanner import Scanner
+from credsweeper.utils.util import Util
 from tests import SAMPLES_PATH
 
 
@@ -43,7 +43,6 @@ def config() -> Config:
     config_dict["doc"] = False
     config_dict["find_by_ext_list"] = [".txt", ".inf"]
     config_dict["size_limit"] = None
-    config_dict["min_keyword_value_length"] = 4
     config_dict["severity"] = Severity.INFO
     return Config(config_dict)
 
