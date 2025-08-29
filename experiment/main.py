@@ -13,8 +13,10 @@ import keras_tuner as kt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+from colorama import Fore, Style
 from keras import Model  # type: ignore
 from numpy import ndarray
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score, precision_score, recall_score, log_loss, accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.utils import compute_class_weight
@@ -126,6 +128,51 @@ def main(
     print(f"Prepare full data")
     x_full_line, x_full_variable, x_full_value, x_full_features = prepare_data(df_all)
     y_full: ndarray = get_y_labels(df_all)
+
+    clf = RandomForestClassifier(n_estimators=100, max_depth=6, random_state=42)
+    clf.fit(x_full_features, y_full)
+
+    # Predict probabilities
+    proba = clf.predict_proba(x_full_features)  # shape: (n_samples, n_classes)
+
+    # Find least confident predictions (max probability close to 0.5 for binary case)
+    max_proba = proba.max(axis=1)
+    uncertainty = 1 - max_proba  # higher = more uncertain
+
+    # Threshold for controversy (e.g., top 10 most uncertain)
+    top_k = 100
+    most_controversial_idx = np.argsort(-uncertainty)[:top_k]
+    #
+    # controversial_samples =
+    # controversial_samples["true_label"] = df_all.iloc[most_controversial_idx]
+    # controversial_samples["predicted_label"] = clf.predict(df_all.iloc[most_controversial_idx])
+    # controversial_samples["confidence"] = max_proba[most_controversial_idx]
+    # Predictions from each tree
+    tree_preds = np.array([tree.predict(x_full_features) for tree in clf.estimators_])  # shape: (n_trees, n_samples)
+
+    # Disagreement ratio: % of trees that differ from the majority vote
+    def disagreement_ratio(sample_preds):
+        if np.issubdtype(sample_preds.dtype, np.integer):
+            # Classification: majority vote disagreement
+            majority = np.bincount(sample_preds).argmax()
+            return np.mean(sample_preds != majority)
+        else:
+            # Regression (or float outputs): relative spread (std / range)
+            # Higher = more disagreement
+            value_range = np.ptp(sample_preds)  # max - min
+            return np.std(sample_preds) / value_range if value_range != 0 else 0.0
+
+    disagreement = np.apply_along_axis(disagreement_ratio, 0, tree_preds)
+
+    for n in most_controversial_idx:
+        fore_style = Fore.LIGHTGREEN_EX if df_all.iloc[n]["GroundTruth"] else Fore.LIGHTRED_EX
+        print(f"{str(n)} "
+              + fore_style +
+              f" {str(disagreement[n])} "
+              f" {str(clf.predict(x_full_features[[n]])[0])} "
+              f" {str(df_all.iloc[[n]].to_dict())} "
+              + Style.RESET_ALL)
+
     del df_all
 
     print(f"Prepare train data")
