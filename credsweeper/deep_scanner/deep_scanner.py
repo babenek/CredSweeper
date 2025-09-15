@@ -23,6 +23,7 @@ from .pkcs_scanner import PkcsScanner
 from .pptx_scanner import PptxScanner
 from .rpm_scanner import RpmScanner
 from .sqlite3_scanner import Sqlite3Scanner
+from .squashfs_scanner import SquashfsScanner
 from .strings_scanner import StringsScanner
 from .tar_scanner import TarScanner
 from .tmx_scanner import TmxScanner
@@ -49,6 +50,7 @@ class DeepScanner(
     PdfScanner,  #
     PkcsScanner,  #
     PptxScanner,  #
+    SquashfsScanner,  #
     RpmScanner,  #
     Sqlite3Scanner,  #
     StringsScanner,  #
@@ -129,6 +131,8 @@ class DeepScanner(
             deep_scanners.append(JclassScanner)
         elif Util.is_jks(data):
             deep_scanners.append(JksScanner)
+        elif data.startswith(b"hsqs"):
+            deep_scanners.append(SquashfsScanner)
         elif Util.is_sqlite3(data):
             if 0 < depth:
                 deep_scanners.append(Sqlite3Scanner)
