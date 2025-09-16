@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 import keras_tuner as kt
 from tensorflow.keras.layers import Dense, LSTM, Bidirectional, Input, Concatenate, Dropout
@@ -20,26 +20,26 @@ class MlModel(kt.HyperModel):
         self.feature_shape = feature_shape
         self.__kwargs = kwargs
 
-    def __get_hyperparam(self, param_name: str, hp=None) -> Any:
+    def get_hyperparam(self, param_name: str, hp=None) -> Any:
         if param := self.__kwargs.get(param_name):
             if isinstance(param, float):
-                print(f"'{param_name}' constant = {param}")
+                print(f"'{param_name}' constant = {param}", flush=True)
                 return param
             elif hp and isinstance(param, tuple) and 3 == len(param):
-                print(f"'{param_name}' tuning = {param}")
+                print(f"'{param_name}' tuning = {param}", flush=True)
                 return hp.Float(param_name, min_value=param[0], max_value=param[1], step=param[2])
             else:
                 raise ValueError(f"'{param_name}' was not inited well {param} tuner is {bool(hp)}")
         else:
             raise ValueError(f"'{param_name}' was not defined during init and tuner is used")
 
-    def build(self, hp=None) -> Model:
+    def build(self, hp:Optional[Any]) -> Model:
         """Get keras model with string and feature input and single binary out"""
-        value_lstm_dropout_rate = self.__get_hyperparam("value_lstm_dropout_rate", hp)
-        line_lstm_dropout_rate = self.__get_hyperparam("line_lstm_dropout_rate", hp)
-        variable_lstm_dropout_rate = self.__get_hyperparam("variable_lstm_dropout_rate", hp)
-        dense_a_dropout_rate = self.__get_hyperparam("dense_a_lstm_dropout_rate", hp)
-        dense_b_dropout_rate = self.__get_hyperparam("dense_b_lstm_dropout_rate", hp)
+        value_lstm_dropout_rate = self.get_hyperparam("value_lstm_dropout_rate", hp)
+        line_lstm_dropout_rate = self.get_hyperparam("line_lstm_dropout_rate", hp)
+        variable_lstm_dropout_rate = self.get_hyperparam("variable_lstm_dropout_rate", hp)
+        dense_a_dropout_rate = self.get_hyperparam("dense_a_lstm_dropout_rate", hp)
+        dense_b_dropout_rate = self.get_hyperparam("dense_b_lstm_dropout_rate", hp)
 
         line_input = Input(shape=(None, self.line_shape[2]), name="line_input", dtype=self.d_type)
         line_lstm = LSTM(units=self.line_shape[1], dtype=self.d_type)

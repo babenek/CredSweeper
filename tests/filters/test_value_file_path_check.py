@@ -18,6 +18,7 @@ class TestValueFilePathCheck:
     @pytest.mark.parametrize(
         "line",
         [
+            "google_auth_oauthlib-0.4.4.dist-info/INSTALLER,sha256",
             "[DEPOT]/${path}/$(date)/config/credentials",  #
             "/mnt/x",  #
             "/srv/x",  #

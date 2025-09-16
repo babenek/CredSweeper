@@ -31,7 +31,7 @@ def dir_checksum(dir_path: Path) -> str:
 
 
 def prepare_train_data(cred_data_location: str, jobs: int, doc_target: bool):
-    print("Start train data preparation...")
+    print("Start train data preparation...", flush=True)
 
     # use current rules
     rules = Util.yaml_load("../credsweeper/rules/config.yaml")
@@ -40,17 +40,17 @@ def prepare_train_data(cred_data_location: str, jobs: int, doc_target: bool):
     Util.yaml_dump(new_rules, "results/train_config.yaml")
 
     meta_checksum = dir_checksum(Path(cred_data_location) / "meta")
-    print(f"meta checksum {meta_checksum}")
+    print(f"meta checksum {meta_checksum}", flush=True)
 
     data_checksum = dir_checksum(Path(cred_data_location) / "data")
-    print(f"data checksum {data_checksum}")
+    print(f"data checksum {data_checksum}", flush=True)
     detected_data_filename = f"results/detected_data.{data_checksum}.json"
 
     if not os.path.exists(detected_data_filename):
-        print(f"Get CredSweeper results from {cred_data_location}. May take some time")
+        print(f"Get CredSweeper results from {cred_data_location}. May take some time", flush=True)
         execute_scanner(cred_data_location, detected_data_filename, jobs, doc_target)
     else:
-        print(f"Get cached result {data_checksum}")
+        print(f"Get cached result {data_checksum}", flush=True)
 
-    print("Train data prepared!")
+    print("Train data prepared!", flush=True)
     return meta_checksum, data_checksum
