@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2 - 2024.10.23
         with:
           repository: Samsung/CredData
-          ref: 0d52f25cf494a632b972d8ad4e91ca0b74a89eec
+          ref: fa243e2025aa8a6da4d89284d14a887af140c412
 
       - name: Markup hashing
         run: |
@@ -48,11 +48,11 @@ jobs:
           path: data
           key: cred-data-${{ hashFiles('checksums.md5') }}
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         if: steps.cache-data.outputs.cache-hit != 'true'
         uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0 - 2025.01.28
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
@@ -87,7 +87,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2 - 2024.10.23
         with:
           repository: Samsung/CredData
-          ref: 0d52f25cf494a632b972d8ad4e91ca0b74a89eec
+          ref: fa243e2025aa8a6da4d89284d14a887af140c412
 
       - name: Markup hashing
         run: |
@@ -112,10 +112,10 @@ jobs:
         if: steps.cache-data.outputs.cache-hit == 'true'
         run: ls -al . && ls -al data
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0 - 2025.01.28
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
@@ -177,7 +177,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.10", "3.11", "3.12" ]
+        python-version: [ "3.11", "3.12" ]
 
     steps:
 
@@ -190,7 +190,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2 - 2024.10.23
         with:
           repository: Samsung/CredData
-          ref: 0d52f25cf494a632b972d8ad4e91ca0b74a89eec
+          ref: fa243e2025aa8a6da4d89284d14a887af140c412
 
       - name: Markup hashing
         run: |
@@ -378,7 +378,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2 - 2024.10.23
         with:
           repository: Samsung/CredData
-          ref: 0d52f25cf494a632b972d8ad4e91ca0b74a89eec
+          ref: fa243e2025aa8a6da4d89284d14a887af140c412
 
       - name: Markup hashing
         run: |
@@ -407,10 +407,10 @@ jobs:
           mv data ${{ github.workspace }}/CredData/
           mv meta ${{ github.workspace }}/CredData/
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0 - 2025.01.28
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
