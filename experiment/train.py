@@ -19,6 +19,7 @@ from sklearn.utils import compute_class_weight
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from typing import List
 
+from experiment.detox import disagreement_check
 from experiment.plot import save_plot
 from experiment.src.data_loader import read_detected_data, read_metadata, join_label, get_y_labels
 from experiment.src.features import prepare_data
@@ -125,6 +126,8 @@ def train(
     print(f"Prepare full data")
     x_full_line, x_full_variable, x_full_value, x_full_features = prepare_data(df_all)
     y_full: ndarray = get_y_labels(df_all)
+
+    disagreement_check(df_all, x_full_features, y_full, jobs=jobs)
     del df_all
 
     print(f"Prepare train data")
