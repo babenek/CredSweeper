@@ -151,6 +151,33 @@ class Util:
             return True
         return False
 
+    MEDIA_PATTERNS = (
+        (b"\x89PNG\x0D\x0A\x1A\x0A", None),  # PNG - can store text chunks inside
+        (b"\x1A\x45\xDF\xA3", None),  # Matroska
+        (b"\x00\x00\x00\x0C\x6A\x50\x20\x20\x0D\x0A\x87\x0A", None),  # JPEG2000
+        (b"\xFF", re.compile(b"\xFF(\xD8\xFF[\xDB\xEE\xE1\xE0\x51]|[\xFB\xF3\xF2])")), # JPEG or MPEG-1 Layer 3
+        (b"\x00\x00\x01\x00", re.compile(b"BM.{4}\x00{4}")),  # BMP
+        (b"BM", re.compile(b"BM.{4}\x00{4}")),  # BMP
+        (b"ftyp", re.compile(b"ftyp(isom|MSNV).{0,4096}[\x00-\x1F\x80-\xFF]")),  # mp4
+        (b"OggS", re.compile(b"OggS.{0,4096}[\x00-\x1F\x80-\xFF]")),  # OGG
+        (b"II", re.compile(b"II[+*]\x0.{0,4096}[\x00-\x1F\x80-\xFF]")),  # TIFF little endian
+        (b"MM", re.compile(b"MM\x0[+*].{0,4096}[\x00-\x1F\x80-\xFF]")),  # TIFF big endian
+        (b"GIF8", re.compile(b"GIF8[79]a.{0,4096}[\x00-\x1F\x80-\xFF]")),  # GIF
+        (b"wOF", re.compile(b"wOF[2F].{0,4096}[\x00-\x1F\x80-\xFF]")),  # WOFF 1.0, 2.0
+        (b"RIF", re.compile(b"RIF[FX].{4}[ 0-9A-Za-z]{4}.{0,4096}[\x00-\x1F\x80-\xFF]")),  #
+        (b"XFIR", re.compile(b"XFIR.{4}[ 0-9A-Za-z]{4}.{0,4096}[\x00-\x1F\x80-\xFF]")),  #
+    )
+
+    @staticmethod
+    def is_media(data: Union[bytes, bytearray]) -> bool:
+        """Returns True if well-known media format found"""
+        if isinstance(data, (bytes, bytearray)):
+            for prefix, pattern in Util.MEDIA_PATTERNS:
+                # use prefix for speed-up total search
+                if prefix and data.startswith(prefix) and (pattern is None or pattern.match(data)):
+                    return True
+        return False
+
     NOT_LATIN1_PRINTABLE_SET = set(range(0, 256)) \
         .difference(set(x for x in string.printable.encode(ASCII))) \
         .difference(set(x for x in range(0xA0, 0x100)))

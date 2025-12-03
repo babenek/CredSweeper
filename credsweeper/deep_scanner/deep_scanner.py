@@ -174,6 +174,9 @@ class DeepScanner(
                 deep_scanners.append(EncoderScanner)
                 deep_scanners.append(LangScanner)
                 deep_scanners.append(CsvScanner)
+        elif Util.is_media(data):
+            # skip scan for media files
+            pass
         else:
             if 0 < depth:
                 deep_scanners.append(StringsScanner)
