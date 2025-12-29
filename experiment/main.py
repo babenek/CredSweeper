@@ -3,7 +3,10 @@ import random
 import sys
 from argparse import ArgumentParser, BooleanOptionalAction
 
-from train import train
+# Add project root to Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from pytorch_train import train_pytorch as train
 
 
 def main(argv) -> int:
@@ -41,7 +44,7 @@ def main(argv) -> int:
                         metavar="POSITIVE_INT")
     parser.add_argument("--doc", help="use doc target", dest="doc_target", action=BooleanOptionalAction, default=False)
     parser.add_argument("--tuner",
-                        help="use keras tuner",
+                        help="use optuna tuner",
                         dest="use_tuner",
                         action=BooleanOptionalAction,
                         default=False)

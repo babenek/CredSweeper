@@ -52,10 +52,10 @@ class MlValidator:
         model_config = json.loads(__ml_config_data)
 
         if ml_model:
-            ml_model_path = Path(ml_model)
+            self.__ml_model_path = Path(ml_model)
         else:
-            ml_model_path = MlValidator._dir_path / "ml_model.onnx"
-        with open(ml_model_path, "rb") as f:
+            self.__ml_model_path = MlValidator._dir_path / "ml_model.onnx"
+        with open(self.__ml_model_path, "rb") as f:
             self.__ml_model_data = f.read()
 
         if ml_providers:
@@ -89,7 +89,7 @@ class MlValidator:
             config_md5 = hashlib.md5(__ml_config_data).hexdigest()
             model_md5 = hashlib.md5(self.__ml_model_data).hexdigest()
             logger.info("Init ML validator with providers: '%s' ; model:'%s' md5:%s ; config:'%s' md5:%s",
-                        self.providers, ml_config_path, config_md5, ml_model_path, model_md5)
+                        self.providers, self.__ml_model_path, model_md5, ml_config_path, config_md5)
             logger.debug(str(model_config))
         for feature_definition in model_config["features"]:
             feature_class = feature_definition["type"]
@@ -118,7 +118,20 @@ class MlValidator:
     def session(self) -> InferenceSession:
         """session getter to prevent pickle error"""
         if not self.__session:
-            self.__session = InferenceSession(self.__ml_model_data, providers=self.providers)
+            # Ensure we're using the single ONNX file without external .data files
+            if self.__ml_model_path.exists():
+                # Check if there's a separate .data file and remove it if it exists
+                onnx_data_file = self.__ml_model_path.with_suffix('.data')
+                if onnx_data_file.exists():
+                    logger.warning(f"Removing auxiliary .data file: {onnx_data_file}")
+                    onnx_data_file.unlink()
+                
+                # Load the ONNX model from file path
+                self.__session = InferenceSession(str(self.__ml_model_path), providers=self.providers)
+            else:
+                # Fallback to loading from raw data if file doesn't exist
+                self.__session = InferenceSession(self.__ml_model_data, providers=self.providers)
+        
         if not self.__session:
             raise RuntimeError("InferenceSession was not initialized!")
         return self.__session
@@ -143,7 +156,10 @@ class MlValidator:
         pos = position - offset
         stripped = text.strip()
         if MlValidator.MAX_LEN < len(stripped):
-            stripped = Util.subtext(stripped, pos, ML_HUNK)
+            # Simple truncation instead of Util.subtext to avoid ONNX slicing issues
+            start_pos = max(0, pos - ML_HUNK)
+            end_pos = min(len(stripped), pos + ML_HUNK)
+            stripped = stripped[start_pos:end_pos]
         return self.encode(stripped, MlValidator.MAX_LEN)
 
     def encode_value(self, text: str) -> np.ndarray:
@@ -224,15 +240,18 @@ class MlValidator:
         return feature_array
 
     def _batch_call_model(self, line_input_list, variable_input_list, value_input_list, features_list) -> np.ndarray:
-        """auxiliary method to invoke twice"""
-        line_inputs_vstack = np.vstack(line_input_list)
-        variable_inputs_vstack = np.vstack(variable_input_list)
-        value_inputs_vstack = np.vstack(value_input_list)
-        feature_array_vstack = np.vstack(features_list)
-        result_call = self._call_model(line_inputs_vstack, variable_inputs_vstack, value_inputs_vstack,
-                                       feature_array_vstack)
-        result = result_call[:, 0]
-        return result
+        """auxiliary method to invoke model - process one by one due to fixed batch size 1 in ONNX"""
+        results = []
+        for i in range(len(line_input_list)):
+            line_input = line_input_list[i]
+            variable_input = variable_input_list[i]
+            value_input = value_input_list[i]
+            feature_array = features_list[i]
+            
+            result_call = self._call_model(line_input, variable_input, value_input, feature_array)
+            results.append(result_call[0])
+        
+        return np.array(results)
 
     def validate_groups(self, group_list: List[Tuple[CandidateKey, List[Candidate]]],
                         batch_size: int) -> Tuple[np.ndarray, np.ndarray]:

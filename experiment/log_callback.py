@@ -1,13 +1,12 @@
 import datetime
-
 import psutil
-from keras.src.callbacks import Callback
 
 
-class LogCallback(Callback):
+class PyTorchLogCallback:
+    """PyTorch-compatible version of LogCallback"""
 
     def __init__(self):
-        super().__init__()
+        pass
 
     @staticmethod
     def get_memory_info():
@@ -18,4 +17,9 @@ class LogCallback(Callback):
     def on_epoch_end(self, epoch, logs=None):
         print(str(datetime.datetime.now()), flush=True)
         print(f"{epoch + 1}:{self.get_memory_info()}", flush=True)
-        print(logs, flush=True)
+        if logs:
+            print(logs, flush=True)
+
+
+# Alias for backward compatibility
+LogCallback = PyTorchLogCallback
