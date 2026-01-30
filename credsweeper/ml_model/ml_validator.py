@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Tuple, Union, Optional, Dict
 
 import numpy as np
-from keras import models
+from ai_edge_litert.interpreter import Interpreter
 
 import credsweeper.ml_model.features as features
 from credsweeper.common.constants import ThresholdPreset, ML_HUNK
@@ -40,7 +40,7 @@ class MlValidator:
             ml_model: path to ml model
             ml_providers: ignored (kept for backward compatibility)
         """
-        self.__keras_model = None
+        self.__interpreter: Optional[Interpreter] = None
 
         if ml_config:
             ml_config_path = Path(ml_config)
@@ -54,12 +54,13 @@ class MlValidator:
         if ml_model:
             ml_model_path = Path(ml_model)
         else:
-            ml_model_path = MlValidator._dir_path / "ml_model.keras"
+            ml_model_path = MlValidator._dir_path / "ml_model.tflite"
         # Model file may not exist during training
         if ml_model_path.exists():
-            self.__keras_model = models.load_model(ml_model_path)
+            with open(ml_model_path, "rb") as f:
+                self.__ml_model_data = f.read()
         else:
-            self.__keras_model = None
+            self.__ml_model_data = None
 
         if isinstance(threshold, float):
             self.threshold = threshold
@@ -85,9 +86,8 @@ class MlValidator:
         self.unique_feature_list = []
         if logger.isEnabledFor(logging.INFO):
             config_md5 = hashlib.md5(__ml_config_data).hexdigest()
-            if self.__keras_model is not None:
-                with open(ml_model_path, "rb") as f:
-                    model_md5 = hashlib.md5(f.read()).hexdigest()
+            if self.__ml_model_data is not None:
+                model_md5 = hashlib.md5(self.__ml_model_data).hexdigest()
             else:
                 model_md5 = "N/A"
             logger.info("Init ML validator with model:'%s' md5:%s ; config:'%s' md5:%s",
@@ -112,9 +112,20 @@ class MlValidator:
                 self.common_feature_list.append(feature)
 
     def __reduce__(self):
-        # Cannot pickle Keras model object
-        self.__keras_model = None
+        # Cannot pickle LiteRT Interpreter object
+        self.__interpreter = None
         return super().__reduce__()
+
+    @property
+    def interpreter(self) -> Interpreter:
+        """interpreter getter to prevent pickle error"""
+        if not self.__interpreter:
+            self.__interpreter = Interpreter(model_content=self.__ml_model_data)
+            logger.info("Using ai-edge-litert interpreter")
+            self.__interpreter.allocate_tensors()
+        if not self.__interpreter:
+            raise RuntimeError("Interpreter was not initialized!")
+        return self.__interpreter
 
     def encode(self, text: str, limit: int) -> np.ndarray:
         """Encodes prepared text to array"""
@@ -135,9 +146,9 @@ class MlValidator:
         offset = len(text) - len(text.lstrip())
         pos = position - offset
         stripped = text.strip()
-        if MlValidator.MAX_LEN < len(stripped):
+        if ML_HUNK < len(stripped):
             stripped = Util.subtext(stripped, pos, ML_HUNK)
-        return self.encode(stripped, MlValidator.MAX_LEN)
+        return self.encode(stripped, ML_HUNK)
 
     def encode_value(self, text: str) -> np.ndarray:
         """Encodes line with balancing for position"""
@@ -146,11 +157,29 @@ class MlValidator:
 
     def _call_model(self, line_input: np.ndarray, variable_input: np.ndarray, value_input: np.ndarray,
                     feature_input: np.ndarray) -> np.ndarray:
-        # Use Keras model directly for inference
-        result = self.__keras_model.predict(
-            [line_input, variable_input, value_input, feature_input],
-            verbose=0
-        )
+        # Use LiteRT interpreter for inference
+        interpreter = self.interpreter
+        
+        # Get input and output details
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
+        
+        # Set input tensors
+        for detail in input_details:
+            if "line_input" in detail["name"]:
+                interpreter.set_tensor(detail["index"], line_input.astype(np.float32))
+            elif "variable_input" in detail["name"]:
+                interpreter.set_tensor(detail["index"], variable_input.astype(np.float32))
+            elif "value_input" in detail["name"]:
+                interpreter.set_tensor(detail["index"], value_input.astype(np.float32))
+            elif "feature_input" in detail["name"]:
+                interpreter.set_tensor(detail["index"], feature_input.astype(np.float32))
+        
+        # Run inference
+        interpreter.invoke()
+        
+        # Get output
+        result = interpreter.get_tensor(output_details[0]["index"])
         if isinstance(result, np.ndarray):
             return result
         raise RuntimeError(f"Unexpected type {type(result)}")
@@ -215,15 +244,13 @@ class MlValidator:
         return feature_array
 
     def _batch_call_model(self, line_input_list, variable_input_list, value_input_list, features_list) -> np.ndarray:
-        """auxiliary method to invoke twice"""
-        line_inputs_vstack = np.vstack(line_input_list)
-        variable_inputs_vstack = np.vstack(variable_input_list)
-        value_inputs_vstack = np.vstack(value_input_list)
-        feature_array_vstack = np.vstack(features_list)
-        result_call = self._call_model(line_inputs_vstack, variable_inputs_vstack, value_inputs_vstack,
-                                       feature_array_vstack)
-        result = result_call[:, 0]
-        return result
+        """auxiliary method to invoke twice - process one sample at a time for TFLite"""
+        results = []
+        for line_input, variable_input, value_input, feature_array in zip(line_input_list, variable_input_list, 
+                                                                          value_input_list, features_list):
+            result_call = self._call_model(line_input, variable_input, value_input, feature_array)
+            results.append(result_call[0, 0])
+        return np.array(results, dtype=np.float32)
 
     def validate_groups(self, group_list: List[Tuple[CandidateKey, List[Candidate]]],
                         batch_size: int) -> Tuple[np.ndarray, np.ndarray]:

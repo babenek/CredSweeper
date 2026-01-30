@@ -243,12 +243,22 @@ def train(
         del x_full_features
         del y_full
 
-    # Save the Keras model directly for inference (no TFLite conversion needed)
-    keras_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.keras"
-    keras_model.save(keras_model_file, include_optimizer=False)
-    with open(keras_model_file, "rb") as f:
-        keras_md5 = hashlib.md5(f.read()).hexdigest()
-        print(f"ml_model.keras:{keras_md5}", flush=True)
+    # Convert the model to LiteRT (TFLite) format
+    litert_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.tflite"
+    import tensorflow.lite as lite
+    converter = lite.TFLiteConverter.from_keras_model(keras_model)
+    # Enable optimizations and use only TFLite built-in ops
+    converter.optimizations = [lite.Optimize.DEFAULT]
+    converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS]
+    # Ensure dynamic batch size
+    converter._experimental_new_converter = True
+    converter._experimental_new_quantizer = True
+    tflite_model = converter.convert()
+    with open(litert_model_file, "wb") as f:
+        f.write(tflite_model)
+    with open(litert_model_file, "rb") as f:
+        litert_md5 = hashlib.md5(f.read()).hexdigest()
+        print(f"ml_model.tflite:{litert_md5}", flush=True)
 
     with open(ML_CONFIG_PATH, "rb") as f:
         config_md5 = hashlib.md5(f.read()).hexdigest()
@@ -263,7 +273,7 @@ def train(
         history=fit_history,
         dir_path=RESULTS_DIR,
         best_epoch=int(best_epoch),
-        info=f"ml_config.json:{config_md5} ml_model.keras:{keras_md5} best_epoch:{best_epoch}",
+        info=f"ml_config.json:{config_md5} ml_model.tflite:{litert_md5} best_epoch:{best_epoch}",
     )
 
     return str(model_file_name.absolute())
