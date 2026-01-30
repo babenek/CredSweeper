@@ -26,8 +26,10 @@ class TestZlibScanner(unittest.TestCase):
         self.assertFalse(ZlibScanner.match(data))
 
     def test_match_p(self):
+        self.assertTrue(ZlibScanner.match(b'(S)Ljava/lang/Short;'))
         self.assertTrue(ZlibScanner.match(ZLIB_DATA))
         self.assertTrue(ZlibScanner.match(b"XG5FAKE"))
+
 
     @given(strategies.binary())
     def test_decompress_hypothesis_n(self, data):
