@@ -95,7 +95,7 @@ def check_integrity() -> int:
     crc32 = 0
     for root, _dirs, files in os.walk(APP_PATH):
         for file_name in files:
-            if Util.get_extension(file_name) in [".py", ".json", ".txt", ".yaml", ".onnx"]:
+            if Util.get_extension(file_name) in [".py", ".json", ".txt", ".yaml", ".tflite"]:
                 file_path = Path(root) / file_name
                 data = Util.read_data(file_path)
                 if data:

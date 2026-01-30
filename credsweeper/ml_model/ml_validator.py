@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Tuple, Union, Optional, Dict
 
 import numpy as np
-from onnxruntime import InferenceSession
+from keras import models
 
 import credsweeper.ml_model.features as features
 from credsweeper.common.constants import ThresholdPreset, ML_HUNK
@@ -38,9 +38,9 @@ class MlValidator:
             threshold: decision threshold
             ml_config: path to ml config
             ml_model: path to ml model
-            ml_providers: coma separated list of providers https://onnxruntime.ai/docs/execution-providers/
+            ml_providers: ignored (kept for backward compatibility)
         """
-        self.__session: Optional[InferenceSession] = None
+        self.__keras_model = None
 
         if ml_config:
             ml_config_path = Path(ml_config)
@@ -54,14 +54,12 @@ class MlValidator:
         if ml_model:
             ml_model_path = Path(ml_model)
         else:
-            ml_model_path = MlValidator._dir_path / "ml_model.onnx"
-        with open(ml_model_path, "rb") as f:
-            self.__ml_model_data = f.read()
-
-        if ml_providers:
-            self.providers = ml_providers.split(',')
+            ml_model_path = MlValidator._dir_path / "ml_model.keras"
+        # Model file may not exist during training
+        if ml_model_path.exists():
+            self.__keras_model = models.load_model(ml_model_path)
         else:
-            self.providers = ["CPUExecutionProvider"]
+            self.__keras_model = None
 
         if isinstance(threshold, float):
             self.threshold = threshold
@@ -87,9 +85,13 @@ class MlValidator:
         self.unique_feature_list = []
         if logger.isEnabledFor(logging.INFO):
             config_md5 = hashlib.md5(__ml_config_data).hexdigest()
-            model_md5 = hashlib.md5(self.__ml_model_data).hexdigest()
-            logger.info("Init ML validator with providers: '%s' ; model:'%s' md5:%s ; config:'%s' md5:%s",
-                        self.providers, ml_config_path, config_md5, ml_model_path, model_md5)
+            if self.__keras_model is not None:
+                with open(ml_model_path, "rb") as f:
+                    model_md5 = hashlib.md5(f.read()).hexdigest()
+            else:
+                model_md5 = "N/A"
+            logger.info("Init ML validator with model:'%s' md5:%s ; config:'%s' md5:%s",
+                        ml_model_path, model_md5, ml_config_path, config_md5)
             logger.debug(str(model_config))
         for feature_definition in model_config["features"]:
             feature_class = feature_definition["type"]
@@ -110,18 +112,9 @@ class MlValidator:
                 self.common_feature_list.append(feature)
 
     def __reduce__(self):
-        # TypeError: cannot pickle 'onnxruntime.capi.onnxruntime_pybind11_state.InferenceSession' object
-        self.__session = None
+        # Cannot pickle Keras model object
+        self.__keras_model = None
         return super().__reduce__()
-
-    @property
-    def session(self) -> InferenceSession:
-        """session getter to prevent pickle error"""
-        if not self.__session:
-            self.__session = InferenceSession(self.__ml_model_data, providers=self.providers)
-        if not self.__session:
-            raise RuntimeError("InferenceSession was not initialized!")
-        return self.__session
 
     def encode(self, text: str, limit: int) -> np.ndarray:
         """Encodes prepared text to array"""
@@ -153,16 +146,14 @@ class MlValidator:
 
     def _call_model(self, line_input: np.ndarray, variable_input: np.ndarray, value_input: np.ndarray,
                     feature_input: np.ndarray) -> np.ndarray:
-        input_feed: Dict[str, np.ndarray] = {
-            "line_input": line_input.astype(np.float32),
-            "variable_input": variable_input.astype(np.float32),
-            "value_input": value_input.astype(np.float32),
-            "feature_input": feature_input.astype(np.float32),
-        }
-        result = self.session.run(output_names=None, input_feed=input_feed)
-        if result and isinstance(result[0], np.ndarray):
-            return result[0]
-        raise RuntimeError(f"Unexpected type {type(result[0])}")
+        # Use Keras model directly for inference
+        result = self.__keras_model.predict(
+            [line_input, variable_input, value_input, feature_input],
+            verbose=0
+        )
+        if isinstance(result, np.ndarray):
+            return result
+        raise RuntimeError(f"Unexpected type {type(result)}")
 
     def extract_common_features(self, candidates: List[Candidate]) -> np.ndarray:
         """Extract features that are guaranteed to be the same for all candidates on the same line with same value."""

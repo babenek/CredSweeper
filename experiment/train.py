@@ -10,12 +10,11 @@ from datetime import datetime
 import keras_tuner as kt
 import numpy as np
 import pandas as pd
-import tensorflow as tf
-from keras import Model  # type: ignore
+from keras import Model
+from keras.callbacks import EarlyStopping, ModelCheckpoint
 from numpy import ndarray
 from sklearn.model_selection import train_test_split
 from sklearn.utils import compute_class_weight
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 from data_loader import read_detected_data, read_metadata, join_label, get_y_labels
 from experiment.evaluate_model import evaluate_model
@@ -41,7 +40,6 @@ def train(
     eval_full: bool,
 ) -> str:
     # fixed seed for std.random in main()
-    tf.random.set_seed(random.randint(1, 0xffffffff))
     np.random.seed(random.randint(1, 0xffffffff))
 
     print(f"Memory at start: {LogCallback.get_memory_info()}", flush=True)
@@ -187,7 +185,7 @@ def train(
                                    mode="min",
                                    restore_best_weights=True,
                                    verbose=1)
-    model_checkpoint = ModelCheckpoint(filepath=str(RESULTS_DIR / f"{current_time}.best_model"),
+    model_checkpoint = ModelCheckpoint(filepath=str(RESULTS_DIR / f"{current_time}.best_model.keras"),
                                        monitor="val_loss",
                                        save_best_only=True,
                                        mode="min",
@@ -203,8 +201,7 @@ def train(
                                   validation_data=([x_test_line, x_test_variable, x_test_value,
                                                     x_test_features], y_test),
                                   class_weight=class_weight,
-                                  callbacks=[early_stopping, model_checkpoint, log_callback],
-                                  use_multiprocessing=True)
+                                  callbacks=[early_stopping, model_checkpoint, log_callback])
 
     # if best_val_loss is not None and best_val_loss + 0.00001 < early_stopping.best:
     #     print(f"CHECK BEST TUNER EARLY STOP : {best_val_loss} vs CURRENT: {early_stopping.best}",flush=True)
@@ -214,7 +211,7 @@ def train(
     with open(RESULTS_DIR / f"{current_time}.history.pickle", "wb") as f:
         pickle.dump(fit_history, f)
 
-    model_file_name = RESULTS_DIR / f"ml_model_at-{current_time}"
+    model_file_name = RESULTS_DIR / f"ml_model_at-{current_time}.keras"
     keras_model.save(model_file_name, include_optimizer=False)
 
     if eval_test:
@@ -246,14 +243,12 @@ def train(
         del x_full_features
         del y_full
 
-    onnx_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.onnx"
-    # convert the model to onnx right now
-    convert_args = f"{sys.executable} -m tf2onnx.convert --saved-model {model_file_name.absolute()}" \
-                   f" --output {str(onnx_model_file)} --verbose"
-    subprocess.check_call(convert_args, shell=True, cwd=pathlib.Path(__file__).parent)
-    with open(onnx_model_file, "rb") as f:
-        onnx_md5 = hashlib.md5(f.read()).hexdigest()
-        print(f"ml_model.onnx:{onnx_md5}", flush=True)
+    # Save the Keras model directly for inference (no TFLite conversion needed)
+    keras_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.keras"
+    keras_model.save(keras_model_file, include_optimizer=False)
+    with open(keras_model_file, "rb") as f:
+        keras_md5 = hashlib.md5(f.read()).hexdigest()
+        print(f"ml_model.keras:{keras_md5}", flush=True)
 
     with open(ML_CONFIG_PATH, "rb") as f:
         config_md5 = hashlib.md5(f.read()).hexdigest()
@@ -268,7 +263,7 @@ def train(
         history=fit_history,
         dir_path=RESULTS_DIR,
         best_epoch=int(best_epoch),
-        info=f"ml_config.json:{config_md5} ml_model.onnx:{onnx_md5} best_epoch:{best_epoch}",
+        info=f"ml_config.json:{config_md5} ml_model.keras:{keras_md5} best_epoch:{best_epoch}",
     )
 
     return str(model_file_name.absolute())

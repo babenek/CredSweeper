@@ -1,11 +1,10 @@
 from typing import Any, Optional
 
 import keras_tuner as kt
-from tensorflow.keras.layers import Dense, LSTM, Bidirectional, Input, Concatenate, Dropout
-from tensorflow.keras.models import Model
-from tensorflow.keras.optimizers import Adam
-from tensorflow.python.keras.layers import ReLU, Softmax, Multiply
-from tensorflow.python.keras.metrics import BinaryAccuracy, Precision, Recall
+from keras import Model
+from keras.layers import Dense, LSTM, Bidirectional, Input, Concatenate, Dropout, ReLU, Softmax, Multiply
+from keras.optimizers import Adam
+from keras.metrics import BinaryAccuracy, Precision, Recall
 
 from credsweeper.common.constants import ML_HUNK
 from credsweeper.ml_model.ml_validator import MlValidator
