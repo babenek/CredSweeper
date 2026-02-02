@@ -143,7 +143,7 @@ def train(
             directory=str(RESULTS_DIR / f"{current_time}.tuner"),
             project_name='ml_tuning',
             seed=random.randint(1, 0xffffffff),
-            max_trials=30,
+            max_trials=3,
         )
         search_early_stopping = EarlyStopping(monitor="val_loss",
                                               patience=patience,
@@ -187,7 +187,7 @@ def train(
                                    mode="min",
                                    restore_best_weights=True,
                                    verbose=1)
-    model_checkpoint = ModelCheckpoint(filepath=str(RESULTS_DIR / f"{current_time}.best_model"),
+    model_checkpoint = ModelCheckpoint(filepath=str(RESULTS_DIR / f"{current_time}.best_model.keras"),
                                        monitor="val_loss",
                                        save_best_only=True,
                                        mode="min",
@@ -204,7 +204,7 @@ def train(
                                                     x_test_features], y_test),
                                   class_weight=class_weight,
                                   callbacks=[early_stopping, model_checkpoint, log_callback],
-                                  use_multiprocessing=True)
+                                  )
 
     # if best_val_loss is not None and best_val_loss + 0.00001 < early_stopping.best:
     #     print(f"CHECK BEST TUNER EARLY STOP : {best_val_loss} vs CURRENT: {early_stopping.best}",flush=True)
@@ -215,7 +215,7 @@ def train(
         pickle.dump(fit_history, f)
 
     model_file_name = RESULTS_DIR / f"ml_model_at-{current_time}"
-    keras_model.save(model_file_name, include_optimizer=False)
+    keras_model.export(model_file_name, verbose=True, include_optimizer=False)
 
     if eval_test:
         print(f"Validate results on the test subset. Size: {len(y_test)} {np.mean(y_test):.4f}", flush=True)
@@ -248,6 +248,50 @@ def train(
 
     onnx_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.onnx"
     # convert the model to onnx right now
+    """
+    pip install -U tf2onnx tensorflow numpy==1.26.4
+    
+    absl-py==2.4.0
+    astunparse==1.6.3
+    certifi==2026.1.4
+    charset-normalizer==3.4.4
+    flatbuffers==25.12.19
+    gast==0.7.0
+    google-pasta==0.2.0
+    grpcio==1.76.0
+    h5py==3.15.1
+    idna==3.11
+    keras==3.13.2
+    libclang==18.1.1
+    Markdown==3.10.1
+    markdown-it-py==4.0.0
+    MarkupSafe==3.0.3
+    mdurl==0.1.2
+    ml_dtypes==0.5.4
+    namex==0.1.0
+    numpy==1.26.4
+    onnx==1.17.0
+    opt_einsum==3.4.0
+    optree==0.18.0
+    packaging==26.0
+    protobuf==3.20.3
+    Pygments==2.19.2
+    requests==2.32.5
+    rich==14.3.1
+    setuptools==80.10.2
+    six==1.17.0
+    tensorboard==2.19.0
+    tensorboard-data-server==0.7.2
+    tensorflow==2.19.1
+    termcolor==3.3.0
+    tf2onnx==1.16.1
+    typing_extensions==4.15.0
+    urllib3==2.6.3
+    Werkzeug==3.1.5
+    wheel==0.46.3
+    wrapt==2.0.1
+
+    """
     convert_args = f"{sys.executable} -m tf2onnx.convert --saved-model {model_file_name.absolute()}" \
                    f" --output {str(onnx_model_file)} --verbose"
     subprocess.check_call(convert_args, shell=True, cwd=pathlib.Path(__file__).parent)
