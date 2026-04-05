@@ -536,12 +536,11 @@
             "kwargs": {
                 "extensions": [
                     "",
-                    ".cpp",
+                    ".docx",
                     ".html",
-                    ".js",
-                    ".php",
-                    ".pm",
-                    ".py"
+                    ".pdf",
+                    ".txt",
+                    ".xlsx"
                 ]
             }
         },
@@ -554,10 +553,9 @@
                     "Credential",
                     "Key",
                     "Password",
-                    "Salt",
+                    "SQL Password",
                     "Secret",
-                    "Token",
-                    "URL Credentials"
+                    "Token"
                 ]
             }
         }

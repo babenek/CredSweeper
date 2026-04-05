@@ -5,7 +5,7 @@ set -ex
 export JOBS=16
 #export TUNER=--tuner
 export CREDSWEEPER_DIR=/home/babenek/q/CredSweeper/litert
-export CREDDATA_DIR=/home/babenek/q/DataCred/quick
+export CREDDATA_DIR=/home/babenek/w/DataCred-test
 
 export PYTHONPATH=/home/babenek/q/CredSweeper/litert:"${PYTHONPATH}"
 
