@@ -43,15 +43,15 @@ class MlModel(kt.HyperModel):
         dense_a_drop = self.get_hyperparam("dense_a_drop", hp)
         dense_b_drop = self.get_hyperparam("dense_b_drop", hp)
 
-        line_input = Input(shape=(MlValidator.MAX_LEN, self.line_shape[2]), name="line_input", dtype=self.d_type)
+        line_input = Input(batch_shape=(1, MlValidator.MAX_LEN, self.line_shape[2]), name="line_input", dtype=self.d_type)
         line_lstm_fw = LSTM(units=self.line_shape[1],
                             dtype=self.d_type,
                             dropout=line_lstm_dropout_rate,
                             recurrent_dropout=0,
                             return_sequences=False,
                             go_backwards=False,
-                            unroll=True,
-                            name="line_lstm_forward",
+                            unroll=False,
+                            name="line_lstm_fw",
                             )
         line_lstm_bw = LSTM(units=self.line_shape[1],
                             dtype=self.d_type,
@@ -59,19 +59,19 @@ class MlModel(kt.HyperModel):
                             recurrent_dropout=0,
                             return_sequences=False,
                             go_backwards=True,
-                            unroll=True,
-                            name="line_lstm_backward",
+                            unroll=False,
+                            name="line_lstm_bw",
                             )
 
-        variable_input = Input(shape=(ML_HUNK, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
+        variable_input = Input(batch_shape=(1, ML_HUNK, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
         variable_lstm_fw = LSTM(units=self.variable_shape[1],
                                 dtype=self.d_type,
                                 dropout=variable_lstm_dropout_rate,
                                 recurrent_dropout=0,
                                 return_sequences=False,
                                 go_backwards=False,
-                                unroll=True,
-                                name="variable_lstm_forward",
+                                unroll=False,
+                                name="variable_lstm_fw",
                                 )
         variable_lstm_bw = LSTM(units=self.variable_shape[1],
                                 dtype=self.d_type,
@@ -79,19 +79,19 @@ class MlModel(kt.HyperModel):
                                 recurrent_dropout=0,
                                 return_sequences=False,
                                 go_backwards=True,
-                                unroll=True,
-                                name="variable_lstm_backward",
+                                unroll=False,
+                                name="variable_lstm_bw",
                                 )
 
-        value_input = Input(shape=(ML_HUNK, self.value_shape[2]), name="value_input", dtype=self.d_type)
+        value_input = Input(batch_shape=(1, ML_HUNK, self.value_shape[2]), name="value_input", dtype=self.d_type)
         value_lstm_fw = LSTM(units=self.value_shape[1],
                              dtype=self.d_type,
                              dropout=value_lstm_dropout_rate,
                              recurrent_dropout=0,
                              return_sequences=False,
                              go_backwards=False,
-                             unroll=True,
-                             name="value_lstm_forward",
+                             unroll=False,
+                             name="value_lstm_fw",
                              )
         value_lstm_bw = LSTM(units=self.value_shape[1],
                              dtype=self.d_type,
@@ -99,8 +99,8 @@ class MlModel(kt.HyperModel):
                              recurrent_dropout=0,
                              return_sequences=False,
                              go_backwards=True,
-                             unroll=True,
-                             name="value_lstm_backward",
+                             unroll=False,
+                             name="value_lstm_bw",
                              )
 
         feature_input = Input(shape=(self.feature_shape[1],), name="feature_input", dtype=self.d_type)
@@ -137,5 +137,5 @@ class MlModel(kt.HyperModel):
         model: Model = Model(inputs=[line_input, variable_input, value_input, feature_input], outputs=dense_final)
         model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=metrics)
         model.summary(line_length=120, expand_nested=True, show_trainable=True)
-
+        model.layers[0].batch_input_shape = (1, ML_HUNK, self.value_shape[2])
         return model

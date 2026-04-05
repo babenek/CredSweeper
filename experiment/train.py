@@ -9,11 +9,12 @@ from datetime import datetime
 import keras_tuner as kt
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from numpy import ndarray
 from sklearn.model_selection import train_test_split
 from sklearn.utils import compute_class_weight
-from tensorflow import lite
+
 
 from data_loader import read_detected_data, read_metadata, join_label, get_y_labels
 from experiment.evaluate_model import evaluate_model
@@ -245,15 +246,10 @@ def train(
     # Convert the model to LiteRT (TFLite) format
     litert_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.tflite"
 
-    converter = lite.TFLiteConverter.from_keras_model(keras_model)
-    # converter._experimental_lower_tensor_list_ops = False
-    # converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS,lite.OpsSet.SELECT_TF_OPS]
-    # # Enable optimizations and use only TFLite built-in ops
-    # converter.optimizations = [lite.Optimize.DEFAULT]
-    # converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS]
-    # # Ensure dynamic batch size
-    # converter._experimental_new_converter = True
-    # converter._experimental_new_quantizer = True
+    converter = tf.lite.TFLiteConverter.from_keras_model(keras_model)
+    converter.experimental_new_converter = True
+    converter._experimental_lower_tensor_list_ops = True
+    converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
     tflite_model = converter.convert()
     with open(litert_model_file, "wb") as f:
         f.write(tflite_model)

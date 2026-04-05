@@ -43,7 +43,7 @@ fi
 
 echo "BATCH=${BATCH}"
 if [ -z "${BATCH}" ]; then
-    BATCH=256
+    BATCH=2048
     echo "Used BATCH=${BATCH}"
 elif [ ! 0 -lt ${JOBS} ]; then
     echo "Unappropriated BATCH=${BATCH}"
