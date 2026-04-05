@@ -4,6 +4,7 @@ set -ex
 
 export JOBS=16
 #export TUNER=--tuner
+export TUNER=--epochs\ 2
 export CREDSWEEPER_DIR=/home/babenek/q/CredSweeper/litert
 export CREDDATA_DIR=/home/babenek/w/DataCred-test
 

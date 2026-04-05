@@ -4,17 +4,16 @@ import pathlib
 import pickle
 import random
 import subprocess
-import sys
 from datetime import datetime
 
 import keras_tuner as kt
 import numpy as np
 import pandas as pd
-from keras import Model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from numpy import ndarray
 from sklearn.model_selection import train_test_split
 from sklearn.utils import compute_class_weight
+from tensorflow import lite
 
 from data_loader import read_detected_data, read_metadata, join_label, get_y_labels
 from experiment.evaluate_model import evaluate_model
@@ -141,7 +140,7 @@ def train(
             directory=str(RESULTS_DIR / f"{current_time}.tuner"),
             project_name='ml_tuning',
             seed=random.randint(1, 0xffffffff),
-            max_trials=3,
+            max_trials=30,
         )
         search_early_stopping = EarlyStopping(monitor="val_loss",
                                               patience=patience,
@@ -201,8 +200,7 @@ def train(
                                   validation_data=([x_test_line, x_test_variable, x_test_value,
                                                     x_test_features], y_test),
                                   class_weight=class_weight,
-                                  callbacks=[early_stopping, model_checkpoint, log_callback],
-                                  )
+                                  callbacks=[early_stopping, model_checkpoint, log_callback])
 
     # if best_val_loss is not None and best_val_loss + 0.00001 < early_stopping.best:
     #     print(f"CHECK BEST TUNER EARLY STOP : {best_val_loss} vs CURRENT: {early_stopping.best}",flush=True)
@@ -213,7 +211,7 @@ def train(
         pickle.dump(fit_history, f)
 
     model_file_name = RESULTS_DIR / f"ml_model_at-{current_time}.keras"
-    keras_model.save(model_file_name, verbose=True, include_optimizer=False)
+    keras_model.save(model_file_name, include_optimizer=False)
 
     if eval_test:
         print(f"Validate results on the test subset. Size: {len(y_test)} {np.mean(y_test):.4f}", flush=True)
@@ -244,14 +242,24 @@ def train(
         del x_full_features
         del y_full
 
-    onnx_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.onnx"
-    # convert the model to onnx right now
-    convert_args = f"{sys.executable} -m tf2onnx.convert --saved-model {model_file_name.absolute()}" \
-                   f" --output {str(onnx_model_file)} --verbose"
-    subprocess.check_call(convert_args, shell=True, cwd=pathlib.Path(__file__).parent)
-    with open(onnx_model_file, "rb") as f:
-        onnx_md5 = hashlib.md5(f.read()).hexdigest()
-        print(f"ml_model.onnx:{onnx_md5}", flush=True)
+    # Convert the model to LiteRT (TFLite) format
+    litert_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.tflite"
+
+    converter = lite.TFLiteConverter.from_keras_model(keras_model)
+    # converter._experimental_lower_tensor_list_ops = False
+    # converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS,lite.OpsSet.SELECT_TF_OPS]
+    # # Enable optimizations and use only TFLite built-in ops
+    # converter.optimizations = [lite.Optimize.DEFAULT]
+    # converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS]
+    # # Ensure dynamic batch size
+    # converter._experimental_new_converter = True
+    # converter._experimental_new_quantizer = True
+    tflite_model = converter.convert()
+    with open(litert_model_file, "wb") as f:
+        f.write(tflite_model)
+    with open(litert_model_file, "rb") as f:
+        litert_md5 = hashlib.md5(f.read()).hexdigest()
+        print(f"ml_model.tflite:{litert_md5}", flush=True)
 
     with open(ML_CONFIG_PATH, "rb") as f:
         config_md5 = hashlib.md5(f.read()).hexdigest()
@@ -269,4 +277,4 @@ def train(
         info=f"ml_config.json:{config_md5} ml_model.tflite:{litert_md5} best_epoch:{best_epoch}",
     )
 
-    return str(model_file_name.absolute())
+    return str(litert_model_file.absolute())

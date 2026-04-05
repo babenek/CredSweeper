@@ -1,10 +1,11 @@
 from typing import Any, Optional
 
 import keras_tuner as kt
-from keras import Model
-from keras.layers import Dense, Input, Concatenate, Dropout, ReLU, Softmax, Multiply, GlobalAveragePooling1D
-from keras.optimizers import Adam
-from keras.metrics import BinaryAccuracy, Precision, Recall
+from tensorflow.keras.layers import Dense, LSTM, Input, Concatenate, Dropout
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.python.keras.layers import ReLU, Softmax, Multiply
+from tensorflow.python.keras.metrics import BinaryAccuracy, Precision, Recall
 
 from credsweeper.common.constants import ML_HUNK
 from credsweeper.ml_model.ml_validator import MlValidator
@@ -42,49 +43,84 @@ class MlModel(kt.HyperModel):
         dense_a_drop = self.get_hyperparam("dense_a_drop", hp)
         dense_b_drop = self.get_hyperparam("dense_b_drop", hp)
 
-        # Use fixed sequence lengths for TFLite compatibility
-        line_input = Input(shape=(ML_HUNK, self.line_shape[2]), name="line_input", dtype=self.d_type)
-        line_pool = GlobalAveragePooling1D(name="line_pool")(line_input)
-        line_dense = Dense(units=256, activation=ReLU(), name="line_dense", dtype=self.d_type)(line_pool)
-        line_input = Input(shape=(None, self.line_shape[2]), name="line_input", dtype=self.d_type)
-        line_lstm = LSTM(units=self.line_shape[1],
-                         dtype=self.d_type,
-                         dropout=line_lstm_dropout_rate,
-                         recurrent_dropout=0)
-        line_bidirectional = Bidirectional(layer=line_lstm, name="line_bidirectional")
-        line_lstm_branch = line_bidirectional(line_input)
+        line_input = Input(shape=(MlValidator.MAX_LEN, self.line_shape[2]), name="line_input", dtype=self.d_type)
+        line_lstm_fw = LSTM(units=self.line_shape[1],
+                            dtype=self.d_type,
+                            dropout=line_lstm_dropout_rate,
+                            recurrent_dropout=0,
+                            return_sequences=False,
+                            go_backwards=False,
+                            unroll=True,
+                            name="line_lstm_forward",
+                            )
+        line_lstm_bw = LSTM(units=self.line_shape[1],
+                            dtype=self.d_type,
+                            dropout=line_lstm_dropout_rate,
+                            recurrent_dropout=0,
+                            return_sequences=False,
+                            go_backwards=True,
+                            unroll=True,
+                            name="line_lstm_backward",
+                            )
 
         variable_input = Input(shape=(ML_HUNK, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
-        variable_pool = GlobalAveragePooling1D(name="variable_pool")(variable_input)
-        variable_dense = Dense(units=128, activation=ReLU(), name="variable_dense", dtype=self.d_type)(variable_pool)
-        variable_input = Input(shape=(None, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
-        variable_lstm = LSTM(units=self.variable_shape[1],
-                             dtype=self.d_type,
-                             dropout=variable_lstm_dropout_rate,
-                             recurrent_dropout=0)
-        variable_bidirectional = Bidirectional(layer=variable_lstm, name="variable_bidirectional")
-        variable_lstm_branch = variable_bidirectional(variable_input)
+        variable_lstm_fw = LSTM(units=self.variable_shape[1],
+                                dtype=self.d_type,
+                                dropout=variable_lstm_dropout_rate,
+                                recurrent_dropout=0,
+                                return_sequences=False,
+                                go_backwards=False,
+                                unroll=True,
+                                name="variable_lstm_forward",
+                                )
+        variable_lstm_bw = LSTM(units=self.variable_shape[1],
+                                dtype=self.d_type,
+                                dropout=variable_lstm_dropout_rate,
+                                recurrent_dropout=0,
+                                return_sequences=False,
+                                go_backwards=True,
+                                unroll=True,
+                                name="variable_lstm_backward",
+                                )
 
         value_input = Input(shape=(ML_HUNK, self.value_shape[2]), name="value_input", dtype=self.d_type)
-        value_pool = GlobalAveragePooling1D(name="value_pool")(value_input)
-        value_dense = Dense(units=128, activation=ReLU(), name="value_dense", dtype=self.d_type)(value_pool)
-        value_input = Input(shape=(None, self.value_shape[2]), name="value_input", dtype=self.d_type)
-        value_lstm = LSTM(units=self.value_shape[1],
-                          dtype=self.d_type,
-                          dropout=value_lstm_dropout_rate,
-                          recurrent_dropout=0)
-        value_bidirectional = Bidirectional(layer=value_lstm, name="value_bidirectional")
-        value_lstm_branch = value_bidirectional(value_input)
+        value_lstm_fw = LSTM(units=self.value_shape[1],
+                             dtype=self.d_type,
+                             dropout=value_lstm_dropout_rate,
+                             recurrent_dropout=0,
+                             return_sequences=False,
+                             go_backwards=False,
+                             unroll=True,
+                             name="value_lstm_forward",
+                             )
+        value_lstm_bw = LSTM(units=self.value_shape[1],
+                             dtype=self.d_type,
+                             dropout=value_lstm_dropout_rate,
+                             recurrent_dropout=0,
+                             return_sequences=False,
+                             go_backwards=True,
+                             unroll=True,
+                             name="value_lstm_backward",
+                             )
 
-        feature_input = Input(shape=(self.feature_shape[1], ), name="feature_input", dtype=self.d_type)
+        feature_input = Input(shape=(self.feature_shape[1],), name="feature_input", dtype=self.d_type)
         feature_attention = Dense(self.feature_shape[1], activation=Softmax(), use_bias=False,
                                   name="feature_attention")(feature_input)
         x_scaled = Multiply(name="feature_multiply")([feature_input, feature_attention])
 
-        joined_features = Concatenate()([line_dense, variable_dense, value_dense, x_scaled])
+        joined_features = Concatenate()([
+            line_lstm_fw(line_input),
+            line_lstm_bw(line_input),
+            variable_lstm_fw(variable_input),
+            variable_lstm_bw(variable_input),
+            value_lstm_fw(value_input),
+            value_lstm_bw(value_input),
+            x_scaled
+        ])
 
-        # 3 dense branches + features
-        dense_units = 256 + 128 + 128 + self.feature_shape[1]
+        # 3 bidirectional + features
+        dense_units = 2 * MlValidator.MAX_LEN + 2 * 2 * ML_HUNK + self.feature_shape[1]
+        # check after model compilation. Should be matched the combined size.
 
         # first hidden layer
         dense_a = Dense(units=dense_units, activation=ReLU(), name="a_dense", dtype=self.d_type)(joined_features)

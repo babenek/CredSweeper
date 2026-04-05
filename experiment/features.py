@@ -96,7 +96,7 @@ def prepare_data(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, 
     ml_validator = MlValidator(0.5)  # MLValidator object loads config (MAY be updated!) with features
 
     x_size = len(df)
-    x_line_input = np.zeros(shape=[x_size, ML_HUNK, ml_validator.num_classes], dtype=np.float32)
+    x_line_input = np.zeros(shape=[x_size, MlValidator.MAX_LEN, ml_validator.num_classes], dtype=np.float32)
     x_variable_input = np.zeros(shape=[x_size, ML_HUNK, ml_validator.num_classes], dtype=np.float32)
     x_value_input = np.zeros(shape=[x_size, ML_HUNK, ml_validator.num_classes], dtype=np.float32)
     # features size preprocess to calculate the dimension automatically

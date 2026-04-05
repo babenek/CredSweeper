@@ -3,8 +3,8 @@
 
 # version sensetive
 tensorflow-cpu
-keras
 keras-tuner
+scikit-learn
 
 # version insensetive
 types-tensorflow

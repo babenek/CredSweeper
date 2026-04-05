@@ -146,9 +146,9 @@ class MlValidator:
         offset = len(text) - len(text.lstrip())
         pos = position - offset
         stripped = text.strip()
-        if ML_HUNK < len(stripped):
-            stripped = Util.subtext(stripped, pos, ML_HUNK)
-        return self.encode(stripped, ML_HUNK)
+        if MlValidator.MAX_LEN < len(stripped):
+            stripped = Util.subtext(stripped, pos, MlValidator.MAX_LEN)
+        return self.encode(stripped, MlValidator.MAX_LEN)
 
     def encode_value(self, text: str) -> np.ndarray:
         """Encodes line with balancing for position"""
