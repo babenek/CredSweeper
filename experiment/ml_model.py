@@ -36,6 +36,9 @@ class MlModel(kt.HyperModel):
 
     def build(self, hp: Optional[Any]) -> Model:
         """Get keras model with string and feature input and single binary out"""
+        line_lstm_dropout_rate = self.get_hyperparam("line_lstm_dropout_rate", hp)
+        variable_lstm_dropout_rate = self.get_hyperparam("variable_lstm_dropout_rate", hp)
+        value_lstm_dropout_rate = self.get_hyperparam("value_lstm_dropout_rate", hp)
         dense_a_drop = self.get_hyperparam("dense_a_drop", hp)
         dense_b_drop = self.get_hyperparam("dense_b_drop", hp)
 
@@ -43,14 +46,35 @@ class MlModel(kt.HyperModel):
         line_input = Input(shape=(ML_HUNK, self.line_shape[2]), name="line_input", dtype=self.d_type)
         line_pool = GlobalAveragePooling1D(name="line_pool")(line_input)
         line_dense = Dense(units=256, activation=ReLU(), name="line_dense", dtype=self.d_type)(line_pool)
+        line_input = Input(shape=(None, self.line_shape[2]), name="line_input", dtype=self.d_type)
+        line_lstm = LSTM(units=self.line_shape[1],
+                         dtype=self.d_type,
+                         dropout=line_lstm_dropout_rate,
+                         recurrent_dropout=0)
+        line_bidirectional = Bidirectional(layer=line_lstm, name="line_bidirectional")
+        line_lstm_branch = line_bidirectional(line_input)
 
         variable_input = Input(shape=(ML_HUNK, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
         variable_pool = GlobalAveragePooling1D(name="variable_pool")(variable_input)
         variable_dense = Dense(units=128, activation=ReLU(), name="variable_dense", dtype=self.d_type)(variable_pool)
+        variable_input = Input(shape=(None, self.variable_shape[2]), name="variable_input", dtype=self.d_type)
+        variable_lstm = LSTM(units=self.variable_shape[1],
+                             dtype=self.d_type,
+                             dropout=variable_lstm_dropout_rate,
+                             recurrent_dropout=0)
+        variable_bidirectional = Bidirectional(layer=variable_lstm, name="variable_bidirectional")
+        variable_lstm_branch = variable_bidirectional(variable_input)
 
         value_input = Input(shape=(ML_HUNK, self.value_shape[2]), name="value_input", dtype=self.d_type)
         value_pool = GlobalAveragePooling1D(name="value_pool")(value_input)
         value_dense = Dense(units=128, activation=ReLU(), name="value_dense", dtype=self.d_type)(value_pool)
+        value_input = Input(shape=(None, self.value_shape[2]), name="value_input", dtype=self.d_type)
+        value_lstm = LSTM(units=self.value_shape[1],
+                          dtype=self.d_type,
+                          dropout=value_lstm_dropout_rate,
+                          recurrent_dropout=0)
+        value_bidirectional = Bidirectional(layer=value_lstm, name="value_bidirectional")
+        value_lstm_branch = value_bidirectional(value_input)
 
         feature_input = Input(shape=(self.feature_shape[1], ), name="feature_input", dtype=self.d_type)
         feature_attention = Dense(self.feature_shape[1], activation=Softmax(), use_bias=False,

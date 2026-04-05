@@ -2,7 +2,9 @@
 # pip 25.2
 
 # version sensetive
-tensorflow-cpu~=2.18
+tensorflow-cpu
+keras
+keras-tuner
 
 # version insensetive
 types-tensorflow

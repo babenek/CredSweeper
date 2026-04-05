@@ -141,7 +141,7 @@ def train(
             directory=str(RESULTS_DIR / f"{current_time}.tuner"),
             project_name='ml_tuning',
             seed=random.randint(1, 0xffffffff),
-            max_trials=30,
+            max_trials=3,
         )
         search_early_stopping = EarlyStopping(monitor="val_loss",
                                               patience=patience,
@@ -201,7 +201,8 @@ def train(
                                   validation_data=([x_test_line, x_test_variable, x_test_value,
                                                     x_test_features], y_test),
                                   class_weight=class_weight,
-                                  callbacks=[early_stopping, model_checkpoint, log_callback])
+                                  callbacks=[early_stopping, model_checkpoint, log_callback],
+                                  )
 
     # if best_val_loss is not None and best_val_loss + 0.00001 < early_stopping.best:
     #     print(f"CHECK BEST TUNER EARLY STOP : {best_val_loss} vs CURRENT: {early_stopping.best}",flush=True)
@@ -212,7 +213,7 @@ def train(
         pickle.dump(fit_history, f)
 
     model_file_name = RESULTS_DIR / f"ml_model_at-{current_time}.keras"
-    keras_model.save(model_file_name, include_optimizer=False)
+    keras_model.save(model_file_name, verbose=True, include_optimizer=False)
 
     if eval_test:
         print(f"Validate results on the test subset. Size: {len(y_test)} {np.mean(y_test):.4f}", flush=True)
@@ -243,22 +244,14 @@ def train(
         del x_full_features
         del y_full
 
-    # Convert the model to LiteRT (TFLite) format
-    litert_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.tflite"
-    import tensorflow.lite as lite
-    converter = lite.TFLiteConverter.from_keras_model(keras_model)
-    # Enable optimizations and use only TFLite built-in ops
-    converter.optimizations = [lite.Optimize.DEFAULT]
-    converter.target_spec.supported_ops = [lite.OpsSet.TFLITE_BUILTINS]
-    # Ensure dynamic batch size
-    converter._experimental_new_converter = True
-    converter._experimental_new_quantizer = True
-    tflite_model = converter.convert()
-    with open(litert_model_file, "wb") as f:
-        f.write(tflite_model)
-    with open(litert_model_file, "rb") as f:
-        litert_md5 = hashlib.md5(f.read()).hexdigest()
-        print(f"ml_model.tflite:{litert_md5}", flush=True)
+    onnx_model_file = pathlib.Path(__file__).parent.parent / "credsweeper" / "ml_model" / "ml_model.onnx"
+    # convert the model to onnx right now
+    convert_args = f"{sys.executable} -m tf2onnx.convert --saved-model {model_file_name.absolute()}" \
+                   f" --output {str(onnx_model_file)} --verbose"
+    subprocess.check_call(convert_args, shell=True, cwd=pathlib.Path(__file__).parent)
+    with open(onnx_model_file, "rb") as f:
+        onnx_md5 = hashlib.md5(f.read()).hexdigest()
+        print(f"ml_model.onnx:{onnx_md5}", flush=True)
 
     with open(ML_CONFIG_PATH, "rb") as f:
         config_md5 = hashlib.md5(f.read()).hexdigest()
