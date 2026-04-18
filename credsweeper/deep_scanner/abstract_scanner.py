@@ -124,7 +124,7 @@ class AbstractScanner(ABC):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     @staticmethod
-    def structure_processing(structure: Any) -> Generator[Tuple[Any, Any], None, None]:
+    def structure_processing(structure: Any, parent_key='') -> Generator[Tuple[Any, Any], None, None]:
         """Yields pair `key, value` from given structure if applicable"""
         if isinstance(structure, dict):
             # transform dictionary to list
@@ -143,7 +143,7 @@ class AbstractScanner(ABC):
         elif isinstance(structure, (list, tuple)):
             # enumerate the items to fit for return structure
             for key, value in enumerate(structure):
-                yield key, value
+                yield f"{parent_key}[{key}]", value
         else:
             logger.warning("Not supported type:%s val:%s", str(type(structure)), repr(structure))
 
@@ -153,7 +153,8 @@ class AbstractScanner(ABC):
             self,  #
             struct_provider: StructContentProvider,  #
             depth: int,  #
-            recursive_limit_size: int) -> List[Candidate]:
+            recursive_limit_size: int,#
+            parent_key='') -> List[Candidate]:
         """Recursive function to scan structured data
 
             Args:
@@ -173,17 +174,25 @@ class AbstractScanner(ABC):
         depth -= 1
 
         augmented_lines_for_keyword_rules = []
-        for key, value in AbstractScanner.structure_processing(struct_provider.struct):
+        for key, value in AbstractScanner.structure_processing(struct_provider.struct,parent_key):
             # a keyword rule may be applicable for `key` (str only) and `value` (str, bytes)
             keyword_match = bool(isinstance(key, str) and self.scanner.keywords_required_substrings_check(key.lower()))
 
-            if isinstance(value, (dict, list, tuple)) and value:
+            if isinstance(value, dict) and value:
                 # recursive scan for not empty structured `value`
                 val_struct_provider = StructContentProvider(struct=value,
                                                             file_path=struct_provider.file_path,
                                                             file_type=struct_provider.file_type,
-                                                            info=f"{struct_provider.info}|STRUCT:{key}")
+                                                            info=f"{struct_provider.info}|DICTIONARY:{key}")
                 new_candidates = self.structure_scan(val_struct_provider, depth, recursive_limit_size)
+                candidates.extend(new_candidates)
+            elif isinstance(value, (list, tuple)) and value:
+                # todo: use scan with named key of parent
+                val_struct_provider = StructContentProvider(struct=value,
+                                                            file_path=struct_provider.file_path,
+                                                            file_type=struct_provider.file_type,
+                                                            info=f"{struct_provider.info}|SEQUENCE:{key}")
+                new_candidates = self.structure_scan(val_struct_provider, depth, recursive_limit_size, parent_key=parent_key if keyword_match else '')
                 candidates.extend(new_candidates)
             elif isinstance(value, bytes):
                 # recursive data scan

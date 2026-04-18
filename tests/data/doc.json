@@ -20743,7 +20743,7 @@
         "line_data_list": [
             {
                 "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
-                "line_num": 1,
+                "line_num": 4,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "gi_reo_gi_token",
@@ -20764,7 +20764,7 @@
         "line_data_list": [
             {
                 "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
-                "line_num": 1,
+                "line_num": 4,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "token",
@@ -20784,16 +20784,16 @@
         "ml_probability": 0.999,
         "line_data_list": [
             {
-                "line": "Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
-                "line_num": 2,
+                "line": "# Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
+                "line_num": 5,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "DemoToken",
-                "variable_start": 8,
-                "variable_end": 17,
+                "variable_start": 10,
+                "variable_end": 19,
                 "value": "Nxs094M3ed2s1Re0F4M3ed2GZ8M=",
-                "value_start": 19,
-                "value_end": 47,
+                "value_start": 21,
+                "value_end": 49,
                 "entropy": 4.03915
             }
         ]
@@ -20806,7 +20806,7 @@
         "line_data_list": [
             {
                 "line": "tp_token_value=\"b035d48j9X2dfjF0hb9sd8Guf5hWu2ia\"",
-                "line_num": 4,
+                "line_num": 7,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "tp_token_value",
