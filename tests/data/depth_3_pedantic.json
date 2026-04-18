@@ -103,7 +103,7 @@
                 "line": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
                 "line_num": 0,
                 "path": "./tests/samples/Sample.class",
-                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:21|BASE64|PKCS_PASSWORD:None",
+                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:[21]|BASE64|PKCS_PASSWORD:None",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -124,7 +124,7 @@
                 "line": "MIIBvTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIT0gWHcAV1rACAggAMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBBaZ0qE6fJsz9rDPoa2esruBIIBYF9QvKgDLA15MgXR8P73DRdrDJzEEoYe7bDtk+vnTzy6DNVwSfkgQLNLpKfnjPO3b1szG5md06Fai6Tuuc9kKDhaCWfGgw/xAeb4OEjWupyCUvmyWYBNqCC+DDQZb7ccka4cuIRV7Ty0I/3AdGCZ/g4mDBozjtfLkLOvWzRuKXQYvGlPYd0HUWupKn2SgduyrwKt43zq0j+t9UXMMFVYv7RZOzZruVcUkBKHoYDkgOl9OQ5tGE+atfhLZUVUKj4Q7F+o6mlTy0JHxv94oUadDXJCyzivdes2RxabPDJ+1gEfNW8ZRZtselC+Pdy+KBItLn3f3FEWXpWbNPRzhElOUUaNgRNOQrmxoE09QxWLt8L3soArRfWe732Nw7N9izpUuKmL72bzbpetDQu/sn49CEnWcFGCZQ9inSiEogF0e2ncxnKfthRKzpT3K5JGiqcMmbcMoz5WjLks//PgWcZ/l2o=",
                 "line_num": 0,
                 "path": "./tests/samples/Sample.class",
-                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:25|BASE64|PKCS_PASSWORD:b'changeme'",
+                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:[25]|BASE64|PKCS_PASSWORD:b'changeme'",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -145,7 +145,7 @@
                 "line": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
                 "line_num": 1,
                 "path": "./tests/samples/Sample.class",
-                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:21|RAW",
+                "info": "FILE:./tests/samples/Sample.class|Java.65.0|STRING:[21]|RAW",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -1123,8 +1123,8 @@
             {
                 "line": "secret = 'we5345d0f3da48544z1t1e275y05i161x995q485'",
                 "line_num": 1,
-                "path": "./tests/samples/binary.yml",
-                "info": "FILE:./tests/samples/binary.yml|STRUCT|STRUCT:body|KEYWORD",
+                "path": "./tests/samples/binary.yaml",
+                "info": "FILE:./tests/samples/binary.yaml|STRUCT|STRUCT:body|KEYWORD",
                 "variable": "secret",
                 "variable_start": 0,
                 "variable_end": 6,
@@ -7626,7 +7626,7 @@
                 "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
                 "line_num": 1,
                 "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:[2]|RAW",
                 "variable": "PKEY",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -7647,7 +7647,7 @@
                 "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
                 "line_num": 1,
                 "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:[2]|RAW",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -7689,7 +7689,7 @@
                 "line": "pkey = 'LS0tLS1CRUdJTiBQUklWQVRFIENDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ0ViVnpmUGWxhQW9KQWwrLzZYdDJPNG1PQjYxMXNPaFJBTkNBQVNnRlRLandKQUFVOTVnKysvdnpLV0hrekFWbU5NSQp0QjV2VGpaT09Jd25FYjcwTXNXWkZJeVVGRDFQOUd3c3R6NCtha0hYN3ZJOEJINmhIbUJtZmVRbAotLS0tLUVORCBQUklWJNR0J5cUdTTTQ5QW5aUHhmQXl4cUUKWlYwNdFR0QVRFIEtFWS0tLS0tCgtFWS0tLS0tCk1JR0hBZ0VBTU=='",
                 "line_num": 1,
                 "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:0|RAW",
+                "info": "FILE:./tests/samples/key.py|STRUCT|STRING:[0]|RAW",
                 "variable": "pkey",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -8213,7 +8213,7 @@
                 "line": "key_multi = 'KJHfdjs8767gr54534wsFHGf5hJKhK\\nU7yguyuyFHGf5=='",
                 "line_num": 1,
                 "path": "./tests/samples/nonce.py",
-                "info": "FILE:./tests/samples/nonce.py|STRUCT|STRING:3|RAW",
+                "info": "FILE:./tests/samples/nonce.py|STRUCT|STRING:[3]|RAW",
                 "variable": "key_multi",
                 "variable_start": 0,
                 "variable_end": 9,
@@ -8234,7 +8234,7 @@
                 "line": "key_wrap = 'KJHhJKhKU7yguyuyfrtsdESffhjgkhYTfdjs8Gf5jlli=='",
                 "line_num": 1,
                 "path": "./tests/samples/nonce.py",
-                "info": "FILE:./tests/samples/nonce.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/nonce.py|STRUCT|STRING:[2]|RAW",
                 "variable": "key_wrap",
                 "variable_start": 0,
                 "variable_end": 8,
@@ -12404,7 +12404,7 @@
                 "line": "salt1 = b'#!\\xae2389x&543@'",
                 "line_num": 1,
                 "path": "./tests/samples/salt.py",
-                "info": "FILE:./tests/samples/salt.py|STRUCT|STRING:0|RAW",
+                "info": "FILE:./tests/samples/salt.py|STRUCT|STRING:[0]|RAW",
                 "variable": "salt1",
                 "variable_start": 0,
                 "variable_end": 5,
@@ -12446,7 +12446,7 @@
                 "line": "salt4 = {'salt5': 'my124%#$@s\\x04clt\\x00'}",
                 "line_num": 1,
                 "path": "./tests/samples/salt.py",
-                "info": "FILE:./tests/samples/salt.py|STRUCT|STRING:3|RAW",
+                "info": "FILE:./tests/samples/salt.py|STRUCT|STRING:[3]|RAW",
                 "variable": "salt5",
                 "variable_start": 10,
                 "variable_end": 15,
@@ -12530,7 +12530,7 @@
                 "line": "password = '77397566A117A00428B0FD9BDA65F051C88593B4D0DE27E1CCB073E378440DC4'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.csv",
-                "info": "FILE:./tests/samples/sample.csv|CSV|STRUCT:1|KEYWORD",
+                "info": "FILE:./tests/samples/sample.csv|CSV|DICT:[1]|KEYWORD",
                 "variable": "password",
                 "variable_start": 0,
                 "variable_end": 8,
@@ -12551,7 +12551,7 @@
                 "line": "password = 'Jfb49,Hd2!@'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.csv",
-                "info": "FILE:./tests/samples/sample.csv|CSV|STRUCT:0|KEYWORD",
+                "info": "FILE:./tests/samples/sample.csv|CSV|DICT:[0]|KEYWORD",
                 "variable": "password",
                 "variable_start": 0,
                 "variable_end": 8,
@@ -13515,7 +13515,7 @@
                 "line": "TOKEN = 1102181139266001652353292050",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:11|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[11]|RAW",
                 "variable": "TOKEN",
                 "variable_start": 0,
                 "variable_end": 5,
@@ -13536,7 +13536,7 @@
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[5]|RAW",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -13557,7 +13557,7 @@
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[5]|RAW",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -13578,7 +13578,7 @@
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[5]|RAW",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -13599,7 +13599,7 @@
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[6]|RAW",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -13620,7 +13620,7 @@
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[6]|RAW",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -13641,7 +13641,7 @@
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[6]|RAW",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -13662,7 +13662,7 @@
                 "line": "AUTH = 'Basic Hbr73gu7gdsr=='",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:3|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[3]|RAW",
                 "variable": "AUTH",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -13683,7 +13683,7 @@
                 "line": "SECRET = os.getenv('SECRET', 'R15br4jtfcFbWh9G7EZTb6jR12c9We')",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:9|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[9]|RAW",
                 "variable": "SECRET",
                 "variable_start": 0,
                 "variable_end": 6,
@@ -13704,7 +13704,7 @@
                 "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:4|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[4]|RAW",
                 "variable": "AUTH_CREDENTIAL_SECRET",
                 "variable_start": 0,
                 "variable_end": 22,
@@ -13725,7 +13725,7 @@
                 "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:4|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[4]|RAW",
                 "variable": "AUTH_CREDENTIAL_SECRET",
                 "variable_start": 0,
                 "variable_end": 22,
@@ -13746,7 +13746,7 @@
                 "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:4|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[4]|RAW",
                 "variable": "AUTH_CREDENTIAL_SECRET",
                 "variable_start": 0,
                 "variable_end": 22,
@@ -13767,7 +13767,7 @@
                 "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:10|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[10]|RAW",
                 "variable": "X_Auth_Tokens",
                 "variable_start": 0,
                 "variable_end": 13,
@@ -13788,7 +13788,7 @@
                 "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:10|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[10]|RAW",
                 "variable": "X_Auth_Tokens",
                 "variable_start": 0,
                 "variable_end": 13,
@@ -13809,7 +13809,7 @@
                 "line": "PASSWORD = '\\udf42\\ud834\\udd1e\\ud824\\ud837\\ud801\\ud852\\udf62'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:7|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[7]|RAW",
                 "variable": "PASSWORD",
                 "variable_start": 0,
                 "variable_end": 8,
@@ -13830,7 +13830,7 @@
                 "line": "SALT = b'\\xdf42\\xd834\\xdd1E\\xd824\\xd837\\xd801\\xd852\\xdf62'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:8|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[8]|RAW",
                 "variable": "SALT",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -13851,7 +13851,7 @@
                 "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[2]|RAW",
                 "variable": "SECRET_CREDENTIAL_API_KEY",
                 "variable_start": 0,
                 "variable_end": 25,
@@ -13872,7 +13872,7 @@
                 "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[2]|RAW",
                 "variable": "SECRET_CREDENTIAL_API_KEY",
                 "variable_start": 0,
                 "variable_end": 25,
@@ -13893,7 +13893,7 @@
                 "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[2]|RAW",
                 "variable": "SECRET_CREDENTIAL_API_KEY",
                 "variable_start": 0,
                 "variable_end": 25,
@@ -13914,7 +13914,7 @@
                 "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
                 "line_num": 1,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:2|RAW",
+                "info": "FILE:./tests/samples/sample.py|STRUCT|STRING:[2]|RAW",
                 "variable": "SECRET_CREDENTIAL_API_KEY",
                 "variable_start": 0,
                 "variable_end": 25,
@@ -14258,174 +14258,6 @@
                 "value_start": 79,
                 "value_end": 89,
                 "entropy": 3.32193
-            }
-        ]
-    },
-    {
-        "rule": "API",
-        "severity": "low",
-        "confidence": "moderate",
-        "ml_probability": 0.996,
-        "line_data_list": [
-            {
-                "line": "API = 'AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJ1Gj31cuRgokY3/+N34jQhbdX4SUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyibOibRFCQsJtcZn8IDkq7u4mFkPDEiRNu41TrN5PS9tGTkI6MTBxZWp5Krb1iLhif0O40j1IyoBbIoDI3yqwbBcpITlmA+6s1UOQomfl/eOf1jlA8ix5/WQ8PMIhxr5f2WsM6haNt6aYjB+GsmuA0qhZ7zytAEYDvJ6hRnGKcyFX3FoTypU7iNQ/KE21oO3RQhj+hzdR+u5NisxJhg9nQz5Of1jlA8ix5/WQ8PMIhxr5f2WIymiuRAdctx+O2ejctswFVoAapxwqZ3LFVxC0aHXXc5AW92UnHTjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVRVEnRRpEkVe3C+TbT7JZAlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaP1118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d==='",
-                "line_num": 1,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "API",
-                "variable_start": 0,
-                "variable_end": 3,
-                "value": "AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJ1Gj31cuRgokY3/+N34jQhbdX4SUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyibOibRFCQsJtcZn8IDkq7u4mFkPDEiRNu41TrN5PS9tGTkI6MTBxZWp5Krb1iLhif0O40j1IyoBbIoDI3yqwbBcpITlmA+6s1UOQomfl/eOf1jlA8ix5/WQ8PMIhxr5f2WsM6haNt6aYjB+GsmuA0qhZ7zytAEYDvJ6hRnGKcyFX3FoTypU7iNQ/KE21oO3RQhj+hzdR+u5NisxJhg9nQz5Of1jlA8ix5/WQ8PMIhxr5f2WIymiuRAdctx+O2ejctswFVoAapxwqZ3LFVxC0aHXXc5AW92UnHTjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVRVEnRRpEkVe3C+TbT7JZAlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaP1118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d===",
-                "value_start": 7,
-                "value_end": 711,
-                "entropy": 5.94887
-            }
-        ]
-    },
-    {
-        "rule": "Auth",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AUTH = 'AgBBiBMOJxOs213QLtsh0WervLN+kdqwhsihaev4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBZbEMHEs+kTK8kdALLOJgph3pHp7FsgLQDMWaqGgjNvcwylwGs4nrdCf2BKDHzBj8MpUK2pIthFVDd3199gGLaxVvHYUH4YIxXuqoaGmnH30Xve+gC23tNnJkatnbMTqv2A1EIHzVkjaqk1y9ybOXQYXSZUbkE5DWRymh32LdsIJPdZ+e+ulH6Hjd11++G70AsUnrJ1MnMEXWDKUlWcD5Ymw1m0cAmtyPHjOOgfJen1dCEQrbi2zoP+aF8LAVrQaSR5hsefJ6UonAzHjM6W5KikdSr7sYZMVlkwf4lByf6a2LAVViNbWq6FV5ywhyDroKU9vjwfq9tu0pY0VP+k11/tikGp9jJ7Oi2KbqCsvxbYt70DB4GlMfmX47I0zhVgdAzmo8vH49jheO+bQK7j1rHwl/RSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCHGE90tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p='",
-                "line_num": 2,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "AUTH",
-                "variable_start": 0,
-                "variable_end": 4,
-                "value": "AgBBiBMOJxOs213QLtsh0WervLN+kdqwhsihaev4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBZbEMHEs+kTK8kdALLOJgph3pHp7FsgLQDMWaqGgjNvcwylwGs4nrdCf2BKDHzBj8MpUK2pIthFVDd3199gGLaxVvHYUH4YIxXuqoaGmnH30Xve+gC23tNnJkatnbMTqv2A1EIHzVkjaqk1y9ybOXQYXSZUbkE5DWRymh32LdsIJPdZ+e+ulH6Hjd11++G70AsUnrJ1MnMEXWDKUlWcD5Ymw1m0cAmtyPHjOOgfJen1dCEQrbi2zoP+aF8LAVrQaSR5hsefJ6UonAzHjM6W5KikdSr7sYZMVlkwf4lByf6a2LAVViNbWq6FV5ywhyDroKU9vjwfq9tu0pY0VP+k11/tikGp9jJ7Oi2KbqCsvxbYt70DB4GlMfmX47I0zhVgdAzmo8vH49jheO+bQK7j1rHwl/RSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCHGE90tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p=",
-                "value_start": 8,
-                "value_end": 733,
-                "entropy": 5.94525
-            }
-        ]
-    },
-    {
-        "rule": "Credential",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "CREDENTIAL = 'AgCF+MstUt6Fka8q26+dOorzSfePXb17SX+N9AUk+VHs9WkCKgkds498SMeUVo1ppHWF5Ky4PF3fC4oy62szpXqD6B7G1bgZr+Ne0yLrU2t0IqVEstar0wcivfxhJekoYQxYPwcubV1IqkhXFaIpJvwL6p4pFfvhFBnZANI7OOsjva3LtBOzReZeRB6ChvMXvDnke61oj/pCT6e9JOb5XcszPQYkVVyebTSLaLEpaINe82WOMJfr+SRNQVmCoT+0O2UJP8m5rgwf0U6KXB7pV7wil1AJyzu3VvPQLHiC6DUgu3p3dYMYgWpolRzdVoqr9nG8T1fxiMcZm1WrtJ/2bO8muqg==/NjXeWbH8e/Z4ZmJYE5PEXGwP83PxoJT1iuHCEXdnP9rr1Jv05H2h0EHeOTrsbQW7WrfouGbhjDW1KiSVz0JxcGF0eSldPGE1BgJmnh/JkdjnPVgdkO1WAc5nxKM3lY/EuXdODga/1xnQV+AHPp9PMo8qjP7ZQbLSV9uN46uudOmvcunP4OJVNKo0gWn/QSPSG8UFa2HSOAVXHNCjMPXJRP891iZccndelKb+bkQuvGoMQWuUwP2b1Hzq4ZvblmMNSJPiMXtx/mWJOekWXI7onHNf0f6MNP/2VHVY7jEx2LnWp42hHVlssHvUB3xORP8/QCdIcZbKdqKxY38FczwMli/I7pTYjL1bbs8XX8NKBwFw/UwWpOczW2IYgZtiYyE46J4VI='",
-                "line_num": 3,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "CREDENTIAL",
-                "variable_start": 0,
-                "variable_end": 10,
-                "value": "AgCF+MstUt6Fka8q26+dOorzSfePXb17SX+N9AUk+VHs9WkCKgkds498SMeUVo1ppHWF5Ky4PF3fC4oy62szpXqD6B7G1bgZr+Ne0yLrU2t0IqVEstar0wcivfxhJekoYQxYPwcubV1IqkhXFaIpJvwL6p4pFfvhFBnZANI7OOsjva3LtBOzReZeRB6ChvMXvDnke61oj/pCT6e9JOb5XcszPQYkVVyebTSLaLEpaINe82WOMJfr+SRNQVmCoT+0O2UJP8m5rgwf0U6KXB7pV7wil1AJyzu3VvPQLHiC6DUgu3p3dYMYgWpolRzdVoqr9nG8T1fxiMcZm1WrtJ/2bO8muqg==/NjXeWbH8e/Z4ZmJYE5PEXGwP83PxoJT1iuHCEXdnP9rr1Jv05H2h0EHeOTrsbQW7WrfouGbhjDW1KiSVz0JxcGF0eSldPGE1BgJmnh/JkdjnPVgdkO1WAc5nxKM3lY/EuXdODga/1xnQV+AHPp9PMo8qjP7ZQbLSV9uN46uudOmvcunP4OJVNKo0gWn/QSPSG8UFa2HSOAVXHNCjMPXJRP891iZccndelKb+bkQuvGoMQWuUwP2b1Hzq4ZvblmMNSJPiMXtx/mWJOekWXI7onHNf0f6MNP/2VHVY7jEx2LnWp42hHVlssHvUB3xORP8/QCdIcZbKdqKxY38FczwMli/I7pTYjL1bbs8XX8NKBwFw/UwWpOczW2IYgZtiYyE46J4VI=",
-                "value_start": 14,
-                "value_end": 754,
-                "entropy": 5.9484
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "KEY = 'AgDuO7+GU7lQXiQNk6M9C+fdDtuMEdMY8pp+/Rjvsk4SZNPvowrzzYJwGYYrqJdH67S7d/dikS+GlFUVvn1ML9PGzYmDmmTUp+sbG+kJil1Xl2n05bN1+tcWRXIvFsStLM5LLgeHDXyhAFk2KsfH02f9FlidcmBHVc4xWnR8Y0fIB5hX591E5/xDawGU6lBKBX3mr1r91eBIZdkwaBVSq0IvW2MSHT1KbwUpB44VbEbolM2essIQ0NW5aEWPynfkwutzsGFL8KNhQSA7z5FBCZOSG6jdY74Z+C5O+V3nvV54SWb5gxwgA5khdYNieblqcab2OFW8Q3gHhxwbAwENt9W3WK3D5RtNdXWNFdIr1Kyd6S0qqimJHWdf0qqBV6k2SIyDMfexlIGlTQPhPoGifJnMbl6qqZV9pcZeSa605ptpNad8Y4eFeYcMK93wgdYWU2Qn/T11zCVqzFpqQ01elyE15moUlkdgrDSw+OeZkCtZ8+p28BF/Xjw3FuwrCroHvQ33Nmc0UJ/hrVCNoCjmKt+P3/ll6BJRE41N4WIgMmUGmaNIrHCc9cKEBeR4AdDuQsAEWNcDL5li9x9oK+jeWJ5TXsLRSHEZgZCmh2C5fMPZXcbRZNhQZy1jb94NZJsawED8ymP8bD3ItJv/wS4Z7WpUcMTEwj9MDt4cvUz22NhEfd4HKXQszGt0gAuPkx/5TIquj+oHqsKBs/QPr6w5uh7qQKXptQF5eAByOU=='",
-                "line_num": 4,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "KEY",
-                "variable_start": 0,
-                "variable_end": 3,
-                "value": "AgDuO7+GU7lQXiQNk6M9C+fdDtuMEdMY8pp+/Rjvsk4SZNPvowrzzYJwGYYrqJdH67S7d/dikS+GlFUVvn1ML9PGzYmDmmTUp+sbG+kJil1Xl2n05bN1+tcWRXIvFsStLM5LLgeHDXyhAFk2KsfH02f9FlidcmBHVc4xWnR8Y0fIB5hX591E5/xDawGU6lBKBX3mr1r91eBIZdkwaBVSq0IvW2MSHT1KbwUpB44VbEbolM2essIQ0NW5aEWPynfkwutzsGFL8KNhQSA7z5FBCZOSG6jdY74Z+C5O+V3nvV54SWb5gxwgA5khdYNieblqcab2OFW8Q3gHhxwbAwENt9W3WK3D5RtNdXWNFdIr1Kyd6S0qqimJHWdf0qqBV6k2SIyDMfexlIGlTQPhPoGifJnMbl6qqZV9pcZeSa605ptpNad8Y4eFeYcMK93wgdYWU2Qn/T11zCVqzFpqQ01elyE15moUlkdgrDSw+OeZkCtZ8+p28BF/Xjw3FuwrCroHvQ33Nmc0UJ/hrVCNoCjmKt+P3/ll6BJRE41N4WIgMmUGmaNIrHCc9cKEBeR4AdDuQsAEWNcDL5li9x9oK+jeWJ5TXsLRSHEZgZCmh2C5fMPZXcbRZNhQZy1jb94NZJsawED8ymP8bD3ItJv/wS4Z7WpUcMTEwj9MDt4cvUz22NhEfd4HKXQszGt0gAuPkx/5TIquj+oHqsKBs/QPr6w5uh7qQKXptQF5eAByOU==",
-                "value_start": 7,
-                "value_end": 751,
-                "entropy": 5.96239
-            }
-        ]
-    },
-    {
-        "rule": "Salt",
-        "severity": "low",
-        "confidence": "moderate",
-        "ml_probability": 0.993,
-        "line_data_list": [
-            {
-                "line": "SALT = 'AQBo2FMJiLQM8T3kRNyvAPoKupDDc3RPl/ZOQtuP/KLJ3sDk0qmKMUsimsbpyjIFzuEciskHzabIBhzRuABZCB4b+GLQ3KxiG3T14XANi9mtj1utEceL7Y1rcJ5jOc7x/s1Ce9RczMXkLS+iJrzQ38hcUdOIBnVbkGixyqvCn0tVcurbQy775rGQKsAAvO56aTCHpS4joP3rizqK3Zk4oGSj43K2EC/Tgt20PPTWMyCBBWhccriVozmV8kIhhluOB8Wz5lbOD98HK++RyFE8Uwvq8E7l04RA1+UvrA3Wowq+IY3PdcLGAKkH+C2OIitncl6MXz3phwnt5oPcg+V1OCTcb/S3IjLrey7G06Kx/CZ97rdArHeR5E2bc/0'",
-                "line_num": 7,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "SALT",
-                "variable_start": 0,
-                "variable_end": 4,
-                "value": "AQBo2FMJiLQM8T3kRNyvAPoKupDDc3RPl/ZOQtuP/KLJ3sDk0qmKMUsimsbpyjIFzuEciskHzabIBhzRuABZCB4b+GLQ3KxiG3T14XANi9mtj1utEceL7Y1rcJ5jOc7x/s1Ce9RczMXkLS+iJrzQ38hcUdOIBnVbkGixyqvCn0tVcurbQy775rGQKsAAvO56aTCHpS4joP3rizqK3Zk4oGSj43K2EC/Tgt20PPTWMyCBBWhccriVozmV8kIhhluOB8Wz5lbOD98HK++RyFE8Uwvq8E7l04RA1+UvrA3Wowq+IY3PdcLGAKkH+C2OIitncl6MXz3phwnt5oPcg+V1OCTcb/S3IjLrey7G06Kx/CZ97rdArHeR5E2bc/0",
-                "value_start": 8,
-                "value_end": 387,
-                "entropy": 5.85103
-            }
-        ]
-    },
-    {
-        "rule": "Secret",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "SECRET = 'AQC/4e1KLjq5yozJK7OSdaPCpSIrNC8ZhfgJ/rnmBPDly0de/kBhauPOl62fCY0Abn4ToV9IKgAr8o+ijkpg1SNtZoWk9cVX8R8xqGgN88+cIj7rrrrN8w0Y3vUz4pRJNbL4hbVF6L9ioyt8iXufJniiSBKfyaLG+JbOkFcLgbElIXW5zB0FiIq2NHOvxSCuFtoTSrzBOoqnshacJF8Qp71PHZZX/FIKb9S1Wbu85Y3Pl3/UEknd6303vzqECvVd0q5uLxXTPgx6Ug3fulpmIQxuGdYUvQBJSn9hi2Xscvo9u/oLJG6oALUa3TBwKxpJWDjtLB+a2QV07yi9u6+Uu+DvhpB72aKAA9pvbFsNNpci3jutMS1UtJP7gW2cw=='",
-                "line_num": 8,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "SECRET",
-                "variable_start": 0,
-                "variable_end": 6,
-                "value": "AQC/4e1KLjq5yozJK7OSdaPCpSIrNC8ZhfgJ/rnmBPDly0de/kBhauPOl62fCY0Abn4ToV9IKgAr8o+ijkpg1SNtZoWk9cVX8R8xqGgN88+cIj7rrrrN8w0Y3vUz4pRJNbL4hbVF6L9ioyt8iXufJniiSBKfyaLG+JbOkFcLgbElIXW5zB0FiIq2NHOvxSCuFtoTSrzBOoqnshacJF8Qp71PHZZX/FIKb9S1Wbu85Y3Pl3/UEknd6303vzqECvVd0q5uLxXTPgx6Ug3fulpmIQxuGdYUvQBJSn9hi2Xscvo9u/oLJG6oALUa3TBwKxpJWDjtLB+a2QV07yi9u6+Uu+DvhpB72aKAA9pvbFsNNpci3jutMS1UtJP7gW2cw==",
-                "value_start": 10,
-                "value_end": 393,
-                "entropy": 5.90879
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "TOKEN = 'AQDRjFz5B59a6LrvuLJJ6gPwtBT8pudeNH57O1g4UfOYNqH5IncHt0jK/unn0IX/V8Jpoc0aeHVNV66luEsjjCkMqIFNi73VStq4sDFrTwQQZCU6aa5rQJB5zQ2eh5HCsUs1oGKPaR3ByKhnEbpE4sgpJ5OwI4QVqkzQwadxj2GUCyagk3G5f1tPNxVXq6spBCQfzmGYuHOMi/QA4kfJtArnl0kWPwmzwTd1TwAEzXTvodgnv8W8obls4eQA5Tl0CcfxfSd5jnLvNDQIYHdlNJvZXQu9FzoZyocfqYCxMLCeW5BQ1+kY/cWNMbk+TaiVaklhkEgkusVZoCKjXoSpShFr4JryD9g/A48Q8u/nx6renGGdvlWEIf4OzGK1KA='",
-                "line_num": 9,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|STRUCT|STRUCT:spec|STRUCT:encryptedData|KEYWORD",
-                "variable": "TOKEN",
-                "variable_start": 0,
-                "variable_end": 5,
-                "value": "AQDRjFz5B59a6LrvuLJJ6gPwtBT8pudeNH57O1g4UfOYNqH5IncHt0jK/unn0IX/V8Jpoc0aeHVNV66luEsjjCkMqIFNi73VStq4sDFrTwQQZCU6aa5rQJB5zQ2eh5HCsUs1oGKPaR3ByKhnEbpE4sgpJ5OwI4QVqkzQwadxj2GUCyagk3G5f1tPNxVXq6spBCQfzmGYuHOMi/QA4kfJtArnl0kWPwmzwTd1TwAEzXTvodgnv8W8obls4eQA5Tl0CcfxfSd5jnLvNDQIYHdlNJvZXQu9FzoZyocfqYCxMLCeW5BQ1+kY/cWNMbk+TaiVaklhkEgkusVZoCKjXoSpShFr4JryD9g/A48Q8u/nx6renGGdvlWEIf4OzGK1KA=",
-                "value_start": 9,
-                "value_end": 392,
-                "entropy": 5.89729
-            }
-        ]
-    },
-    {
-        "rule": "Nonce",
-        "severity": "low",
-        "confidence": "moderate",
-        "ml_probability": 0.998,
-        "line_data_list": [
-            {
-                "line": "    __NONCE: AQ+n0Tth3F1Lt3ReDe+BrQwTzNcs7y+OFND0M/+ipSM+5xE91lsQWW0j1dxGh4PEJtVN0U1oVAL+ZVEIw0IpBDaQQYqkxkkp/+Aj1lp3UgUtGUyX+/CxXFnoK04XZzdpWxcwYeBUikykI5YUUQVldaoTql4BugUy733PXFK91q4UpPK0Dne5yCRKvpqSLWVgigXbUogfRugfYgTgkiGEPsv3izNgRWycIDUInfvpzVvODk1gz6/1nW7xISgLCdcewkRgO6l0WGuOn2dWcndURMOooj4ljD9Aw7g4eIu5hf/B5sCOYh7fB33QxOlAmiMZoliEo6WWGP7P8hneYli7YnRfvvqx7Yh30E3qokRKQXsT+OuSZgK1kKK5yzroO",
-                "line_num": 13,
-                "path": "./tests/samples/sealed_secrets.yaml",
-                "info": "FILE:./tests/samples/sealed_secrets.yaml|RAW",
-                "variable": "__NONCE",
-                "variable_start": 4,
-                "variable_end": 11,
-                "value": "AQ+n0Tth3F1Lt3ReDe+BrQwTzNcs7y+OFND0M/+ipSM+5xE91lsQWW0j1dxGh4PEJtVN0U1oVAL+ZVEIw0IpBDaQQYqkxkkp/+Aj1lp3UgUtGUyX+/CxXFnoK04XZzdpWxcwYeBUikykI5YUUQVldaoTql4BugUy733PXFK91q4UpPK0Dne5yCRKvpqSLWVgigXbUogfRugfYgTgkiGEPsv3izNgRWycIDUInfvpzVvODk1gz6/1nW7xISgLCdcewkRgO6l0WGuOn2dWcndURMOooj4ljD9Aw7g4eIu5hf/B5sCOYh7fB33QxOlAmiMZoliEo6WWGP7P8hneYli7YnRfvvqx7Yh30E3qokRKQXsT+OuSZgK1kKK5yzroO",
-                "value_start": 13,
-                "value_end": 394,
-                "entropy": 5.81513
             }
         ]
     },
@@ -16866,8 +16698,71 @@
         "ml_probability": 1.0,
         "line_data_list": [
             {
-                "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
+                "line": "private_tokens = 'Gm7NB0PPydhAq7QfPjVIylntn2lCv7K8vlVEr12b8geyBvfA8zGLXTqZ91TDsdbipN7X/pdDUtGGU7lBHAxqmHNCDe57aqcWZZdRR6k2fUBsWXjG/Ffycj1AyECYJP13dJjOBUXxOdc1rrrdmOCli3Kow1c81zImpn4ujItplYaHlGTtNxPDcUPY8j/HDheWsjiKpPXKTl0r9udX0dXwldKX6EGTUDOHiAUf'",
                 "line_num": 1,
+                "path": "./tests/samples/token.toml",
+                "info": "FILE:./tests/samples/token.toml|TOML|DICT:multiline|DICT:sample|DICT:backslash|KEYWORD",
+                "variable": "private_tokens",
+                "variable_start": 0,
+                "variable_end": 14,
+                "value": "Gm7NB0PPydhAq7QfPjVIylntn2lCv7K8vlVEr12b8geyBvfA8zGLXTqZ91TDsdbipN7X/pdDUtGGU7lBHAxqmHNCDe57aqcWZZdRR6k2fUBsWXjG/Ffycj1AyECYJP13dJjOBUXxOdc1rrrdmOCli3Kow1c81zImpn4ujItplYaHlGTtNxPDcUPY8j/HDheWsjiKpPXKTl0r9udX0dXwldKX6EGTUDOHiAUf",
+                "value_start": 18,
+                "value_end": 246,
+                "entropy": 5.70769
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "secret_tokens = 'Xhe5OL067NVOjv2Yyi9VuN3ynG9INcgkSGgv3/eZeD6gFZHUIznqM73xjoebwoJar2fr0tUrG8PU\\nPD+db4jyBcYPMNxr5OJkP73wJloVySNC1N30+T4MxSRkU6fbOudKXLiYmK0R337lr4FZIIBC6ey1\\nB+y3amlm0ygEAcMNTQgVsK3vCym9V+dF2RLxw/tq+Cu81wUqj6t90i7WQ+DraQlcrlcO8atG+/Fa'",
+                "line_num": 1,
+                "path": "./tests/samples/token.toml",
+                "info": "FILE:./tests/samples/token.toml|TOML|DICT:multiline|DICT:sample|DICT:plain|KEYWORD",
+                "variable": "secret_tokens",
+                "variable_start": 0,
+                "variable_end": 13,
+                "value": "Xhe5OL067NVOjv2Yyi9VuN3ynG9INcgkSGgv3/eZeD6gFZHUIznqM73xjoebwoJar2fr0tUrG8PU\\nPD+db4jyBcYPMNxr5OJkP73wJloVySNC1N30+T4MxSRkU6fbOudKXLiYmK0R337lr4FZIIBC6ey1\\nB+y3amlm0ygEAcMNTQgVsK3vCym9V+dF2RLxw/tq+Cu81wUqj6t90i7WQ+DraQlcrlcO8atG+/Fa",
+                "value_start": 17,
+                "value_end": 249,
+                "entropy": 5.84741
+            }
+        ]
+    },
+    {
+        "rule": "Secret",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "secret_tokens = 'Xhe5OL067NVOjv2Yyi9VuN3ynG9INcgkSGgv3/eZeD6gFZHUIznqM73xjoebwoJar2fr0tUrG8PU\\nPD+db4jyBcYPMNxr5OJkP73wJloVySNC1N30+T4MxSRkU6fbOudKXLiYmK0R337lr4FZIIBC6ey1\\nB+y3amlm0ygEAcMNTQgVsK3vCym9V+dF2RLxw/tq+Cu81wUqj6t90i7WQ+DraQlcrlcO8atG+/Fa'",
+                "line_num": 1,
+                "path": "./tests/samples/token.toml",
+                "info": "FILE:./tests/samples/token.toml|TOML|DICT:multiline|DICT:sample|DICT:plain|KEYWORD",
+                "variable": "secret_tokens",
+                "variable_start": 0,
+                "variable_end": 13,
+                "value": "Xhe5OL067NVOjv2Yyi9VuN3ynG9INcgkSGgv3/eZeD6gFZHUIznqM73xjoebwoJar2fr0tUrG8PU\\nPD+db4jyBcYPMNxr5OJkP73wJloVySNC1N30+T4MxSRkU6fbOudKXLiYmK0R337lr4FZIIBC6ey1\\nB+y3amlm0ygEAcMNTQgVsK3vCym9V+dF2RLxw/tq+Cu81wUqj6t90i7WQ+DraQlcrlcO8atG+/Fa",
+                "value_start": 17,
+                "value_end": 249,
+                "entropy": 5.84741
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
+                "line_num": 4,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "gi_reo_gi_token",
@@ -16887,16 +16782,16 @@
         "ml_probability": 1.0,
         "line_data_list": [
             {
-                "line": "Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
-                "line_num": 2,
+                "line": "# Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
+                "line_num": 5,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "DemoToken",
-                "variable_start": 8,
-                "variable_end": 17,
+                "variable_start": 10,
+                "variable_end": 19,
                 "value": "Nxs094M3ed2s1Re0F4M3ed2GZ8M=",
-                "value_start": 19,
-                "value_end": 47,
+                "value_start": 21,
+                "value_end": 49,
                 "entropy": 4.03915
             }
         ]
@@ -16909,7 +16804,7 @@
         "line_data_list": [
             {
                 "line": "tp_token_value=\"b035d48j9X2dfjF0hb9sd8Guf5hWu2ia\"",
-                "line_num": 4,
+                "line_num": 7,
                 "path": "./tests/samples/token.toml",
                 "info": "FILE:./tests/samples/token.toml|RAW",
                 "variable": "tp_token_value",
