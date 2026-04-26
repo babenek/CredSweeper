@@ -418,10 +418,12 @@ class Util:
     @staticmethod
     def load_pk(data: bytes, password: Optional[bytes] = None) -> Optional[PrivateKeyTypes]:
         """Try to load private key from PKCS1, PKCS8 and PKCS12 formats"""
-        with contextlib.suppress(Exception):
+        try:
             # PKCS1, PKCS8 probes
             private_key = load_der_private_key(data, password)
             return private_key
+        except Exception as exc:
+            print(exc)
         with contextlib.suppress(Exception):
             # PKCS12 probe
             private_key, _certificate, _additional_certificates = load_key_and_certificates(data, password)

@@ -28,7 +28,7 @@ class ValueBase64KeyCheck(Filter):
 
         """
 
-        with contextlib.suppress(Exception):
+        try:
             # remove backslash escaping sequences
             text = Util.PEM_CLEANING_PATTERN.sub(r'', line_data.value)
             # remove whitespaces
@@ -45,6 +45,8 @@ class ValueBase64KeyCheck(Filter):
             # only PEM standard encoding supported in regex pattern to cut off ending of the key
             key = Util.decode_base64(text, padding_safe=True, urlsafe_detect=False)
             private_key = Util.load_pk(key, password=None)
-            if Util.check_pk(private_key):
+            if private_key and Util.check_pk(private_key):
                 return False
+        except Exception as e:
+            print(e)
         return True
