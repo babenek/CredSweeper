@@ -4,7 +4,7 @@ import re
 import string
 from typing import List
 
-from credsweeper.common.constants import PEM_BEGIN_PATTERN, PEM_END_PATTERN, Chars
+from credsweeper.common.constants import PEM_BEGIN_PATTERN, PEM_END_PATTERN, Chars, MAX_LINE_LENGTH
 from credsweeper.config.config import Config
 from credsweeper.credentials.line_data import LineData
 from credsweeper.file_handler.analysis_target import AnalysisTarget
@@ -23,30 +23,52 @@ class PemKeyDetector:
     wrap_characters = "\\'\";,[]#*!"
     remove_characters = string.whitespace + wrap_characters
     # last line contains 4 symbols, at least
-    re_pem_begin = re.compile(r"(?P<value>" + PEM_BEGIN_PATTERN + r"\s(?!ENCRYPTED)[^-]*PRIVATE[^-]*KEY[^-]*-----"
-                              r"(.+" + PEM_END_PATTERN + r"[^-]+KEY[^-]*-----)?)")
-    re_value_pem = re.compile(r"(?P<value>([^-]*" + PEM_END_PATTERN +
-                              r"[^-]+-----)|(([a-zA-Z0-9/+=]{64}.*)?[a-zA-Z0-9/+=]{4})+)")
+    re_pem_begin = re.compile(r"(?P<value>" + PEM_BEGIN_PATTERN +
+                              r"[^-]{1,80}(?!ENCRYPTED)[^-]{0,80}PRIVATE[^-]{1,80}KEY[^-]{0,80}-----(.{1,8000}" +
+                              PEM_END_PATTERN + r"[^-]{1,80}KEY[^-]{0,80}-----)?)")
+    re_value_pem = re.compile(r"(?P<value>" + PEM_END_PATTERN + r"[^-]{1,80}-----|([a-zA-Z0-9/+=]{4})+)")
 
-    @classmethod
-    def detect_pem_key(cls, config: Config, target: AnalysisTarget) -> List[LineData]:
+    def __init__(self, config: Config):
+        self.__config = config
+        self._barrier_pos: int = -2
+        self._barrier_cut: int = -2
+        self._barrier: str = ''
+
+    def cut_barrier(self, line: str) -> str:
+        """Cut off barrier if detected"""
+        if self._barrier and 0 <= self._barrier_pos < self._barrier_cut < len(line):
+            if line[self._barrier_pos] == self._barrier:
+                return line[self._barrier_cut:]
+            self._barrier = ''
+        return line
+
+    def set_barrier(self, line: str, start=0, end=MAX_LINE_LENGTH):
+        """Detects barrier with offset of PEM_BEGIN_PATTERN"""
+        self._barrier = ''
+        self._barrier_cut = line.find(PEM_BEGIN_PATTERN, start, end)
+        self._barrier_pos = self._barrier_cut - 1
+        if 0 <= self._barrier_pos < self._barrier_cut<len(line):
+            barrier = line[self._barrier_pos]
+            if barrier not in PemKeyDetector.base64set:
+                self._barrier = barrier
+
+    def detect_pem_key(self, target: AnalysisTarget) -> List[LineData]:
         """Detects PEM key in single line and with iterative for next lines according
         https://www.rfc-editor.org/rfc/rfc7468
 
         Args:
-            config: Config
             target: Analysis target
 
         Return:
             List of LineData with found PEM
 
         """
-        line_data: List[LineData] = []
+        line_data_list: List[LineData] = []
         key_data = ""
         # get line with -----BEGIN which may contain full key
-        first_line = LineData(config, target.line, target.line_pos, target.line_num, target.file_path, target.file_type,
-                              target.info, cls.re_pem_begin)
-        line_data.append(first_line)
+        first_line = LineData(self.__config, target.line, target.line_pos, target.line_num, target.file_path,
+                              target.file_type, target.info, PemKeyDetector.re_pem_begin)
+        line_data_list.append(first_line)
         # protection check for case when first line starts from 0
         start_pos = target.line_pos if 0 <= target.line_pos else 0
         finish_pos = min(start_pos + 200, target.lines_len)
@@ -54,50 +76,65 @@ class PemKeyDetector:
         for line_pos in range(start_pos, finish_pos):
             line = target.lines[line_pos]
             if target.line_pos != line_pos:
-                _line = LineData(config, line, line_pos, target.line_nums[line_pos], target.file_path, target.file_type,
-                                 target.info, cls.re_value_pem)
-                line_data.append(_line)
+                _line = self.cut_barrier(line)
+                line_data = LineData(self.__config, _line, line_pos, target.line_nums[line_pos], target.file_path,
+                                     target.file_type, target.info, PemKeyDetector.re_value_pem)
+                if len_diff := len(line) - len(_line):
+                    # restore line like in target if barrier detected
+                    line_data.line = line
+                    line_data.value_start += len_diff
+                    line_data.value_end += len_diff
+                line_data_list.append(line_data)
             # replace escaped line ends with real and process them - PEM does not contain '\' sign
             while "\\\\" in line:
                 line = line.replace("\\\\", "\\")
-            sublines = line.replace("\\r", '\n').replace("\\n", '\n').splitlines()
+            sublines = line.replace("\\r\\n", '\n').replace("\\r", '\n').replace("\\n", '\n').splitlines()
             for subline in sublines:
-                if begin_pattern_not_passed or cls.is_leading_config_line(subline):
+                if begin_pattern_not_passed or PemKeyDetector.is_leading_config_line(subline):
+                    # some offset of begin helps to sanitize a log prefix
                     if PEM_BEGIN_PATTERN in subline:
+                        self.set_barrier(subline)
                         begin_pattern_not_passed = False
                     continue
-                if PEM_END_PATTERN in subline:
-                    if "PGP" in target.line_strip:
-                        # Check if entropy is high enough for base64 set with padding sign
-                        entropy = Util.get_shannon_entropy(key_data)
-                        if ENTROPY_LIMIT_BASE64 <= entropy:
-                            return line_data
-                        logger.debug("Filtered with entropy %f '%s'", entropy, key_data)
-                    if "OPENSSH" in target.line_strip:
-                        # Check whether the key is encrypted
-                        with contextlib.suppress(Exception):
-                            decoded = Util.decode_base64(key_data, urlsafe_detect=True)
-                            if 32 < len(decoded) and b"bcrypt" not in decoded:
-                                # 256 bits is the minimal size of Ed25519 keys
-                                # all OK - the key is not encrypted in this top level
-                                return line_data
-                        logger.debug("Filtered with size or bcrypt '%s'", key_data)
-                    else:
-                        with contextlib.suppress(Exception):
-                            if decoded := Util.decode_base64(key_data, padding_safe=True, urlsafe_detect=True):
-                                if len(decoded) == Util.get_asn1_size(decoded):
-                                    # all OK - the key is not encrypted in this top level
-                                    return line_data
-                        logger.debug("Filtered with non asn1 '%s'", key_data)
+                _subline = self.cut_barrier(subline)
+                if PEM_END_PATTERN in _subline:
+                    if PemKeyDetector.finalize(target, key_data):
+                        return line_data_list
                     return []
-                # else - PEM_END_PATTERN not in subline
-                sanitized_line = cls.sanitize_line(subline)
+                # the end is not reached - sanitize the data
+                sanitized_line = PemKeyDetector.sanitize_line(_subline)
                 # PEM key line should not contain spaces or . (and especially not ...)
                 for i in sanitized_line:
-                    if i not in cls.base64set:
+                    if i not in PemKeyDetector.base64set:
                         return []
                 key_data += sanitized_line
         return []
+
+    @classmethod
+    def finalize(cls, target: AnalysisTarget, key_data: str) -> bool:
+        if "PGP" in target.line_strip:
+            # Check if entropy is high enough for base64 set with padding sign
+            entropy = Util.get_shannon_entropy(key_data)
+            if ENTROPY_LIMIT_BASE64 <= entropy:
+                return True
+            logger.debug("Filtered with entropy %f '%s'", entropy, key_data)
+        if "OPENSSH" in target.line_strip:
+            # Check whether the key is encrypted
+            with contextlib.suppress(Exception):
+                decoded = Util.decode_base64(key_data, urlsafe_detect=True)
+                if 32 < len(decoded) and b"bcrypt" not in decoded:
+                    # 256 bits is the minimal size of Ed25519 keys
+                    # all OK - the key is not encrypted in this top level
+                    return True
+            logger.debug("Filtered with size or bcrypt '%s'", key_data)
+        else:
+            with contextlib.suppress(Exception):
+                if decoded := Util.decode_base64(key_data, padding_safe=True, urlsafe_detect=True):
+                    if len(decoded) == Util.get_asn1_size(decoded):
+                        # all OK - the key is not encrypted in this top level
+                        return True
+            logger.debug("Filtered with non asn1 '%s'", key_data)
+        return False
 
     @classmethod
     def sanitize_line(cls, line: str, recurse_level: int = 5) -> str:
@@ -138,20 +175,20 @@ class PemKeyDetector:
             line = line[:-1]
 
         # remove concatenation carefully only when it is not part of base64
-        if line.startswith('+') and 1 < len(line) and line[1] not in cls.base64set:
+        if line.startswith('+') and 1 < len(line) and line[1] not in PemKeyDetector.base64set:
             line = line[1:]
-        if line.endswith('+') and 2 < len(line) and line[-2] not in cls.base64set:
+        if line.endswith('+') and 2 < len(line) and line[-2] not in PemKeyDetector.base64set:
             line = line[:-1]
 
-        line = line.strip(cls.remove_characters)
+        line = line.strip(PemKeyDetector.remove_characters)
         # check whether new iteration requires
         for x in string.whitespace:
             if line.startswith(x) or line.endswith(x):
-                return cls.sanitize_line(line, recurse_level)
+                return PemKeyDetector.sanitize_line(line, recurse_level=recurse_level)
 
-        for x in cls.wrap_characters:
+        for x in PemKeyDetector.wrap_characters:
             if x in line:
-                return cls.sanitize_line(line, recurse_level)
+                return PemKeyDetector.sanitize_line(line, recurse_level=recurse_level)
 
         return line
 
@@ -177,7 +214,7 @@ class PemKeyDetector:
         """
         if 0 == len(line):
             return True
-        for ignore_string in cls.ignore_starts:
+        for ignore_string in PemKeyDetector.ignore_starts:
             if ignore_string in line:
                 return True
         return False

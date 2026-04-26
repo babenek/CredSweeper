@@ -20,6 +20,10 @@ from cryptography.hazmat.primitives.asymmetric.dsa import DSAPrivateKey, DSAPubl
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePrivateKey, EllipticCurvePublicKey
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
 from cryptography.hazmat.primitives.asymmetric.ed448 import Ed448PrivateKey, Ed448PublicKey
+from cryptography.hazmat.primitives.asymmetric.mldsa import MLDSA44PublicKey, MLDSA65PublicKey, MLDSA87PublicKey, \
+    MLDSA44PrivateKey, MLDSA65PrivateKey, MLDSA87PrivateKey
+from cryptography.hazmat.primitives.asymmetric.mlkem import MLKEM768PublicKey, MLKEM1024PublicKey, MLKEM768PrivateKey, \
+    MLKEM1024PrivateKey
 from cryptography.hazmat.primitives.asymmetric.types import PrivateKeyTypes
 from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PublicKey, X25519PrivateKey
 from cryptography.hazmat.primitives.asymmetric.x448 import X448PublicKey, X448PrivateKey
@@ -429,15 +433,22 @@ class Util:
     @staticmethod
     def check_pk(pkey: PrivateKeyTypes) -> bool:
         """Check private key with encrypt-decrypt random data"""
-        if isinstance(pkey, (EllipticCurvePrivateKey, DSAPrivateKey, Ed448PrivateKey, Ed25519PrivateKey, DHPrivateKey,
-                             X448PrivateKey, X25519PrivateKey)):
+        if isinstance(pkey,
+                      (EllipticCurvePrivateKey, DSAPrivateKey, Ed448PrivateKey, Ed25519PrivateKey, DHPrivateKey,
+                       X448PrivateKey, X25519PrivateKey, MLDSA44PrivateKey, MLDSA65PrivateKey, MLDSA87PrivateKey)):
             # One does not simply perform check the keys
             return True
         if isinstance(pkey, (EllipticCurvePublicKey, DSAPublicKey, Ed448PublicKey, Ed25519PublicKey, DHPublicKey,
-                             X448PublicKey, X25519PublicKey)) or not pkey:
+                             MLDSA44PublicKey, MLDSA65PublicKey, MLDSA87PublicKey, MLKEM768PublicKey,
+                             MLKEM1024PublicKey, X448PublicKey, X25519PublicKey)) or not pkey:
             # These aren't the keys we're looking for
             return False
-            # DSA, RSA
+        if isinstance(pkey, (MLKEM768PrivateKey, MLKEM1024PrivateKey)):
+            pub = pkey.public_key()
+            ct, ss1 = pub.encapsulate()
+            ss2 = pkey.decapsulate(ct)
+            return bool(pub == ss2)
+        # DSA, RSA
         pd = padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA1()), algorithm=hashes.SHA1(), label=None)
         ciphertext = pkey.public_key().encrypt(Util.RANDOM_DATA, padding=pd)
         refurb = pkey.decrypt(ciphertext, padding=pd)

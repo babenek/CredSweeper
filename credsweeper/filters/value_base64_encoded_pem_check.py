@@ -35,7 +35,7 @@ class ValueBase64EncodedPem(Filter):
             for line_pos, line in zip(lines_pos, lines):
                 if PEM_BEGIN_PATTERN in line:
                     new_target = AnalysisTarget(line_pos, lines, lines_pos, target.descriptor)
-                    if PemKeyDetector.detect_pem_key(self.config, new_target):
+                    if PemKeyDetector(self.config).detect_pem_key(new_target):
                         # obtained candidates are not used because not match text
                         return False
         return True
