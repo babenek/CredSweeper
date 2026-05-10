@@ -537,7 +537,7 @@
   confidence: strong
   type: pem_key
   values:
-    - (?P<value>-----BEGIN[^-]*(?!ENCRYPTED)[^-]*PRIVATE[^-]*KEY[^-]*-----)
+    - (?P<value>-----BEGIN(?![^-]*ENCRYPTED)[^-]*PRIVATE[^-]*KEY[^-]*-----)
   min_line_len: 27
   target:
     - code
