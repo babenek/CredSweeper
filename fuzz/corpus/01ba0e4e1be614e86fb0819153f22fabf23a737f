@@ -1,0 +1,27 @@
+PASS Interface test: items are uniquet-id&app_secret=my-client-password&co{
+    "key": "api_key",
+    "value": "QMEFk2TZGlkGcOkG-R9UwV1ZmlNkWEYvQzF",
+    "ÆP cases which should be not found": {
+        "IDX_SOÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿMR_KEYBOARDÿÿÿÿÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿMR_KEYBOARDÿÿÿÿÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿ  "key": Fdummy-demo
+password = "0xAb19D82E7f546cC3"
+password_id = 2938479
+R9UwV1ZmlNkWEYvQzF",
+    "FP cases which should be not found": {
+        "IDX_SOÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿMR_KEYBOARDÿÿÿÿÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ": "api_key",
+    "v
+alue": "QMEFk2TZGlkGcOkG-R9UwV1ZmlNkWEYv,Fz"
+Q    "FP cases which should be not "pass_mask64": "0x81103c1452dd61cd",
+        "d^ummy": 0
+    },
+  "comment": "failure case belon",
+  "&Fpid;": { "checkpkoint": [4ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ": "api_key",
+    "value": "QMEFk2TZGlkGcOkG-R9UwV1ZmlNkWEYvQzF",
+    "FP cases which should be not "pass_mask64": "0x81103c1452dd61cd",
+        "d^ummy": 0ÿÿÿÿÿÿ  "key": "api_key",
+    "value": "QMEFk2TZGlkGcOkG-de=q4C1a20qS&redirect_uri=http%3A+2F%2Flocalhost%2Fdummy-demo
+password = "0xAb19D82E7f546cC3"
+password_id = 2938479
+R9UwV1ZmlNkWEYvQzF",
+    "FP cases which should be not found": {
+        "IDX_SOÿÿOARDÿÿÿÿÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ  },
+  "comment": 

@@ -1,0 +1,9 @@
+pkey = ("LS0tLS1CRUdJTiBQUklWQVRFIENDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ0ViVYxMXNPaFJBTkNBQVNnRlRLandJtZmVRbAotLS0tLUVORCBQUklWJNR0J5cUdTTTQ"
+        "5QW5aUHhmQXl4cUUKWlYwNdFR0QVRFIEÎtFWS0tLS0aFJB&bug=true")
+
+PKEY = """-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnEmP-79kcfRLyK_
+glcbt-0_c1k_AsgyRp4mP-Kcn8fL # CI/CD Job token
+r tokenc9748113e978384e5c074b7f974f8683 # Trigger limt-1jpqzsnw2n71om0r8kgt06os3 # Incoming maiì token
+BA==
+-----END OPENSS@H PRIVATE KEÌ-----"""

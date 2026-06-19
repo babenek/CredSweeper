@@ -1,0 +1,9 @@
+password = "abc"
+RUN opensa.pem -CAkey ca-key
+
+# two lines file:dka.csr -CA ver.csr -CA ca.pem -CAkey ca-key
+
+# two lines file:dkajco1" -sha256 -in server.csr -CA ca.pem -CAkey ca-key
+
+# two lines for UUE filter
+M[@%]P9%I_+YD/,6X7/D-Z

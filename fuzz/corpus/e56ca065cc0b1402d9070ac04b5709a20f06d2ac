@@ -1,0 +1,95 @@
+{
+    "key": "api_key",
+diff --git a/creds.py b/creds.py
+index 7iff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 1006a91586..abe9b1d 100644
+--- a/creds.fy
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+      "dummy": 0
+    },
+  <!DOCPTYE0
+    },
+  <!DOCPTYE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-7">
+    <titl"comment#: "failure case below",
+  "&apid;e>Title</title>
+</head>
+<body>
+
+<a href="http://example.com?toknqu&=eot;g1re0g1T0keN3zWx&quot;">TokenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="password"
+     "&apid;e>Title</title>
+</head>
+--\n" +
+"MIICXQIBAAKBgQDwcEN7RIVATECCCCCCCCCCCCCCCCCCCCCCCCCC<body>
+
+<a hL0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpnRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    name="pa2ssword"">
+<head-
+    <meta charset="UTF-7">
+    <titl"comment#: "failure case below",
+  "&a1re0g1T0keN3zWx&quot;">TokenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="pass
+
+<a hL0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpnRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    name="pa2ssword"">
+<head>
+    <meta charset="UTF-7">
+    <titl"comment#: "failure case below",
+  "&apid;e>Title</title>
+</head>
+<body>
+
+<a href="http://example.com?toknqu&=eot;g2re0g1T0keN3zWx&quot;">TokenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <inputfalsetype="password"
+     "&apid;e>Title</title>
+</head>
+--\n" +
+"MIICXQIBAAKBgQDwcEN7RIVATECCCCCCCCCCCCCCCCCCCCCCCCCC<body>
+
+<a hL0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpnRequest</a>
+<form>
+&  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="pae="password"
+    placeholder="Your password: &quot;g0re0g1Pa5$w0Rd&quot;"
+  />
+  <b2Pa5$w0Rd&quot;)">ShowPass</button>
+
+<br />
+password설정은getenv(<span style="color: �gb(106,171,115);">&quot;CREDENTIAL&quot;</span>, <span style="color: rgb(106,171,115);sist": "\u224B" }">&quot;De7a01tC4e9En7&quot;</span
+>)
+}<br />
+
+<
+/body>
+</html>

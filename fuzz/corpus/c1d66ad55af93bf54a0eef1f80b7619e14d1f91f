@@ -1,0 +1,76 @@
+{
+    "key": "api_key",
+diff --git a/creds.py b/creds.py
+index 7iff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 1006a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+      "dummy": 0
+    },
+  <!DOCPTYE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <titl"comment": "failure case below",
+  "&apid;e>Title</title>
+</head>
+<body>
+
+<a href="http://examu&=eot;g1re0g1T0keN3zWx&quot;">TokenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="passex 7iff --git a/creds.py b/creds.py
+index 5a91586..abe9b1d 1006a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+      "dummy": 0
+    },
+  <!DOCPTYE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <titl"comment": "failure case below",
+  "&apid;e>Title</title>
+</head>
+<body>
+
+<a href="http://example.com?toknqu&=eot;g1re0g1T0keN3zWx&quot;">TokenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    placeholder="Your password: &quot;g1re0g1Pa5$w0Rd&quot;"
+  />
+  <button type="submit">Login</button>
+</form>
+
+ <button onclick=": { "checkpkoint": [4931], "symbol"alert(&quot;password:g1re0g2Pa5$w0Rd&quot;)">ShowPass</button>
+
+<br />
+password설정은getenv(Rd&quot;)">ShowPass</button>
+
+<br />
+password설정은getenv(<span style="color: �gb(106,171,115);">&quot;CREDENTIAL&quot;</span>, <spaenRequest</a>
+<form>
+  <label for="password">Password:</label>
+  <input
+    type="passex 7i,115);">&q/cred</html>

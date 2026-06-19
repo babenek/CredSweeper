@@ -1,0 +1,32 @@
+From c52dda684773cd5abd7
+GIT binary patch
+litervY(IOwP_pg;It_#)hV5h8Bik1R_J;YNemtU
+
+literal 0
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE;YNemtU
+
+literal 0
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97Tk
+diff --git a/creds.py bqXymnvsFmYhQ"
+-- 
+2.25.1
+

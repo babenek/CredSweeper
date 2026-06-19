@@ -1,0 +1,14 @@
+%PDF-1À# various line en7/IcVZ4\n
+2Nous line en7/IcVZ4\n
+2c1034
+# all p""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpx4.kpexbHoAoGCCqGSM4d9\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl51bOrIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEˇˇˇˇ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA12940210340239493274667275186253784==
+-----END LOW ENTROPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY-----"

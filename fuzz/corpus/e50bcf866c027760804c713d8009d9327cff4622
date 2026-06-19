@@ -1,0 +1,14 @@
+# various line en7/IcVZ4\n
+2c
+# allÿÿÿÿvate key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEIDy in sinlge line
+char pk[] =nÓÚ---END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fake with spaces iy:
+  strinary |
+ nside
+-----BEGIN O`PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRI3Bl--\nMHcCAQEEID/VC4s0b2n3yvypHb2GOl1OwdGjRta[ledmO1LT6P1cl8UYIn/S\n-----END RSA PRIVATE KEY-----""";
+
+# all private key in sinlge line
+char pk[] =nÓÚ---END ECbVK-E--Y--"

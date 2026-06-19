@@ -1,0 +1,27 @@
+# various line en7/IcVZ4HcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RS APRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuааааа?>>6ааааааааааааааааааааааааааO9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuааааа?>>6аааааааааааааккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккаааааааааааааO9/dKl51bOryWzHF8wTSez8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID3VC4s0bpHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctY*/
+t\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuааааа?2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID3VC4s0bpHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctY*/
+t\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuааааа?2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "TY PRIVATE KEY-----"

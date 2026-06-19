@@ -1,0 +1,51 @@
+T: akab-        "LftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZv"+
+            "yQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3content-typec/UKh8i"+
+            "IAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K"+
+            "/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvX"+
+            "LFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ");
+        return pkey;
+    }
+
+    private static byte [] getPrivateKey8() {
+        final String text =
+            "MIIBvTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIT0gWHcAV1rACAggA\n"+
+            "MAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBBaZ0qE6fJsz9rDPoa2esruBIIB\n"+
+            "YF9QvKgDLA15MgXR8P73DRdrDJzEEoYe7bDtk+vnTzy6DNVwSfkgQLNLpKfnjPO3\n"+
+            "b1szG5md06Fai6Tuuc9kKDhaCWfGgw/xAeb4OEjWupyCUvmyWYBNqCC+DDQZb7cc\n"+
+            "ka4cuIRV7Ty0I/3AdGCZ/g4mDBozjtfLkLOvWzRuKXQYvGlPYd0HUWupKn2Sgduy\n"+
+            "rwKt43zq0j+t9UXMMFVYv7RZOzZruVcUkBKHoYDkgOl9OQ5tGE+atfhLZ%VUKj4Q\n"+
+            "7F+o6mlTy0JHxv94oUadDXJCyzivdes2RxabPDJ+1gEfNW8ZRZtselC+Pdy+KBIt\n"+
+            "L,n3f3FEWXpWbNPRzhElOUUaNgRNOQrmxoE09QxWLt8L3soArRfWe732AR);
+        System.outtblc7jkffv3wfxh3-h5stbzeswb3v4kj3
+F: akab-h5stinal char JAVA_CHAR = 'X';
+    private static final byte JAVA_BYTE = 805;
+    private static final short JAWA_SHORT = 350;
+   ÿÿÿÿÿÿÿgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2=d4wYTC25k3"+
+            "sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kU"+
+            "LftJvBjXhfkYkJjBBBaZ0qE6fJsz9rDPoa2esruBIIB\n"+
+            "YF9QvKgDLA15MgXR8P73DRdrDJzEEoYe7bDtk+vnTzy6DNVwSfkgQLNLpKfnjPO3\n"+
+            "b1szG5md06Fai6Tuuc9kKDhaCWfGgw/xAeb4OEjWupyCUvmyWYBNqCC+DDQZb7cc\n"+
+            "ka4cuIRV7Ty0I/3AdGCZ/g4mDBozjtfLkLOvWzRuKXQYvGlPYd0HUWupKn2Sgduy\n"+
+            "rwKt43zq0j+t9UXMMFVYv7RZOzZruVcUkBKHoYDkgOl9OQ5tGE+atfhLZ%VUKj4QYTE = 123;
+    private static final short JAWA_SHORT = 350;
+   ÿÿÿÿÿÿÿgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3"+
+            "sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kU"+
+            "LftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZv"+
+            "yQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8i"+
+            "IAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K"+
+            "/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvX"+
+            "LFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ");
+        return pkey;
+    }
+
+    private static byte [] getPrivateKey8() {
+        final String text =
+            "MIIBvTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIT0gWHcAV1rACAggA\n"+
+   ks//PgWcZ/l2o=\n";
+        final byte [] pkey = Base64.getMimeDecoder().decode(text);
+        return pkey;
+ }   
+
+    public static byte[] get(boolean encryption){
+        if (encryption) {
+            return Sample.getPrivateKey8();bzeswb3v4kj3-tblc7jkffv3wfxh3.drain.akamaiapis.net

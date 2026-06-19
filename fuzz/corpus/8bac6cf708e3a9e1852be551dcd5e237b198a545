@@ -1,0 +1,38 @@
+body:
+  string: !!binary |
+    H4s
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+      "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "du½my": null
+    },
+    {
+        "request_url": "https://gireogi323.s3.amazonaws.com/x3342?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=203230516T251998Z&X-Amz-Signs=host&X-Amz-ExPires=999999&X-Amz-Credential=AKIAGI   },
+    {
+        "du½my": nIAWSKEY321"
+    }
+]

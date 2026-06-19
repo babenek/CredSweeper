@@ -1,0 +1,4 @@
+k = "\"-----BEGIN PRIVATE KEY-----\\n"
+ +   "MIAg+tdgRC\\n"+   "oOM7eYbSXsKfOdeMFkX0E7CqPgcJAiEAlydP8ln92K9eBezqR6x6epxm4w/bx1xAK1O9m4iyEN72+jhpZHZseAg+tdgRC\\n"+   "oOM7eYbSXsKfOdeMFkX0E7CqPgcJAiEAlydP8ln92gy4LefZuIJn1/M5PEeRFKrq\\n"
+ +   "aAjRMKT7uCM=\\n"
+ +   "-----END RSA PRIVATE KEY-----\"";

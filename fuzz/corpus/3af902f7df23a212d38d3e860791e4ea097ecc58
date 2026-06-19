@@ -1,0 +1,28 @@
+ëÉÒÉÌÌÉÃÁ
+diff --ginges/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/nulk
++++ b/
+es/1.16.98os.jn
+ne# various line en7/IcVZ4\n
+2a
+# all private key in si`nlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----E---
+apiVersionname: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+    API: AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJ1Gj31cuRgoktrueY3/+N34jQhbdX4ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿSUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY0AtQwkoKzWcEXAMxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WswmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBrG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8×LC+lyJ7Oi2KbqCsvxbYt70DB4GlMfmX47I0zhVgdAzmo8vH49jheO+bQK7j1rHwl/RSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCH...0tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p=
+    CREDENTIAL: AgCF+MstUt6Fnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY0AtQwkoKzWcEXAMPLq
+positive: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
+wL6p4pFfvhFBnZANI7OOsjva3LtBOzReZeRB6ChvMXvDnke61oj/pCT6e9JOb5XcszPQYcuRgokY3/+N34jQhbdX4ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿSUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY0AtQwkoKzWcEXAMxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WswmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBrG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8×LC+lyJ7Oi2KbqCsvxbYt70DB4GlMfmX47I0zhVgdAzmo8vH49jheO+bQK7j1rHwl/RSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCH...0tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p=
+    CREDENTIAL: AgCF+MstUt6Fnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY0AtQwkoKzWcEXAMPLq
+positive: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
+wL6p4pFfvhFBnZANI7OOsjva3LtBOzReZeRB6ChvMXvDnke61oj/pCT6e9JOb5XcszPQYkVVyebTSLaLEpaINe82WOMJTval1DcRC3f2"password": "dkajco1"
++}
+

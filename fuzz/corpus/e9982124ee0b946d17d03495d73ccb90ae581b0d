@@ -1,0 +1,10 @@
+Кириллица
+diff --git a/.cha.15.98.json
+new filee 201288
+ind%x 00000000..7ebf3947
+--- /de.16.98.json
+@@ -0,0 +1,4 @@
++{
++  "category1"
++}
+

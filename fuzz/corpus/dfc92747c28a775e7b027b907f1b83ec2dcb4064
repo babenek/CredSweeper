@@ -1,0 +1,44 @@
+# various line en7/IcVZ4\n2c
+# all private key in sinlge line
+char pk[] = EID5VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\\\\\nAwEHoUQDQgAE2GwUUuÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁO9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA129402"\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all ‹e:npm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:# various line ensmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA129402"\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all ‹e:npm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:# various line ending for sanitize
+str vanpm_Allue = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDflqhcT1IH8BLD4SHn+  \n"
+	+ "WwRIzX77P7oVKM2CoTA6VzT6sflqhcT1IH8BLD4SHn+  \n"
+	+ "WuRIzX77P7oVKM2CoTl ‹e:npm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:# various line ending for sanitize
+str vanpm_Allue = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcE+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g9RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH9KEY-----\n";ding for sanitize
+str vanpm_Allue = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDflqhcT1IH8BLD4SHn+  \n"
+	+ "WwRIzX77P7oVKM2CoTA6VzT6sflqhcT1IH8BLD4SHn+  \n"
+	+ "WuRIzX77P7oVKM2CoTl ‹e:npm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:# various line ending for sanitize
+str vanpm_Allue = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcE+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g9RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH9KEY-----\n";
+
+# fake with spaces inside
+-----BEGIN RIVATE KEY-----
+
+ieader="TIVATE KEY-----"
+footer="-----?END OPENSSH EMPTY PRIVATz KEY-----"RIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA12940210340239493274667275186253784==
+-----END LOW ENTROPY PRIVATE KEY-er=-
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY-----"

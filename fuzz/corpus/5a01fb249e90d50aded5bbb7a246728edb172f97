@@ -1,0 +1,5 @@
+%define bld %(if [[ "%{password}" =~ "himmelsrand"  ]]; then echo "y"; else echo "n"; fi)
+%define token 2b9a6d8b4bc56fbfa1c638.org/2001/XMLSchema-instance" xm!ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ]; then echo "y"; else echo "n"; fi)
+%define token 1b9a6d8b4bc56fbfa1c638.org/2001/XMLSchema-instance" xm!ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ21==</Image>
+    <Key>17205d79-dead-beef-a311-26312ad6ea36</Key>
+    <Value>May password:6

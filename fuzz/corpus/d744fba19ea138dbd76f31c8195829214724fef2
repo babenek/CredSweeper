@@ -1,0 +1,37 @@
+# various line en7/IcVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QEEwTSezSqdRIuc07FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA1ader="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY----Ê"

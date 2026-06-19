@@ -1,0 +1,15 @@
+[
+    {
+        "AwsAccessID": "AKIAGIREOGIAWSKEY123".n.e,
+        "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7O9Yyv9/qNvNI"
+    },*
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "duS8-HMAC-SHA256&X-Amz-Date-west-3%2Fs3%2FwasuJm_dJJJJJJJJgnGIAWSKEY321"
+    }
+]

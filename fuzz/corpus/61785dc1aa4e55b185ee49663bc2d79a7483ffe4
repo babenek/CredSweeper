@@ -1,0 +1,55 @@
+diff it a/.changes/1.16.98.json b/.changes/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
+++× b/.changes/1.16ÿÿÿÿ.98.json
+@@ -0,0 +1,4 @@
++{
++  "category": "``cloudformation``",
++  "password": "dkajcö1"--git a/.changes/1.16.98.json b/.changes/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
+++× b/.changes/1.16ÿÿÿÿ.98.json
+@@ -0,0 +1,4 @@
++{
++  "category": "``cloudformation0rD");
+expected_statement = """CREATE USER foo WITH ENCRYPTED PASSWORD 'SqLpa5sW0rD' CREATEDB;
+CREATE USER $TEST_USER_NAME WITH SUPERUSER LOGIN NOINHERIT PASSWORD '$TEST_USER_PASS' CREATEROLE; -- todo filter
+CREATt""BBDC-
+194206074328-qp89pdv6fi35vsi71258g1eh31q6h7c3.apps.googleusercontent.com
+
+4L2QMyTm6Rr0o46ytGiReoG1
+#
+#
+#
+#
+#
+#
+# skip MAX_SEARCH_MARGIN = 10
+#
+#
+#
+#
+#
+# OAuth2.0
+"id":"194206074328-qdv6fi3eh31q6h7c35vsi7p89zNp1258g1.apps.googleusercontent.com","CEKPET":"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qlQi1Y-EsEaX","
+SqLpa5sW0rD' SUPERUSER;
+CREATE USER IF NOT EXISTS sandy WITH PASSWORD 'SqLpa5sW0rD' NOSUPERUSER;
+CREATE USER myuser WITH PASSWORD 'SqLpa5sW0rD';
+CREATE USER username WITH PASSWORD 'SqLpa5sW0rD';
+ALTER USER 'username'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';
+ALTER USER 'super_user'@'10.10.10.%' identified by 'SqLpa5sW0rD';
+ALTER USER username IDENTIFIED BY SqLpa5sW0rD;
+CREATE USER username IDENTIFIED BY SqLpa5sW0rD;
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';
+mysql -u root -pdbadmin -e "CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';"â€“          
+-c "CREATE ROLE scram_test login password 'SqLpa5sW0rD'"
+CREATE ROLE app_admin WITH LOGIN PASSWORD SqLpa5sW0rD;
+CREATE ROLE flask_admin_geo LOGIN PASSWORD 'SqLpa5sW0rD';
+create role forum_example_graph_demo login password 'SqLpa5sW0rD';
+create role forum_example_graph login password 'SqLpa5sW0rD';
+SET PASSWORD FOR 'username'@'localhost' = PASSWOR``",
++  "password": "dkajcö1"
++}
+

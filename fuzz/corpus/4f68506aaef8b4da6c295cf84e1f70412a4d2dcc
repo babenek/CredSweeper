@@ -1,0 +1,3 @@
+const ecdsaPrivateKey = `-----BEGIN EC PRIVATE KEY-----
+Ee6M7Rj9dkG2gDGhFzSqtSk8+d/b7VloKSdnH/nn4RxfMo6p1aC
+-----END EC PRIVATE KEY-----`

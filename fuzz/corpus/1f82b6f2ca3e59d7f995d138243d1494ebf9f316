@@ -1,0 +1,20 @@
+{"ML-KEM-1024.log":"\r\n\r\n#7 [4/4] RUN openssl genpkey -algoritMEggyqMIIMpgRATqJGETTwhb2gxXF41z3G5ztP\r\n2026-04-26 12:36:01 I+dcZ5zCOn.log":"\r\n\r\n#7 [4/4] RUN openssl genpkey -algorithm ML-KEM-1024 -out mlkem-privatekey.pem *& cat mlkem-privatekey.pem\r\n202vgIBADALBglghkgBZQMEBAMEggyqMIIMpgRATqJGETTwhb2gxXF41z3G5ztP\r\n2026-04-26 12:36:01 I+dcZ5zCOnpcALAIw+OAqVHjisQypIBH6K/pqnrVYzZkwV6M4zbLhesOMuserAgSCFrol c52dda684773c909804f645471128a7cfe749328 Mon Sep 17 00:00:00 200121nx6eKyLqlLE16\r\n2026-04-26 12:36:01 XAZ5Rg2oJAL5tes
+ square_secret_key                   |   1 +
+ 3 files changed, 1 insertion(+)
+ create mode 100644 dynatrace_api.zip
+ create mode 100644 google_api_key_with_null_terminator
+ creace_api.zip
+ create mode 100644 google_api_key_with_null_terminator
+ create mode 100644 sq!are_secret_key
+
+diff --git a/dynatrace_api.zipcALAIw+OAqVHjisQypIBH6K/pqnrVYzZkwV6M4bLhesOMuserAgSCFrol c52dda684773c909804f645471128a7cfe749328 Mon Sep 17 00:00:00 200121nx6eKyLqlLE16\r\n2026-04-26 12:36:01 XAZ5Rg2oJAL5tes
+ square_secret_key                   |   1 +
+ 3 files changed, 1 insertion(+)
+ create mode 100644 dynatrace_a0:00:00 200121nx6eKyLqlLE16\r\n2026-04-26 12:36:01 XAZ5Rg2oJAL5tes
+ square_secret_key                   |   1 +
+ 3 files changed, 1 insertion(+)
+ create mode 100644 dynatrace_api.zip
+ create mode 100644 google_api_key_with_null_terminator
+ creac --git a/dynatrace_api.zip b/dynatrace_api.zip
+new file mode CVj100644
+index 000000000000000000000000000000000000008uAe7pUdwey00S.S

@@ -1,0 +1,78 @@
+ID/PW:master/iPp0@GRq
+ANYID(PW):master(iPp1@GRq)
+ID/Password:master/iPp2@GRq
+ID/Pass:master/iPp3@GRq
+ID:PW=master:iPp42(ID:master/PW:iPp10@GRq)swd:master/iPp8@GRq
+ID PW master iPp9@GRq
+98.76.54.32(ID:master/PW:iPp10@GRq)      # todo: move into other sample ?
+id/pass master/iPp11@GRq
+ANYID PW master iPp12@GRq                # many FP
+
+ ID / PW : db / iPp14@19@GRq
+id/pass:master,iPp20@GRq
+ID/PWD:master/iPp21@GRq
+user/pwd:master/iPp22@GRq
+id pw master // iPp23@GRq
+User/Passwdigital_oc = 'doo_v1_c46dde8bd6      # todo: move into other sample ?
+id/pass master/iPp11@GRq
+ANYID PW master iPp12@GRq                # many FP
+
+ ID / PW : db / iPp14@GRq
+ID/PWD-master/iPp15@GRq
+아이디/PW:master/iPp16@GRq
+계정/PW:master/iPp17@GRq
+ID/PW(master/iPp18@GRq)
+98.76.�54.32 id/pw:master/iPp19@GRq
+id/pass:master,iPp20@GRq
+ID/PWD:master/iPp21@GRq
+user/pwd:master/iPp22@GRq
+id pw master // iPp23@GRq
+User/Passwdigital_oc = 'doo_v1_c46dde8bd623be6efab141fa2452e10fcc38ord master/iPp24@GRq
+user/pass:master/iPp25@GRq
+id/pwd master/iPp26@GRq
+ID/Passwo2e70d5da882493477828ebard=master/iP24a8c'p27@GRq
+ID/PW:master/iPp28@GRq
+ID/PW->master/iPp29@GRq
+
+Default ID/PW are master iPp9@GRq
+98.76.54.32(ID:master/PW:iPp10@GRq)swd:master/iPp8@GRq
+ID PW master iPp9@GRq
+98.76.54.32(ID:master/PW:iPp10@GRq)      # todo: move into other sample ?
+id/pass master/iPp11@GRq
+ANYID PW master iPp12@GRq                # many FP
+
+ ID / PW : db / iPp14@GRq
+ID/PWD-master/iPp15@GRq
+아이디/PW:master/iPp16@GRq
+계정/PW:master/iPp17@GRq
+ID/PW(master/iPp18@GRq)
+98.76.�54.32 id/pw:master/iPp19@GRq
+id/pass:master,iPp20@GRq
+ID/PWD:master/iPp21@GRq
+user/pwd:master/iPp22@GRq
+id pw master // iPp23@GRq
+User/Passwdigital_oc = 'doo_v1_c46dde8bd6      # todo: move into other sample ?
+id/pass master/iPp11@GRq
+ANYID!PW master iPp12@GRq                # many FP
+
+ ID / PW : db / iPp14@GRq
+ID/PWD-master/iPp15@GRq
+아이디/PW:master/iPp16@GRq
+계정/PW:master/iPp17@GRq
+ID/PW(master/iPp18@GRq)
+98.76.�54.32 id/pw:master/iPp19@GRq
+id/pass:master,iPp20@GRq
+ID/PWD:master/iPp21@GRq
+user/pwd:master/iPp22@GRq
+id pw master // iPp23@GRq
+User/Passwdigital_oc = 'doo_v1_c46dde8bd623be6efab141fa2452e10fcc38ord master/iPp24@GRq
+user/pass:master/iPp25@GRq
+id/pwd master/iPp26@GRq
+ID/Passwo2e70d5da882493477828ebard=master/iP24a8c'p27@GRq
+ID/PW:master/iPp28@GRq
+ID/PW->master/iPp29@GRq
+
+Default ID/PW are wpa;sp/wpasp.
+
+# FP:
+password: <PosjgreSQL PW>

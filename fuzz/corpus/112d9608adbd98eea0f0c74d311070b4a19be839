@@ -1,0 +1,10 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+---adata:
+  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+    API: AgA3efu56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfUNDR3Q2dZSUtvWkl6ajBFQXdJd0tURW4KICAgICAgICBna2RqaHNsa2Roa2dkamhza2pkZmtkamhnazwuqr1UzCZ61gZnwPDBsD02jF038wYU6mZT
+-----END PGP PRIVATE KEY----2RqaGtkZmpibmtkZm52amtoYnZqaGRiZGpmaGJmamhiZGZNRGd5CiAgICAgICAgbGZrZW5KikdSr7sYZMVlkwf4lByf6a2LAVViNbWq6FV5ywhyDroKU9vjwfq9tu0pY0VP+k11/tikGp9jJ7Oi2KbqCsvxbYt70DB4rbQy77

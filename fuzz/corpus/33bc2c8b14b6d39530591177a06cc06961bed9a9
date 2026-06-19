@@ -1,0 +1,22 @@
+{
+    "key": "api_key",
+    "value": "QMEFk2TZGlkGcOkg-R9UwV1ZmlNkWEYvQzF",
+    "FP cases which should be not found": {
+        "IDX_SOMR_KEYBOARD": "Khartabil",
+   ---  "KeypadUserMask": "mask16bit",
+        "pass_mask32": "0x31ey",
+    "value": "QMEFk2TZGlkGcOkg-R9UwV1ZmlNkWEYvQzF",
+    "FP cases which should be not found": {
+        "IDX_SOMR_KEYBOARD": "Khartabil",
+        "KeypadUserMask": "mask16bit",
+        "pass_mask32": "0x31c45018",
+        "pass_mask64": "0x81103c1452dd61cd",
+        "dummy": 0
+    },
+  "comment": "failÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿc45018",
+        "pass_mask64": "0x81103c1452dd61cd",
+        "dummy": 0
+    },
+  "comment": "failÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿure case below",
+  "&apid;": { "checkpkoint": ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ[4931], "symbolsist": "\u224B" }
+}

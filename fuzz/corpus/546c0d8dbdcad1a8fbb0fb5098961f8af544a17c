@@ -1,0 +1,58 @@
+Test sample for "AWS Multi" rule
+```powershell
+{
+    "Code" : "Success",
+    "LastUpdate09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHEC2ED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAcyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" :<?xml version='1.0' encoding='utf-8'?>
+<root>
+    <data>
+        MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsohRFakQFbAuI/
+        Da: "Success",
+    "LastUpdate09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAcyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" :<?xml version='1.0' encoding='utf-8'?>
+<root>
+    <data>
+        MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsohRFakQFbAuI/
+        DaJSTVnp    caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzN "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRcessKey" : "RMkMm8niUJ1i/hAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38JSTVnp3ObjJPZhJs/P/XPWIKRNIglRqkkCAwEAAQJAbErPFMWah3EPxtfeVO1l
+        5R0yAZwrFmLDO29/FoXyL2XbxthJlJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts
+        AQIhAMwBYS+NST98g0nytTRD1Y94n+yrhTlyWNR/uC4tT8SpAiEAwthlcs9UDPh5
+        BnaO8Y7A+im+Aw5ANIhJwSVBxB3QnKECIQCJm9ihic1B7MxmojgGxEcXGwfNTjl0
+        caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzN "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRcessKey" : "RMkMm8niUJ1i/hAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgvej4/ÿÿY0MYuTM54EC

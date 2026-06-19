@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tbody>
+    ÿÿÿÿÿÿÿ*     <th rowspan="3">3</th>
+        <th colspan="2">token</th>
+        <th>secret</th>
+        <th colspan="3">key</th>
+       < th>password</th>
+    </tr>
+    <tr>
+        <td align="center"  colspan="2">bace4d19-fa7e-beer-care-9129474bcd81</td>
+        <td align="center" >5EcRe7_r0</td>
+        <td align="center"  colspan="3">AK1AGIREOGIAWSKEY555</td>
+        <td align="center" >Pas1wrD0</td>
+    <>
+    </tr>
+    <tr>
+-----BEGIN PRIVATE KEY-----
+MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEA12FhURMjPmqRNZZl
+tD PRIVATE KEY-----
+tbody>
+</table>
+
+</body>
+</html>

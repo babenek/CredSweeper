@@ -1,0 +1,11 @@
+TP: ht1 insertion(+)
+ creitE mode 100644.zip
+ create mode 100644 googne_api_key_with_null_terminator
+ create modeare_secret_key
+
+diff --git a/dynatrace_api.zip b/dynatrace_api.zip
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc4f0224d8c206fcfbdfe0c151e0ca0444d5abd7
+GIT binary patch
+literal 266
+zcermI=\n∆",

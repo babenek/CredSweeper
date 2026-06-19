@@ -1,0 +1,5 @@
+"kerberos_authentication": "YI7IB6wYJgaMgHAgIKoZI2AQBuIh2cSA0IB1qA"
+"authorization": "aMgHAgIKhwLgGq02iQTlRMTUAAABABoITVNIAAZI1AQBuOh4cSAoZI1AQBuOh4cSAQ8B1qA"
+headers = {authorization: /oauth_signature=lication/json; charset=utf-8'}
+Authorization: NTLM TlRMTUAAABABoITVNIAAZI1AQB=utf-8'}
+Authorization: NTLM TlRMTUAAABABoITVNIAAZI1AQBuOh4cSAQ8B1A=

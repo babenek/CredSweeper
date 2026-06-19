@@ -1,0 +1,34 @@
+# vrivate key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QEEwTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVAT‰ KEÿÿÿÿ--\n";
+
+# fake with spaces inside
+----VATE KEY-----"

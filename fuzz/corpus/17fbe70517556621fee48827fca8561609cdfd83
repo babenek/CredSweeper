@@ -1,0 +1,9 @@
+pkey = ("LS5tLS1CRUdJTiBQUklWQVRFIENDcUdTTTLS0tLUVORCBQUulWJNR0J5cUdTTTQ"
+        "5QW5aUHhmQXl4cUUKWlYwNdFR0QVRFIEtFWS0tLS0aFJB&bug=true")
+
+PKEY = """-----BEGOyuM4e7HzUgO0+8ndWis1OtableSJTz9EFTyHJm6GOn+/JR62NWNrAMPLE
+positive:# various line ending for sanitize
+str vanpm_Allue = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JŸGXQ-----
+b3BlbnNcmVMb29rgW5nRm9S8wb3Mj0tZTQIDBA==
+-----END OPENSSH PRIVATE KEY-----"""

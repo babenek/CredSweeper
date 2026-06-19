@@ -1,0 +1,28 @@
+Test sample for "AWS Multi" rule
+```powershell
+{
+    "Code" : "Success",
+    "LastUpdate09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAcyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_pd" : "2024-09-10T09:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRcessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YmIgn7dH6cw4W1yqoRgjsFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_p

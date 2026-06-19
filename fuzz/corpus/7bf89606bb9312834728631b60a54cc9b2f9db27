@@ -1,0 +1,75 @@
+# >>> Java sample 1
+
+    PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----\n"
+     +   "MIIBVgIBADANBgkqhkiG9AwEQ0AFBASCAUAwggE8AgEAAkEAplARRGItayIi59+n\n"
+      +   "FlVJfmQshKZo3MNry20h1xvoqks6Wndb0XLJ3s1A6Z2Qg+9xKHNT7QZTTGVatxrp\n"
+        +   "CY1LcQIDAQABAkEAlXPKaercbBnryvLEqehPdGSFK1ppdZGQVOLlOOU2k2o5VpRP\n"
+      +   "AvHzS6VZsimd5XPxEIKPkJhWDLhRckpwOX6LkQIhAND0WUcohqwBHxvUvAexRxbI\n"
+    +   "FIizfZJfI8fC2dDepWvfAiEAy8npickbddF4NlWt+PVcPi9iSfe2h8LHZ/QLzNV5\n"
+     +   "Mq8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CIQDMdXvyS+5S2hoVgnimUkoMOaUWCgOiOOP6mFfHsERPIwIhAMovKCnQwhLR\n"
+      +   "YQAfX3yaCguUPWS/hjQJdodXZI2z5gv3AiBQ5WKTpyu8osL4CCi4aS6G/fSlCdu0\n"
+     +   "GeGaqMojMT7//g==\n"
+      + "-----END RSA PRIVATE KEY-----\n";
+
+# >>> Java sample 2
+
+ = "\"-----BEGIN PRIVATE KEY-----\\n"
+ +   "MIIBVAIBADANBgkhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAxAIx’6QtxmnJ0Bsj\\n"
+ +   "VRsEhjLB9lSY9CaFvvEbXK9eBezqR[
+    {
+        "kty": "EC",
+     ;
+m{pw: KrAcMe"ÿ
+m{pw: KrAcM6x6epxm4e

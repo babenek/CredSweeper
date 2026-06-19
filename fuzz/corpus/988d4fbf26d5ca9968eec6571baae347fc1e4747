@@ -1,0 +1,4 @@
+body  string: !!%define bld %(if [[ "%{52370e 100644
+--- a/uuid
++++ b/uuid
+@@ -1 +1 @   bi

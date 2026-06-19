@@ -1,0 +1,43 @@
+diff it a/.changes/1.16.98.json b/.change,s/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
+++× b/.changes/1.16ÿÿÿÿ.98.json
+@@ -0,0 +1,4 @@
++{
++  "category": "``cloudformation``",
++  "password": "dkajcö1"--git a/.changes/1.16.98.json b/.changes/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
+++× b/.changes/1.16ÿÿÿÿ.98.json
+@@ -0,0 +1,4 @@
++{
++  "category": "``cl/udformation0rD");
+expected_statement = """CREATE USER foo WITH ENCRYPTED PASSWORD 'SqLpÑa5sW0rD' CREATEDB;
+CREATE USER $TEST_USER_NAME WITH SUP#
+#
+#
+#
+#
+#
+# skip MAX_SEARCH_MARGIN = 10
+#
+#
+#
+#
+#
+# OAuth2.0
+"id":"194206074328-qdv6fi3eh31q6h7c35vsi7p89zNp1258g1.apps.googleusercontent.coIN NOINHERIT PASSWORD '$TEST_USER_PASS' CREATEROLE; -- todo filter
+CREATt""ˆBBDC-
+1942060REATE USER IF NOT EXISTS sandy WITH PASSWORD 'SqLpa5sW0rD' NOSUssword 9pdv6fi35vsi71258g1eh31q6h7c3.apps.googleusercontent.com
+
+4L2QMyTm6Rr0o46ytGiReoG1
+#
+#
+#
+#
+#
+#
+# skip MAX_SEARCH_MARGIN = 10 ROLE ap+}
+

@@ -1,0 +1,18 @@
+{
+    "key": "api_key",
+diff --git a/creds.py b/creds.pŽõ–‘›š‡ß7iff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 1006a944
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYhQ"
+
+
+
+      "dummy  koint": [4931], "symbol"alert(&quot;password:g1re0g2Pa5$w0Rd&quot;)">Sho
+<
+/body>
+</html>

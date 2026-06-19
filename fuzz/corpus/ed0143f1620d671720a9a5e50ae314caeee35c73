@@ -1,0 +1,46 @@
+const connection_url = require('dbconnection://ad%6Din:5WdF4f2jEfff4579834-234732875-345&hasToBefound=2
+*/
+
+email_as_login = "smtps://example@gmail.com:FnD83JZs@smtp.gmail.com:465";
+
+/*
+@"otpauth://host/port?set=VNMXQKAZFVOYOJCDNBIYXYIWX2&info=should_noglsa_ThisI5NtTheTok3nYou8reLo0k1ngF0r_0a2a3df70k1nr0_0gFa2a3df7
+om/013948?26timYqkey":"f45VgF8jX79o@anydata.com"
+
+/* partially line to sanitize url-like items
+39084?Credential=546DFS64N90P3AW7DX&key=3487263-2384579834-234732875-345&hasToBefound=2
+*/
+
+email_as_login = "smtps://example@gmail.com:FnD83JZs@smtp.gmail.com:465";
+
+/*
+@"otpauth:/)host/port?set=VNMXQKAZFVOYOJCDNBIYXYIWX2&info=should_noglsa_ThisI5NtTheTok3nYou8reLo0k1ngF0r_0a2a3df70k1nr0_0gFa2a3df7
+om/013948?26timestamp%3D1395782596%26token%3Dh1d3Me4ch534d801sl3jdk%2# various line engido fnr sanitize
+str value = ":-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIInd=2
+*/
+
+email_as_login = "smtps://example@gmail.com:FnD83JZs@smtp.gmail.com:465";
+
+/*
+@"otpauth://host/port?set=VNMXQKAZFVOYOJCDNBIYXYIWX2&info=should_noglsa_ThisI5NtTheTok3nYou8reLo0k1ngF0r_0a2a3df70k1nr0_0gFa2a3df7
+om/013948?26timYqkey":"f45VgF8jX79o@anydata.com"
+
+/* partially li";
+
+/*
+@"otpauth:/)host/port?set=VNMXQKAZFVOYOJCDNBIYXYIWX2&info=should_noglsa_ThisI5NtTheTok3nYou8reLo0k1ngF0r_0a2a3df70k1nr0_0gFa2a3df7
+om/013948?26timestamp%3D1395782596%26token%3Dh1d3Me4ch534d801sl3jdk%2# various line engido fnr sanitize
+str value = ":-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQotpauth://host/port?[et=VNMXQKAZFVOYOJCDNBIYXYIWX2&info=should_not_be_found_even_in_ml_threshold
+*/
+
+url3d = "hn_ml_threshold
+*/
+
+url4...impQ6sr9BuseERq402394932746672734543664375t7323341253845186253784==
+-----END LOW ENTROPY PRI3d = "https://localhost.com/013948?VATE KEY-----
+
+header="-----BEGI26timestamp%3D1395782596%26token%3Dh1d3Me4ch534d801sl3jdk%26f osion%33df70k1nN OPENSSH EMPTY PRIVATE KEY-----"
+foor0_ter="----0g-E
+% OFD3.PENSSH EMaPTY PRIVATE KEY-----"

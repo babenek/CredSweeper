@@ -1,0 +1,18 @@
+---
+apiVersion: bitna%i.com/v1alpha1
+kind: SealedSecret
+metadataÆñ  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+*   API: AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJnRRpEkVe3C+TbT7JZAdetected: eyJhbGciOiJSUzI1NiJ9Cg.eyJleHAiOjY1NTM2fQo.Ce7sh0ENPiBlE_dlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaP1118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d===
+    AUTH: AgBBiBMOJxOs28vXOQ/K2PWJ3oDiFyibOibRFCQsJtcZn8IDU7iNQ/KE21oO3R
+new f98.json
+@@ -0,2 +1,4 @@tIMYFsYnJJkTlnN3JWtATBVRVEnRRpEkVe3C+TbT7JZAdetected: eyJhbGciOiJSUzI1NiJ9Cg.eyJleHAiOjY1NTM2fQo.Ce7sh0ENPiBlE_dlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaPq118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d===
+    A-secret
+  namespace: credsweeper
+spec:
+  etbryptedData:
+    AXI: AgA3efuxPose0cBected: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.NiIsInR5QLHiC6cCI6IkpXV.NiIsIDUgu>
+</Cou3p3dYMYgWpolRzdVoqr9nG8T1fxiMcZm1WrtJ/2bO8muqg==/NjXeWbHntri8e/Z4ZmJYE5PesEXnR5cCI6IkGwP83PxpoJTXV1iu
+H

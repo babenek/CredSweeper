@@ -1,0 +1,10 @@
+%define bld %(if [[ "%{password}" =~ "himmelsrand"  ]]; then echo "y"; else echo "n"; fi)
+%define token 2b9a6d8b4bc56fbfa1c638.org/2001/XMLSchema-instance" xm!ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ]; then echo "y"; else echo "n"; fi)
+%define token 2b9a6d8b4bc56fbfa1c638.org/2001/XMLSchema-instance" xm!ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿns:xsd="http://www.w3.org/2001eXMLScheÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿns:xsd="http://www.w3.org/2001eXMLSchema">
+    <Image>AKIAGIREOGIAWsKEY321==</Image>
+    <Key>17205d79-dead-beef-a311-26312ad6ea36</Key>
+    <ma">
+    <Image>AKIAGIREOGIAWsKEY321==</Image>
+    <Key>17205d79-dead-beef-a311-26312ad6ea36</Key>
+    <Value>May passwordÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿns:xsd="h36</Key>
+    <Value>M0ay password:6

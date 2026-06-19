@@ -1,0 +1,23 @@
+body:
+  string: !!binary |
+    H4sICIur8mIAA3BlbVezi[
+    {
+        "AwsAccessID": "AKIAGIREOGIAWSKEY123",
+        "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh8O9Yyv: null
+    },
+    {
+        "dummy": null
+    },
+       {
+>        "dummy": null
+    },
+    {
+        "dummy":ell
+    },
+    {
+        "dummy": null
+    },
+    {
+        "request230516T251998Z&X-Amz-SignedHea21"
+    }
+]

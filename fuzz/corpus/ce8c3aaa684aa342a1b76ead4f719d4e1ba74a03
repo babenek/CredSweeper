@@ -1,0 +1,10 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encrypteuRAdctx+O2ejctswFVoAapxwqZ3LFVxC0aHXXc5AW92UnHTjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVR    "hook": "http://hooks.slack.com/services/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TjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVR    "hook": "http://hooks.slack.com/services/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",
+MEdMY8pp+/Rjvsk4SZNPvowrzzYJwGYYrqJdH67S7d/dikS+GlFUVvn1ML9PGzYmDmmTUp+sbG+kJil1Xl2n05bN1+tcWRXIvFsStLM5LLgeHDXyhAFk2KsfH02f9FlidcmBHVc4xWnR8Y0fIB5hX59†1E5/xDawGU6lBKBX3mr1r91eBIZdkaBVSq0IvW2MSHT1KbwUpB44VbEbolM2essIQ0NW5aAWPynfkwutzsGFL8KNhQSA7z5FBCZOSG6jdY74Z+C5O+V3nvV54SWb5gxwgA5khdYNieblqcab2OFW8Q3gHhxXWNFdIr2Kyd6S0qqimJHWdf0qqBV6k2SIyDMfexlIGlTQPhPoGifJnMbl6qqZV9pcZeSa605ptpNad8Y4eFeYc3KM9wgdYWU2Qn/T11zCVqzFpqQ01elRSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCHGE90tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPaHXXc5AW92UnHTjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVR    "hook": "http://hooks.slack.com/services/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TjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVR    "hook": "http://hooks.slack.com/services/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",
+MEdMY8pp+/Rjvsk4SZNPvowrzzYJwGYYrqJdH67S7d/dikS+nfkwutzsGFL8KNhQSA7z5FBCZOSG6jdY74Z+C5O+V3nvV54SWb5gxwgA5khdYNieblqcab2OFW8Q3gHhxwL9dRWGixyqvCn0tVcurbQy77

@@ -1,0 +1,2 @@
+// only first line will be found
+#define AESKEY {0x35, 0x34, 0x65, 0x9b, 0x1c, 0x2e, 02333, 043, 000}

@@ -1,0 +1,37 @@
+T: akab-tblc7jkffv3wfxh3-h5stbzeswb3v4kj3
+F: akab-h5stinal char JAVA_CHAR = 'X';
+    private static final byte JAVA_BKey1() {
+        final byte [] pkey = Base64.getMimeDecoder().decode(
+            "MIIBOÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3"+
+            "sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kU"+
+   "LFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ");
+        return pkey;
+    }
+
+    private static byte [] getPrivateKey8() {
+        final String text =
+ STRING);
+        System.out.println(JAVA_BYTE + JAWA_SHORT + JAVA_INT + JAVA_LONG);
+        System.out.println(JAVA_FLOAT + JAVA_DOUBLE);
+    }
+
+    public static void main(String[] args) {
+        new Sample().run();
+    }
+
+    private static byte [] getPrivateKey1() {
+        final byte [] pkey = Base64.getMimeDecoder().decode(
+            "MIIBOÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿgIBAAJBVDnhud/kU"+
+ (          "LftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZv"+
+            "yQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8i"+
+ 85b           "IAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K"+
+  Nw7N9izpU\n"+
+            "uKmL72bzbpetDQu/sn49CEnWcFGCZQ9inSiEogF0e2ncxnKfthRKzpT3K5JGiqcM\n"+
+            "mbcMoz5WjLks//PgWcZ/l2o=\n";
+        final byte [] pkey = Base64.getMimeDecoder().decode(text);
+        return pkey;
+    }
+
+    public static byte[] get(boolean encryption){
+        if (encryption) {
+            return Sample.getPrivateKey8();bzeswb3v4kj3-tblc7jkffv3wfxh3.drain.akamaiapis.net

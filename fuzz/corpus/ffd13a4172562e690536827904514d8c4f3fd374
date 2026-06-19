@@ -1,0 +1,17 @@
+h
+pk_4QI2dNfwyVM7YdjI78ehK
+sk_test_T1z4jtdp7dcC39HqLyjWareD
+pk_live_KQI2pIpqzh1Nv2JXfJBqst
+import os
+
+SECRET_CREDENTIAL_API_KEY = \
+    'a3f1ef0ff53236141253c0372'
+
+AUTH = ("Basic "
+        "Hbr73gu7gdsr==cf
+
+AUTH_CREDENTIAL_SECRET = \
+    f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'
+
+API_SECRET_KEY รรรรรรรรรรรรรรรรรรรรรรรรรรรogLQNVMFfrqOR07v5ni20DvPVNXvBPAUAt
+whsec_IsQVcHgjVWTBwlClIsICTD0mpDr4gRTB2EmncHgjVW

@@ -1,0 +1,62 @@
+From c52dda684773c909804f645471128a7cfe7493Tkq?d00001
+7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RD5h8Bik1_J;YNemtU
+
+literal 5
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYh
+
+diff --gié
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds?d00001
+7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RD5h8Bik1_J;YNemtU
+
+literal 0
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sDU001tFFodKU95USNy97TkqXymnvsFmYh
+
+diff --gié
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = "V84C7sD.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token =
+

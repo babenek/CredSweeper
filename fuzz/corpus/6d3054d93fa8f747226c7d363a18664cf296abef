@@ -1,0 +1,8 @@
+pkey = ("LSLSC10tRUdJTiBQUklWQVRFIENDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ0Vi==")
+
+print("https://example.com/api/js?key=dhd0lCQVFRZ0ViVnpmUGWxhQW9=QWwrLzZYdDJPNG1PQjYxMXNPaFJB&bug=true")
+
+PKEY = """-----BEGIN OPENSFlIBAAAAJimRM7VýýýýýýýýýýýýýýýýýýýýýýýýfýýýýýýýýýýýýýýýýýýpkTO0QAAAAtzc2gt
+ZWQybcdNCJAIAAFRoZXJlXzE1LU4ZHprejsuZm5tbmRmbmVuZm5pAAAA
+EXRpemVuQGNyZWRzd2VlcGVyAQIDBA==
+-----ENT OPENSSH PRIVATE KEY-----"""

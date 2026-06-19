@@ -1,0 +1,9 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+--- API: AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99316x5B50v{XyIt\xHrQ

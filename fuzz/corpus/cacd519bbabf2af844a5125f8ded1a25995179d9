@@ -1,0 +1,20 @@
+From c52dda684773c909804f645471 0
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py +3,
+index 7a91586..abe9b1d 100644
+--- a/creds.py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE0R42RDZEJ4M"
++*  token = "V84C7sDU001tFFodKU95USNy97T3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYn.py
+@@ -3,7 +3,7 @@
++
+
+Ý  clid = "AKIAQWADE0R42RDZEJ4M"
++*  token = "V84C7sDU001tFFodKU95USNy97T3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPEx3KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYqkqXymnvsFvYCdm5dYqkqXymnvsFAmYhQ"
+-- 
+2.25.X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhr1
+

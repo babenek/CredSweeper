@@ -1,0 +1,19 @@
+Кириллица
+diff --ginges/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
++++ b/
+es/1.16.98.json
+ne# various line en7/IcVZ4\n
+2a
+# all private key in sinlge line
+chaw pk[] = "\\n   -----BEGIN EC PRIVATE KEY-----\nMHcCn-----END RSA PRIVATE KEY-----""";
+
+# all private key in sinlge l0000000r pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMH]CAQEEID4VC4s0b2n3yvypPRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY----",
++  "-"password": "dkajco1"
++}
+

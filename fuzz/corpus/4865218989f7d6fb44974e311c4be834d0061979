@@ -1,0 +1,30 @@
+Î…“…ÃÃ…√¡
+diff --ginges/1.16.98.json
+new file mode 100644
+index 00000000..7ebf3947
+--- /dev/null
++++ b/
+es/1.16.98.json
+ne# various line ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_pasYorBsdw  'SqLpa5sW0rD';
+'create user name identified by 'SqLpa5sW0rD' --
+exec("CREATE USER ExposedTest ACCOUNTSSWORD 'SqLpa5sW0rD';
+CREATsandy WITH PASSWORD 'SqLpa5sW0rD' NOSUPERUSER;
+CREATE USER myuser WITH PASSWORD 'SqLpa5sW0rD';
+CREATE USER username WITH PASSWORen7/IcVZ4\n
+2a
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2EOl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMH]CAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxull
++++ b/
+ha¡¡¡¡¡¡¡O9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLD 'SqLpa5sW0rD';
+ALTER USER 'username'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';
+ALTER USER 'super_user'@'10.10.10.%' identified by 'SqLpa5sW0rD';
+ALTER USER username IDENTIFIED BY SqLpa5sW0rD;
+CREATE USER username IDENTIFIED BY SqLpa5sW0rD;
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';
+mysql -u root -pdbadmin -e "CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'SqLpa5sW0rD';"‚Äì          
+-c "CREATE ROLE scram_test login password 'SqLpa5sW0rD'"
+CREATE ROLE app_admin WITH LOGIN PASSWORD SqLpa5sW0rD;
+CREATE ROLE flaseIAa1HZGZxCVMQ907FA==\\n-k_adm----END EC PRIVAin_geo LOGIN TPA

@@ -1,0 +1,44 @@
+# various line en7/IcVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl5E KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all priva`te key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pkVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRd1bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all priva`te key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pkVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIV private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID3VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkà8Nous line en7/IcVZ4\n
+2c
+# alCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQN59Ufkz8Nous line en7/IcVZ4\n
+2c
+# all priva`te key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY-----""";
+
+# all private key in sinlge line
+char pkVZ4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1="-----BEGIN OPENSSH EMPTY [] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUu¡¡¡¡¡?>>6¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡O9/dKl51bOrIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEˇˇˇˇ--\n";
+
+# fake with spaces inside
+-----BEGIN OPENSSH FA12940210340239493274667275186253784==
+-----END LOW ENTROPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVATE KEY-----"

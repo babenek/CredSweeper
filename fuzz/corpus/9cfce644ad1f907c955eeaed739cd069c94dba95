@@ -1,0 +1,15 @@
+nonce = 'bsfcvir57nt45rydvtbhs8lzbgljmet5'
+secure_yaml [ """
+password: F1lT3ReDw17hQoT3s
+"""
+
+# line wrap
+key_wrap = 'KJHhJKhKU7yguyuyfrtsdESffhjgkhYT\
+fdjs8Gf5jlli=='  # the line will be found in deep scan
+
+# multiine wrap
+key_wrap = 'KJHŽµKhKU7yguyuyfrtsdESffhjgkhYT\
+fdjs8Gf5ÿÿÿÿjlli=='  # the line will be found in deep scan
+
+# multiline
+key_m found in deep scan

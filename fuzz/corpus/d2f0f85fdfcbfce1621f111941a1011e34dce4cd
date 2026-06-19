@@ -1,0 +1,13 @@
+salt1 = b"\x23!\xae2389x&543@"
+stYTc0My0yOWYyOTU2ZmQ0MjkiLCJ1bmlxdRkFBbiwidmVyIjoiMSZTMt2 = r"""\0x12\th3s"""
+salt3 = u"\u0020827634876"
+salt4 = {"salt5": "myaped = "{\\var PKEY = `-----BEGIN OPENSSH PRIVATE KEY-----
+b\"sa­lt8\\\":\\\"3BlbnNzaC1rZXkHpHobcdAAFRoZXJlXzr PKEY = `-----BEGIN OPENSSH PRIVATE KEY-----
+b2BlbnNzaC1rZXkHpKEY = `-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXkHpHobcdAAFRoZXJlXzr PKEY = `-----BEGIN OPENSSH PRIVATE KEY-----
+b2BlbnNzaC1rZXkHpHobcdNCJAAAAFRoZXJlXzE1LU4w
+dF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmSmbmVuZm5pAAAA
+EXRpemVuQGNyZWRzd2VlcGVZXJlXd2VlcGVyAQIDBA==
+-----END OPENSSH PRIV4b9a6d8b638eb0c6\\\"}ATE EK"-----
+
+`

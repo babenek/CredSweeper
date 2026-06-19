@@ -1,0 +1,12 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: filter-sample-secret
+  namespace: credsweתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתeper
+spec:
+  encryptedData:
+    API: AgA3efuxQHUM6haNt6aYjB+GsmuA0qhZ7zytAEYDvJ6hRnGKcyFX3FoTypU7iNQ/KE21oO3RQhj+hzdR+u5NisxJhg9nQz5Of1jlA8ix5/WQ8PMIhxr5f2WIymiuRAdctx+O2ejctswFVoAapxwqZ3LFVxC0aHXXc5AW92UnHTjmnmEv20uvasg7HJKVJ7Npqgx6tIMYFsYnJJkTlnN3JWtATBVRVEnRRpEkVe3C+TbT7JZAlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaP1118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d===
+    AUTH: AgBBiBMOJxOs213QLtsh0WervLN+kdqwhsihaev4RJNevdLb4j4CC7YM/oLR8kdALLOJgph3pHp7FsgLQDMMEXUDKUlWcD5Ymw1mtikGp9jJ7Oi2KbqCsvxbYtֲֿ»½4GlMfmX47I0zhVgdAzmo8vH49jheO+bQK7j1rHwl/RSlb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCHGE90tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p=
+    CREDENTIAL: AgCF+MstUt6Fka8q26+dOorzSfePXb17SX+N9AUk+VHs9WkCKgkds498SMeUVo1ppHWF5Ky4PF3fC4oy62szpXqD6B7G1bgZr+Ne0yLrU2t0IqVEstar0wcivfxhJekoYQxYPwcubV1IqkhXFaIpJvwL6p4pFfvhFBnZANI7OOsjva3LtBOzReZeRB6ChvMXXyoG96/YELVe3OEzAIjtQieZG65JH9A5RF07EB1Kev+w
+    SALT: AQBo2FMJiLQM8T3kRNyvAPoKupDDc3RPl/ZOQtuP/KLJ3sDk0qmKMUsimsbpyjIFzuEciskHzabIBhzRuABZCB4b+GLQ3KxiG3T14XANi9mtj1utEceL7Y1rcJ5jOc7x/s1Ce9RczMXkLS+iJrzQ38hcUdOIBnVbkGixyuvCn0tVcurbQy77

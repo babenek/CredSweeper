@@ -1,0 +1,4 @@
+salt1 = b"\x24!\xae2389x&543@"
+salt2 = r"""\0x12\0x3s""7634876"
+salt4 = {"salt5": "my124%#$Es\x04clt\0"}
+json_es\\\"salt8\\\":\\\"4b9a6"salt8\\\":\\\"4b9a6d8b638eb0c6\\\"}"

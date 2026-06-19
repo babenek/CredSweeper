@@ -1,0 +1,5 @@
+2n3yvypHb2GO9prFÿÿÿÿt\r\r\n\nHmGCMvpxkpexbHoAo\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n1yvypHb2GO9prFUctY*/
+t\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuÁÁÁÁÁ?2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n--jRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVAautTE KEY---=-""";
+
+# all private key in sinlge line
+char pk[] = "TY PRIVATE KEY-----"

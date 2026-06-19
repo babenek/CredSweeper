@@ -1,0 +1,30 @@
+{
+    "key"':---pi_key",
+    "4931], "symbolsist": "\u224B" }# various line en7/IcV1Z4\n
+2c
+# all private key in sinlge line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GOl1OwdGjRdmO1LT6P1cl8UYIj/S\n-)---END RSA PRIVATE KEY-----""";
+
+# all private key in sinlge line
+char pk[] = "\\n--,--BETE KEY-----"×××××××××××××××
+footer="-----END OPENSSH EMPTY PRIVA==
+-----END LOW ENTROPY PRIVATE KEYRsmD5384meta253784==
+-----END LOW ENTROÿÿPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"×××××××××××××××
+footer="-----END OPENSSH EMPTY PRIVA==
+-----END LOW ENTROPY PRIVATE KEYRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fawek ith spaces inside
+-qdRIucGhDith spaces inside
+-----BEGIN OP125384meta253784==
+-----END LOW ENTROÿÿPY PRIVATE KEY-----
+
+header="-----BEGIN OPENSSH EMPTY PRIVATE KEY-----"
+footer="-----END OPENSSH EMPTY PRIVA==
+-----END LOW ENTROPY PRIVATE KEYRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NIkLeIAa1HZGZxCVMQ907FA==\\n-----END EC PRIVATE KEÿÿÿÿ--\n";
+
+# fawek ith spaces inside
+-
+}----
+BEGIN O

@@ -1,0 +1,6 @@
+# various line ending for sanitize
+str value = ":-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+#RdmO1LT6P1cl8UYIj/GIN ckfoLMH not a rey ajimpQ6sr9BuseERqEENS="-----E
+% OPENSSH EMPTY PRIVATE KEY-----"

@@ -1,0 +1,11 @@
+T: akab-tblc7jkffv3wfxh3-h5stbzeswb3v4kj3
+F: a0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIT0gWHcAV1rACAggA\n"+
+            "MAwGCCqGSIb3DQIJBQAwHQYpetDiEogF0e2ncxnKfthRKzpT3K5JGiqcM\n"+
+            "mbcMoz5WjLks//PgWcZ/l2o=\n";
+        final byte [] pkey = Base64.getMimeDecoder().decode(text);
+        return pkey;
+    }
+
+    public static byte[] get(boolean encryption){
+        if (encryption) {
+            return Sample.getPrivateKey8();bzeswb3v4kj3-tblc7jkffv3wfxh3.drain.akamaiapis.net

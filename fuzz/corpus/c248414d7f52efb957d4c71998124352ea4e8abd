@@ -1,0 +1,14 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecr=t
+metadata:
+  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+    API: AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJ1Gj31cuRgokY3/+N34jQhbdX4SUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkWnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY9AtQwkoKzWcEXAMxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WswmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBrG91LUAGo2o2bzrSiVEDKMsPALGxb/ZB8sS5AUuQrc3AgU0+KgUOTB5bCHGE90tuuqWPcDMxMQNPopQzNcuwpVVMLV5DPL9dRW0bf5es5p=
+    CREDENTIAL: AgCF+MstUt6Fnegativnpm_NFX6dCpmIWvQ7megnY0AtQwkoKzWcEXAMPLE
+positive:npm_Alm0StFaK3t0WvQ7megnY0AtQwkoKzWcEXAMPLq
+positive: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
+wL6p4pFfvhFBnZANI7OOsjva3LtBFzReZeRB6ChvMXvDnke61oj/pCT6e9JOb5XcszPQYkVVyebTSLaLEpaINe82WOMJTval1DcRC3f2r+

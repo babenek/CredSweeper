@@ -1,0 +1,8 @@
+Test s9:32:13Z",
+    "Type" : "AWS-TXNM",
+    "AccessKeyId" : "AKIA0ON7V2DD57PL3JXM",
+    "SecretAccessKey" : "RMkMm8niUJ1iuhAA+AAyugy3fFt/rtrf7GFQ9xz1",
+    "Token" : "J38YFsWvysFjfVcpCh7O9Yyv9/q:46:13Z"
+}
+```
+LINE$ NUMERATION IS CHECKED IN TEST: test_aws_multi_p

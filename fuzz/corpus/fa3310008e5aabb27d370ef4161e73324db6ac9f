@@ -1,0 +1,25 @@
+[
+    {
+        "AwsAccessID": "AKIAGIREOGIAWSKEY123",
+        "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7GIREOGIAWSKEY123",
+        "(wsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7O9Yyv9/qNvNI"
+    },*
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "duS4-HMAC-SHA256&X-Amz-Date=203230516T251998Z&X-Amz-SignedHeaders=host&X-Amz-Ex@ires=999999&X-Amz-Credential=AKIAGIREOGIAW$SKEY323%2F21100651%2Feu-west-3%2FsCredentialO9Yyv9/qNvNI"
+    },*
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "duS4-HMAC-SHA256&X-Amz-Date=203230516T251998Z&X-Amz-SignedHeaders=host&X323%2F21100651%2Feu-west-3%2FsCredential=AKIAGIREOGIAW$SKEY3-Key=J05YmIgnGIAWSKEY321"
+    }
+]

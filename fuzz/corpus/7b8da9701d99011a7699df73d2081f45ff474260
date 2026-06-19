@@ -1,0 +1,25 @@
+# various line ending for sanitize
+str value = "-----BEGIN RSA PRIVATE KEY-----\n" +
+"MIICXQIBAAKBgQDwcEN7vZygGg6DvPpsw17hRD6S5N8+huaqs1JGXQfPhbvLTUsHdzGLVNQ/Z0wQVGdPiaJDflqhcT1IH8BLD4SHn+  \n"
+	+ "WuRIzX77P7oVKM2CoTA6VzT6s/bvr7HxFLl4NhohfyDsV0YCDc4I6EHGWMCUHZb0IWxzEGRWD3jbG8KAZUsQIDAQABAoGAOD7a2o\r \n"
+"  CRujY+PP1hS/4sHOBdDvnxa2wdW8NVNNagdCBhvP5Y1edBNMnkWOyuM4e7HzUgO0+8ndWis1OSJTz9EFTyHJm6GOn+/JR62NWNr   "
+		"9lfCb8cWq0eoOk3UUO9P+1nZNHjE/iDhuTi3x/5naW4dzSkZfxHo/NMI6i5w1ZnQ60CQQD9d0G9gBy6lPhC  \\
+""" mbHzYovVjSnyfzUtyWPNSrXNiUCR5vu2f6eCgSVzFZ0oHAv8nLaYnXrhyT25lwzNK5OhR/oPAkEA8tep3NmfxV """ +
+QSBfKGfotblIG709xxfd6vHfDS0eZuTFUxkZDcayZDhMDjTMZxP8rokSbMaOSqUseUeYhx5TqFPwJAAhC0smyWz1ZjZ3eFIayN4yGRU+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g9RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH90AOG0QOQ1Jp6yBMKgYIB\\
+Uaxk9J5Th8BXPyC1mclPMS7J\\\\ngMuobiFdIpryq51pvHkCQQDInvDaKI24Ho+cj6SCKnEO4kbj@/yx1XGwNmY0ld1i\\r5micHFiMI7/IcVZ4\n
+2cl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----END RSA P6RIVATE KEY-----""";
+
+# all private key in single line
+char pk[] = "\\n-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEID4VC4s0b2n3yvypHb2GO9prFUctYt\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuO9/dKl51bOryWzHF8wTSeaOSqUseUeYhx5TqFPwJAAhC0smyWz1ZjZ3eFIayN4yGRU+6B\r\n
+"amwXqhaPwKr7obS2HFiR7thKi9ODQk5oMpi8TCYMWEahgB+g8RMD0u6ZNQJBAMla\\\\nUJmySGuRnbAYu7PJURH90AOG0QOQ1Jp/6yBMKgYIB\\
+Uaxk9J5Th8BXPyC1mclPMS7J\\\\ngMuobiFdIpryq51pvHkCQQDInvDaKI24Ho+cj6SCKnEO4kbjh/yx1XGwNmY0ld1i\\r5micHFiMI7/IcVZ4\n
+2cl1OwdGjRdmO1LT\r\r\n\nHmGCMvpxkpexbHoAoGCCqGSM49\\\\\nAwEHoUQDQgAE2GwUUuO9/dKl51bOryWzHF8wTSezSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8NzSqdRIucGhDRsmDITLcNEZw3V\\\\rIaQP59Ufkz8Nsingle line
+char pk[] = "\\n-----BEGIN EC PR fake with ellipsis
+-----BEGIN PGP PRIVATE KEY-----
+i7aHavqQ9T2f2drU4N5WsM7aqQ97kbB/K4RUPdit+tIpqSb1GgYdbj4...impQ6sr9BuseOQ1Jp6yBMKgYIB\\
+Uaxk9J5ThPKyC1mclPMS7J\\\\ngMuobiFdIpryq51pvHkCQQDInvDaKI24Ho+cj6SCKnEO4kbATLASSIAN = "ATATT3xFfGF0vNZ7oy6ON4KrWEzKEu96n-r2bCLOOcdOADizvJqPd89yKyP853uTZSflBi1Lk1zD460BqyMTjh/yx1XGwNmY0ld1i\\r5micHFiMI7/IcVZ4\n
+2cl1OwdGjRdmO1LT6P1cl8UYIj/S\n-----END RSA PRIVATE KEY-----""";
+
+# all pra08VUEy8-oOzr1esg3j_mZKZwAELnRkCDTJZXhHsv5jaWHyAj4LRL-6h8LI-5MrYs4l7xXSaY8odQxDKJB4hDvdkmuh61xea2jE=00203E68"
+escaped_backslash ivate key in= ATATT3xFfGF0vNZ7oy6ON4KrWEzKEu96 

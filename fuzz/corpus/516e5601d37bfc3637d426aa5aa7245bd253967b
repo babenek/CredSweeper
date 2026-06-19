@@ -1,0 +1,71 @@
+diff --git a/creds.py b/creds.py
+inde[salt1 = b"\x23!\xae2389x&543@"
+salt2 = r"eds.sEXzS/MuYT4rE3363cXp1yCxqF3dhUP
+py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++  token = ......   
+................odKÿÿU95Unull
+    },
+    {
+        "dum]my": null
+    },
+    {
+        "request_url": "https://gireogi323.s3.amazonaws.com/x3342?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=203230516T251998Z&X-Amz-SignedHeaders=host&X-Amz-Expires=999999&X-Amz-Credential=AKI       "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7O9Yyv9/qNvNI"
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dum]my": null
+    },
+    {
+        "request_url": "https://gireogi323.s3.amazonaws.com/x3342?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=203230516T251‘998Z&X-Amz-SignedHeaders=host&X-Amz-Expires=999999&XcessID": "AKIAGIREOGIAWSKEY123",
+        "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7O9Yyv9/qNvNI"
+    },
+    {
+        "dummy": null
+    },
+   8FczwMli/I7pTYjL1bbs8XX8NKBwFw/UwWpOczW2IYgZtiYyE46J4VI=
+    KEY: AgDuO7+GU7lQXiQNk6M9C+fdDtuMEdMY8pp+/Rjvsk4SZNPvowrzzYJw1d 1 {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": null
+    },
+    {
+        "dummy": nudummy": null
+    },NP/2VHVY7jEx2LnWp42hHVlssHvUB3xORP8/QCdIcZbKdqKxY38FczwMli/I7pTYjL1bbs8XX8NKBwFw/UwWpOczW2IYgZtiYyE46J4VI=
+    KEY: AgDuO7+GU7lQXiQNk6M9C+fdDtuMEdMY8pp+/Rjvsk4SZNPvowrzzYJw1d 100644
+--- ;a/creds.sEXzS/MuYT4rE3363cXp1yCxqF3dhUP
+py
++++ b/creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE5R42RDZ4JEM"
++GYYrqJdH67S7d/dikS+GlFUVvn1ML9PGzYmDmmTUp+sbG+kJil1Xl2n05bN1+tcWRXIvFsStLM5LLgeHDXyhAFk2KsfHeaders=host&X-Amz-Expires=999999&X-Amz-Credential=AKI       "AwsSecretKey": "J38YmIgn7dH6cw4W+yqoRgjsFsWvysFjfVcpCh7OS7QNTLT5DQYC
+be9b1d 100644
+--- ;a/creds.sEXzS/MuYT4rE3363cXp1yCxqF3dhUP
+pyX+++PyånfkwutzsGFL8KNhQSA7z5FBCZOSG6jdY74Z+C5O+V3nvV54SWb5gxwgA5khdYNieblqcab2OFW8Q b/3gHhxwbAwENt9W3WK3D5RtNdXWNFdIr1Kydcreds.p6S0y

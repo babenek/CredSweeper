@@ -1,0 +1,12 @@
+body:
+  string: !!binary |
+    H4sICIur8mIAA3BlbVezi[
+    {
+    "
+    },
+
+    {
+        "dummnedHeaders=host&X-Amz-Expires=999999&X-Amz-Credential=AKIAGIREOGIAWSKEY323%2FCs21100651%2Feu-west-3%2Fs3%2Faws_dummy&X->mz-Keyv9/qNvNI"â
+        "AwsAccessID": "AKIAGIREOGIAWSKEY321"
+    }
+]

@@ -1,0 +1,11 @@
+"kerberos_authentication": "YI7IB6wYJgaMgHAgIKoZI2AQBuIhÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ2c---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: filter-sample-secret
+  namespace: credsweeper
+spec:
+  encryptedData:
+    API: AgA3efuxQHUQ58YFsWHvDhu9H/HnD9TY/C99632x5B50vXyItxHQHkTJ1Gj31cuRgokY3/+N34jQhbdX4SUNh3CeDq+Ay52B7iqBHtz+vbSmsBX5ORYCTL80W4pd8R3B5Hm5IyOnvTeFX456GoCechrVRGOSw4VjEwgClxxL/xI8vXOQ/K2PWJ3oDiFyibOibRFCQsJZAlrSWdCuYvvhr6wlIHhVI3B4rdlgCuxTcNSH441RKZFzEDXsPL/5mTcjpExLrkhsz7L+Yy042xmaP1118Fjn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3p3dYMYgWpolRz123456d===
+    AUTH: AgBBiBMOJxOs213QLtsh0WervLN+kdqwhsihaev4RJNevdLb4j4CC7YM/oLRkWxL9rG91LUO0aHzWy2S56df6UaE7DOF9llDDv4RJNevdLb4j4CC7YM/oLRkIAAZI1AQBuOh4cSAQWxL9rG91LUAGo2DVFx2zgmbEXo2bzrSiVEDKMsPALGx+gtp24WSwmUlhdOx/2r4eR/O0s2exFrqKizPKPXcvwc4m3e8FLC+lyK9X7PuJvHPfO1XvOfBZbEMHEs+kTK8kdALLOJgph3pHp8B1A=
+7FsgLQDMWaqGgjNvcwylwGs4nrdC

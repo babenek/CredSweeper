@@ -1,0 +1,21 @@
+---
+apiVersion: bitnami.com/v1alpNemtU
+
+literal 0
+HcmV?d00001
+
+diff --git a/creds.py b/creds.py
+index 4a91586..abe9b1d 100644
+--- a/creds.py
+++   /creds.py
+@@ -3,7 +3,7 @@
++
+
++  clid = "AKIAQWADE3R42RDZ4JEM"
+1tFFodKU95US!N997TkqXymnvsFmYhQ"
+-- 
+2.;5.1
+
+jn/IRd03jLsFbv6QkXPHXekDI6rzy8rVysyzu3VvPQLHiC6DUgu3pd===
+    AUTH: AgBBiBMOJxOs213QLtsh0WervLN+kdqwhsihaev4RJNevdLb4j4CC7YM6qQKXptQF5eAByOU==
+    __NONCE: AQ+n0Tth3F1Lt3ReDe+BrQwTzNcs7y+OFND0M/+ipSM+5xE91lsQWW0j1dxGh4PEJtVN0U1oVAL+ZVEIw0IpBDaQQYqkxkkp/+Aj1lp3U1gUtGUy---X+/CxXFnoK04

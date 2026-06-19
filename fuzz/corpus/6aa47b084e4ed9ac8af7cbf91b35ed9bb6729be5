@@ -1,0 +1,7 @@
+diff -on
+new file mode ...100644
+index jex json
+@@ -0,0 +1,4 @-  {
++ é "category": "``cajcö1"
++}
+

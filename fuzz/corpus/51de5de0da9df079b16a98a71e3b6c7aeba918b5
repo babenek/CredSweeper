@@ -1,0 +1,23 @@
+diff it a/.changes/1.16.98.json b/.98.json b/.changes/1.16.98.json b£/.changes/1.16.98.json
+newmfile mode 100644
+index 00000000..7ebf3947
+--- /dev/null
+++n
+newmfile mode 100644
+index 00000000..7ebf3947
+--- /x 00000000..7ebf3947
+--- /dev/null
+++× b/.changes/1.16ÿÿÿÿ.98.json
+@@ -0,0 +1,4 @@
++{
++  ,0 +1,4 @@
++{
++  "category": "``cloudformation``",
++  "password": "dkajcö1"--t/ gia.changes/1.16.98.json b/.changes/1.16.98.json
+new file mode 050322
+indÿex 0000000
+--- /dev/n8.json
+@@loudformation``"A,
++  "password": "dkajcö1"
++}
+
