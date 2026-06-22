@@ -7,7 +7,7 @@ from bz2 import BZ2File
 from collections.abc import Sized
 from gzip import GzipFile
 from lzma import LZMAFile
-from types import CodeType
+from types import CodeType, EllipsisType
 from typing import List, Optional, Tuple, Any, Generator, Union
 
 from credsweeper.common.constants import RECURSIVE_SCAN_LIMITATION, MIN_DATA_LEN, DEFAULT_ENCODING, UTF_8, \
@@ -256,7 +256,7 @@ class AbstractScanner(ABC):
                 if keyword_match and MIN_VALUE_LENGTH <= len(stripped_value):
                     augmented_lines_for_keyword_rules.append(f"{key} = {repr(stripped_value)}")
             elif not value or isinstance(value,
-                                         (int, float, complex, slice, ellipsis, datetime.date, datetime.datetime)):
+                                         (int, float, complex, slice, EllipsisType, datetime.date, datetime.datetime)):
                 # skip useless types
                 pass
             else:
