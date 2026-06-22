@@ -220,7 +220,7 @@ class AbstractScanner(ABC):
             # a keyword rule may be applicable for `key` (str only) and `value` (str, bytes)
             keyword_match = bool(isinstance(key, str) and self.scanner.keywords_required_substrings_check(key.lower()))
 
-            if isinstance(value, (dict, list, tuple)) and value:
+            if isinstance(value, (dict, list, tuple, frozenset, set)) and value:
                 # recursive scan for not empty structured `value`
                 val_struct_provider = StructContentProvider(struct=value,
                                                             file_path=struct_provider.file_path,
@@ -255,7 +255,8 @@ class AbstractScanner(ABC):
                         candidates.extend(new_candidates)
                 if keyword_match and MIN_VALUE_LENGTH <= len(stripped_value):
                     augmented_lines_for_keyword_rules.append(f"{key} = {repr(stripped_value)}")
-            elif not value or isinstance(value, (int, float, datetime.date, datetime.datetime)):
+            elif not value or isinstance(value,
+                                         (int, float, complex, slice, ellipsis, datetime.date, datetime.datetime)):
                 # skip useless types
                 pass
             else:
