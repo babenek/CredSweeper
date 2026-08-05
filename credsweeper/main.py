@@ -18,6 +18,7 @@ from credsweeper.file_handler.byte_content_provider import ByteContentProvider
 from credsweeper.file_handler.files_provider import FilesProvider
 from credsweeper.file_handler.patches_provider import PatchesProvider
 from credsweeper.logger.logger import Logger
+from credsweeper.progress import Progress
 from credsweeper.utils.util import Util
 
 EXIT_SUCCESS = 0
@@ -47,33 +48,36 @@ def get_credsweeper(args: Namespace) -> CredSweeper:
         denylist = [line for line in Util.read_file(args.denylist_path) if line]
     else:
         denylist = []
-    return CredSweeper(rule_path=args.rule_path,
-                       config_path=args.config_path,
-                       json_filename=args.json_filename,
-                       xlsx_filename=args.xlsx_filename,
-                       stdout=args.stdout,
-                       color=args.color,
-                       hashed=args.hashed,
-                       subtext=args.subtext,
-                       sort_output=args.sort_output,
-                       use_filters=args.no_filters,
-                       pool_count=args.jobs,
-                       ml_batch_size=args.ml_batch_size,
-                       ml_threshold=args.ml_threshold,
-                       ml_config=args.ml_config,
-                       ml_model=args.ml_model,
-                       ml_providers=args.ml_providers,
-                       ml_threads_limit=args.ml_threads_limit,
-                       find_by_ext=args.find_by_ext,
-                       pedantic=args.pedantic,
-                       depth=args.depth,
-                       doc=args.doc,
-                       severity=args.severity,
-                       size_limit=args.size_limit,
-                       exclude_lines=denylist,
-                       exclude_values=denylist,
-                       thrifty=args.thrifty,
-                       log_level=args.log)
+    return CredSweeper(
+        rule_path=args.rule_path,
+        config_path=args.config_path,
+        json_filename=args.json_filename,
+        xlsx_filename=args.xlsx_filename,
+        stdout=args.stdout,
+        color=args.color,
+        hashed=args.hashed,
+        subtext=args.subtext,
+        sort_output=args.sort_output,
+        use_filters=args.no_filters,
+        pool_count=args.jobs,
+        ml_batch_size=args.ml_batch_size,
+        ml_threshold=args.ml_threshold,
+        ml_config=args.ml_config,
+        ml_model=args.ml_model,
+        ml_providers=args.ml_providers,
+        ml_threads_limit=args.ml_threads_limit,
+        find_by_ext=args.find_by_ext,
+        pedantic=args.pedantic,
+        depth=args.depth,
+        doc=args.doc,
+        severity=args.severity,
+        size_limit=args.size_limit,
+        exclude_lines=denylist,
+        exclude_values=denylist,
+        thrifty=args.thrifty,
+        log_level=args.log,
+        progress_callback=Progress.on_progress if args.progress else None,
+    )
 
 
 def scan(args: Namespace, content_provider: AbstractProvider) -> int:

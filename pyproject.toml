@@ -30,6 +30,7 @@ dependencies = [
     "pyxlsb",
     "rpmfile",
     "striprtf",
+    "tqdm",
     "whatthepatch",
     "xlrd",
     "zstandard; python_version < '3.14'",
