@@ -29,7 +29,9 @@ Get all argument list:
                                  [--stdout | --no-stdout] [--color | --no-color]
                                  [--hashed | --no-hashed]
                                  [--subtext | --no-subtext] [--sort | --no-sort]
-                                 [--log LOG_LEVEL] [--size_limit SIZE_LIMIT]
+                                 [--log LOG_LEVEL]
+                                 [--progress | --no-progress]
+                                 [--size_limit SIZE_LIMIT]
                                  [--banner] [--version]
 
     options:
@@ -104,6 +106,8 @@ Get all argument list:
                             provide logging level of ['NOTSET', 'DEBUG', 'INFO', 'WARN',
                             'WARNING', 'ERROR', 'FATAL', 'CRITICAL', 'SILENCE']
                             (default: 'warning', case insensitive)
+      --progress, --no-progress
+                            display runtime process (default: False)
       --size_limit SIZE_LIMIT
                             set size limit of files that for scanning (eg. 1GB /
                             10MiB / 1000)

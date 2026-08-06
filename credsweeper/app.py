@@ -1,3 +1,4 @@
+import contextlib
 import json
 import logging
 import multiprocessing
@@ -292,14 +293,12 @@ class CredSweeper:
             ) -> None:
                 total = 0
                 while True:
-                    try:
+                    with contextlib.suppress(queue.Empty):
                         delta = progress_queue.get(timeout=1)
                         if delta is None:
                             break
                         total += delta
                         progress_callback(" file", total, len_providers)
-                    except queue.Empty:
-                        continue
 
             _progress_thread = threading.Thread(
                 target=_progress_loop,

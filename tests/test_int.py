@@ -265,6 +265,7 @@ class TestInt(TestCase):
                    " [--subtext | --no-subtext]" \
                    " [--sort | --no-sort]" \
                    " [--log LOG_LEVEL]" \
+                   " [--progress | --no-progress]" \
                    " [--size_limit SIZE_LIMIT]" \
                    " [--banner] " \
                    " [--version] " \
@@ -325,7 +326,7 @@ class TestInt(TestCase):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     # todo: fix when python 3.10 support ends
-    @pytest.mark.skipif(10 < sys.version_info.minor, reason="argparse default was changed in 3.11")
+    @pytest.mark.skipif(10 == sys.version_info.minor, reason="argparse default was changed in 3.11")
     def test_help_p(self) -> None:
         _stdout, _stderr = self._m_credsweeper(["--help"])
         output = " ".join(_stdout.split())
