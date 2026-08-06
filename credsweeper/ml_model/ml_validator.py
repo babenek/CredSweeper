@@ -250,10 +250,10 @@ class MlValidator:
         return result
 
     def validate_groups(
-            self,
-            group_list: List[Tuple[CandidateKey, List[Candidate]]],
-            batch_size: int,
-            progress_callback: Callable[[str, int, int], None],
+        self,
+        group_list: List[Tuple[CandidateKey, List[Candidate]]],
+        batch_size: int,
+        progress_callback: Callable[[str, int, int], None],
     ) -> Tuple[np.ndarray, np.ndarray]:
         """Use ml model on list of candidate groups.
 
