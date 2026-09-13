@@ -33,7 +33,7 @@ class Bzip2Scanner(AbstractScanner, ABC):
             if data_provider.file_type.endswith((".bz2", ".tb2", ".tbz")):
                 file_type = data_provider.file_type[:-4]
             elif data_provider.file_type.endswith(".tbz2"):
-                # .tar.bz2 synonim
+                # .tar.bz2 synonym
                 file_type = data_provider.file_type[:-5]
             else:
                 file_type = data_provider.file_type
