@@ -47,6 +47,7 @@ class GzipScanner(AbstractScanner, ABC):
         except AbstractScanner.LimitError as gzip_limit_exc:
             logger.warning("%s %s", data_provider.descriptor, gzip_limit_exc)
             return []
-        except Exception as gzip_exc:
-            logger.warning("%s:%s", data_provider.descriptor, gzip_exc)
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            # fallback
+            logger.warning("%s:%s:%s", type(exc), data_provider.descriptor, exc)
         return None

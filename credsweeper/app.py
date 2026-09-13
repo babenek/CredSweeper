@@ -539,7 +539,8 @@ class CredSweeper:
         def time_limited_thread(_provider):
             try:
                 _queue.put(file_scan(_provider))
-            except Exception as _exc:
+            except Exception as _exc:  # pylint: disable=broad-exception-caught
+                # all exceptions are passed to main process through queue
                 _queue.put(_exc)
 
         thread = threading.Thread(target=time_limited_thread, args=(provider, ), daemon=True)
@@ -567,7 +568,8 @@ class CredSweeper:
             logger.warning("Scan for '%s' timed out in %.3f seconds (limit: %.3f)", provider.descriptor,
                            time.perf_counter() - start_time, time_limit)
             return []
-        except Exception as exc:
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            # fallback
             logger.exception(exc)
             result = exc
         raise result
