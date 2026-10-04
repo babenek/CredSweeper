@@ -17,7 +17,7 @@ handlers:
 
   debug:
     class: logging.handlers.TimedRotatingFileHandler
-    level: TRACE
+    level: DEBUG
     formatter: verbose
     filename: ./log/debug.log
     backupCount: 3

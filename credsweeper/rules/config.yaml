@@ -2346,7 +2346,7 @@
     - code
 
 - name: Credential
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2360,7 +2360,7 @@
     - code
 
 - name: Key
-  severity: high
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2374,7 +2374,7 @@
     - code
 
 - name: Nonce
-  severity: low
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2388,7 +2388,7 @@
     - code
 
 - name: Password
-  severity: high
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2406,7 +2406,7 @@
     - code
 
 - name: Salt
-  severity: low
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2420,7 +2420,7 @@
     - code
 
 - name: Secret
-  severity: medium
+  severity: critical
   confidence: moderate
   type: keyword
   values:
@@ -2434,7 +2434,7 @@
     - code
 
 - name: Token
-  severity: high
+  severity: critical
   confidence: moderate
   type: keyword
   values:
