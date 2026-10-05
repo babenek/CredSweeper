@@ -8,6 +8,7 @@ from git import InvalidGitRepositoryError, NoSuchPathError, Repo
 
 from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.config.config import Config
+from credsweeper.common.constants import TRACE
 from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
@@ -54,11 +55,14 @@ class FilePathExtractor:
             # suppose, the file is located outside and should be scanned
             if not FilePathExtractor.check_exclude_file(config, path):
                 file_paths.append(path)
+            else:
+                logger.log(TRACE, "Skip: %s", path)
         elif os.path.isdir(path):
             for dirpath, _, filenames in os.walk(path):
                 for filename in filenames:
                     file_path = os.path.join(f"{dirpath}", f"{filename}")
                     if FilePathExtractor.check_exclude_file(config, file_path) or os.path.islink(file_path):
+                        logger.log(TRACE, "Skip: %s", file_path)
                         continue
                     if os.path.isfile(file_path) and not FilePathExtractor.check_file_size(config, file_path):
                         file_paths.append(file_path)
@@ -174,7 +178,7 @@ class FilePathExtractor:
             return True
 
         if MIN_DATA_LEN > file_size:
-            logger.log(5, "Size (%s) of the file '%s' is too small", file_size, path)
+            logger.log(TRACE, "Size (%s) of the file '%s' is too small", file_size, path)
             return True
         if isinstance(config.size_limit, int) and config.size_limit < file_size:
             logger.warning("Size (%s) of the file '%s' is over limit (%s)", file_size, path, config.size_limit)

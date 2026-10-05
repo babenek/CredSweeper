@@ -8,6 +8,7 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
+from credsweeper.common.constants import TRACE
 from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
@@ -67,6 +68,7 @@ class ZipScanner(AbstractScanner, ABC):
                     if zfl.is_dir():
                         continue
                     if FilePathExtractor.check_exclude_file(self.config, zfl.filename):
+                        logger.log(TRACE, "Skip: %s", zfl.filename)
                         continue
                     if 0 > recursive_limit_size - zfl.file_size:
                         logger.warning("%s: size %s is over limit %s depth:%s", zfl.filename, zfl.file_size,

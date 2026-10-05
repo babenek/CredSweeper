@@ -9,6 +9,7 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
+from credsweeper.common.constants import TRACE
 from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
@@ -38,6 +39,7 @@ class RpmScanner(AbstractScanner, ABC):
                     if 0 != member.isdir:
                         continue
                     if FilePathExtractor.check_exclude_file(self.config, member.name):
+                        logger.log(TRACE, "Skip: %s", member.name)
                         continue
                     if 0 > recursive_limit_size - member.size:
                         logger.warning("%s: size %s is over limit %s depth:%s", member.filename, member.size,

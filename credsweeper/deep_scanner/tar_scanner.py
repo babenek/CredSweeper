@@ -9,6 +9,7 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
+from credsweeper.common.constants import TRACE
 from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
@@ -44,6 +45,7 @@ class TarScanner(AbstractScanner, ABC):
                     if not tfi.isreg():
                         continue
                     if FilePathExtractor.check_exclude_file(self.config, tfi.name):
+                        logger.log(TRACE, "Skip: %s", tfi.path)
                         continue
                     if 0 > recursive_limit_size - tfi.size:
                         logger.warning("%s: size %s is over limit %s depth:%s", tfi.name, tfi.size,

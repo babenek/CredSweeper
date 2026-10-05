@@ -1,8 +1,11 @@
+import logging
 import string
 import typing
 from enum import Enum
 from typing import Optional, Union
 
+TRACE = logging.DEBUG >> 1  # half of DEBUG
+SILENCE = max(logging._levelToName.keys()) << 1  # pylint: disable=W0212
 
 class Severity(Enum):
     """Severity of candidate"""

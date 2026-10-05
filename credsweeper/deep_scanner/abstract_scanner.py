@@ -24,6 +24,7 @@ from credsweeper.file_handler.file_path_extractor import FilePathExtractor
 from credsweeper.file_handler.string_content_provider import StringContentProvider
 from credsweeper.file_handler.struct_content_provider import StructContentProvider
 from credsweeper.file_handler.text_content_provider import TextContentProvider
+from credsweeper.common.constants import TRACE
 from credsweeper.scanner.scanner import Scanner
 from credsweeper.utils.util import Util
 
@@ -83,23 +84,24 @@ class AbstractScanner(ABC):
         candidates: List[Candidate] = []
         if 0 > depth:
             # break recursion if maximal depth is reached
-            logger.debug("Bottom reached %s recursive_limit_size:%d", data_provider.file_path, recursive_limit_size)
+            logger.log(TRACE, "Bottom reached %s recursive_limit_size:%d", data_provider.file_path,
+                       recursive_limit_size)
             return candidates
         depth -= 1
         data_size = len(data_provider.data)
         if MIN_DATA_LEN > data_size:
             # break recursion for minimal data size
-            logger.debug("Too small data: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
-                         recursive_limit_size, data_provider.file_path, data_provider.info)
+            logger.log(TRACE, "Too small data: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
+                       recursive_limit_size, data_provider.file_path, data_provider.info)
             return candidates
         recursive_limit_size -= data_size
         if MIN_DATA_LEN > recursive_limit_size:
             # break recursion for exhausted size limit
-            logger.debug("Recursive limit exhausted: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
-                         recursive_limit_size, data_provider.file_path, data_provider.info)
+            logger.log(TRACE, "Recursive limit exhausted: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size,
+                       depth, recursive_limit_size, data_provider.file_path, data_provider.info)
             return candidates
-        logger.debug("Start data_scan: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
-                     recursive_limit_size, data_provider.file_path, data_provider.info)
+        logger.log(TRACE, "Start data_scan: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
+                   recursive_limit_size, data_provider.file_path, data_provider.info)
 
         if FilePathExtractor.is_find_by_ext_file(self.config, data_provider.file_type):
             # Skip scanning file and makes fake candidate due the extension is suspicious
@@ -208,15 +210,15 @@ class AbstractScanner(ABC):
                 parent_key: upper key if matched a keyword
         """
         candidates: List[Candidate] = []
-        logger.debug("Start struct_scan: depth=%d, limit=%d, path=%s, info=%s", depth, recursive_limit_size,
-                     struct_provider.file_path, struct_provider.info)
+        logger.log(TRACE, "Start struct_scan: depth=%d, limit=%d, path=%s, info=%s", depth, recursive_limit_size,
+                   struct_provider.file_path, struct_provider.info)
 
         structure_size = AbstractScanner.structure_size(struct_provider.struct)
         recursive_limit_size -= structure_size
         if 0 > depth or MIN_DATA_LEN > recursive_limit_size:
             # break recursion if maximal depth is reached or recursive_limit_size almost exhausted
-            logger.debug("Stopping recursion on %s depth:%d, recursive_limit_size:%d", struct_provider.file_path, depth,
-                         recursive_limit_size)
+            logger.log(TRACE, "Stopping recursion on %s depth:%d, recursive_limit_size:%d", struct_provider.file_path,
+                       depth, recursive_limit_size)
             return candidates
         depth -= 1
 

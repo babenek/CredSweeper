@@ -8,6 +8,7 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
+from credsweeper.common.constants import TRACE
 from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,7 @@ class SquashfsScanner(AbstractScanner, ABC):
                     if not i.is_file or i.is_symlink:
                         continue
                     if FilePathExtractor.check_exclude_file(self.config, i.path):
+                        logger.log(TRACE, "Skip: %s", i.path)
                         continue
                     if 0 > recursive_limit_size - i.size:
                         logger.warning("%s: size %s is over limit %s depth:%s", i.name, i.size, recursive_limit_size,

@@ -19,7 +19,7 @@ from credsweeper.file_handler.byte_content_provider import ByteContentProvider
 from credsweeper.file_handler.file_path_extractor import FilePathExtractor
 from credsweeper.file_handler.files_provider import FilesProvider
 from credsweeper.file_handler.patches_provider import PatchesProvider
-from credsweeper.logger.logger import Logger
+from credsweeper.logger.logger import Logger, TRACE
 from credsweeper.progress import Progress
 from credsweeper.utils.util import Util
 
@@ -119,7 +119,7 @@ def get_commit_providers(commit: Commit, repo: Repo, config: Config) -> Sequence
                 try:
                     file_path = str(blob_b.path)
                     if FilePathExtractor.check_exclude_file(config, file_path):
-                        logger.debug("Skip: %s", file_path)
+                        logger.log(TRACE, "Skip: %s", file_path)
                         continue
                     result[blob_b.path] = ByteContentProvider(content=blob_b.data_stream.read(),
                                                               file_path=file_path,
