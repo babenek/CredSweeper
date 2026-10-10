@@ -33,6 +33,7 @@ from credsweeper.deep_scanner.png_scanner import PngScanner
 from credsweeper.deep_scanner.pptx_scanner import PptxScanner
 from credsweeper.deep_scanner.protobuf_scanner import ProtobufScanner
 from credsweeper.deep_scanner.pycache_scanner import PycacheScanner
+from credsweeper.deep_scanner.python_scanner import PythonScanner
 from credsweeper.deep_scanner.rpm_scanner import RpmScanner
 from credsweeper.deep_scanner.rtf_scanner import RtfScanner
 from credsweeper.deep_scanner.snk_scanner import SnkScanner
@@ -85,6 +86,7 @@ class DeepScanner(
     PptxScanner,  #
     ProtobufScanner,  #
     PycacheScanner,  #
+    PythonScanner,  #
     RtfScanner,  #
     RpmScanner,  #
     SquashfsScanner,  #
@@ -256,6 +258,8 @@ class DeepScanner(
                 if data_provider.text:
                     # data provider data can be transformed to text
                     deep_scanners.append(LangScanner)
+                    if PythonScanner.match(data):
+                        deep_scanners.append(PythonScanner)
                     if LexerScanner.match(data):
                         deep_scanners.append(LexerScanner)
                     if TomlScanner.match(data):

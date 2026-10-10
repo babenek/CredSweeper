@@ -111,21 +111,6 @@ class DataContentProvider(ContentProvider):
         else:
             logger.log(TRACE, "Data do not contain { - weak JSON")
 
-        # # # Python
-        try:
-            # search only in sources with strings
-            if (';' in self.text or 2 < self.text.count('\n') or 2 < self.text.count('\r')) \
-                    and ('"' in self.text or "'" in self.text):
-                self.structure = Util.parse_python(self.text)
-                logger.log(TRACE, "CONVERTED from Python")
-            else:
-                logger.log(TRACE, "Data do not contain line feed - weak PYTHON")
-        except Exception as exc:  # pylint: disable=broad-exception-caught
-            # fallback
-            logger.log(TRACE, "Cannot parse as Python %s:%s %s", type(exc), exc, self.descriptor)
-        else:
-            if self.__is_structure():
-                return True
         # # # YAML - almost always recognized
         try:
             if ':' in self.text and (2 < self.text.count('\n') or 2 < self.text.count('\r')):
