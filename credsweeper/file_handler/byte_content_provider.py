@@ -14,7 +14,7 @@ class ByteContentProvider(ContentProvider):
 
     def __init__(
             self,  #
-            content: bytes,  #
+            content: bytes|bytearray,  #
             file_path: Optional[str] = None,  #
             file_type: Optional[str] = None,  #
             info: Optional[str] = None) -> None:

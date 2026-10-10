@@ -113,7 +113,7 @@ class CpioScanner(AbstractScanner, ABC):
         return CpioScanner._read_binary(data, offset, limit, CpioScanner.BIN_BE_HEADER)
 
     @staticmethod
-    def walk_cpio(data: bytes, limit: int) -> Generator[Tuple[int, str, bytes], None, None]:
+    def walk_cpio(data: bytes|bytearray, limit: int) -> Generator[Tuple[int, str, bytes], None, None]:
         """Processes sequence of cpio archive and yields offset, name and data"""
 
         offset = 0

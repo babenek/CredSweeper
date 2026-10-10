@@ -24,7 +24,7 @@ class DexScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def walk_dex(data: bytes) -> Generator[Tuple[int, bytes], None, None]:
+    def walk_dex(data: bytes|bytearray) -> Generator[Tuple[int, bytes], None, None]:
         """Processes sequence of DEX file and yields offset and bytes from strings"""
         data_len = len(data)
         if 0x70 > data_len:

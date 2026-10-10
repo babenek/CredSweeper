@@ -25,7 +25,7 @@ class DebScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def walk_deb(data: bytes) -> Generator[Tuple[int, str, bytes], None, None]:
+    def walk_deb(data: bytes|bytearray) -> Generator[Tuple[int, str, bytes], None, None]:
         """Processes sequence of DEB archive and yields offset, name and data"""
         offset = 8  # b"!<arch>\n"
         data_limit = len(data) - DebScanner.__header_size
