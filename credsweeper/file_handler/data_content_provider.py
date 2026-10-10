@@ -73,59 +73,6 @@ class DataContentProvider(ContentProvider):
         return self.structure is not None and (isinstance(self.structure, dict) and 0 < len(self.structure.keys())
                                                or isinstance(self.structure, list) and 0 < len(self.structure))
 
-    def represent_as_structure(self) -> Optional[bool]:
-        """Tries to convert data with many parsers. Stores result to internal structure
-
-        Return:
-             True if some structure found
-             False if no data found
-             None if the format is not acceptable
-
-        """
-        if MIN_DATA_LEN > len(self.text):
-            return False
-        # JSON & NDJSON
-        if '{' in self.text and '}' in self.text and '"' in self.text and ':' in self.text:
-            try:
-                self.structure = json.loads(self.text)
-                logger.log(TRACE, "CONVERTED from json")
-            except Exception as exc:  # pylint: disable=broad-exception-caught
-                # fallback
-                logger.log(TRACE, "Cannot parse as json %s:%s %s", type(exc), exc, self.descriptor)
-            else:
-                if self.__is_structure():
-                    return True
-            try:
-                self.structure = []
-                for line in self.text.splitlines():
-                    # each line must be in json format, otherwise - exception rises
-                    self.structure.append(json.loads(line))
-                logger.log(TRACE, "CONVERTED from ndjson")
-            except Exception as exc:  # pylint: disable=broad-exception-caught
-                # fallback
-                logger.log(TRACE, "Cannot parse as ndjson %s:%s %s", type(exc), exc, self.descriptor)
-                self.structure = None
-            else:
-                if self.__is_structure():
-                    return True
-        else:
-            logger.log(TRACE, "Data do not contain { - weak JSON")
-
-        # # # YAML - almost always recognized
-        try:
-            if ':' in self.text and (2 < self.text.count('\n') or 2 < self.text.count('\r')):
-                self.structure = yaml.safe_load(self.text)
-                logger.log(TRACE, "CONVERTED from yaml")
-            else:
-                logger.log(TRACE, "Data do not contain colon mark - weak YAML")
-        except Exception as exc:  # pylint: disable=broad-exception-caught
-            # fallback
-            logger.log(TRACE, "Cannot parse as yaml %s:%s %s", type(exc), exc, self.descriptor)
-        else:
-            if self.__is_structure():
-                return True
-        # # # None of above
-        return None
 
     def represent_as_xml(self) -> Optional[bool]:
         """Tries to read data as xml
