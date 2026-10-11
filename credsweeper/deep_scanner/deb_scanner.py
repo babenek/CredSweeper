@@ -18,7 +18,7 @@ class DebScanner(AbstractScanner, ABC):
     __header_size = 60
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/Deb_(file_format)"""
         if data.startswith(b"!<arch>\n"):
             return True

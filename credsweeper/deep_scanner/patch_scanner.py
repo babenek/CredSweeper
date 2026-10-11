@@ -16,7 +16,7 @@ class PatchScanner(AbstractScanner, ABC):
     """Implements .patch scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Match logic in data_scan"""
         return True
 

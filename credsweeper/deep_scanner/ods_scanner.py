@@ -10,7 +10,7 @@ class OdsScanner(PandasScanner, ABC):
     """Implements xlsx scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Assume, ZIP prefix was checked before"""
         if b"META-INF/manifest.xml" in data and b"mimetype" in data:
             # may be any OpenOffice document, but zip extraction is skipped here

@@ -15,7 +15,7 @@ class LzmaScanner(AbstractScanner, ABC):
     """Implements lzma scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - lzma also xz"""
         if data.startswith((b"\xFD7zXZ\x00", b"\x5D\x00\x00")):
             return True

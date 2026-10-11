@@ -15,7 +15,7 @@ class ProtobufScanner(AbstractScanner, ABC):
     """Implements protobuf (ar) scanning"""
 
     @staticmethod
-    def read_wire(data: bytes | bytearray, offset: int) -> Tuple[int, int]:
+    def read_wire(data: bytes, offset: int) -> Tuple[int, int]:
         """Reads wire to detect sizes
 
         Returns: size of wire type (with primitives types), size of data (length-delimited)
@@ -45,7 +45,7 @@ class ProtobufScanner(AbstractScanner, ABC):
         return -1, 0
 
     @staticmethod
-    def match_protobuf(data: bytes | bytearray, offset: int, limit: int) -> bool:
+    def match_protobuf(data: bytes, offset: int, limit: int) -> bool:
         """Process data from start to end as simple protobuf chunk
 
         Returns: True when whole chunk was utilized with protobuf structure
@@ -61,7 +61,7 @@ class ProtobufScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Simple structure check for whole data"""
         if data:
             return ProtobufScanner.match_protobuf(data, 0, len(data))

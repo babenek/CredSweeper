@@ -20,7 +20,7 @@ class ZstdScanner(AbstractScanner, ABC):
     """Implements zstd data inflate and scan"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Returns True if data looks like deflated data with zstd"""
         if data.startswith(b"\x28\xB5\x2F\xFD") and 20 < len(data):
             # around 20 bytes for 8 bytes

@@ -47,7 +47,7 @@ class AbstractScanner(ABC):
 
     @staticmethod
     @abstractmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Abstract method for any deep scanner"""
         raise NotImplementedError(__name__)
 
@@ -251,7 +251,7 @@ class AbstractScanner(ABC):
                                                      recursive_limit_size,
                                                      parent_key=parent_key if keyword_match else '')
                 candidates.extend(new_candidates)
-            elif isinstance(value, (bytes, bytearray)):
+            elif isinstance(value, bytes):
                 # recursive data scan
                 if MIN_DATA_LEN <= len(value):
                     bytes_struct_provider = DataContentProvider(

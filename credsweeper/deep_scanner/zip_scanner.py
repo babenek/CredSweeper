@@ -17,7 +17,7 @@ class ZipScanner(AbstractScanner, ABC):
     """Implements zip scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
         if data.startswith(b"PK") and 4 <= len(data):
             if 0x03 == data[2] and 0x04 == data[3]:
@@ -32,7 +32,7 @@ class ZipScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def get_size(data: bytes | bytearray) -> int:
+    def get_size(data: bytes) -> int:
         """Evaluate extracted archive size
 
         Returns: size of data or -1 in failure case"""
