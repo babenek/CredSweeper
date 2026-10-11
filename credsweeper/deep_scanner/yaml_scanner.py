@@ -20,8 +20,8 @@ class YamlScanner(AbstractScanner, ABC):
     @staticmethod
     def match(data: bytes) -> bool:
         """Applied in represent_as_structure"""
-        if 0 < data.find(b':', 0, MAX_LINE_LENGTH) and 0 <= data.find(b'-', 0, MAX_LINE_LENGTH) \
-                and 2 < data.count(b'\n', 0, MAX_LINE_LENGTH):
+        if 0 < data.find(b':', 0, MAX_LINE_LENGTH) or 0 <= data.find(b"!!", 0, MAX_LINE_LENGTH) \
+                or 2 < data.count(b'\n', 0, MAX_LINE_LENGTH):
             return True
         return False
 
@@ -33,14 +33,18 @@ class YamlScanner(AbstractScanner, ABC):
         """Tries to represent data as markup language and scan as structure"""
         try:
             structure = yaml.safe_load(data_provider.text)
-            struct_data_provider = StructContentProvider(struct=structure,
-                                                         file_path=data_provider.file_path,
-                                                         file_type=data_provider.file_type,
-                                                         info=f"{data_provider.info}|YAML")
-            new_limit = recursive_limit_size - len(data_provider.data)
-            candidates = self.structure_scan(struct_data_provider, depth, new_limit)
-            return candidates
+            if isinstance(structure, (bytes, dict, list, set)):
+                # simple data may be scanned as plain text
+                struct_data_provider = StructContentProvider(struct=structure,
+                                                             file_path=data_provider.file_path,
+                                                             file_type=data_provider.file_type,
+                                                             info=f"{data_provider.info}|YAML")
+                new_limit = recursive_limit_size - len(data_provider.data)
+                candidates = self.structure_scan(struct_data_provider, depth, new_limit)
+                return candidates
+        except yaml.error.YAMLError as yaml_exc:
+            logger.log(TRACE, "Cannot parse as yaml %s %s", yaml_exc, data_provider.descriptor)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
-            logger.log(TRACE, "Cannot parse as yaml %s:%s %s", type(exc), exc, data_provider.descriptor)
+            logger.warning("Cannot parse as yaml %s:%s %s", type(exc), exc, data_provider.descriptor)
         return None

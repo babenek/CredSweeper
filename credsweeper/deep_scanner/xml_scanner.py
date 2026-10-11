@@ -1,16 +1,17 @@
 import logging
 import re
 from abc import ABC
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from lxml import etree
 
-from credsweeper.common.constants import MAX_LINE_LENGTH
+from credsweeper.common.constants import MAX_LINE_LENGTH, MIN_DATA_LEN, DEFAULT_PATTERN_LEN
 from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.struct_content_provider import StructContentProvider
 from credsweeper.logger import TRACE
+from credsweeper.utils.util import Util
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,19 @@ class XmlScanner(AbstractScanner, ABC):
                     return True
         return False
 
+    def represent_xml(self,lines:List[str])->Any:
+        """Parse XML to structure with possible tag combination"""
+        structure = []
+        for element in etree.fromstringlist(lines).iter():
+            if text := Util.extract_element_data(element, "text"):
+                if DEFAULT_PATTERN_LEN <= len(text):
+                    tag = Util.extract_element_data(element, "tag")
+                    if self.scanner.keywords_required_substrings_check(tag.lower()):
+                        structure.append({tag: text})
+                    else:
+                        structure.append(text)
+        return structure
+
     def data_scan(
             self,  #
             data_provider: DataContentProvider,  #
@@ -44,12 +58,8 @@ class XmlScanner(AbstractScanner, ABC):
         """Tries to represent data as XML text and scan as text lines"""
         try:
             # todo: support tag-text combinations
-            structure = etree.fromstringlist(data_provider.lines)
-            # for element in tree.iter():
-            #     tag = Util.extract_element_data(element, "tag")
-            #     text = Util.extract_element_data(element, "text")
-            #     lines.append(f"{tag} : {text}")
-            #     line_nums.append(element.sourceline)
+            structure = []
+
             struct_data_provider = StructContentProvider(struct=structure,
                                                          file_path=data_provider.file_path,
                                                          file_type=data_provider.file_type,
@@ -59,5 +69,6 @@ class XmlScanner(AbstractScanner, ABC):
             return candidates
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
+            logger.warning("Cannot parse as XML %s:%s %s", type(exc), exc, data_provider.descriptor)
             logger.log(TRACE, "Cannot parse as XML %s:%s %s", type(exc), exc, data_provider.descriptor)
         return None

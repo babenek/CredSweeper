@@ -194,7 +194,8 @@ class AbstractScanner(ABC):
                     else:
                         yield key, value
         else:
-            logger.warning("Not supported type:%s val:%s", str(type(structure)), repr(structure))
+            logger.warning("Not supported type:%s", type(structure))
+            # raise ValueError(f"Not supported type:{type(structure)}" )
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
