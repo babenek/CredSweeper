@@ -23,7 +23,7 @@ class YamlScanner(AbstractScanner, ABC):
         if 0 < data.find(b':', 0, MAX_LINE_LENGTH) and 0 <= data.find(b'-', 0, MAX_LINE_LENGTH) \
                 and 2 < data.count(b'\n', 0, MAX_LINE_LENGTH):
             return True
-        return True
+        return False
 
     def data_scan(
             self,  #

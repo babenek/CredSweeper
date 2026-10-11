@@ -43,8 +43,13 @@ class XmlScanner(AbstractScanner, ABC):
             recursive_limit_size: int) -> Optional[List[Candidate]]:
         """Tries to represent data as XML text and scan as text lines"""
         try:
-
+            # todo: support tag-text combinations
             structure = etree.fromstringlist(data_provider.lines)
+            # for element in tree.iter():
+            #     tag = Util.extract_element_data(element, "tag")
+            #     text = Util.extract_element_data(element, "text")
+            #     lines.append(f"{tag} : {text}")
+            #     line_nums.append(element.sourceline)
             struct_data_provider = StructContentProvider(struct=structure,
                                                          file_path=data_provider.file_path,
                                                          file_type=data_provider.file_type,

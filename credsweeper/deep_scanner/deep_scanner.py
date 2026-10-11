@@ -19,7 +19,7 @@ from credsweeper.deep_scanner.html_scanner import HtmlScanner
 from credsweeper.deep_scanner.jclass_scanner import JclassScanner
 from credsweeper.deep_scanner.jks_scanner import JksScanner
 from credsweeper.deep_scanner.json_scanner import JsonScanner
-from credsweeper.deep_scanner.lang_scanner import YamlScanner
+from credsweeper.deep_scanner.yaml_scanner import YamlScanner
 from credsweeper.deep_scanner.lexer_scanner import LexerScanner
 from credsweeper.deep_scanner.lzma_scanner import LzmaScanner
 from credsweeper.deep_scanner.mxfile_scanner import MxfileScanner
