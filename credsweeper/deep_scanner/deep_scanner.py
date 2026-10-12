@@ -3,6 +3,7 @@ from typing import List, Any, Tuple, Self
 
 from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.config.config import Config
+from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.deep_scanner.byte_scanner import ByteScanner
 from credsweeper.deep_scanner.bzip2_scanner import Bzip2Scanner
 from credsweeper.deep_scanner.cpio_scanner import CpioScanner
@@ -19,7 +20,6 @@ from credsweeper.deep_scanner.html_scanner import HtmlScanner
 from credsweeper.deep_scanner.jclass_scanner import JclassScanner
 from credsweeper.deep_scanner.jks_scanner import JksScanner
 from credsweeper.deep_scanner.json_scanner import JsonScanner
-from credsweeper.deep_scanner.yaml_scanner import YamlScanner
 from credsweeper.deep_scanner.lexer_scanner import LexerScanner
 from credsweeper.deep_scanner.lzma_scanner import LzmaScanner
 from credsweeper.deep_scanner.mxfile_scanner import MxfileScanner
@@ -47,6 +47,7 @@ from credsweeper.deep_scanner.toml_scanner import TomlScanner
 from credsweeper.deep_scanner.xls_scanner import XlsScanner
 from credsweeper.deep_scanner.xlsx_scanner import XlsxScanner
 from credsweeper.deep_scanner.xml_scanner import XmlScanner
+from credsweeper.deep_scanner.yaml_scanner import YamlScanner
 from credsweeper.deep_scanner.zip_scanner import ZipScanner
 from credsweeper.deep_scanner.zlib_scanner import ZlibScanner
 from credsweeper.deep_scanner.zstd_scanner import ZstdScanner
@@ -107,12 +108,12 @@ class DeepScanner(
 ):  # yapf: disable
     """Advanced scanner with recursive exploring of data"""
 
-    BINARY_SCANNERS = (JksScanner, SnkScanner)
+    BINARY_SCANNERS = (JksScanner, PdfScanner, SnkScanner)
 
     CONTAINER_SCANNERS = (Sqlite3Scanner, CrxScanner, Bzip2Scanner, LzmaScanner, GzipScanner, ZstdScanner,
-                          SquashfsScanner, GritScanner, DebScanner, RpmScanner, PdfScanner, PngScanner, JclassScanner,
-                          PkcsScanner, XlsScanner, TarScanner, PickleScanner, DexScanner, PlistScanner, RtfScanner,
-                          PycacheScanner, CpioScanner)
+                          SquashfsScanner, GritScanner, DebScanner, RpmScanner, PngScanner, JclassScanner, PkcsScanner,
+                          XlsScanner, TarScanner, PickleScanner, DexScanner, PlistScanner, RtfScanner, PycacheScanner,
+                          CpioScanner)
 
     def __init__(self, config: Config, scanner: Scanner) -> None:
         """Initialize Advanced credential scanner.
@@ -133,17 +134,9 @@ class DeepScanner(
         return self.__scanner
 
     @staticmethod
-    def get_binary_scanner(data: bytes) -> Self:
-        """Returns only pure binary data scanner or None"""
-        for scanner_class in DeepScanner.BINARY_SCANNERS:
-            if scanner_class.match(data):
-                return scanner_class
-        return None
-
-    @staticmethod
-    def get_container_scanner(data: bytes) -> Self:
-        """Returns container type scanners or None"""
-        for scanner_class in DeepScanner.CONTAINER_SCANNERS:
+    def get_matched_scanner(data: bytes, scanner_classes: List[AbstractScanner]) -> AbstractScanner | None:
+        """Returns matched scanner or None"""
+        for scanner_class in scanner_classes:
             if scanner_class.match(data):
                 return scanner_class
         return None
@@ -157,10 +150,10 @@ class DeepScanner(
         if not data or not isinstance(data, bytes) or len(data) < MIN_DATA_LEN:
             # Guard clause: reject empty or invalid input data early
             pass
-        elif binary_scanner := DeepScanner.get_binary_scanner(data):
+        elif binary_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.BINARY_SCANNERS):
             # pure binaries are totally human-not-readable
             deep_scanners.append(binary_scanner)
-        elif container_scanner := DeepScanner.get_container_scanner(data):
+        elif container_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.CONTAINER_SCANNERS):
             # sometimes it can be human-readable
             if 0 < depth:
                 deep_scanners.append(container_scanner)
