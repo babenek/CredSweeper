@@ -15,7 +15,7 @@ class PickleScanner(AbstractScanner, ABC):
     """Implements pickle data scanning with pickletools"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Supports protocols 3, 4 and 5"""
         if data.startswith(b'\x80') and 32 < len(data) and 0x03 <= data[1] <= 0x05:
             return True

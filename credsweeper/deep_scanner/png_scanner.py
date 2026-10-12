@@ -15,7 +15,7 @@ class PngScanner(AbstractScanner, ABC):
     """Implements PNG scanning for text chunks"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Returns True if prefix match"""
         if data.startswith(b"\x89PNG\r\n\x1a\n"):
             return True

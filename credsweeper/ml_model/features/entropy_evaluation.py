@@ -3,9 +3,9 @@ from typing import Dict, List, Set
 
 import numpy as np
 
-from credsweeper.common.constants import Chars, ML_HUNK
+from credsweeper.common.constants import Chars, ML_HUNK, MIN_DATA_LEN
 from credsweeper.credentials.candidate import Candidate
-from credsweeper.file_handler.data_content_provider import MIN_DATA_LEN
+
 from credsweeper.ml_model.features.feature import Feature
 
 
@@ -56,8 +56,8 @@ class EntropyEvaluation(Feature):
             # check charset for non-zero value
             # use the new variable to deal with mypy
             uniq_set = set(uniq)
-            for n, i in enumerate(EntropyEvaluation.CHAR_SET, start=3):
-                if not uniq_set.difference(i):
-                    result[n] = 1.0
+            for i, c in enumerate(EntropyEvaluation.CHAR_SET, start=3):
+                if not uniq_set.difference(c):
+                    result[i] = 1.0
 
         return result

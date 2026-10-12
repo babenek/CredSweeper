@@ -10,7 +10,7 @@ class XlsScanner(PandasScanner, ABC):
     """Implements xls matching"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
         if data.startswith(b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"):
             # Compound File Binary Format: doc, xls, ppt, msi, msg

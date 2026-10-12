@@ -6,9 +6,10 @@ from typing import List, Optional
 from pdfminer.high_level import extract_pages
 from pdfminer.layout import LAParams, LTText, LTItem
 
+from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
-from credsweeper.file_handler.data_content_provider import DataContentProvider, MIN_DATA_LEN
+from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.string_content_provider import StringContentProvider
 
 logger = logging.getLogger(__name__)
@@ -18,7 +19,7 @@ class PdfScanner(AbstractScanner, ABC):
     """Implements pdf scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - pdf"""
         if data.startswith(b"%PDF-"):
             return True

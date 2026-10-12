@@ -14,7 +14,7 @@ class CrxScanner(AbstractScanner, ABC):
     """Implements CRX files scanning with cut-off prefix"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """Returns True if prefix match"""
         if data.startswith((b"Cr24\x02\x00\x00\x00", b"Cr24\x03\x00\x00\x00")) and 32 < len(data):
             return True

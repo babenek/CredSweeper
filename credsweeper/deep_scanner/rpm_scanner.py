@@ -18,7 +18,7 @@ class RpmScanner(AbstractScanner, ABC):
     """Implements rpm scanning"""
 
     @staticmethod
-    def match(data: bytes | bytearray) -> bool:
+    def match(data: bytes) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
         if data.startswith(b"\xED\xAB\xEE\xDB"):
             return True
