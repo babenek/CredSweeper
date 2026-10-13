@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class DataContentProvider(ContentProvider):
-    """Dummy raw provider to keep bytes|bytearray"""
+    """Dummy raw provider to keep bytes"""
 
     def __init__(
             self,  #

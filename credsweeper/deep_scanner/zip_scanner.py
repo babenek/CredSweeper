@@ -32,7 +32,7 @@ class ZipScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def get_size(data: bytes) -> int:
+    def get_size(data: bytes | bytearray) -> int:
         """Evaluate extracted archive size
 
         Returns: size of data or -1 in failure case"""
