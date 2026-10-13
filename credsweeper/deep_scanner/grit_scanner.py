@@ -17,7 +17,7 @@ class GritScanner(AbstractScanner, ABC):
     """Implements pak files from grit scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Versions 4,5"""
         if data.startswith((b"\x04\x00\x00\x00", b"\x05\x00\x00\x00")):
             return True

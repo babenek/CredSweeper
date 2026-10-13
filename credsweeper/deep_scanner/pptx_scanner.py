@@ -17,7 +17,7 @@ class PptxScanner(AbstractScanner, ABC):
     """Implements pptx scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Assume, ZIP prefix and common office files were checked before"""
         if b"ppt/presentation.xml" in data:
             return True

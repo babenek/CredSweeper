@@ -16,7 +16,7 @@ class SnkScanner(AbstractScanner, ABC):
     """Implements Snk files scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """https://github.com/dotnet/runtime/blob/main/docs/project/strong-name-signing.md"""
         if data.startswith(b"\x07\x02\x00\x00\x00$\x00\x00RSA2"):
             return True

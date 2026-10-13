@@ -18,7 +18,7 @@ class TmxScanner(AbstractScanner, ABC):
     """Realises tmX files scanning for values only. Image tags are skipped."""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Used to detect tm7,tm6,etc. (ThreadModeling) format."""
         for opening_tag, closing_tag in [(b"<ThreatModel", b"</ThreatModel>"),
                                          (b"<KnowledgeBase", b"</KnowledgeBase>")]:

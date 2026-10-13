@@ -17,7 +17,7 @@ class HtmlScanner(AbstractScanner, ABC):
     """Implements HTML scanning if possible"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Used to detect HTML format. Suppose, invocation of is_xml() was True before."""
         for opening_tag, closing_tag in [(b"<html", b"</html>"), (b"<body", b"</body>"), (b"<table", b"</table>"),
                                          (b"<p>", b"</p>"), (b"<span>", b"</span>"), (b"<div>", b"</div>"),

@@ -16,7 +16,7 @@ class CpioScanner(AbstractScanner, ABC):
     """Implements cpio scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures"""
         if data.startswith((b"\x71\xc7", b"\xc7\x71", b"070707", b"070701", b"070702")) and data.endswith(b"\0\0"):
             return True

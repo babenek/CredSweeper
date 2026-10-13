@@ -16,7 +16,7 @@ class TomlScanner(AbstractScanner, ABC):
     """Implements TOML scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Check if data MAY be in TOML format"""
         equal_pos = data.find(b'=', 0, MAX_LINE_LENGTH)
         if 0 < equal_pos:

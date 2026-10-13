@@ -17,7 +17,7 @@ class JsonScanner(AbstractScanner, ABC):
     """Implements scanning of data if it is a script of some markup language"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Check matches for a json simple format"""
         if 0 < data.find(b'"', 0, MAX_LINE_LENGTH):
             # each valuable json has the text marker
