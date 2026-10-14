@@ -40,17 +40,27 @@ class EmlScanner(AbstractScanner, ABC):
                 if not isinstance(body, (bytes, str)):
                     logger.log(TRACE, "Skip unsupported body %s %s", type(body), data_provider.descriptor)
                     continue
-                if content_type not in ("text/plain", "text/html") or not content_type.startswith("application"):
+                if "text/plain" == content_type or content_type.startswith("message/"):
+                    # avoid
+                    eml_text_data_provider = ByteContentProvider(
+                        content=(body if isinstance(body, bytes) else body.encode()),
+                        file_path=data_provider.file_path,
+                        file_type=data_provider.file_type,
+                        info=f"{data_provider.info}|EML[{content_type}]")
+                    eml_candidates = self.scanner.scan(eml_text_data_provider)
+                    candidates.extend(eml_candidates)
+                elif content_type.startswith(("text/", "application/")):
+                    eml_part_data_provider = DataContentProvider(
+                        data=(body if isinstance(body, bytes) else body.encode()),
+                        file_path=data_provider.file_path,
+                        file_type=data_provider.file_type,
+                        info=f"{data_provider.info}|EML[{content_type}]")
+                    new_limit = recursive_limit_size - len(body)
+                    part_candidates = self.recursive_scan(eml_part_data_provider, depth, new_limit)
+                    candidates.extend(part_candidates)
+                else:
                     logger.log(TRACE, "Skip unsupported content type %s %s", type(body), data_provider.descriptor)
                     continue
-
-                eml_part_data_provider = DataContentProvider(data=(body if isinstance(body, bytes) else body.encode()),
-                                                             file_path=data_provider.file_path,
-                                                             file_type=data_provider.file_type,
-                                                             info=f"{data_provider.info}|EML-{content_type}")
-                new_limit = recursive_limit_size - len(body)
-                part_candidates = self.recursive_scan(eml_part_data_provider, depth, new_limit)
-                candidates.extend(part_candidates)
 
             return candidates
         except Exception as exc:  # pylint: disable=broad-exception-caught

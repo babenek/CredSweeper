@@ -12,6 +12,7 @@ class HtmlExtractor:
     def __init__(self):
         self.__lines: List[str] = []
         self.__line_numbers: List[int] = []
+        # the size is used to limit extra memory consumption during html combination
         self.__html_lines_size = 0
 
     def _check_multiline_cell(self, cell: Tag) -> Optional[Tuple[int, str]]:
@@ -61,6 +62,7 @@ class HtmlExtractor:
 
     @staticmethod
     def _table_depth_reached(table: Tag, depth: int) -> bool:
+        """Check recursive depth for tables in HTML"""
         if parent := table.parent:
             if isinstance(parent, BeautifulSoup):
                 return False

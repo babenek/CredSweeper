@@ -40,13 +40,15 @@ class HtmlScanner(AbstractScanner, ABC):
             if result := HtmlExtractor().extract(data_provider.text, depth, recursive_limit_size,
                                                  self.scanner.keywords_required_substrings_check):
                 lines, line_numbers, _ = result
-                if lines:
-                    string_data_provider = StringContentProvider(lines=lines,
-                                                                 line_numbers=line_numbers,
-                                                                 file_path=data_provider.file_path,
-                                                                 file_type=data_provider.file_type,
-                                                                 info=f"{data_provider.info}|HTML")
-                    return self.scanner.scan(string_data_provider)
+                if not lines:
+                    # no human-readable text was rendered
+                    return []
+                string_data_provider = StringContentProvider(lines=lines,
+                                                             line_numbers=line_numbers,
+                                                             file_path=data_provider.file_path,
+                                                             file_type=data_provider.file_type,
+                                                             info=f"{data_provider.info}|HTML")
+                return self.scanner.scan(string_data_provider)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logger.log(TRACE, "Cannot parse as HTML %s:%s %s", type(exc), exc, data_provider.descriptor)

@@ -43,7 +43,7 @@ class MxfileScanner(AbstractScanner, ABC):
                     if attr is None or not (value := attr.get("value")):
                         continue
                     if html := BeautifulSoup(value, features="html.parser"):
-                        _, value_lines, __ = HtmlExtractor.render(html)
+                        _, value_lines, __ = HtmlExtractor().render(html)
                         for line in value_lines:
                             lines.append(line)
                             line_numbers.append(line_number)
