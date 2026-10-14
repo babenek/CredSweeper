@@ -25581,52 +25581,10 @@
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "token in zip: eyJrIjoiMDAwMDAwNDAwMDAwODAwMDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 1,
-                "path": "./tests/samples/test2.eml",
-                "info": "FILE:./tests/samples/test2.eml|EML-DATA|ZIP:token.txt|RAW",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "eyJrIjoiMDAwMDAwNDAwMDAwODAwMDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "value_start": 14,
-                "value_end": 108,
-                "entropy": 4.00615
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "token in zip: eyJrIjoiMDAwMDAwNDAwMDAwODAwMDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 1,
-                "path": "./tests/samples/test2.eml",
-                "info": "FILE:./tests/samples/test2.eml|EML-DATA|ZIP:token.txt|RAW",
-                "variable": "token in zip",
-                "variable_start": 0,
-                "variable_end": 12,
-                "value": "eyJrIjoiMDAwMDAwNDAwMDAwODAwMDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "value_start": 14,
-                "value_end": 108,
-                "entropy": 4.00615
-            }
-        ]
-    },
-    {
-        "rule": "Grafana Provisioned API Key",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
                 "line": "token in text: eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 8,
+                "line_num": 18,
                 "path": "./tests/samples/test2.eml",
-                "info": "FILE:./tests/samples/test2.eml|EML-TEXT",
+                "info": "FILE:./tests/samples/test2.eml|RAW",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -25645,9 +25603,9 @@
         "line_data_list": [
             {
                 "line": "token in text: eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 8,
+                "line_num": 18,
                 "path": "./tests/samples/test2.eml",
-                "info": "FILE:./tests/samples/test2.eml|EML-TEXT",
+                "info": "FILE:./tests/samples/test2.eml|RAW",
                 "variable": "token in text",
                 "variable_start": 0,
                 "variable_end": 13,

@@ -27969,90 +27969,6 @@
         ]
     },
     {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.012,
-        "line_data_list": [
-            {
-                "line": "PW: H1ddEn#ema1l",
-                "line_num": 6,
-                "path": "./tests/samples/test.eml",
-                "info": "FILE:./tests/samples/test.eml|EML[text/html]|HTML",
-                "variable": "PW",
-                "variable_start": 0,
-                "variable_end": 2,
-                "value": "H1ddEn#ema1l",
-                "value_start": 4,
-                "value_end": 16,
-                "entropy": 3.25163
-            }
-        ]
-    },
-    {
-        "rule": "PASSWD_PAIR",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.012,
-        "line_data_list": [
-            {
-                "line": "PW: H1ddEn#ema1l",
-                "line_num": 6,
-                "path": "./tests/samples/test.eml",
-                "info": "FILE:./tests/samples/test.eml|EML[text/html]|HTML",
-                "variable": "PW",
-                "variable_start": 0,
-                "variable_end": 2,
-                "value": "H1ddEn#ema1l",
-                "value_start": 4,
-                "value_end": 16,
-                "entropy": 3.25163
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.832,
-        "line_data_list": [
-            {
-                "line": "td : Password:            MU$T6Ef09#D!",
-                "line_num": 1,
-                "path": "./tests/samples/test.html",
-                "info": "FILE:./tests/samples/test.html|XML",
-                "variable": "Password",
-                "variable_start": 5,
-                "variable_end": 13,
-                "value": "MU$T6Ef09#D!",
-                "value_start": 26,
-                "value_end": 38,
-                "entropy": 3.58496
-            }
-        ]
-    },
-    {
-        "rule": "PASSWD_PAIR",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.832,
-        "line_data_list": [
-            {
-                "line": "td : Password:            MU$T6Ef09#D!",
-                "line_num": 1,
-                "path": "./tests/samples/test.html",
-                "info": "FILE:./tests/samples/test.html|XML",
-                "variable": "Password",
-                "variable_start": 5,
-                "variable_end": 13,
-                "value": "MU$T6Ef09#D!",
-                "value_start": 26,
-                "value_end": 38,
-                "entropy": 3.58496
-            }
-        ]
-    },
-    {
         "rule": "Telegram Bot API Token",
         "severity": "high",
         "confidence": "moderate",
@@ -28165,9 +28081,9 @@
         "line_data_list": [
             {
                 "line": "token in text: eyJrIjoiMDAwMDAwNDAwMDAwODAwNDAwMDAwMDAwNDAwMDAwMDAwMDAwMDAyMSIsIm4iOiJ4eHh4IiwiaWQiOjQzMDh9Cg",
-                "line_num": 8,
+                "line_num": 18,
                 "path": "./tests/samples/test2.eml",
-                "info": "FILE:./tests/samples/test2.eml|EML[text/plain]",
+                "info": "FILE:./tests/samples/test2.eml|RAW",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
