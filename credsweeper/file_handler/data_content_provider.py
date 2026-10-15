@@ -1,15 +1,11 @@
 import logging
-import warnings
 from functools import cached_property
 from typing import List, Optional, Generator
-
-from bs4 import XMLParsedAsHTMLWarning
 
 from credsweeper.file_handler.analysis_target import AnalysisTarget
 from credsweeper.file_handler.content_provider import ContentProvider
 from credsweeper.utils.util import Util
 
-warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning, module='bs4')
 logger = logging.getLogger(__name__)
 
 

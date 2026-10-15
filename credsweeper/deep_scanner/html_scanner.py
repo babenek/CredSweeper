@@ -17,7 +17,7 @@ class HtmlScanner(AbstractScanner, ABC):
     """Implements HTML scanning if possible"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Used to detect HTML format. Suppose, invocation of is_xml() was True before."""
         for opening_tag, closing_tag in [(b"<html", b"</html>"), (b"<body", b"</body>"), (b"<table", b"</table>"),
                                          (b"<p>", b"</p>"), (b"<span>", b"</span>"), (b"<div>", b"</div>"),
@@ -40,13 +40,15 @@ class HtmlScanner(AbstractScanner, ABC):
             if result := HtmlExtractor().extract(data_provider.text, depth, recursive_limit_size,
                                                  self.scanner.keywords_required_substrings_check):
                 lines, line_numbers, _ = result
-                if lines:
-                    string_data_provider = StringContentProvider(lines=lines,
-                                                                 line_numbers=line_numbers,
-                                                                 file_path=data_provider.file_path,
-                                                                 file_type=data_provider.file_type,
-                                                                 info=f"{data_provider.info}|HTML")
-                    return self.scanner.scan(string_data_provider)
+                if not lines:
+                    # no human-readable text was rendered
+                    return []
+                string_data_provider = StringContentProvider(lines=lines,
+                                                             line_numbers=line_numbers,
+                                                             file_path=data_provider.file_path,
+                                                             file_type=data_provider.file_type,
+                                                             info=f"{data_provider.info}|HTML")
+                return self.scanner.scan(string_data_provider)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logger.log(TRACE, "Cannot parse as HTML %s:%s %s", type(exc), exc, data_provider.descriptor)

@@ -47,7 +47,7 @@ class AbstractScanner(ABC):
 
     @staticmethod
     @abstractmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Abstract method for any deep scanner"""
         raise NotImplementedError(__name__)
 
@@ -89,8 +89,8 @@ class AbstractScanner(ABC):
         data_size = len(data_provider.data)
         if MIN_DATA_LEN > data_size:
             # break recursion for minimal data size
-            logger.debug("Too small data: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
-                         recursive_limit_size, data_provider.file_path, data_provider.info)
+            logger.log(TRACE, "Too small data: size=%d, depth=%d, limit=%d, path=%s, info=%s", data_size, depth,
+                       recursive_limit_size, data_provider.file_path, data_provider.info)
             return candidates
         recursive_limit_size -= data_size
         if MIN_DATA_LEN > recursive_limit_size:
@@ -195,7 +195,6 @@ class AbstractScanner(ABC):
                         yield key, value
         else:
             logger.warning("Not supported type:%s", type(structure))
-            # raise ValueError(f"Not supported type:{type(structure)}" )
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
