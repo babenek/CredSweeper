@@ -25201,6 +25201,69 @@
         ]
     },
     {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "password = \u201cXdj@jcN834b\u201d",
+                "line_num": 1,
+                "path": "./tests/samples/sample.pdf",
+                "info": "FILE:./tests/samples/sample.pdf|PDF:1",
+                "variable": "password",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "Xdj@jcN834b",
+                "value_start": 12,
+                "value_end": 23,
+                "entropy": 3.27761
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.901,
+        "line_data_list": [
+            {
+                "line": "token = \u2018bace4d31-fa7e-beef-cafe-912947cbe28\u2019",
+                "line_num": 1,
+                "path": "./tests/samples/sample.pdf",
+                "info": "FILE:./tests/samples/sample.pdf|PDF:1",
+                "variable": "token",
+                "variable_start": 0,
+                "variable_end": 5,
+                "value": "bace4d31-fa7e-beef-cafe-912947cbe28",
+                "value_start": 9,
+                "value_end": 44,
+                "entropy": 3.62845
+            }
+        ]
+    },
+    {
+        "rule": "Github Classic Token",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "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",
+                "line_num": 1,
+                "path": "./tests/samples/sample.pdf",
+                "info": "FILE:./tests/samples/sample.pdf|PDF:1",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "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",
+                "value_start": 0,
+                "value_end": 40,
+                "entropy": 4.97193
+            }
+        ]
+    },
+    {
         "rule": "UUID",
         "severity": "info",
         "confidence": "strong",
@@ -26458,16 +26521,16 @@
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "BT /F1 24 Tf 175 720 Td (qpF8Q~PCM5MhMoyTFc5TYEomnzRUKim9UJhe8a2P)Tj ET",
-                "line_num": 347,
+                "line": "qpF8Q~PCM5MhMoyTFc5TYEomnzRUKim9UJhe8a2P",
+                "line_num": 1,
                 "path": "./tests/samples/small.pdf",
-                "info": "FILE:./tests/samples/small.pdf|STRINGS",
+                "info": "FILE:./tests/samples/small.pdf|PDF:1",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
                 "value": "qpF8Q~PCM5MhMoyTFc5TYEomnzRUKim9UJhe8a2P",
-                "value_start": 25,
-                "value_end": 65,
+                "value_start": 0,
+                "value_end": 40,
                 "entropy": 4.75306
             }
         ]
@@ -28608,6 +28671,69 @@
                 "value_start": 0,
                 "value_end": 84,
                 "entropy": 5.35637
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.0,
+        "line_data_list": [
+            {
+                "line": "<token name=\"token\" comment=\"quoted token is caught full\">",
+                "line_num": 12,
+                "path": "./tests/samples/xml_data.xml",
+                "info": "FILE:./tests/samples/xml_data.xml|RAW",
+                "variable": "token",
+                "variable_start": 40,
+                "variable_end": 45,
+                "value": "caught",
+                "value_start": 49,
+                "value_end": 55,
+                "entropy": 2.58496
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.0,
+        "line_data_list": [
+            {
+                "line": "<token name=\"token\" comment=\"unquoted token is caught only for first line\">",
+                "line_num": 16,
+                "path": "./tests/samples/xml_data.xml",
+                "info": "FILE:./tests/samples/xml_data.xml|RAW",
+                "variable": "token",
+                "variable_start": 42,
+                "variable_end": 47,
+                "value": "caught",
+                "value_start": 51,
+                "value_end": 57,
+                "entropy": 2.58496
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "BAIT: bace4d59-fa7e-beef-cafe-9129474bcd81",
+                "line_num": 13,
+                "path": "./tests/samples/xml_password.xml",
+                "info": "FILE:./tests/samples/xml_password.xml|RAW",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "bace4d59-fa7e-beef-cafe-9129474bcd81",
+                "value_start": 14,
+                "value_end": 50,
+                "entropy": 3.66606
             }
         ]
     }
