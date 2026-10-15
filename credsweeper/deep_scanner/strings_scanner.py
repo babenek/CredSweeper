@@ -15,7 +15,7 @@ class StringsScanner(AbstractScanner, ABC):
     """Implements known binary file scanning with ASCII strings representations"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Match logic in data_scan"""
         return True
 

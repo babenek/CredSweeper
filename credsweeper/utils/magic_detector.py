@@ -260,7 +260,7 @@ class MagicDetector:
     }
 
     @staticmethod
-    def detect(data: bytes) -> bool:
+    def detect(data: bytes | bytearray) -> bool:
         """Returns True if well-known media format detected with prefix match approach"""
         if patterns := MagicDetector.MAGIC_PATTERNS.get(data[0]):
             # first byte indexer

@@ -16,7 +16,7 @@ class PlistScanner(AbstractScanner, ABC):
     """Implements binary plist data scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - Binary Property List file"""
         if data.startswith(b"bplist00"):
             return True

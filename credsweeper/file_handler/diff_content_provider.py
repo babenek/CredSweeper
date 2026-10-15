@@ -202,7 +202,7 @@ class DiffContentProvider(ContentProvider):
                 if isinstance(text, str):
                     diff_rows = DiffContentProvider.preprocess_diff_rows(change.get("new"), change.get("old"), text)
                     rows_data.extend(diff_rows)
-                elif isinstance(text, bytes):
+                elif isinstance(text, (bytes, bytearray)):
                     logger.warning("The feature is available with the deep scan option")
                 else:
                     logger.warning("Unknown type of line %s", type(text))

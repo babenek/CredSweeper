@@ -19,7 +19,7 @@ class PdfScanner(AbstractScanner, ABC):
     """Implements pdf scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - pdf"""
         if data.startswith(b"%PDF-"):
             return True

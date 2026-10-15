@@ -61,7 +61,7 @@ class ProtobufScanner(AbstractScanner, ABC):
         return False
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Simple structure check for whole data"""
         if data:
             return ProtobufScanner.match_protobuf(data, 0, len(data))

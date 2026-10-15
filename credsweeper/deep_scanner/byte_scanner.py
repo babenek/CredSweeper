@@ -14,7 +14,7 @@ class ByteScanner(AbstractScanner, ABC):
     """Implements plain data scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Match for any"""
         return bool(data)
 

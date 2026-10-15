@@ -17,7 +17,7 @@ class JksScanner(AbstractScanner, ABC):
     """Implements jks scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - jks"""
         if data.startswith(b"\xFE\xED\xFE\xED"):
             return True

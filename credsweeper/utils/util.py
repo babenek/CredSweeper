@@ -539,7 +539,7 @@ class Util:
         return name
 
     @staticmethod
-    def read_varuint(data: bytes, offset: int, limit: int) -> Tuple[int, int]:
+    def read_varuint(data: bytes | bytearray, offset: int, limit: int) -> Tuple[int, int]:
         """Reads variable length unsigned integer from offset up to limit
 
         Returns: used bytes (-1 when overflow), the value

@@ -47,7 +47,7 @@ class LexerScanner(AbstractScanner, ABC):
     GUESSED_LEXERS = tuple(x for x in LEXER_MATCHER.values() if x not in (VerilogLexer, ObjectiveCLexer, Perl6Lexer))
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Suggestion may be done with file extension, however the """
         if 0 <= data.find(b';', 0, 65536) or 0 <= data.find(b'#', 0, 65536):
             return True

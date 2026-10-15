@@ -23,7 +23,7 @@ class PycacheScanner(AbstractScanner, ABC):
     )
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Checks header magic for 3 actual variants"""
         if 32 < len(data) and data[2:8] in PycacheScanner.MATCHES_SIGNATURES:
             return True

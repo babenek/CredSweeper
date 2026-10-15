@@ -17,7 +17,7 @@ class SquashfsScanner(AbstractScanner, ABC):
     """Implements squash file system scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Squash file system magic and correctness check"""
         if data.startswith(b"hsqs") and b"\x04\x00\x00\x00" == data[28:32]:
             # "Must be a power of two between 4096 (4k) and 1048576 (1 MiB)"

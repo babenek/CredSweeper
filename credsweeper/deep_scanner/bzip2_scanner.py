@@ -15,7 +15,7 @@ class Bzip2Scanner(AbstractScanner, ABC):
     """Implements bzip2 scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/Bzip2"""
         if data.startswith(b"\x42\x5A\x68") and 10 <= len(data) \
                 and 0x31 <= data[3] <= 0x39 \

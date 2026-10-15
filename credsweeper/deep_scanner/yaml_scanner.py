@@ -18,7 +18,7 @@ class YamlScanner(AbstractScanner, ABC):
     """Implements scanning of data if it is YAML"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Applied in represent_as_structure"""
         if 0 < data.find(b':', 0, MAX_LINE_LENGTH) or 0 <= data.find(b"!!", 0, MAX_LINE_LENGTH) \
                 or 2 < data.count(b'\n', 0, MAX_LINE_LENGTH):

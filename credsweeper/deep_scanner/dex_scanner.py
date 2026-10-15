@@ -17,7 +17,7 @@ class DexScanner(AbstractScanner, ABC):
     """Implements DEX scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """Checks header magic for various DEX formats and versions"""
         if data.startswith((b"dex\n03", b"dey\n03")) and 7 < len(data) and 0x35 <= data[6] <= 0x39 and 0 == data[7]:
             return True

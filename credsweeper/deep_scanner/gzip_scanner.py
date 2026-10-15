@@ -15,7 +15,7 @@ class GzipScanner(AbstractScanner, ABC):
     """Realises gzip scanning"""
 
     @staticmethod
-    def match(data: bytes) -> bool:
+    def match(data: bytes | bytearray) -> bool:
         """According https://www.rfc-editor.org/rfc/rfc1952"""
         if data.startswith(b"\x1F\x8B") and not data.startswith(b"\x1F\x8B\x00"):
             # compression method is non-zero value
