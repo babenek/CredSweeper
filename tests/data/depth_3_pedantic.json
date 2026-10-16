@@ -20888,6 +20888,27 @@
         ]
     },
     {
+        "rule": "PKCS without password",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
+                "line_num": 0,
+                "path": "./tests/samples/sample.pickle",
+                "info": "FILE:./tests/samples/sample.pickle|PICKLE:BYTEARRAY8|BYTEARRAY:54|PKCS_PASSWORD:None",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "None",
+                "value_start": -2,
+                "value_end": -2,
+                "entropy": 2.0
+            }
+        ]
+    },
+    {
         "rule": "UUID",
         "severity": "info",
         "confidence": "strong",
@@ -22746,6 +22767,27 @@
         ]
     },
     {
+        "rule": "AWS Client ID",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "AKIAGIREOGIAXLSX4BT5",
+                "line_num": 1,
+                "path": "./tests/samples/sample.xlsx",
+                "info": "FILE:./tests/samples/sample.xlsx|ZIP:xl/sharedStrings.xml|XML|STRING:0|RAW",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AKIAGIREOGIAXLSX4BT5",
+                "value_start": 0,
+                "value_end": 20,
+                "entropy": 3.64644
+            }
+        ]
+    },
+    {
         "rule": "Password",
         "severity": "high",
         "confidence": "moderate",
@@ -22755,7 +22797,7 @@
                 "line": "A2 ID:master,PW:dipPr10Gg!",
                 "line_num": 1,
                 "path": "./tests/samples/sample.xlsx",
-                "info": "FILE:./tests/samples/sample.xlsx|SheetAny:A2",
+                "info": "FILE:./tests/samples/sample.xlsx|ZIP:xl/sharedStrings.xml|XML|STRING:13|RAW",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -22763,69 +22805,6 @@
                 "value_start": 16,
                 "value_end": 26,
                 "entropy": 3.32193
-            }
-        ]
-    },
-    {
-        "rule": "UUID",
-        "severity": "info",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><fileVersion appName=\"Calc\"/><workbookPr backupFile=\"false\" showObjects=\"all\" date1904=\"false\"/><workbookProtection/><bookViews><workbookView showHorizontalScroll=\"true\" showVerticalScroll=\"true\" showSheetTabs=\"true\" xWindow=\"0\" yWindow=\"0\" windowWidth=\"16384\" windowHeight=\"8192\" tabRatio=\"500\" firstSheet=\"0\" activeTab=\"2\"/></bookViews><sheets><sheet name=\"Sheet1x1\" sheetId=\"1\" state=\"visible\" r:id=\"rId3\"/><sheet name=\"Sheet4x3\" sheetId=\"2\" state=\"visible\" r:id=\"rId4\"/><sheet name=\"SheetAny\" sheetId=\"3\" state=\"visible\" r:id=\"rId5\"/></sheets><definedNames><definedName function=\"false\" hidden=\"true\" localSheetId=\"1\" name=\"_xlnm._FilterDatabase\" vbProcedure=\"false\">Sheet4x3!$A$1:$D$4</definedName></definedNames><calcPr iterateCount=\"100\" refMode=\"A1\" iterate=\"false\" iterateDelta=\"0.001\"/><extLst><ext xmlns:loext=\"http://schemas.libreoffice.org/\" uri=\"{7626C862-2A13-11E5-B345-FEFF819CDC9F}\"><loext:extCalcPr stringRefSyntax=\"CalcA1ExcelA1\"/></ext></extLst></workbook>",
-                "line_num": 2,
-                "path": "./tests/samples/sample.xlsx",
-                "info": "FILE:./tests/samples/sample.xlsx|ZIP:xl/workbook.xml|RAW",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "7626C862-2A13-11E5-B345-FEFF819CDC9F",
-                "value_start": 1015,
-                "value_end": 1051,
-                "entropy": 3.82924
-            }
-        ]
-    },
-    {
-        "rule": "AWS Client ID",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "<sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"23\" uniqueCount=\"22\"><si><t xml:space=\"preserve\">AKIAGIREOGIAXLSX4BT5</t></si><si><t xml:space=\"preserve\">user</t></si><si><t xml:space=\"preserve\">host</t></si><si><t xml:space=\"preserve\">login</t></si><si><t xml:space=\"preserve\">password</t></si><si><t xml:space=\"preserve\"> \ud64d\uae38\ub3d9\uc804</t></si><si><t xml:space=\"preserve\">192.168.0.1</t></si><si><t xml:space=\"preserve\">admin</t></si><si><t xml:space=\"preserve\">H0NgGi1d0nG</t></si><si><t xml:space=\"preserve\">root</t></si><si><t xml:space=\"preserve\">127.0.0.1</t></si><si><t xml:space=\"preserve\">iMr00T</t></si><si><t xml:space=\"preserve\">A1 password is w3Ry5tR0nG</t></si><si><t xml:space=\"preserve\">A2 ID:master,PW:dipPr10Gg!</t></si><si><t xml:space=\"preserve\">B3 192.168.0.1 master/NBd@126t!</t></si><si><t xml:space=\"preserve\"> \uc8fc\uc778 </t></si><si><t xml:space=\"preserve\">FNAT-CC0TG_old</t></si><si><t xml:space=\"preserve\">10.53.51.17</t></si><si><t xml:space=\"preserve\">192.168.101.9</t></si><si><t xml:space=\"preserve\"> 63777</t></si><si><r><rPr><sz val=\"10\"/><rFont val=\"Arial\"/><family val=\"2\"/></rPr><t xml:space=\"preserve\">password:&#10;&#10;</t></r><r><rPr><sz val=\"9\"/><color rgb=\"FF000000\"/><rFont val=\"\ub9d1\uc740 \uace0\ub515\"/><family val=\"3\"/></rPr><t xml:space=\"preserve\">\u25a1 \ubb38\uc758 \ub0b4\uc6a9 :&#10;  \u203b Error Stack Trace\ub3c4 \ud568\uaed8 \ucca8\ubd80 \ubd80\ud0c1\ub4dc\ub9bd\ub2c8\ub2e4.&#10;</t></r><r><rPr><sz val=\"10\"/><rFont val=\"Arial\"/><family val=\"2\"/></rPr><t xml:space=\"preserve\">&#10;12345</t></r></si><si><t xml:space=\"preserve\">F16 224.52.124.93 root/A0dM1Nka</t></si></sst>",
-                "line_num": 2,
-                "path": "./tests/samples/sample.xlsx",
-                "info": "FILE:./tests/samples/sample.xlsx|ZIP:xl/sharedStrings.xml|RAW",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "AKIAGIREOGIAXLSX4BT5",
-                "value_start": 127,
-                "value_end": 147,
-                "entropy": 3.64644
-            }
-        ]
-    },
-    {
-        "rule": "Password",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 0.948,
-        "line_data_list": [
-            {
-                "line": "<sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"23\" uniqueCount=\"22\"><si><t xml:space=\"preserve\">AKIAGIREOGIAXLSX4BT5</t></si><si><t xml:space=\"preserve\">user</t></si><si><t xml:space=\"preserve\">host</t></si><si><t xml:space=\"preserve\">login</t></si><si><t xml:space=\"preserve\">password</t></si><si><t xml:space=\"preserve\"> \ud64d\uae38\ub3d9\uc804</t></si><si><t xml:space=\"preserve\">192.168.0.1</t></si><si><t xml:space=\"preserve\">admin</t></si><si><t xml:space=\"preserve\">H0NgGi1d0nG</t></si><si><t xml:space=\"preserve\">root</t></si><si><t xml:space=\"preserve\">127.0.0.1</t></si><si><t xml:space=\"preserve\">iMr00T</t></si><si><t xml:space=\"preserve\">A1 password is w3Ry5tR0nG</t></si><si><t xml:space=\"preserve\">A2 ID:master,PW:dipPr10Gg!</t></si><si><t xml:space=\"preserve\">B3 192.168.0.1 master/NBd@126t!</t></si><si><t xml:space=\"preserve\"> \uc8fc\uc778 </t></si><si><t xml:space=\"preserve\">FNAT-CC0TG_old</t></si><si><t xml:space=\"preserve\">10.53.51.17</t></si><si><t xml:space=\"preserve\">192.168.101.9</t></si><si><t xml:space=\"preserve\"> 63777</t></si><si><r><rPr><sz val=\"10\"/><rFont val=\"Arial\"/><family val=\"2\"/></rPr><t xml:space=\"preserve\">password:&#10;&#10;</t></r><r><rPr><sz val=\"9\"/><color rgb=\"FF000000\"/><rFont val=\"\ub9d1\uc740 \uace0\ub515\"/><family val=\"3\"/></rPr><t xml:space=\"preserve\">\u25a1 \ubb38\uc758 \ub0b4\uc6a9 :&#10;  \u203b Error Stack Trace\ub3c4 \ud568\uaed8 \ucca8\ubd80 \ubd80\ud0c1\ub4dc\ub9bd\ub2c8\ub2e4.&#10;</t></r><r><rPr><sz val=\"10\"/><rFont val=\"Arial\"/><family val=\"2\"/></rPr><t xml:space=\"preserve\">&#10;12345</t></r></si><si><t xml:space=\"preserve\">F16 224.52.124.93 root/A0dM1Nka</t></si></sst>",
-                "line_num": 2,
-                "path": "./tests/samples/sample.xlsx",
-                "info": "FILE:./tests/samples/sample.xlsx|ZIP:xl/sharedStrings.xml|RAW",
-                "variable": "PW",
-                "variable_start": 738,
-                "variable_end": 740,
-                "value": "dipPr10Gg!</t></si><si><t",
-                "value_start": 741,
-                "value_end": 766,
-                "entropy": 3.70347
             }
         ]
     },
@@ -25263,6 +25242,27 @@
         "rule": "Password",
         "severity": "high",
         "confidence": "moderate",
+        "ml_probability": 0.902,
+        "line_data_list": [
+            {
+                "line": "Password:            MU$T6Ef09#D!",
+                "line_num": 1,
+                "path": "./tests/samples/test.html",
+                "info": "FILE:./tests/samples/test.html|XML|STRING:23|RAW",
+                "variable": "Password",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "MU$T6Ef09#D!",
+                "value_start": 21,
+                "value_end": 33,
+                "entropy": 3.58496
+            }
+        ]
+    },
+    {
+        "rule": "Password",
+        "severity": "high",
+        "confidence": "moderate",
         "ml_probability": 0.989,
         "line_data_list": [
             {
@@ -26239,23 +26239,107 @@
         ]
     },
     {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.994,
+        "line_data_list": [
+            {
+                "line": "token = '\"IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==\"'",
+                "line_num": 1,
+                "path": "./tests/samples/xml_data.xml",
+                "info": "FILE:./tests/samples/xml_data.xml|XML|DICT:1|KEYWORD",
+                "variable": "token",
+                "variable_start": 0,
+                "variable_end": 5,
+                "value": "\"IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==\"",
+                "value_start": 9,
+                "value_end": 117,
+                "entropy": 5.13445
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.998,
+        "line_data_list": [
+            {
+                "line": "token = 'IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn=='",
+                "line_num": 1,
+                "path": "./tests/samples/xml_data.xml",
+                "info": "FILE:./tests/samples/xml_data.xml|XML|DICT:2|KEYWORD",
+                "variable": "token",
+                "variable_start": 0,
+                "variable_end": 5,
+                "value": "IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==",
+                "value_start": 9,
+                "value_end": 115,
+                "entropy": 5.09578
+            }
+        ]
+    },
+    {
+        "rule": "BASE64 Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsnhRFakQFbAuI/        DaJSTVnp3ObjJPZhJs/P/XPWIKRNIglRqkkCAwEAAQJAbErPFMWah3EPxtfeVO1l        5R0yAZwrFKmLDO29/FoXyL2XbxthJlJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts        AQIhAMwBYS+NST98g0nytTRD1Y94n+yrhTlyWNR/uC4tT8SpAiEAwthlcs9UDPh5        BnaO8Y7A+im+Aw5ANIhJwSVBxB3QnKECIQCJm9ihic1B7MxmojgGxEcXGwfNTjl0        caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzNvej4/Y0MYuTM54ECIGtT        EBUWuiacAxz/WKHb9WVp0F/zkRwucJ0Hr2W4P9cP",
+                "line_num": 1,
+                "path": "./tests/samples/xml_data.xml",
+                "info": "FILE:./tests/samples/xml_data.xml|XML|STRING:0|RAW",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsnhRFakQFbAuI/        DaJSTVnp3ObjJPZhJs/P/XPWIKRNIglRqkkCAwEAAQJAbErPFMWah3EPxtfeVO1l        5R0yAZwrFKmLDO29/FoXyL2XbxthJlJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts        AQIhAMwBYS+NST98g0nytTRD1Y94n+yrhTlyWNR/uC4tT8SpAiEAwthlcs9UDPh5        BnaO8Y7A+im+Aw5ANIhJwSVBxB3QnKECIQCJm9ihic1B7MxmojgGxEcXGwfNTjl0        caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzNvej4/Y0MYuTM54ECIGtT        EBUWuiacAxz/WKHb9WVp0F/zkRwucJ0Hr2W4P9cP",
+                "value_start": 0,
+                "value_end": 472,
+                "entropy": 5.73206
+            }
+        ]
+    },
+    {
         "rule": "UUID",
         "severity": "info",
         "confidence": "strong",
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "        BAIT: bace4d59-fa7e-beef-cafe-9129474bcd81",
-                "line_num": 13,
+                "line": "Password for authorization        BAIT: bace4d59-fa7e-beef-cafe-9129474bcd81",
+                "line_num": 1,
                 "path": "./tests/samples/xml_password.xml",
-                "info": "FILE:./tests/samples/xml_password.xml|RAW",
+                "info": "FILE:./tests/samples/xml_password.xml|XML|DICT:4|STRING:password|RAW",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
                 "value": "bace4d59-fa7e-beef-cafe-9129474bcd81",
-                "value_start": 14,
-                "value_end": 50,
+                "value_start": 40,
+                "value_end": 76,
                 "entropy": 3.66606
+            }
+        ]
+    },
+    {
+        "rule": "Password",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.971,
+        "line_data_list": [
+            {
+                "line": "password = 'cackle!'",
+                "line_num": 1,
+                "path": "./tests/samples/xml_password.xml",
+                "info": "FILE:./tests/samples/xml_password.xml|XML|DICT:1|KEYWORD",
+                "variable": "password",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "cackle!",
+                "value_start": 12,
+                "value_end": 19,
+                "entropy": 2.52164
             }
         ]
     }

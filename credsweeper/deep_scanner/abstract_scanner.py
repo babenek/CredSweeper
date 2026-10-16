@@ -251,7 +251,7 @@ class AbstractScanner(ABC):
                                                      recursive_limit_size,
                                                      parent_key=parent_key if keyword_match else '')
                 candidates.extend(new_candidates)
-            elif isinstance(value, bytes):
+            elif isinstance(value, (bytes, bytearray)):
                 # recursive data scan
                 if MIN_DATA_LEN <= len(value):
                     bytes_struct_provider = DataContentProvider(

@@ -688,7 +688,7 @@ class TestMain(unittest.TestCase):
             "password : p@$$w0Rd42",
             "secret : BNbNbws73bdhss329ssakKhds120384",
             "token : H72gsdv2dswPneHduwhfd",
-            "td : Password:            MU$T6Ef09#D!",
+            "Password:            MU$T6Ef09#D!",
             "# 94 ya29.dshMb48ehfXwydAj34D32J",
             "# 95 dop_v1_425522a565f532bc6532d453422e50334a42f5242a3090fbe553b543b124259b",
             "the line will be found twice # 100"
