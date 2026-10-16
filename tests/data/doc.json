@@ -42,6 +42,27 @@
         ]
     },
     {
+        "rule": "BASE64 Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
+                "line_num": 499,
+                "path": "./tests/samples/Sample.class",
+                "info": "FILE:./tests/samples/Sample.class|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
+                "value_start": 0,
+                "value_end": 424,
+                "entropy": 5.85007
+            }
+        ]
+    },
+    {
         "rule": "Age Secret Key",
         "severity": "high",
         "confidence": "strong",
@@ -1694,6 +1715,152 @@
                 "value_start": 0,
                 "value_end": 49,
                 "entropy": 4.88462
+            }
+        ]
+    },
+    {
+        "rule": "Github Classic Token",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "+TOKEN=ghp_00000000000000000000000000000004WZ4EQ",
+                "line_num": 6693,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "ghp_00000000000000000000000000000004WZ4EQ",
+                "value_start": 7,
+                "value_end": 48,
+                "entropy": 1.56292
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 6872,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIIBOgIBAAJBANBuGz7s5cJDdOdH8r1txs2nYc8UAmdamTAJTG3dO0wMdxez2lhq",
+                "line_num": 6904,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIIBOgIBAAJBANBuGz7s5cJDdOdH8r1txs2nYc8UAmdamTAJTG3dO0wMdxez2lhq",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 4.97681
+            },
+            {
+                "line": "fw4C9KdewnmPHcTA21nMb9FFY+CF1fmEXrkCAwEAAQJBALUm/YczXn35IyHg5pi9",
+                "line_num": 6969,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "fw4C9KdewnmPHcTA21nMb9FFY+CF1fmEXrkCAwEAAQJBALUm/YczXn35IyHg5pi9",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 5.12283
+            },
+            {
+                "line": "UIxtbhUMzwoFNB8L9eGG5oKwv0Iinu5nLKfmql68MxGK/SZAAgS7XYng6ltOGE6s",
+                "line_num": 7034,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "UIxtbhUMzwoFNB8L9eGG5oKwv0Iinu5nLKfmql68MxGK/SZAAgS7XYng6ltOGE6s",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 5.21461
+            },
+            {
+                "line": "ygECIQD/Ztsqirk1dZqzeSbYu1vny5JrE2ViXwdxfi+4oI0z8wIhANDrFc43hEtA",
+                "line_num": 7099,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "ygECIQD/Ztsqirk1dZqzeSbYu1vny5JrE2ViXwdxfi+4oI0z8wIhANDrFc43hEtA",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 5.32782
+            },
+            {
+                "line": "4LGfqb0Y0MWSgaxe3R5kutXsubGkBEmjAiBB/Cz7nMOlEDFb1R04OY/RH0NA7s3u",
+                "line_num": 7164,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "4LGfqb0Y0MWSgaxe3R5kutXsubGkBEmjAiBB/Cz7nMOlEDFb1R04OY/RH0NA7s3u",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 5.20282
+            },
+            {
+                "line": "0GZ36AYkSTayCQIgC5ZucDCuGspvbAqyDHX65mp43MmqNAxcPI9TwWGah0cCIEIg",
+                "line_num": 7229,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "0GZ36AYkSTayCQIgC5ZucDCuGspvbAqyDHX65mp43MmqNAxcPI9TwWGah0cCIEIg",
+                "value_start": 0,
+                "value_end": 64,
+                "entropy": 5.08961
+            },
+            {
+                "line": "u6wHL0fvuMNeBU98T5lJvlleaFbQoex2JS8YUk1A",
+                "line_num": 7294,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "u6wHL0fvuMNeBU98T5lJvlleaFbQoex2JS8YUk1A",
+                "value_start": 0,
+                "value_end": 40,
+                "entropy": 4.83418
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 7335,
+                "path": "./tests/samples/cred-samples-1.0-1.noarch.rpm",
+                "info": "FILE:./tests/samples/cred-samples-1.0-1.noarch.rpm|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
             }
         ]
     },
@@ -21937,6 +22104,1599 @@
         ]
     },
     {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 512,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 544,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 621,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 698,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 775,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 852,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 929,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 1006,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 1083,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 1160,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 1237,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 1314,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 1367,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 2048,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 2080,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 2157,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 2234,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 2311,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 2388,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 2465,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 2542,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 2619,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 2696,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 2773,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 2850,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 2903,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 3584,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 3616,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 3693,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 3770,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 3847,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 3924,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 4001,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 4078,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 4155,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 4232,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 4309,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 4386,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 4439,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 5120,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 5152,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 5229,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 5306,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 5383,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 5460,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 5537,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 5614,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 5691,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 5768,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 5845,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 5922,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 5975,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 6656,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 6688,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 6765,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 6842,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 6919,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 6996,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 7073,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 7150,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 7227,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 7304,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 7381,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 7458,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 7511,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 8192,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 8224,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 8301,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 8378,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 8455,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 8532,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 8609,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 8686,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 8763,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 8840,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 8917,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 8994,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 9047,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 9728,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 9760,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 9837,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 9914,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 9991,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 10068,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 10145,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 10222,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 10299,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 10376,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 10453,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 10530,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 10583,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 11264,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 11296,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 11373,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 11450,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 11527,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 11604,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 11681,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 11758,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 11835,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 11912,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 11989,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 12066,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 12119,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "-----BEGIN RSA PRIVATE KEY-----",
+                "line_num": 12800,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 31,
+                "entropy": 3.38229
+            },
+            {
+                "line": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "line_num": 12832,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.38892
+            },
+            {
+                "line": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "line_num": 12909,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "wmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ5",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.21333
+            },
+            {
+                "line": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "line_num": 12986,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQABAoGAFijko56+qGyN8M0RVyaRAXz++xTqHBLh",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.32505
+            },
+            {
+                "line": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "line_num": 13063,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3tx4VgMtrQ+WEgCjhoTwo23KMBAuJGSYnRmoBZM3lMfTKevIkAidPExvYCdm5dYq3XToLkkLv5L2",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.26728
+            },
+            {
+                "line": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "line_num": 13140,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "pIIVOFMDG+KESnAFV7l2c+cnzRMW0+b6f8mR1CJzZuxVLL6Q02fvLi55/mbSYxECQQDeAw6fiIQX",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.29359
+            },
+            {
+                "line": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "line_num": 13217,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "GukBI4eMZZt4nscy2o12KyYner3VpoeE+Np2q+Z3pvAMd/aNzQ/W9WaI+NRfcxUJrmfPwIGm63il",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.40531
+            },
+            {
+                "line": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "line_num": 13294,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AkEAxCL5HQb2bQr4ByorcMWm/hEP2MZzROV73yF41hPsRC9m66KrheO9HPTJuo3/9s5p+sqGxOlF",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.37254
+            },
+            {
+                "line": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "line_num": 13371,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "L0NDt4SkosjgGwJAFklyR1uZ/wPJjj611cdBcztlPdqoxssQGnh85BzCj/u3WqBpE2vjvyyvyI5k",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.30866
+            },
+            {
+                "line": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "line_num": 13448,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.42517
+            },
+            {
+                "line": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "line_num": 13525,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ",
+                "value_start": 0,
+                "value_end": 76,
+                "entropy": 5.10756
+            },
+            {
+                "line": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "line_num": 13602,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=",
+                "value_start": 0,
+                "value_end": 52,
+                "entropy": 5.07054
+            },
+            {
+                "line": "-----END RSA PRIVATE KEY-----",
+                "line_num": 13655,
+                "path": "./tests/samples/pem_key.tar",
+                "info": "FILE:./tests/samples/pem_key.tar|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----END RSA PRIVATE KEY-----",
+                "value_start": 0,
+                "value_end": 29,
+                "entropy": 3.24663
+            }
+        ]
+    },
+    {
         "rule": "Perplexity API Key",
         "severity": "high",
         "confidence": "strong",
@@ -21996,27 +23756,6 @@
                 "value_start": 0,
                 "value_end": 40,
                 "entropy": 3.7037
-            }
-        ]
-    },
-    {
-        "rule": "PKCS with password 'changeme'",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "MIIFNgIBAzCCBOwGCSqGSIb3DQEHAaCCBN0EggTZMIIE1TCCApIGCSqGSIb3DQEHBqCCAoMwggJ/AgEAMIICeAYJKoZIhvcNAQcBMFcGCSqGSIb3DQEFDTBKMCkGCSqG",
-                "line_num": 0,
-                "path": "./tests/samples/pkcs12.changeme.p12",
-                "info": "FILE:./tests/samples/pkcs12.changeme.p12|PKCS_PASSWORD:b'changeme'",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "b'changeme'",
-                "value_start": -2,
-                "value_end": -2,
-                "entropy": 3.0958
             }
         ]
     },
@@ -22609,27 +24348,6 @@
         ]
     },
     {
-        "rule": "PKCS without password",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAwpu018nt51Jqlno3cJgB2RabGCmfqtwP+aDGfMZnU1IaG8QOonNIzMMArQtowS9olJ7ZoQkuYWgu992+",
-                "line_num": 0,
-                "path": "./tests/samples/sample.bin.cpio",
-                "info": "FILE:./tests/samples/sample.bin.cpio|CPIO:0x28:pkcs8.key.der|PKCS_PASSWORD:None",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "None",
-                "value_start": -2,
-                "value_end": -2,
-                "entropy": 2.0
-            }
-        ]
-    },
-    {
         "rule": "CURL Options",
         "severity": "high",
         "confidence": "weak",
@@ -22756,23 +24474,44 @@
         ]
     },
     {
-        "rule": "PKCS without password",
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "3aeb15a9-fade-beef-cafe-9129474bcd81",
+                "line_num": 2946,
+                "path": "./tests/samples/sample.deb",
+                "info": "FILE:./tests/samples/sample.deb|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "3aeb15a9-fade-beef-cafe-9129474bcd81",
+                "value_start": 0,
+                "value_end": 36,
+                "entropy": 3.708
+            }
+        ]
+    },
+    {
+        "rule": "BASE64 Private Key",
         "severity": "high",
         "confidence": "strong",
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAwpu018nt51Jqlno3cJgB2RabGCmfqtwP+aDGfMZnU1IaG8QOonNIzMMArQtowS9olJ7ZoQkuYWgu992+",
-                "line_num": 0,
-                "path": "./tests/samples/sample.crc.cpio",
-                "info": "FILE:./tests/samples/sample.crc.cpio|CPIO:0x7c:pkcs8.key.der|PKCS_PASSWORD:None",
+                "line": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
+                "line_num": 2073,
+                "path": "./tests/samples/sample.dex",
+                "info": "FILE:./tests/samples/sample.dex|STRINGS",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
-                "value": "None",
-                "value_start": -2,
-                "value_end": -2,
-                "entropy": 2.0
+                "value": "MIIBOgIBAAJBAL1/hJjtuMbjbVXo6wYT1SxiROOvwgffVSvOAk5aN2d4wYTC25k3sklfpdwxvkjh4iGB6/qC+0RbmiLwaXaQT0ECAwEAAQJAeAlQyza6t3HVDnhud/kULftJvBjXhfkYkJj8qPlI40dn/Tnwe6mywfly6hOvAn4TRBsnB/Eln6hJLmCrDvZvyQIhAPf7Uma4/Aqgoz3SfPyz9TaQXyD5JSC3ej7cOH7b3hgTAiEAw6AYhc/UKh8iIAPYGK15ImVmXAlxmhFD6xCWx9bcTdsCIQDiqOayWZaWKCnNEh2H5PzW+LLasp9K/ilQV32UBmdD3QIgbafQFzHoO7Q37Lo655pVzHIKbozcoQAMkjc6TcqiswECIBvXLFj5jkNs4iSqphZo8eISUdol/9Zo/dkrHC41kbYJ",
+                "value_start": 0,
+                "value_end": 424,
+                "entropy": 5.85007
             }
         ]
     },
@@ -23071,48 +24810,6 @@
         ]
     },
     {
-        "rule": "PKCS without password",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAwpu018nt51Jqlno3cJgB2RabGCmfqtwP+aDGfMZnU1IaG8QOonNIzMMArQtowS9olJ7ZoQkuYWgu992+",
-                "line_num": 0,
-                "path": "./tests/samples/sample.newc.cpio",
-                "info": "FILE:./tests/samples/sample.newc.cpio|CPIO:0x7c:pkcs8.key.der|PKCS_PASSWORD:None",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "None",
-                "value_start": -2,
-                "value_end": -2,
-                "entropy": 2.0
-            }
-        ]
-    },
-    {
-        "rule": "PKCS without password",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAwpu018nt51Jqlno3cJgB2RabGCmfqtwP+aDGfMZnU1IaG8QOonNIzMMArQtowS9olJ7ZoQkuYWgu992+",
-                "line_num": 0,
-                "path": "./tests/samples/sample.odc.cpio",
-                "info": "FILE:./tests/samples/sample.odc.cpio|CPIO:0x5a:pkcs8.key.der|PKCS_PASSWORD:None",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "None",
-                "value_start": -2,
-                "value_end": -2,
-                "entropy": 2.0
-            }
-        ]
-    },
-    {
         "rule": "IP_ID_PASSWORD_TRIPLE",
         "severity": "medium",
         "confidence": "moderate",
@@ -23297,6 +24994,216 @@
         "rule": "DOC_CREDENTIALS",
         "severity": "medium",
         "confidence": "moderate",
+        "ml_probability": 0.997,
+        "line_data_list": [
+            {
+                "line": "password=Neb7D4W#2GHsHv3210!",
+                "line_num": 30,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "password",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "Neb7D4W#2GHsHv3210!",
+                "value_start": 9,
+                "value_end": 28,
+                "entropy": 4.0374
+            }
+        ]
+    },
+    {
+        "rule": "Google API Key",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "ApiKey:AIzaGiReoG-Cr0ck1Efr0ckle12f15718_1f31a",
+                "line_num": 59,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "AIzaGiReoG-Cr0ck1Efr0ckle12f15718_1f31a",
+                "value_start": 7,
+                "value_end": 46,
+                "entropy": 4.40682
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.999,
+        "line_data_list": [
+            {
+                "line": "ApiKey:AIzaGiReoG-Cr0ck1Efr0ckle12f15718_1f31a",
+                "line_num": 59,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "ApiKey",
+                "variable_start": 0,
+                "variable_end": 6,
+                "value": "AIzaGiReoG-Cr0ck1Efr0ckle12f15718_1f31a",
+                "value_start": 7,
+                "value_end": 46,
+                "entropy": 4.40682
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "token:1abeda19-fa7e-b4e2-c3f0-9129474bcd81",
+                "line_num": 106,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "1abeda19-fa7e-b4e2-c3f0-9129474bcd81",
+                "value_start": 6,
+                "value_end": 42,
+                "entropy": 3.7873
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.999,
+        "line_data_list": [
+            {
+                "line": "token:1abeda19-fa7e-b4e2-c3f0-9129474bcd81",
+                "line_num": 106,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "token",
+                "variable_start": 0,
+                "variable_end": 5,
+                "value": "1abeda19-fa7e-b4e2-c3f0-9129474bcd81",
+                "value_start": 6,
+                "value_end": 42,
+                "entropy": 3.7873
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "secret=ce49fba1-e4fe-b2af-4ffa-132bcdf19474",
+                "line_num": 149,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "ce49fba1-e4fe-b2af-4ffa-132bcdf19474",
+                "value_start": 7,
+                "value_end": 43,
+                "entropy": 3.4994
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "secret=ce49fba1-e4fe-b2af-4ffa-132bcdf19474",
+                "line_num": 149,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "secret",
+                "variable_start": 0,
+                "variable_end": 6,
+                "value": "ce49fba1-e4fe-b2af-4ffa-132bcdf19474",
+                "value_start": 7,
+                "value_end": 43,
+                "entropy": 3.4994
+            }
+        ]
+    },
+    {
+        "rule": "URL Credentials",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.997,
+        "line_data_list": [
+            {
+                "line": "mongodb://jrfdeg42:p4Dsr8b@127.0.0.1:32768/architecture",
+                "line_num": 275,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "mongodb://",
+                "variable_start": 0,
+                "variable_end": 10,
+                "value": "p4Dsr8b",
+                "value_start": 19,
+                "value_end": 26,
+                "entropy": 2.80735
+            }
+        ]
+    },
+    {
+        "rule": "Basic Authorization",
+        "severity": "medium",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "curl -H \"Authorization: Basic N2hyZG5oYzpycWVpIGVuZ2xiZg==\" http://localhost:8080/.",
+                "line_num": 331,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "Basic",
+                "variable_start": 24,
+                "variable_end": 29,
+                "value": "N2hyZG5oYzpycWVpIGVuZ2xiZg==",
+                "value_start": 30,
+                "value_end": 58,
+                "entropy": 4.20897
+            }
+        ]
+    },
+    {
+        "rule": "Bearer Authorization",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "curl -H \"Authorization: Bearer 4yJGRpV11c2VzY2-823r_db32hbf4W1lbj\" http://localhost:8080/.",
+                "line_num": 415,
+                "path": "./tests/samples/sample.pak",
+                "info": "FILE:./tests/samples/sample.pak|STRINGS",
+                "variable": "Bearer",
+                "variable_start": 24,
+                "variable_end": 30,
+                "value": "4yJGRpV11c2VzY2-823r_db32hbf4W1lbj",
+                "value_start": 31,
+                "value_end": 65,
+                "entropy": 4.396
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
             {
@@ -23363,17 +25270,17 @@
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "a75ea7b1-8643-dead-beef-42f3af69f8b5",
-                "line_num": 1,
-                "path": "./tests/samples/sample.png",
-                "info": "FILE:./tests/samples/sample.png|PNG_ITXT_0:Uuid itxt plain:en:Magic ID:0xa6|RAW",
+                "line": "$11950D50-2819-48D8-8C9F-EC6EC893E2DA",
+                "line_num": 39,
+                "path": "./tests/samples/sample.plist",
+                "info": "FILE:./tests/samples/sample.plist|STRINGS",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
-                "value": "a75ea7b1-8643-dead-beef-42f3af69f8b5",
-                "value_start": 0,
-                "value_end": 36,
-                "entropy": 3.76007
+                "value": "11950D50-2819-48D8-8C9F-EC6EC893E2DA",
+                "value_start": 1,
+                "value_end": 37,
+                "entropy": 3.708
             }
         ]
     },
@@ -23385,9 +25292,9 @@
         "line_data_list": [
             {
                 "line": "f99080e6-91be-dead-beef-381896d6e93c",
-                "line_num": 1,
+                "line_num": 51,
                 "path": "./tests/samples/sample.png",
-                "info": "FILE:./tests/samples/sample.png|PNG_TEXT:Uuid text:0x29|RAW",
+                "info": "FILE:./tests/samples/sample.png|STRINGS",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -23395,6 +25302,27 @@
                 "value_start": 0,
                 "value_end": 36,
                 "entropy": 3.52037
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "a75ea7b1-8643-dead-beef-42f3af69f8b5",
+                "line_num": 196,
+                "path": "./tests/samples/sample.png",
+                "info": "FILE:./tests/samples/sample.png|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "a75ea7b1-8643-dead-beef-42f3af69f8b5",
+                "value_start": 0,
+                "value_end": 36,
+                "entropy": 3.76007
             }
         ]
     },
@@ -23423,41 +25351,20 @@
         "rule": "DOC_CREDENTIALS",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.004,
+        "ml_probability": 0.017,
         "line_data_list": [
             {
-                "line": "1: \ube44\ubc00\ubc88\ud638:pRl5Db#@",
-                "line_num": 1,
+                "line": "-H 'postman-token: }{\\loch\\ul\\ulc0\\loch",
+                "line_num": 2770,
                 "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|RTF",
-                "variable": "\ube44\ubc00\ubc88\ud638",
-                "variable_start": 3,
-                "variable_end": 7,
-                "value": "pRl5Db#@",
-                "value_start": 8,
-                "value_end": 16,
-                "entropy": 3.0
-            }
-        ]
-    },
-    {
-        "rule": "PASSWD_PAIR",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.004,
-        "line_data_list": [
-            {
-                "line": "1: \ube44\ubc00\ubc88\ud638:pRl5Db#@",
-                "line_num": 1,
-                "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|RTF",
-                "variable": "\ube44\ubc00\ubc88\ud638",
-                "variable_start": 3,
-                "variable_end": 7,
-                "value": "pRl5Db#@",
-                "value_start": 8,
-                "value_end": 16,
-                "entropy": 3.0
+                "info": "FILE:./tests/samples/sample.rtf|STRINGS",
+                "variable": "token",
+                "variable_start": 13,
+                "variable_end": 18,
+                "value": "}{\\loch\\ul\\ulc0\\loch",
+                "value_start": 20,
+                "value_end": 40,
+                "entropy": 2.98418
             }
         ]
     },
@@ -23468,38 +25375,17 @@
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "3: -H 'postman-token: 81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
-                "line_num": 3,
+                "line": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36}{\\loch",
+                "line_num": 2811,
                 "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|RTF",
+                "info": "FILE:./tests/samples/sample.rtf|STRINGS",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
                 "value": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36",
-                "value_start": 22,
-                "value_end": 58,
+                "value_start": 0,
+                "value_end": 36,
                 "entropy": 3.84286
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.987,
-        "line_data_list": [
-            {
-                "line": "3: -H 'postman-token: 81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
-                "line_num": 3,
-                "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|RTF",
-                "variable": "token",
-                "variable_start": 15,
-                "variable_end": 20,
-                "value": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
-                "value_start": 22,
-                "value_end": 59,
-                "entropy": 3.91825
             }
         ]
     },
@@ -23521,6 +25407,27 @@
                 "value_start": 0,
                 "value_end": 850,
                 "entropy": 5.9881
+            }
+        ]
+    },
+    {
+        "rule": "Slack Token",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "U!K1d3e45d1-dead-beef-c0de-294622932701Dt1Js8m#1sxoxa-FLYLIKEAGIREOGI-b1da04e31f",
+                "line_num": 16303,
+                "path": "./tests/samples/sample.sqlite",
+                "info": "FILE:./tests/samples/sample.sqlite|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "xoxa-FLYLIKEAGIREOGI-b1da04e31f",
+                "value_start": 49,
+                "value_end": 80,
+                "entropy": 4.3492
             }
         ]
     },
@@ -23672,27 +25579,6 @@
         ]
     },
     {
-        "rule": "IP_ID_PASSWORD_TRIPLE",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.523,
-        "line_data_list": [
-            {
-                "line": "F16 224.52.124.93 root/A0dM1Nka",
-                "line_num": 1,
-                "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:F16",
-                "variable": null,
-                "variable_start": -1,
-                "variable_end": -1,
-                "value": "A0dM1Nka",
-                "value_start": 23,
-                "value_end": 31,
-                "entropy": 3.0
-            }
-        ]
-    },
-    {
         "rule": "AWS Client ID",
         "severity": "medium",
         "confidence": "moderate",
@@ -23700,9 +25586,9 @@
         "line_data_list": [
             {
                 "line": "AKIAGIREOGIAXLSX4BT5",
-                "line_num": 1,
+                "line_num": 2951,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|Sheet1x1:A1",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -23714,44 +25600,23 @@
         ]
     },
     {
-        "rule": "IP_ID_PASSWORD_TRIPLE",
+        "rule": "DOC_CREDENTIALS",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.98,
+        "ml_probability": 0.999,
         "line_data_list": [
             {
-                "line": "\ud64d\uae38\ub3d9\uc804\t192.168.0.1\tadmin\tH0NgGi1d0nG",
-                "line_num": 1,
+                "line": "A1 password is w3Ry5tR0nG",
+                "line_num": 3084,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|Sheet4x3:R2",
-                "variable": null,
-                "variable_start": -1,
-                "variable_end": -1,
-                "value": "H0NgGi1d0nG",
-                "value_start": 24,
-                "value_end": 35,
-                "entropy": 3.0958
-            }
-        ]
-    },
-    {
-        "rule": "IP_ID_PASSWORD_TRIPLE",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.985,
-        "line_data_list": [
-            {
-                "line": "B3 192.168.0.1 master/NBd@126t!",
-                "line_num": 1,
-                "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:B3",
-                "variable": null,
-                "variable_start": -1,
-                "variable_end": -1,
-                "value": "NBd@126t!",
-                "value_start": 22,
-                "value_end": 31,
-                "entropy": 3.16993
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "variable": "password",
+                "variable_start": 3,
+                "variable_end": 11,
+                "value": "w3Ry5tR0nG",
+                "value_start": 15,
+                "value_end": 25,
+                "entropy": 3.12193
             }
         ]
     },
@@ -23763,9 +25628,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 1,
+                "line_num": 3112,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -23784,9 +25649,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 1,
+                "line_num": 3112,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -23797,9 +25662,9 @@
             },
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 1,
+                "line_num": 3112,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
                 "variable": "ID",
                 "variable_start": 3,
                 "variable_end": 5,
@@ -23818,9 +25683,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 1,
+                "line_num": 3112,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -23832,23 +25697,44 @@
         ]
     },
     {
-        "rule": "DOC_CREDENTIALS",
+        "rule": "IP_ID_PASSWORD_TRIPLE",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.999,
+        "ml_probability": 0.985,
         "line_data_list": [
             {
-                "line": "A1 password is w3Ry5tR0nG",
-                "line_num": 1,
+                "line": "B3 192.168.0.1 master/NBd@126t!",
+                "line_num": 3141,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|SheetAny:A1",
-                "variable": "password",
-                "variable_start": 3,
-                "variable_end": 11,
-                "value": "w3Ry5tR0nG",
-                "value_start": 15,
-                "value_end": 25,
-                "entropy": 3.12193
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "variable": null,
+                "variable_start": -1,
+                "variable_end": -1,
+                "value": "NBd@126t!",
+                "value_start": 22,
+                "value_end": 31,
+                "entropy": 3.16993
+            }
+        ]
+    },
+    {
+        "rule": "IP_ID_PASSWORD_TRIPLE",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.523,
+        "line_data_list": [
+            {
+                "line": "F16 224.52.124.93 root/A0dM1Nka",
+                "line_num": 3387,
+                "path": "./tests/samples/sample.xls",
+                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "variable": null,
+                "variable_start": -1,
+                "variable_end": -1,
+                "value": "A0dM1Nka",
+                "value_start": 23,
+                "value_end": 31,
+                "entropy": 3.0
             }
         ]
     },
@@ -26125,48 +28011,6 @@
         ]
     },
     {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.832,
-        "line_data_list": [
-            {
-                "line": "td : Password:            MU$T6Ef09#D!",
-                "line_num": 1,
-                "path": "./tests/samples/test.html",
-                "info": "FILE:./tests/samples/test.html|XML",
-                "variable": "Password",
-                "variable_start": 5,
-                "variable_end": 13,
-                "value": "MU$T6Ef09#D!",
-                "value_start": 26,
-                "value_end": 38,
-                "entropy": 3.58496
-            }
-        ]
-    },
-    {
-        "rule": "PASSWD_PAIR",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.832,
-        "line_data_list": [
-            {
-                "line": "td : Password:            MU$T6Ef09#D!",
-                "line_num": 1,
-                "path": "./tests/samples/test.html",
-                "info": "FILE:./tests/samples/test.html|XML",
-                "variable": "Password",
-                "variable_start": 5,
-                "variable_end": 13,
-                "value": "MU$T6Ef09#D!",
-                "value_start": 26,
-                "value_end": 38,
-                "entropy": 3.58496
-            }
-        ]
-    },
-    {
         "rule": "Telegram Bot API Token",
         "severity": "high",
         "confidence": "moderate",
@@ -26890,153 +28734,6 @@
                 "value_start": 0,
                 "value_end": 84,
                 "entropy": 5.35637
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.999,
-        "line_data_list": [
-            {
-                "line": "token : IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==",
-                "line_num": 1,
-                "path": "./tests/samples/xml_data.xml",
-                "info": "FILE:./tests/samples/xml_data.xml|XML",
-                "variable": "token",
-                "variable_start": 0,
-                "variable_end": 5,
-                "value": "IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn",
-                "value_start": 8,
-                "value_end": 58,
-                "entropy": 4.83327
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.992,
-        "line_data_list": [
-            {
-                "line": "token : \"IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==\"",
-                "line_num": 1,
-                "path": "./tests/samples/xml_data.xml",
-                "info": "FILE:./tests/samples/xml_data.xml|XML",
-                "variable": "token",
-                "variable_start": 0,
-                "variable_end": 5,
-                "value": "IBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsn        hRFakQFbAuI769fdsbkjerfkjrekjnkerjnfkrejnfrejn==",
-                "value_start": 9,
-                "value_end": 115,
-                "entropy": 5.09578
-            }
-        ]
-    },
-    {
-        "rule": "BASE64 Private Key",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsnhRFakQFbAuI/        DaJSTVnp3ObjJPZhJs/P/XPWIKRNIglRqkkCAwEAAQJAbErPFMWah3EPxtfeVO1l        5R0yAZwrFKmLDO29/FoXyL2XbxthJlJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts        AQIhAMwBYS+NST98g0nytTRD1Y94n+yrhTlyWNR/uC4tT8SpAiEAwthlcs9UDPh5        BnaO8Y7A+im+Aw5ANIhJwSVBxB3QnKECIQCJm9ihic1B7MxmojgGxEcXGwfNTjl0        caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzNvej4/Y0MYuTM54ECIGtT        EBUWuiacAxz/WKHb9WVp0F/zkRwucJ0Hr2W4P9cP",
-                "line_num": 1,
-                "path": "./tests/samples/xml_data.xml",
-                "info": "FILE:./tests/samples/xml_data.xml|XML",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "MIIBOgIBAAJBAJtFfagSXdo0JmX6EdwWGvFMaXeOFY5xOTs3PWsnhRFakQFbAuI/        DaJSTVnp3ObjJPZhJs/P/XPWIKRNIglRqkkCAwEAAQJAbErPFMWah3EPxtfeVO1l        5R0yAZwrFKmLDO29/FoXyL2XbxthJlJmdMQgIYayZYn4W2PSq6C56AI201SlW7Ts        AQIhAMwBYS+NST98g0nytTRD1Y94n+yrhTlyWNR/uC4tT8SpAiEAwthlcs9UDPh5        BnaO8Y7A+im+Aw5ANIhJwSVBxB3QnKECIQCJm9ihic1B7MxmojgGxEcXGwfNTjl0        caRn2qszQs9O2QIgdaBFvkXDrADkry4rpVBU17ETcKzNvej4/Y0MYuTM54ECIGtT        EBUWuiacAxz/WKHb9WVp0F/zkRwucJ0Hr2W4P9cP",
-                "value_start": 7,
-                "value_end": 479,
-                "entropy": 5.73206
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.0,
-        "line_data_list": [
-            {
-                "line": "password : Password for authorization        BAIT: bace4d59-fa7e-beef-cafe-9129474bcd81",
-                "line_num": 1,
-                "path": "./tests/samples/xml_password.xml",
-                "info": "FILE:./tests/samples/xml_password.xml|XML",
-                "variable": "password",
-                "variable_start": 0,
-                "variable_end": 8,
-                "value": "Password",
-                "value_start": 11,
-                "value_end": 19,
-                "entropy": 2.75
-            }
-        ]
-    },
-    {
-        "rule": "UUID",
-        "severity": "info",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "password : Password for authorization        BAIT: bace4d59-fa7e-beef-cafe-9129474bcd81",
-                "line_num": 1,
-                "path": "./tests/samples/xml_password.xml",
-                "info": "FILE:./tests/samples/xml_password.xml|XML",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "bace4d59-fa7e-beef-cafe-9129474bcd81",
-                "value_start": 51,
-                "value_end": 87,
-                "entropy": 3.66606
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.169,
-        "line_data_list": [
-            {
-                "line": "password : cackle!",
-                "line_num": 1,
-                "path": "./tests/samples/xml_password.xml",
-                "info": "FILE:./tests/samples/xml_password.xml|XML",
-                "variable": "password",
-                "variable_start": 0,
-                "variable_end": 8,
-                "value": "cackle!",
-                "value_start": 11,
-                "value_end": 18,
-                "entropy": 2.52164
-            }
-        ]
-    },
-    {
-        "rule": "DOC_CREDENTIALS",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.002,
-        "line_data_list": [
-            {
-                "line": "password : peace_for_ukraine",
-                "line_num": 1,
-                "path": "./tests/samples/xml_password.xml",
-                "info": "FILE:./tests/samples/xml_password.xml|XML",
-                "variable": "password",
-                "variable_start": 0,
-                "variable_end": 8,
-                "value": "peace_for_ukraine",
-                "value_start": 11,
-                "value_end": 28,
-                "entropy": 3.45482
             }
         ]
     }
