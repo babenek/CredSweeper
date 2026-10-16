@@ -180,18 +180,15 @@ class DeepScanner(
             if HtmlScanner.match(data):
                 deep_scanners.append(HtmlScanner)
                 deep_scanners.append(XmlScanner)
-                fallback_scanners.append(ByteScanner)
             elif MxfileScanner.match(data):
                 deep_scanners.append(MxfileScanner)
                 deep_scanners.append(XmlScanner)
-                fallback_scanners.append(ByteScanner)
             elif TmxScanner.match(data):
                 deep_scanners.append(TmxScanner)
                 fallback_scanners.append(XmlScanner)
-                fallback_scanners.append(ByteScanner)
             else:
                 deep_scanners.append(XmlScanner)
-                fallback_scanners.append(ByteScanner)
+            fallback_scanners.append(ByteScanner)
         elif EmlScanner.match(data):
             if data_provider.descriptor.extension in (".eml", ".mht"):
                 deep_scanners.append(EmlScanner)

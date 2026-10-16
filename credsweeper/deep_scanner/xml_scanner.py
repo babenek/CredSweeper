@@ -57,7 +57,7 @@ class XmlScanner(AbstractScanner, ABC):
             recursive_limit_size: int) -> Optional[List[Candidate]]:
         """Tries to represent data as XML text and scan as text lines"""
         try:
-            if structure := XmlScanner.represent_xml(data_provider.lines):
+            if structure := self.represent_xml(data_provider.lines):
                 struct_data_provider = StructContentProvider(struct=structure,
                                                              file_path=data_provider.file_path,
                                                              file_type=data_provider.file_type,
