@@ -38,17 +38,6 @@ class XmlScanner(AbstractScanner, ABC):
                     return True
         return False
 
-    '''
-    
-            tree = etree.fromstringlist(xml_lines)
-            for element in tree.iter():
-                tag = Util.extract_element_data(element, "tag")
-                text = Util.extract_element_data(element, "text")
-                lines.append(f"{tag} : {text}")
-                line_numbers.append(element.sourceline)
-            return lines, line_numbers
-    '''
-
     def represent_xml_as_structure(self, lines: List[str]) -> List[str | dict]:
         """Parse XML to structure with possible tag combination"""
         structure: List[str | dict] = []
@@ -96,14 +85,13 @@ class XmlScanner(AbstractScanner, ABC):
                                                      file_type=data_provider.file_type,
                                                      info=f"{data_provider.info}|XML")
                 return self.scanner.scan(str_provider)
-            else:
-                if structure := self.represent_xml_as_structure(data_provider.lines):
-                    struct_data_provider = StructContentProvider(struct=structure,
-                                                                 file_path=data_provider.file_path,
-                                                                 file_type=data_provider.file_type,
-                                                                 info=f"{data_provider.info}|XML")
-                    new_limit = recursive_limit_size - len(data_provider.data)
-                    return self.structure_scan(struct_data_provider, depth, new_limit)
+            if structure := self.represent_xml_as_structure(data_provider.lines):
+                struct_data_provider = StructContentProvider(struct=structure,
+                                                             file_path=data_provider.file_path,
+                                                             file_type=data_provider.file_type,
+                                                             info=f"{data_provider.info}|XML")
+                new_limit = recursive_limit_size - len(data_provider.data)
+                return self.structure_scan(struct_data_provider, depth, new_limit)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logger.warning("Cannot parse as XML %s:%s %s", type(exc), exc, data_provider.descriptor)

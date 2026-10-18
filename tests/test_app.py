@@ -902,7 +902,7 @@ class TestMain(unittest.TestCase):
     def test_data_scan_depth_3_pedantic_p(self):
         # scan with deep 3 and pedantic
         self.data_scan({
-            "__cred_count": SAMPLES_IN_DEEP_3 ,
+            "__cred_count": SAMPLES_IN_DEEP_3,
             "pool_count": 2,
             "thrifty": True,
             "sort_output": True,

@@ -1,5 +1,5 @@
 import logging
-from typing import List, Any, Tuple, Self
+from typing import List, Any, Tuple, Sequence
 
 from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.config.config import Config
@@ -134,7 +134,10 @@ class DeepScanner(
         return self.__scanner
 
     @staticmethod
-    def get_matched_scanner(data: bytes, scanner_classes: List[AbstractScanner]) -> AbstractScanner | None:
+    def get_matched_scanner(
+            data: bytes,  #
+            scanner_classes: Sequence[type[AbstractScanner]],  #
+    ) -> type[AbstractScanner] | None:
         """Returns matched scanner or None"""
         for scanner_class in scanner_classes:
             if scanner_class.match(data):
