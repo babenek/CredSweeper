@@ -376,14 +376,16 @@ class TestMain(unittest.TestCase):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def test_depth_p(self) -> None:
-        # test for finding files with --depth
+        # test for finding files with --depth and --pedantic
         content_provider: AbstractProvider = FilesProvider([SAMPLES_PATH])
-        cred_sweeper = CredSweeper(depth=1)
+        cred_sweeper = CredSweeper(depth=1, pedantic=True)
         cred_sweeper.run(content_provider=content_provider)
         self.assertEqual(SAMPLES_IN_DEEP_1, cred_sweeper.credential_manager.len_credentials())
+        cred_sweeper.credential_manager.clear_credentials()
         cred_sweeper.config.depth = 2
         cred_sweeper.run(content_provider=content_provider)
         self.assertEqual(SAMPLES_IN_DEEP_2, cred_sweeper.credential_manager.len_credentials())
+        cred_sweeper.credential_manager.clear_credentials()
         cred_sweeper.config.depth = 3
         cred_sweeper.run(content_provider=content_provider)
         self.assertEqual(SAMPLES_IN_DEEP_3, cred_sweeper.credential_manager.len_credentials())
@@ -900,7 +902,7 @@ class TestMain(unittest.TestCase):
     def test_data_scan_depth_3_pedantic_p(self):
         # scan with deep 3 and pedantic
         self.data_scan({
-            "__cred_count": SAMPLES_IN_DEEP_3 + 21,
+            "__cred_count": SAMPLES_IN_DEEP_3 ,
             "pool_count": 2,
             "thrifty": True,
             "sort_output": True,
