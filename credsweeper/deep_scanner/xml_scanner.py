@@ -5,11 +5,11 @@ from typing import List, Optional, Tuple
 
 from lxml import etree
 
-from credsweeper.file_handler.string_content_provider import StringContentProvider
 from credsweeper.common.constants import MAX_LINE_LENGTH, DEFAULT_PATTERN_LEN
 from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
+from credsweeper.file_handler.string_content_provider import StringContentProvider
 from credsweeper.file_handler.struct_content_provider import StructContentProvider
 from credsweeper.logger import TRACE
 from credsweeper.utils.util import Util
@@ -92,8 +92,9 @@ class XmlScanner(AbstractScanner, ABC):
                                                              info=f"{data_provider.info}|XML")
                 new_limit = recursive_limit_size - len(data_provider.data)
                 return self.structure_scan(struct_data_provider, depth, new_limit)
+        except etree.XMLSyntaxError as xml_exc:
+            logger.log(TRACE, "%s %s", xml_exc, data_provider.descriptor)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
-            logger.warning("Cannot parse as XML %s:%s %s", type(exc), exc, data_provider.descriptor)
-            logger.log(TRACE, "Cannot parse as XML %s:%s %s", type(exc), exc, data_provider.descriptor)
+            logger.warning("%s:%s:%s", type(exc), exc, data_provider.descriptor)
         return None
