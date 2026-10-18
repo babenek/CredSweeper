@@ -745,7 +745,7 @@ class TestMain(unittest.TestCase):
 
     def test_doc_p(self) -> None:
         content_provider: AbstractProvider = FilesProvider([SAMPLE_HTML])
-        cred_sweeper = CredSweeper(doc=True, severity=Severity.LOW)
+        cred_sweeper = CredSweeper(doc=True, severity=Severity.LOW, ml_threshold=0.0)
         cred_sweeper.run(content_provider=content_provider)
         found_credentials = cred_sweeper.credential_manager.get_credentials()
         expected_credential_values = {
