@@ -74,7 +74,6 @@ class DeepScanner(
     JclassScanner,  #
     JksScanner,  #
     JsonScanner,  #
-    YamlScanner,  #
     LexerScanner,  #
     LzmaScanner,  #
     MxfileScanner,  #
@@ -102,6 +101,7 @@ class DeepScanner(
     XmlScanner,  #
     XlsScanner,  #
     XlsxScanner,  #
+    YamlScanner,  #
     ZipScanner,  #
     ZlibScanner,  #
     ZstdScanner,  #
