@@ -22,9 +22,9 @@ SAMPLES_FILTERED_COUNT = 669
 SAMPLES_POST_CRED_COUNT = 620
 
 # archived credentials that are not found without --depth
-SAMPLES_IN_DEEP_1 = SAMPLES_POST_CRED_COUNT + 216
-SAMPLES_IN_DEEP_2 = SAMPLES_IN_DEEP_1 + 38
-SAMPLES_IN_DEEP_3 = SAMPLES_IN_DEEP_2 + 15
+SAMPLES_IN_DEEP_1 = SAMPLES_POST_CRED_COUNT + 213
+SAMPLES_IN_DEEP_2 = SAMPLES_IN_DEEP_1 + 35
+SAMPLES_IN_DEEP_3 = SAMPLES_IN_DEEP_2 + 9
 
 # well known string with all latin letters
 AZ_DATA = b"The quick brown fox jumps over the lazy dog"

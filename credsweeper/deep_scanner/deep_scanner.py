@@ -19,7 +19,7 @@ from credsweeper.deep_scanner.gzip_scanner import GzipScanner
 from credsweeper.deep_scanner.html_scanner import HtmlScanner
 from credsweeper.deep_scanner.jclass_scanner import JclassScanner
 from credsweeper.deep_scanner.jks_scanner import JksScanner
-from credsweeper.deep_scanner.json_scanner import LangScanner
+from credsweeper.deep_scanner.lang_scanner import LangScanner
 from credsweeper.deep_scanner.lexer_scanner import LexerScanner
 from credsweeper.deep_scanner.lzma_scanner import LzmaScanner
 from credsweeper.deep_scanner.mxfile_scanner import MxfileScanner
@@ -34,7 +34,6 @@ from credsweeper.deep_scanner.png_scanner import PngScanner
 from credsweeper.deep_scanner.pptx_scanner import PptxScanner
 from credsweeper.deep_scanner.protobuf_scanner import ProtobufScanner
 from credsweeper.deep_scanner.pycache_scanner import PycacheScanner
-from credsweeper.deep_scanner.python_scanner import PythonScanner
 from credsweeper.deep_scanner.rpm_scanner import RpmScanner
 from credsweeper.deep_scanner.rtf_scanner import RtfScanner
 from credsweeper.deep_scanner.snk_scanner import SnkScanner
@@ -88,7 +87,6 @@ class DeepScanner(
     PptxScanner,  #
     ProtobufScanner,  #
     PycacheScanner,  #
-    PythonScanner,  #
     RtfScanner,  #
     RpmScanner,  #
     SquashfsScanner,  #
@@ -217,8 +215,6 @@ class DeepScanner(
                     # data provider data can be transformed to text
                     if YamlScanner.match(data):
                         deep_scanners.append(YamlScanner)
-                    if PythonScanner.match(data):
-                        deep_scanners.append(PythonScanner)
                     if LangScanner.match(data):
                         deep_scanners.append(LangScanner)
                     if LexerScanner.match(data):

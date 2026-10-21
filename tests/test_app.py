@@ -476,7 +476,7 @@ class TestMain(unittest.TestCase):
 
     def test_py_p(self) -> None:
         content_provider: AbstractProvider = FilesProvider([SAMPLE_PY])
-        cred_sweeper = CredSweeper(ml_threads_limit=self.jobs, severity=Severity.LOW, ml_threshold=0, depth=1)
+        cred_sweeper = CredSweeper(severity=Severity.LOW, ml_threshold=0, depth=1)
         cred_sweeper.run(content_provider=content_provider)
         found_credentials = cred_sweeper.credential_manager.get_credentials()
         expected_credentials = [{

@@ -7789,186 +7789,6 @@
         ]
     },
     {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 3,
-                "variable_end": 6,
-                "value": "'kty': 'EC'",
-                "value_start": 2,
-                "value_end": 13,
-                "entropy": 2.73216
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 84,
-                "variable_end": 85,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 89,
-                "value_end": 175,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 195,
-                "variable_end": 196,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 200,
-                "value_end": 222,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 16,
-                "variable_end": 17,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 21,
-                "value_end": 64,
-                "entropy": 4.87953
-            }
-        ]
-    },
-    {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 70,
-                "variable_end": 73,
-                "value": "'kty': 'RSA'",
-                "value_start": 69,
-                "value_end": 81,
-                "entropy": 2.9183
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 84,
-                "variable_end": 85,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 89,
-                "value_end": 175,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 195,
-                "variable_end": 196,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 200,
-                "value_end": 222,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 16,
-                "variable_end": 17,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 21,
-                "value_end": 64,
-                "entropy": 4.87953
-            }
-        ]
-    },
-    {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 181,
-                "variable_end": 184,
-                "value": "'kty': 'oct'",
-                "value_start": 180,
-                "value_end": 192,
-                "entropy": 2.75163
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 84,
-                "variable_end": 85,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 89,
-                "value_end": 175,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 195,
-                "variable_end": 196,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 200,
-                "value_end": 222,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': 'EC', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/json_web_key",
-                "info": "FILE:./tests/samples/json_web_key|BASE64|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 16,
-                "variable_end": 17,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 21,
-                "value_end": 64,
-                "entropy": 4.87953
-            }
-        ]
-    },
-    {
         "rule": "JSON Web Key",
         "severity": "medium",
         "confidence": "strong",
@@ -8109,186 +7929,6 @@
                 "value_start": 10,
                 "value_end": 75,
                 "entropy": 5.03815
-            }
-        ]
-    },
-    {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 72,
-                "variable_end": 75,
-                "value": "'kty': 'RSA'",
-                "value_start": 71,
-                "value_end": 83,
-                "entropy": 2.9183
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 118,
-                "variable_end": 119,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 123,
-                "value_end": 209,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 261,
-                "variable_end": 262,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 266,
-                "value_end": 288,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 18,
-                "variable_end": 19,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 23,
-                "value_end": 66,
-                "entropy": 4.87953
-            }
-        ]
-    },
-    {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 3,
-                "variable_end": 6,
-                "value": "'kty': '[EC",
-                "value_start": 2,
-                "value_end": 13,
-                "entropy": 3.02717
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 118,
-                "variable_end": 119,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 123,
-                "value_end": 209,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 261,
-                "variable_end": 262,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 266,
-                "value_end": 288,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 18,
-                "variable_end": 19,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 23,
-                "value_end": 66,
-                "entropy": 4.87953
-            }
-        ]
-    },
-    {
-        "rule": "JWK",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "kty",
-                "variable_start": 215,
-                "variable_end": 218,
-                "value": "'kty': 'oct'",
-                "value_start": 214,
-                "value_end": 226,
-                "entropy": 2.75163
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 118,
-                "variable_end": 119,
-                "value": "-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY",
-                "value_start": 123,
-                "value_end": 209,
-                "entropy": 5.43459
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "k",
-                "variable_start": 261,
-                "variable_end": 262,
-                "value": "WrMwQfoNaHTgXU5fZvRGAD",
-                "value_start": 266,
-                "value_end": 288,
-                "entropy": 4.36852
-            },
-            {
-                "line": "[{'kty': '[EC]', 'd': 'slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-'}, {'kty': 'RSA', 'dummy1': null, 'dummy2': null, 'd': '-phZ8N4GuwZchy7FCMB14IA35dBU3sWy2ORxwWN8PbKqKOkZb8mh4v_gQgwg7j16uSd91COBNPGH0hNzaH2jOY'}, {'kty': 'oct', 'dummy1': null, 'dummy2': null, 'k': 'WrMwQfoNaHTgXU5fZvRGAD'}]",
-                "line_num": 1,
-                "path": "./tests/samples/jwk.json",
-                "info": "FILE:./tests/samples/jwk.json|Python|STRING:0|RAW",
-                "variable": "d",
-                "variable_start": 18,
-                "variable_end": 19,
-                "value": "slaQqyHQPudOpq2mbDskum8rOu9IMkLGjINAFWwfqr-",
-                "value_start": 23,
-                "value_end": 66,
-                "entropy": 4.87953
             }
         ]
     },
@@ -8560,48 +8200,6 @@
         "rule": "Key",
         "severity": "high",
         "confidence": "moderate",
-        "ml_probability": 0.96,
-        "line_data_list": [
-            {
-                "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
-                "line_num": 1,
-                "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|Python|STRING:2|RAW",
-                "variable": "PKEY",
-                "variable_start": 0,
-                "variable_end": 4,
-                "value": "-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----",
-                "value_start": 8,
-                "value_end": 424,
-                "entropy": 5.55221
-            }
-        ]
-    },
-    {
-        "rule": "PEM Private Key",
-        "severity": "high",
-        "confidence": "strong",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
-                "line_num": 1,
-                "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|Python|STRING:2|RAW",
-                "variable": null,
-                "variable_start": -2,
-                "variable_end": -2,
-                "value": "-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----",
-                "value_start": 8,
-                "value_end": 424,
-                "entropy": 5.55221
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "high",
-        "confidence": "moderate",
         "ml_probability": 0.993,
         "line_data_list": [
             {
@@ -8629,7 +8227,7 @@
                 "line": "pkey = 'LS0tLS1CRUdJTiBQUklWQVRFIENDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ0ViVnpmUGWxhQW9KQWwrLzZYdDJPNG1PQjYxMXNPaFJBTkNBQVNnRlRLandKQUFVOTVnKysvdnpLV0hrekFWbU5NSQp0QjV2VGpaT09Jd25FYjcwTXNXWkZJeVVGRDFQOUd3c3R6NCtha0hYN3ZJOEJINmhIbUJtZmVRbAotLS0tLUVORCBQUklWJNR0J5cUdTTTQ5QW5aUHhmQXl4cUUKWlYwNdFR0QVRFIEtFWS0tLS0tCgtFWS0tLS0tCk1JR0hBZ0VBTU=='",
                 "line_num": 1,
                 "path": "./tests/samples/key.py",
-                "info": "FILE:./tests/samples/key.py|Python|STRING:0|RAW",
+                "info": "FILE:./tests/samples/key.py|Python",
                 "variable": "pkey",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -8637,6 +8235,48 @@
                 "value_start": 8,
                 "value_end": 332,
                 "entropy": 5.42881
+            }
+        ]
+    },
+    {
+        "rule": "Key",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.96,
+        "line_data_list": [
+            {
+                "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
+                "line_num": 3,
+                "path": "./tests/samples/key.py",
+                "info": "FILE:./tests/samples/key.py|Python",
+                "variable": "PKEY",
+                "variable_start": 0,
+                "variable_end": 4,
+                "value": "-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----",
+                "value_start": 8,
+                "value_end": 424,
+                "entropy": 5.55221
+            }
+        ]
+    },
+    {
+        "rule": "PEM Private Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "PKEY = '-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----'",
+                "line_num": 3,
+                "path": "./tests/samples/key.py",
+                "info": "FILE:./tests/samples/key.py|Python",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx\\nOQAAABWHkoN5N0V0OCSXOHWSOHAxRYMJSGc4clgVA0gJgFlIBAAAAJimRM7VpkTO1QAAAAtzc2gt\\nZWQyNTUxOQAAACBqIPMG94HL7zedFzsvi45mHS8ZuyLQXqvHpHobcdNCJAAAAFRoZXJlXzE1LU4w\\ndF9UaGVLZXlZb3VBcmVMb29raW5nRm9S8wb3Mj0tZT1hc3A7ZHprejsuZm5tbmRmbmVuZm5pAAAA\\nEXRpemVuQGNyZWRzd2VlcGVyAQIDBA==\\n-----END OPENSSH PRIVATE KEY-----",
+                "value_start": 8,
+                "value_end": 424,
+                "entropy": 5.55221
             }
         ]
     },
@@ -9333,69 +8973,6 @@
         ]
     },
     {
-        "rule": "Password",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "secure_yaml = '\\npassword = \"F1lT3ReDw17hQoT3s\\\\n'\"",
-                "line_num": 1,
-                "path": "./tests/samples/nonce.py",
-                "info": "FILE:./tests/samples/nonce.py|Python|STRING:1|YAML|KEYWORD",
-                "variable": "password",
-                "variable_start": 17,
-                "variable_end": 25,
-                "value": "F1lT3ReDw17hQoT3s\\\\n'",
-                "value_start": 29,
-                "value_end": 50,
-                "entropy": 4.01137
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "key_multi = 'KJHfdjs8767gr54534wsFHGf5hJKhK\\nU7yguyuyFHGf5=='",
-                "line_num": 1,
-                "path": "./tests/samples/nonce.py",
-                "info": "FILE:./tests/samples/nonce.py|Python|STRING:3|RAW",
-                "variable": "key_multi",
-                "variable_start": 0,
-                "variable_end": 9,
-                "value": "KJHfdjs8767gr54534wsFHGf5hJKhK\\nU7yguyuyFHGf5==",
-                "value_start": 13,
-                "value_end": 60,
-                "entropy": 4.49556
-            }
-        ]
-    },
-    {
-        "rule": "Key",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "key_wrap = 'KJHhJKhKU7yguyuyfrtsdESffhjgkhYTfdjs8Gf5jlli=='",
-                "line_num": 1,
-                "path": "./tests/samples/nonce.py",
-                "info": "FILE:./tests/samples/nonce.py|Python|STRING:2|RAW",
-                "variable": "key_wrap",
-                "variable_start": 0,
-                "variable_end": 8,
-                "value": "KJHhJKhKU7yguyuyfrtsdESffhjgkhYTfdjs8Gf5jlli==",
-                "value_start": 12,
-                "value_end": 58,
-                "entropy": 4.48282
-            }
-        ]
-    },
-    {
         "rule": "Nonce",
         "severity": "low",
         "confidence": "moderate",
@@ -9434,6 +9011,48 @@
                 "value_start": 10,
                 "value_end": 27,
                 "entropy": 3.73452
+            }
+        ]
+    },
+    {
+        "rule": "Key",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "key_wrap = 'KJHhJKhKU7yguyuyfrtsdESffhjgkhYTfdjs8Gf5jlli=='",
+                "line_num": 3,
+                "path": "./tests/samples/nonce.py",
+                "info": "FILE:./tests/samples/nonce.py|Python",
+                "variable": "key_wrap",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "KJHhJKhKU7yguyuyfrtsdESffhjgkhYTfdjs8Gf5jlli==",
+                "value_start": 12,
+                "value_end": 58,
+                "entropy": 4.48282
+            }
+        ]
+    },
+    {
+        "rule": "Key",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "key_multi = 'KJHfdjs8767gr54534wsFHGf5hJKhK\\nU7yguyuyFHGf5=='",
+                "line_num": 4,
+                "path": "./tests/samples/nonce.py",
+                "info": "FILE:./tests/samples/nonce.py|Python",
+                "variable": "key_multi",
+                "variable_start": 0,
+                "variable_end": 9,
+                "value": "KJHfdjs8767gr54534wsFHGf5hJKhK\\nU7yguyuyFHGf5==",
+                "value_start": 13,
+                "value_end": 60,
+                "entropy": 4.49556
             }
         ]
     },
@@ -18703,7 +18322,7 @@
                 "line": "salt1 = b'#!\\xae2389x&543@'",
                 "line_num": 1,
                 "path": "./tests/samples/salt.py",
-                "info": "FILE:./tests/samples/salt.py|Python|STRING:0|RAW",
+                "info": "FILE:./tests/samples/salt.py|Python",
                 "variable": "salt1",
                 "variable_start": 0,
                 "variable_end": 5,
@@ -18732,27 +18351,6 @@
                 "value_start": 10,
                 "value_end": 29,
                 "entropy": 3.53689
-            }
-        ]
-    },
-    {
-        "rule": "Salt",
-        "severity": "low",
-        "confidence": "moderate",
-        "ml_probability": 0.999,
-        "line_data_list": [
-            {
-                "line": "salt4 = {'salt5': 'my124%#$@s\\x04clt\\x00'}",
-                "line_num": 1,
-                "path": "./tests/samples/salt.py",
-                "info": "FILE:./tests/samples/salt.py|Python|STRING:3|RAW",
-                "variable": "salt5",
-                "variable_start": 10,
-                "variable_end": 15,
-                "value": "my124%#$@s\\x04clt\\x00",
-                "value_start": 19,
-                "value_end": 40,
-                "entropy": 3.88018
             }
         ]
     },
@@ -18795,6 +18393,27 @@
                 "value_start": 19,
                 "value_end": 38,
                 "entropy": 3.93214
+            }
+        ]
+    },
+    {
+        "rule": "Salt",
+        "severity": "low",
+        "confidence": "moderate",
+        "ml_probability": 0.999,
+        "line_data_list": [
+            {
+                "line": "salt4 = {'salt5': 'my124%#$@s\\x04clt\\x00'}",
+                "line_num": 4,
+                "path": "./tests/samples/salt.py",
+                "info": "FILE:./tests/samples/salt.py|Python",
+                "variable": "salt5",
+                "variable_start": 10,
+                "variable_end": 15,
+                "value": "my124%#$@s\\x04clt\\x00",
+                "value_start": 19,
+                "value_end": 40,
+                "entropy": 3.88018
             }
         ]
     },
@@ -20303,27 +19922,6 @@
         "rule": "Password",
         "severity": "high",
         "confidence": "moderate",
-        "ml_probability": 0.999,
-        "line_data_list": [
-            {
-                "line": "\"\"\"pswrd=\"Zf2Fv%s2\";\\r\"\"\"",
-                "line_num": 1,
-                "path": "./tests/samples/sample.json",
-                "info": "FILE:./tests/samples/sample.json|YAML|STRING:line|Python|STRING:0|RAW",
-                "variable": "pswrd",
-                "variable_start": 3,
-                "variable_end": 8,
-                "value": "Zf2Fv%s2",
-                "value_start": 10,
-                "value_end": 18,
-                "entropy": 2.75
-            }
-        ]
-    },
-    {
-        "rule": "Password",
-        "severity": "high",
-        "confidence": "moderate",
         "ml_probability": 0.993,
         "line_data_list": [
             {
@@ -21119,23 +20717,170 @@
         ]
     },
     {
-        "rule": "Token",
+        "rule": "Key",
         "severity": "high",
         "confidence": "moderate",
-        "ml_probability": 0.954,
+        "ml_probability": 1.0,
         "line_data_list": [
             {
-                "line": "TOKEN = 1102181139266001652353292050",
-                "line_num": 1,
+                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
+                "line_num": 3,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:11|RAW",
-                "variable": "TOKEN",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "SECRET_CREDENTIAL_API_KEY",
                 "variable_start": 0,
-                "variable_end": 5,
-                "value": "1102181139266001652353292050",
-                "value_start": 8,
-                "value_end": 36,
-                "entropy": 2.84329
+                "variable_end": 25,
+                "value": "a3f1ef0ff53236141253c0372",
+                "value_start": 29,
+                "value_end": 54,
+                "entropy": 3.31908
+            }
+        ]
+    },
+    {
+        "rule": "API",
+        "severity": "low",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
+                "line_num": 3,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "SECRET_CREDENTIAL_API_KEY",
+                "variable_start": 0,
+                "variable_end": 25,
+                "value": "a3f1ef0ff53236141253c0372",
+                "value_start": 29,
+                "value_end": 54,
+                "entropy": 3.31908
+            }
+        ]
+    },
+    {
+        "rule": "Credential",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
+                "line_num": 3,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "SECRET_CREDENTIAL_API_KEY",
+                "variable_start": 0,
+                "variable_end": 25,
+                "value": "a3f1ef0ff53236141253c0372",
+                "value_start": 29,
+                "value_end": 54,
+                "entropy": 3.31908
+            }
+        ]
+    },
+    {
+        "rule": "Secret",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
+                "line_num": 3,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "SECRET_CREDENTIAL_API_KEY",
+                "variable_start": 0,
+                "variable_end": 25,
+                "value": "a3f1ef0ff53236141253c0372",
+                "value_start": 29,
+                "value_end": 54,
+                "entropy": 3.31908
+            }
+        ]
+    },
+    {
+        "rule": "Auth",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "AUTH = 'Basic Hbr73gu7gdsr=='",
+                "line_num": 4,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "AUTH",
+                "variable_start": 0,
+                "variable_end": 4,
+                "value": "Hbr73gu7gdsr==",
+                "value_start": 14,
+                "value_end": 28,
+                "entropy": 3.23593
+            }
+        ]
+    },
+    {
+        "rule": "Auth",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
+                "line_num": 5,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "AUTH_CREDENTIAL_SECRET",
+                "variable_start": 0,
+                "variable_end": 22,
+                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
+                "value_start": 27,
+                "value_end": 90,
+                "entropy": 5.0742
+            }
+        ]
+    },
+    {
+        "rule": "Credential",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
+                "line_num": 5,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "AUTH_CREDENTIAL_SECRET",
+                "variable_start": 0,
+                "variable_end": 22,
+                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
+                "value_start": 27,
+                "value_end": 90,
+                "entropy": 5.0742
+            }
+        ]
+    },
+    {
+        "rule": "Secret",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
+                "line_num": 5,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "AUTH_CREDENTIAL_SECRET",
+                "variable_start": 0,
+                "variable_end": 22,
+                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
+                "value_start": 27,
+                "value_end": 90,
+                "entropy": 5.0742
             }
         ]
     },
@@ -21147,9 +20892,9 @@
         "line_data_list": [
             {
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 6,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -21168,9 +20913,9 @@
         "line_data_list": [
             {
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 6,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -21189,9 +20934,9 @@
         "line_data_list": [
             {
                 "line": "API_SECRET_KEY = bytes([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 6,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:5|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "API_SECRET_KEY",
                 "variable_start": 0,
                 "variable_end": 14,
@@ -21210,9 +20955,9 @@
         "line_data_list": [
             {
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 7,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -21231,9 +20976,9 @@
         "line_data_list": [
             {
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 7,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -21252,9 +20997,9 @@
         "line_data_list": [
             {
                 "line": "AUTH_SECRET_NONCE = bytearray([223, 66, 216, 52, 221, 30, 216, 36, 216, 55, 216, 1, 216, 82, 223, 98])",
-                "line_num": 1,
+                "line_num": 7,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:6|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "AUTH_SECRET_NONCE",
                 "variable_start": 0,
                 "variable_end": 17,
@@ -21262,195 +21007,6 @@
                 "value_start": 31,
                 "value_end": 100,
                 "entropy": 2.86622
-            }
-        ]
-    },
-    {
-        "rule": "Auth",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AUTH = 'Basic Hbr73gu7gdsr=='",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:3|RAW",
-                "variable": "AUTH",
-                "variable_start": 0,
-                "variable_end": 4,
-                "value": "Hbr73gu7gdsr==",
-                "value_start": 14,
-                "value_end": 28,
-                "entropy": 3.23593
-            }
-        ]
-    },
-    {
-        "rule": "Secret",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "SECRET = os.getenv('SECRET', 'R15br4jtfcFbWh9G7EZTb6jR12c9We')",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:9|RAW",
-                "variable": "SECRET",
-                "variable_start": 0,
-                "variable_end": 6,
-                "value": "R15br4jtfcFbWh9G7EZTb6jR12c9We",
-                "value_start": 30,
-                "value_end": 60,
-                "entropy": 4.34839
-            }
-        ]
-    },
-    {
-        "rule": "Auth",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:4|RAW",
-                "variable": "AUTH_CREDENTIAL_SECRET",
-                "variable_start": 0,
-                "variable_end": 22,
-                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
-                "value_start": 27,
-                "value_end": 90,
-                "entropy": 5.0742
-            }
-        ]
-    },
-    {
-        "rule": "Credential",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:4|RAW",
-                "variable": "AUTH_CREDENTIAL_SECRET",
-                "variable_start": 0,
-                "variable_end": 22,
-                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
-                "value_start": 27,
-                "value_end": 90,
-                "entropy": 5.0742
-            }
-        ]
-    },
-    {
-        "rule": "Secret",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "AUTH_CREDENTIAL_SECRET = f'RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:4|RAW",
-                "variable": "AUTH_CREDENTIAL_SECRET",
-                "variable_start": 0,
-                "variable_end": 22,
-                "value": "RlQ8MGlWH8Hn1TrHn6WBfy31EhIIJmBsuUBOU8H2AJ6KnJC0L3djWHaqhDTZTth",
-                "value_start": 27,
-                "value_end": 90,
-                "entropy": 5.0742
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 0.98,
-        "line_data_list": [
-            {
-                "line": "X_Auth_Tokens[0] = '\\\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\\\r\\\\n'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|TOML|KEYWORD",
-                "variable": "X_Auth_Tokens[0]",
-                "variable_start": 0,
-                "variable_end": 16,
-                "value": "\\\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\\\r\\\\n",
-                "value_start": 20,
-                "value_end": 69,
-                "entropy": 3.97718
-            }
-        ]
-    },
-    {
-        "rule": "Auth",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.98,
-        "line_data_list": [
-            {
-                "line": "X_Auth_Tokens[0] = '\\\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\\\r\\\\n'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|TOML|KEYWORD",
-                "variable": "X_Auth_Tokens[0]",
-                "variable_start": 0,
-                "variable_end": 16,
-                "value": "\\\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\\\r\\\\n",
-                "value_start": 20,
-                "value_end": 69,
-                "entropy": 3.97718
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 0.998,
-        "line_data_list": [
-            {
-                "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|RAW",
-                "variable": "X_Auth_Tokens",
-                "variable_start": 0,
-                "variable_end": 13,
-                "value": "\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n",
-                "value_start": 18,
-                "value_end": 64,
-                "entropy": 4.01304
-            }
-        ]
-    },
-    {
-        "rule": "Auth",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.998,
-        "line_data_list": [
-            {
-                "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|RAW",
-                "variable": "X_Auth_Tokens",
-                "variable_start": 0,
-                "variable_end": 13,
-                "value": "\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n",
-                "value_start": 18,
-                "value_end": 64,
-                "entropy": 4.01304
             }
         ]
     },
@@ -21462,9 +21018,9 @@
         "line_data_list": [
             {
                 "line": "PASSWORD = '\\udf42\\ud834\\udd1e\\ud824\\ud837\\ud801\\ud852\\udf62'",
-                "line_num": 1,
+                "line_num": 8,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:7|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "PASSWORD",
                 "variable_start": 0,
                 "variable_end": 8,
@@ -21483,9 +21039,9 @@
         "line_data_list": [
             {
                 "line": "SALT = b'\\xdf42\\xd834\\xdd1E\\xd824\\xd837\\xd801\\xd852\\xdf62'",
-                "line_num": 1,
+                "line_num": 9,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:8|RAW",
+                "info": "FILE:./tests/samples/sample.py|Python",
                 "variable": "SALT",
                 "variable_start": 0,
                 "variable_end": 4,
@@ -21497,86 +21053,23 @@
         ]
     },
     {
-        "rule": "Key",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:2|RAW",
-                "variable": "SECRET_CREDENTIAL_API_KEY",
-                "variable_start": 0,
-                "variable_end": 25,
-                "value": "a3f1ef0ff53236141253c0372",
-                "value_start": 29,
-                "value_end": 54,
-                "entropy": 3.31908
-            }
-        ]
-    },
-    {
-        "rule": "API",
-        "severity": "low",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:2|RAW",
-                "variable": "SECRET_CREDENTIAL_API_KEY",
-                "variable_start": 0,
-                "variable_end": 25,
-                "value": "a3f1ef0ff53236141253c0372",
-                "value_start": 29,
-                "value_end": 54,
-                "entropy": 3.31908
-            }
-        ]
-    },
-    {
-        "rule": "Credential",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 1.0,
-        "line_data_list": [
-            {
-                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
-                "line_num": 1,
-                "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:2|RAW",
-                "variable": "SECRET_CREDENTIAL_API_KEY",
-                "variable_start": 0,
-                "variable_end": 25,
-                "value": "a3f1ef0ff53236141253c0372",
-                "value_start": 29,
-                "value_end": 54,
-                "entropy": 3.31908
-            }
-        ]
-    },
-    {
         "rule": "Secret",
         "severity": "medium",
         "confidence": "moderate",
         "ml_probability": 1.0,
         "line_data_list": [
             {
-                "line": "SECRET_CREDENTIAL_API_KEY = 'a3f1ef0ff53236141253c0372'",
-                "line_num": 1,
+                "line": "SECRET = os.getenv('SECRET', 'R15br4jtfcFbWh9G7EZTb6jR12c9We')",
+                "line_num": 10,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:2|RAW",
-                "variable": "SECRET_CREDENTIAL_API_KEY",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "SECRET",
                 "variable_start": 0,
-                "variable_end": 25,
-                "value": "a3f1ef0ff53236141253c0372",
-                "value_start": 29,
-                "value_end": 54,
-                "entropy": 3.31908
+                "variable_end": 6,
+                "value": "R15br4jtfcFbWh9G7EZTb6jR12c9We",
+                "value_start": 30,
+                "value_end": 60,
+                "entropy": 4.34839
             }
         ]
     },
@@ -21584,20 +21077,20 @@
         "rule": "Token",
         "severity": "high",
         "confidence": "moderate",
-        "ml_probability": 0.992,
+        "ml_probability": 0.998,
         "line_data_list": [
             {
-                "line": "X_Auth_Tokens[1] = '\\\\tf692a26934cc39327e912b102b5ed60d31da9a34\\\\r\\\\n'",
-                "line_num": 2,
+                "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
+                "line_num": 11,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|TOML|KEYWORD",
-                "variable": "X_Auth_Tokens[1]",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "X_Auth_Tokens",
                 "variable_start": 0,
-                "variable_end": 16,
-                "value": "\\\\tf692a26934cc39327e912b102b5ed60d31da9a34\\\\r\\\\n",
-                "value_start": 20,
-                "value_end": 69,
-                "entropy": 3.99515
+                "variable_end": 13,
+                "value": "\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n",
+                "value_start": 18,
+                "value_end": 64,
+                "entropy": 4.01304
             }
         ]
     },
@@ -21605,20 +21098,41 @@
         "rule": "Auth",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.992,
+        "ml_probability": 0.998,
         "line_data_list": [
             {
-                "line": "X_Auth_Tokens[1] = '\\\\tf692a26934cc39327e912b102b5ed60d31da9a34\\\\r\\\\n'",
-                "line_num": 2,
+                "line": "X_Auth_Tokens = ['\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n', '\\tf692a26934cc39327e912b102b5ed60d31da9a34\\r\\n']",
+                "line_num": 11,
                 "path": "./tests/samples/sample.py",
-                "info": "FILE:./tests/samples/sample.py|Python|STRING:10|TOML|KEYWORD",
-                "variable": "X_Auth_Tokens[1]",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "X_Auth_Tokens",
                 "variable_start": 0,
-                "variable_end": 16,
-                "value": "\\\\tf692a26934cc39327e912b102b5ed60d31da9a34\\\\r\\\\n",
-                "value_start": 20,
-                "value_end": 69,
-                "entropy": 3.99515
+                "variable_end": 13,
+                "value": "\\t8ab20238fb3ef48823e75469b5712d3f0baf2e58\\r\\n",
+                "value_start": 18,
+                "value_end": 64,
+                "entropy": 4.01304
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 0.954,
+        "line_data_list": [
+            {
+                "line": "TOKEN = 1102181139266001652353292050",
+                "line_num": 12,
+                "path": "./tests/samples/sample.py",
+                "info": "FILE:./tests/samples/sample.py|Python",
+                "variable": "TOKEN",
+                "variable_start": 0,
+                "variable_end": 5,
+                "value": "1102181139266001652353292050",
+                "value_start": 8,
+                "value_end": 36,
+                "entropy": 2.84329
             }
         ]
     },
