@@ -19,7 +19,7 @@ from credsweeper.deep_scanner.gzip_scanner import GzipScanner
 from credsweeper.deep_scanner.html_scanner import HtmlScanner
 from credsweeper.deep_scanner.jclass_scanner import JclassScanner
 from credsweeper.deep_scanner.jks_scanner import JksScanner
-from credsweeper.deep_scanner.json_scanner import JsonScanner
+from credsweeper.deep_scanner.json_scanner import LangScanner
 from credsweeper.deep_scanner.lexer_scanner import LexerScanner
 from credsweeper.deep_scanner.lzma_scanner import LzmaScanner
 from credsweeper.deep_scanner.mxfile_scanner import MxfileScanner
@@ -73,7 +73,7 @@ class DeepScanner(
     HtmlScanner,  #
     JclassScanner,  #
     JksScanner,  #
-    JsonScanner,  #
+    LangScanner,  #
     LexerScanner,  #
     LzmaScanner,  #
     MxfileScanner,  #
@@ -219,8 +219,8 @@ class DeepScanner(
                         deep_scanners.append(YamlScanner)
                     if PythonScanner.match(data):
                         deep_scanners.append(PythonScanner)
-                    if JsonScanner.match(data):
-                        deep_scanners.append(JsonScanner)
+                    if LangScanner.match(data):
+                        deep_scanners.append(LangScanner)
                     if LexerScanner.match(data):
                         deep_scanners.append(LexerScanner)
                     if TomlScanner.match(data):

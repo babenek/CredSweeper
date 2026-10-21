@@ -4,7 +4,6 @@ from hypothesis import given, strategies
 
 from credsweeper import DataContentProvider
 from credsweeper.deep_scanner.deep_scanner import DeepScanner
-from credsweeper.file_handler.descriptor import Descriptor
 
 
 class TestDeepScanner(unittest.TestCase):

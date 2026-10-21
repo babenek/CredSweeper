@@ -15,8 +15,10 @@ class TestPythonScanner(unittest.TestCase):
 
     def test_parse_py_n(self):
         # empty
-        self.assertTrue(PythonScanner.parse("""regexa=r'\.'"""))
-        self.assertFalse(PythonScanner.parse(''))
+        self.assertListEqual([],PythonScanner.parse(''))
+        # bash
+        with self.assertRaises(SyntaxError):
+            PythonScanner.parse("""PSWD=$MYPW""")
         # wrong syntax
         with self.assertRaises(SyntaxError):
             PythonScanner.parse("""<html>"Hello World!"</html>""")
