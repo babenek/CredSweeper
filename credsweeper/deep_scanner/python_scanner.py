@@ -1,6 +1,8 @@
+import ast
 import logging
+import warnings
 from abc import ABC
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from credsweeper.common.constants import MAX_LINE_LENGTH
 from credsweeper.credentials.candidate import Candidate
@@ -24,6 +26,22 @@ class PythonScanner(AbstractScanner, ABC):
             return True
         return False
 
+    MEANINGFUL_NODE_CLASSES=(
+        ast.FunctionDef,ast.ClassDef,
+    )
+
+    @staticmethod
+    def parse(source: str) -> List[Any]:
+        """Parse Python source and back to remove strings merge and line wrap"""
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("error", SyntaxWarning)
+            src = ast.parse(source)
+            if not src.body:
+                return []
+
+            result = ast.unparse(src).splitlines()
+            return result
+
     def data_scan(
             self,  #
             data_provider: DataContentProvider,  #
@@ -31,7 +49,7 @@ class PythonScanner(AbstractScanner, ABC):
             recursive_limit_size: int) -> Optional[List[Candidate]]:
         """Tries to scan each row as structure with column name in key"""
         try:
-            if structure := Util.parse_python(data_provider.text):
+            if structure := PythonScanner.parse_python(data_provider.text):
                 struct_content_provider = StructContentProvider(struct=structure,
                                                                 file_path=data_provider.file_path,
                                                                 file_type=data_provider.file_type,

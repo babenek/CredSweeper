@@ -413,14 +413,6 @@ class Util:
             # fallback
             logging.error("Failed to write: %s %s:%s", file_path, type(exc), exc)
 
-    @staticmethod
-    def parse_python(source: str) -> List[Any]:
-        """Parse Python source and back to remove strings merge and line wrap"""
-        with warnings.catch_warnings(record=True):
-            warnings.simplefilter("error", SyntaxWarning)
-            src = ast.parse(source)
-            result = ast.unparse(src).splitlines()
-            return result
 
     PEM_CLEANING_PATTERN = re.compile(r"\\[tnrvf]")
     WHITESPACE_TRANS_TABLE = str.maketrans('', '', string.whitespace)
