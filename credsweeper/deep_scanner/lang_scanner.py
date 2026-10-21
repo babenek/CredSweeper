@@ -94,8 +94,8 @@ class LangScanner(AbstractScanner, ABC):
                                                                 file_path=data_provider.file_path,
                                                                 file_type=data_provider.file_type,
                                                                 info=f"{data_provider.info}|Python")
-                struct_candidates = self.scanner.scan(python_content_provider)
-                return struct_candidates
+                candidates = self.scanner.scan(python_content_provider)
+                return candidates
         except Exception as exc:  # pylint: disable=broad-exception-caught
             logger.log(TRACE, "Cannot parse as Python %s:%s %s", type(exc), exc, data_provider.descriptor)
 

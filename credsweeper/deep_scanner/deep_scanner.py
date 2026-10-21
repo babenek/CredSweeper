@@ -213,8 +213,6 @@ class DeepScanner(
                     deep_scanners.append(ZlibScanner)
                 if data_provider.text:
                     # data provider data can be transformed to text
-                    if YamlScanner.match(data):
-                        deep_scanners.append(YamlScanner)
                     if LangScanner.match(data):
                         deep_scanners.append(LangScanner)
                     if LexerScanner.match(data):
@@ -225,6 +223,8 @@ class DeepScanner(
                         deep_scanners.append(CsvScanner)
                     if EncoderScanner.match(data):
                         deep_scanners.append(EncoderScanner)
+                    if YamlScanner.match(data):
+                        deep_scanners.append(YamlScanner)
         else:
             unknown_warning = not (data_provider.descriptor.info.endswith("|BASE64")
                                    or "|PROTO:" in data_provider.descriptor.info)
