@@ -34,6 +34,9 @@ logger = logging.getLogger(__name__)
 class AbstractScanner(ABC):
     """Base abstract class for all recursive scanners"""
 
+    # whether the scanner may scan with depth=0
+    shelf: bool | None = False
+
     @property
     @abstractmethod
     def config(self) -> Config:
@@ -50,12 +53,6 @@ class AbstractScanner(ABC):
     @abstractmethod
     def match(data: bytes | bytearray) -> bool:
         """Abstract method for any deep scanner"""
-        raise NotImplementedError(__name__)
-
-    @property
-    @abstractmethod
-    def shelf(self) -> bool:
-        """Abstract property to mark possibility scan with depth = 0"""
         raise NotImplementedError(__name__)
 
     @abstractmethod

@@ -29,10 +29,7 @@ class DocxScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
+    shelf = True
 
     @staticmethod
     def _iter_block_items(block):

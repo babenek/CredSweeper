@@ -22,11 +22,6 @@ class Sqlite3Scanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def __walk(sqlite3db) -> Generator[Tuple[str, Any], None, None]:
         sqlite3db.row_factory = sqlite3.Row

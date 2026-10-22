@@ -17,6 +17,8 @@ logger = logging.getLogger(__name__)
 class TmxScanner(AbstractScanner, ABC):
     """Realises tmX files scanning for values only. Image tags are skipped."""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Used to detect tm7,tm6,etc. (ThreadModeling) format."""
@@ -27,11 +29,6 @@ class TmxScanner(AbstractScanner, ABC):
                 # opening and closing tags were found - suppose it is an HTML
                 return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     def data_scan(
             self,  #

@@ -20,17 +20,14 @@ logger = logging.getLogger(__name__)
 class PdfScanner(AbstractScanner, ABC):
     """Implements pdf scanning"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - pdf"""
         if data.startswith(b"%PDF-"):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     def data_scan(
             self,  #

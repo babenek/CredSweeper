@@ -21,11 +21,6 @@ class PngScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def yield_png_chunks(data: bytes) -> Generator[Tuple[int, str, bytes], None, None]:
         """Processes PNG chunks and yields offset, type and data"""

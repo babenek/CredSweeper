@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 class PkcsScanner(AbstractScanner, ABC):
     """Implements pkcs12 scanning"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Matched ASN1 structure with exactly size"""
@@ -22,11 +24,6 @@ class PkcsScanner(AbstractScanner, ABC):
             # no real credentials in a file less than 128 bytes
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     def data_scan(
             self,  #

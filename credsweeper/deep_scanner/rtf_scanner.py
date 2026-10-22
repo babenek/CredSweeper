@@ -16,17 +16,14 @@ logger = logging.getLogger(__name__)
 class RtfScanner(AbstractScanner, ABC):
     """Implements squash file system scanning"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - Rich Text Format"""
         if data.startswith(b"{\\rtf1") and data.endswith(b"}"):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     @staticmethod
     def get_lines(text: str) -> List[str]:

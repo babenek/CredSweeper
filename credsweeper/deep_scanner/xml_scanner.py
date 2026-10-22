@@ -27,6 +27,8 @@ class XmlScanner(AbstractScanner, ABC):
     XML_FIRST_BRACKET_PATTERN = re.compile(rb"^\s*<")
     XML_OPENING_TAG_PATTERN = re.compile(rb"<([0-9A-Za-z_]{1,256})")
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Used to detect XML format from raw bytes"""
@@ -37,11 +39,6 @@ class XmlScanner(AbstractScanner, ABC):
                 if start_pos < data.find(closing_tag, start_pos):
                     return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     def represent_xml_as_structure(self, lines: List[str]) -> List[str | dict]:
         """Parse XML to structure with possible tag combination"""

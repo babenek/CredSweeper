@@ -21,11 +21,6 @@ class ProtobufScanner(AbstractScanner, ABC):
             return ProtobufScanner.match_protobuf(data, 0, len(data))
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def read_wire(data: bytes | bytearray, offset: int) -> Tuple[int, int]:
         """Reads wire to detect sizes

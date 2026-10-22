@@ -32,11 +32,6 @@ class ZipScanner(AbstractScanner, ABC):
                 return False
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def get_size(data: bytes | bytearray) -> int:
         """Evaluate extracted archive size

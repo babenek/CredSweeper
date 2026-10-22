@@ -13,14 +13,11 @@ logger = logging.getLogger(__name__)
 class TextScanner(AbstractScanner, ABC):
     """Regular text scanner with lines splitting"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Match logic in data_scan"""
-        return True
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
         return True
 
     def data_scan(

@@ -36,11 +36,6 @@ class CsvScanner(AbstractScanner, ABC):
                 return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @classmethod
     def get_structure(cls, text: str) -> Optional[List[Dict[str, Any]]]:
         """Reads a text as CSV standard with guessed dialect"""

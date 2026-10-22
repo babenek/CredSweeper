@@ -19,6 +19,8 @@ logger = logging.getLogger(__name__)
 class LangScanner(AbstractScanner, ABC):
     """Implements scanning of data if it is a script of some markup language"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Check matches for a JSON or Python format"""
@@ -36,11 +38,6 @@ class LangScanner(AbstractScanner, ABC):
                 (0 < data.find(b';', 0, MAX_LINE_LENGTH) or 1 < data.count(b'\n', 0, MAX_LINE_LENGTH)):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     @staticmethod
     def parse_python(source: str) -> list[str]:

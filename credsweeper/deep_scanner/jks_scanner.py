@@ -16,17 +16,14 @@ logger = logging.getLogger(__name__)
 class JksScanner(AbstractScanner, ABC):
     """Implements jks scanning"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """According https://en.wikipedia.org/wiki/List_of_file_signatures - jks"""
         if data.startswith(b"\xFE\xED\xFE\xED"):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     def data_scan(
             self,  #

@@ -24,11 +24,6 @@ class DebScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def walk_deb(data: bytes) -> Generator[Tuple[int, str, bytes], None, None]:
         """Processes sequence of DEB archive and yields offset, name and data"""

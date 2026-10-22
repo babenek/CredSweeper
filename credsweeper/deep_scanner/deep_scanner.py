@@ -113,6 +113,8 @@ class DeepScanner(
                        JclassScanner, PkcsScanner, XlsScanner, TarScanner, PickleScanner, DexScanner, PlistScanner,
                        RtfScanner, PycacheScanner, CpioScanner)
 
+    shelf = None
+
     def __init__(self, config: Config, scanner: Scanner) -> None:
         """Initialize Advanced credential scanner.
 
@@ -153,7 +155,7 @@ class DeepScanner(
             pass
         elif binary_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.BINARY_SCANNERS):
             # binary scanner detection
-            if 0 < depth:
+            if 0 < depth or binary_scanner.shelf:
                 deep_scanners.append(binary_scanner)
             else:
                 deep_scanners.append(StringsScanner)

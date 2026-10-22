@@ -32,11 +32,6 @@ class EncoderScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def decode(text: str) -> Optional[bytes]:
         """Decodes base64 text with cleaning whitespaces. Returns None when the decoding fails"""

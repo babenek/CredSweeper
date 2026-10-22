@@ -23,11 +23,6 @@ class GritScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def walk_pak(data: bytes, limit: int) -> Generator[Tuple[int, int, bytes], None, None]:
         """Processes sequence of PAK archive and yields offset, resource id and data"""

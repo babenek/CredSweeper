@@ -15,17 +15,14 @@ logger = logging.getLogger(__name__)
 class SnkScanner(AbstractScanner, ABC):
     """Implements Snk files scanning"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """https://github.com/dotnet/runtime/blob/main/docs/project/strong-name-signing.md"""
         if data.startswith(b"\x07\x02\x00\x00\x00$\x00\x00RSA2"):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     @staticmethod
     def extract(data: bytes) -> None | str:

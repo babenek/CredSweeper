@@ -28,11 +28,6 @@ class DexScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def decode_mutf8(data: bytes) -> bytes:
         """Decode DEX Modified UTF-8 bytes to a Python str."""

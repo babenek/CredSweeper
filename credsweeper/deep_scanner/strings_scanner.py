@@ -14,14 +14,11 @@ logger = logging.getLogger(__name__)
 class StringsScanner(AbstractScanner, ABC):
     """Implements known binary file scanning with ASCII strings representations"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Match logic in data_scan"""
-        return True
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
         return True
 
     @staticmethod

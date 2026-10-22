@@ -20,11 +20,6 @@ class CrxScanner(AbstractScanner, ABC):
             return True
         return False
 
-    @property
-    def shelf(self) -> bool:
-        """Depth must be greater than 0"""
-        return False
-
     @staticmethod
     def zip_extract(data: bytes) -> bytes:
         """Extracts ZIP payload after the version-specific CRX header"""

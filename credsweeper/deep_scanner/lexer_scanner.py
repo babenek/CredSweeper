@@ -46,17 +46,14 @@ class LexerScanner(AbstractScanner, ABC):
     # the lexers that were guessed without extensions
     GUESSED_LEXERS = tuple(x for x in LEXER_MATCHER.values() if x not in (VerilogLexer, ObjectiveCLexer, Perl6Lexer))
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Suggestion may be done with file extension, however the """
         if 0 <= data.find(b';', 0, 65536) or 0 <= data.find(b'#', 0, 65536):
             return True
         return False
-
-    @property
-    def shelf(self) -> bool:
-        """May be scanned with depth = 0"""
-        return True
 
     @staticmethod
     def get_lexer(text: str, descriptor: Descriptor) -> Lexer:
