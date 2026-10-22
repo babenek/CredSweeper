@@ -316,6 +316,14 @@ credsweeper.deep\_scanner.tar\_scanner module
    :show-inheritance:
    :undoc-members:
 
+credsweeper.deep\_scanner.text\_scanner module
+----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.text_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 credsweeper.deep\_scanner.tmx\_scanner module
 ---------------------------------------------
 
