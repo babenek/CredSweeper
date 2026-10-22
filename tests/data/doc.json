@@ -23781,6 +23781,27 @@
         ]
     },
     {
+        "rule": "PKCS with password 'changeme'",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "MIIFNgIBAzCCBOwGCSqGSIb3DQEHAaCCBN0EggTZMIIE1TCCApIGCSqGSIb3DQEHBqCCAoMwggJ/AgEAMIICeAYJKoZIhvcNAQcBMFcGCSqGSIb3DQEFDTBKMCkGCSqG",
+                "line_num": 0,
+                "path": "./tests/samples/pkcs12.changeme.p12",
+                "info": "FILE:./tests/samples/pkcs12.changeme.p12|PKCS_PASSWORD:b'changeme'",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "b'changeme'",
+                "value_start": -2,
+                "value_end": -2,
+                "entropy": 3.0958
+            }
+        ]
+    },
+    {
         "rule": "PlanetScale Credentials",
         "severity": "high",
         "confidence": "moderate",
@@ -24789,6 +24810,69 @@
         ]
     },
     {
+        "rule": "URL Credentials",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": 1.0,
+        "line_data_list": [
+            {
+                "line": "https://jrfdeg:dh3sjr8b@prod-best-sec.net:32768/architecture",
+                "line_num": 1640,
+                "path": "./tests/samples/sample.elf",
+                "info": "FILE:./tests/samples/sample.elf|STRINGS",
+                "variable": "https://",
+                "variable_start": 0,
+                "variable_end": 8,
+                "value": "dh3sjr8b",
+                "value_start": 15,
+                "value_end": 23,
+                "entropy": 3.0
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "0{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be3\"}",
+                "line_num": 783,
+                "path": "./tests/samples/sample.gif",
+                "info": "FILE:./tests/samples/sample.gif|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be3",
+                "value_start": 11,
+                "value_end": 47,
+                "entropy": 3.68703
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.989,
+        "line_data_list": [
+            {
+                "line": "0{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be3\"}",
+                "line_num": 783,
+                "path": "./tests/samples/sample.gif",
+                "info": "FILE:./tests/samples/sample.gif|STRINGS",
+                "variable": "TOKEN",
+                "variable_start": 3,
+                "variable_end": 8,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be3",
+                "value_start": 11,
+                "value_end": 47,
+                "entropy": 3.68703
+            }
+        ]
+    },
+    {
         "rule": "DOC_GET",
         "severity": "medium",
         "confidence": "moderate",
@@ -24827,6 +24911,48 @@
                 "value_start": 11,
                 "value_end": 31,
                 "entropy": 4.02193
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "2{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be1\"}",
+                "line_num": 23,
+                "path": "./tests/samples/sample.jpg",
+                "info": "FILE:./tests/samples/sample.jpg|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be1",
+                "value_start": 11,
+                "value_end": 47,
+                "entropy": 3.66606
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.967,
+        "line_data_list": [
+            {
+                "line": "2{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be1\"}",
+                "line_num": 23,
+                "path": "./tests/samples/sample.jpg",
+                "info": "FILE:./tests/samples/sample.jpg|STRINGS",
+                "variable": "TOKEN",
+                "variable_start": 3,
+                "variable_end": 8,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be1",
+                "value_start": 11,
+                "value_end": 47,
+                "entropy": 3.66606
             }
         ]
     },
@@ -25372,20 +25498,41 @@
         "rule": "DOC_CREDENTIALS",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.017,
+        "ml_probability": 0.004,
         "line_data_list": [
             {
-                "line": "-H 'postman-token: }{\\loch\\ul\\ulc0\\loch",
-                "line_num": 2770,
+                "line": "1: \ube44\ubc00\ubc88\ud638:pRl5Db#@",
+                "line_num": 1,
                 "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|STRINGS",
-                "variable": "token",
-                "variable_start": 13,
-                "variable_end": 18,
-                "value": "}{\\loch\\ul\\ulc0\\loch",
-                "value_start": 20,
-                "value_end": 40,
-                "entropy": 2.98418
+                "info": "FILE:./tests/samples/sample.rtf|RTF",
+                "variable": "\ube44\ubc00\ubc88\ud638",
+                "variable_start": 3,
+                "variable_end": 7,
+                "value": "pRl5Db#@",
+                "value_start": 8,
+                "value_end": 16,
+                "entropy": 3.0
+            }
+        ]
+    },
+    {
+        "rule": "PASSWD_PAIR",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.004,
+        "line_data_list": [
+            {
+                "line": "1: \ube44\ubc00\ubc88\ud638:pRl5Db#@",
+                "line_num": 1,
+                "path": "./tests/samples/sample.rtf",
+                "info": "FILE:./tests/samples/sample.rtf|RTF",
+                "variable": "\ube44\ubc00\ubc88\ud638",
+                "variable_start": 3,
+                "variable_end": 7,
+                "value": "pRl5Db#@",
+                "value_start": 8,
+                "value_end": 16,
+                "entropy": 3.0
             }
         ]
     },
@@ -25396,17 +25543,38 @@
         "ml_probability": null,
         "line_data_list": [
             {
-                "line": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36}{\\loch",
-                "line_num": 2811,
+                "line": "3: -H 'postman-token: 81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
+                "line_num": 3,
                 "path": "./tests/samples/sample.rtf",
-                "info": "FILE:./tests/samples/sample.rtf|STRINGS",
+                "info": "FILE:./tests/samples/sample.rtf|RTF",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
                 "value": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36",
-                "value_start": 0,
-                "value_end": 36,
+                "value_start": 22,
+                "value_end": 58,
                 "entropy": 3.84286
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.987,
+        "line_data_list": [
+            {
+                "line": "3: -H 'postman-token: 81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
+                "line_num": 3,
+                "path": "./tests/samples/sample.rtf",
+                "info": "FILE:./tests/samples/sample.rtf|RTF",
+                "variable": "token",
+                "variable_start": 15,
+                "variable_end": 20,
+                "value": "81f50f8d-4c1a-de4d-8e3f-c1bc8b429a36'",
+                "value_start": 22,
+                "value_end": 59,
+                "entropy": 3.91825
             }
         ]
     },
@@ -25449,6 +25617,48 @@
                 "value_start": 49,
                 "value_end": 80,
                 "entropy": 4.3492
+            }
+        ]
+    },
+    {
+        "rule": "UUID",
+        "severity": "info",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be4\"}",
+                "line_num": 402,
+                "path": "./tests/samples/sample.tiff",
+                "info": "FILE:./tests/samples/sample.tiff|STRINGS",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be4",
+                "value_start": 10,
+                "value_end": 46,
+                "entropy": 3.66606
+            }
+        ]
+    },
+    {
+        "rule": "DOC_CREDENTIALS",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.99,
+        "line_data_list": [
+            {
+                "line": "{\"TOKEN\":\"b234fa59-dead-beef-cafe-91294cd81be4\"}",
+                "line_num": 402,
+                "path": "./tests/samples/sample.tiff",
+                "info": "FILE:./tests/samples/sample.tiff|STRINGS",
+                "variable": "TOKEN",
+                "variable_start": 2,
+                "variable_end": 7,
+                "value": "b234fa59-dead-beef-cafe-91294cd81be4",
+                "value_start": 10,
+                "value_end": 46,
+                "entropy": 3.66606
             }
         ]
     },
@@ -25600,6 +25810,27 @@
         ]
     },
     {
+        "rule": "IP_ID_PASSWORD_TRIPLE",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.523,
+        "line_data_list": [
+            {
+                "line": "F16 224.52.124.93 root/A0dM1Nka",
+                "line_num": 1,
+                "path": "./tests/samples/sample.xls",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:F16",
+                "variable": null,
+                "variable_start": -1,
+                "variable_end": -1,
+                "value": "A0dM1Nka",
+                "value_start": 23,
+                "value_end": 31,
+                "entropy": 3.0
+            }
+        ]
+    },
+    {
         "rule": "AWS Client ID",
         "severity": "medium",
         "confidence": "moderate",
@@ -25607,9 +25838,9 @@
         "line_data_list": [
             {
                 "line": "AKIAGIREOGIAXLSX4BT5",
-                "line_num": 2951,
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "info": "FILE:./tests/samples/sample.xls|Sheet1x1:A1",
                 "variable": null,
                 "variable_start": -2,
                 "variable_end": -2,
@@ -25621,23 +25852,44 @@
         ]
     },
     {
-        "rule": "DOC_CREDENTIALS",
+        "rule": "IP_ID_PASSWORD_TRIPLE",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.999,
+        "ml_probability": 0.98,
         "line_data_list": [
             {
-                "line": "A1 password is w3Ry5tR0nG",
-                "line_num": 3084,
+                "line": "\ud64d\uae38\ub3d9\uc804\t192.168.0.1\tadmin\tH0NgGi1d0nG",
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
-                "variable": "password",
-                "variable_start": 3,
-                "variable_end": 11,
-                "value": "w3Ry5tR0nG",
-                "value_start": 15,
-                "value_end": 25,
-                "entropy": 3.12193
+                "info": "FILE:./tests/samples/sample.xls|Sheet4x3:R2",
+                "variable": null,
+                "variable_start": -1,
+                "variable_end": -1,
+                "value": "H0NgGi1d0nG",
+                "value_start": 24,
+                "value_end": 35,
+                "entropy": 3.0958
+            }
+        ]
+    },
+    {
+        "rule": "IP_ID_PASSWORD_TRIPLE",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": 0.985,
+        "line_data_list": [
+            {
+                "line": "B3 192.168.0.1 master/NBd@126t!",
+                "line_num": 1,
+                "path": "./tests/samples/sample.xls",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:B3",
+                "variable": null,
+                "variable_start": -1,
+                "variable_end": -1,
+                "value": "NBd@126t!",
+                "value_start": 22,
+                "value_end": 31,
+                "entropy": 3.16993
             }
         ]
     },
@@ -25649,9 +25901,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 3112,
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -25670,9 +25922,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 3112,
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -25683,9 +25935,9 @@
             },
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 3112,
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
                 "variable": "ID",
                 "variable_start": 3,
                 "variable_end": 5,
@@ -25704,9 +25956,9 @@
         "line_data_list": [
             {
                 "line": "A2 ID:master,PW:dipPr10Gg!",
-                "line_num": 3112,
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:A2",
                 "variable": "PW",
                 "variable_start": 13,
                 "variable_end": 15,
@@ -25718,44 +25970,23 @@
         ]
     },
     {
-        "rule": "IP_ID_PASSWORD_TRIPLE",
+        "rule": "DOC_CREDENTIALS",
         "severity": "medium",
         "confidence": "moderate",
-        "ml_probability": 0.985,
+        "ml_probability": 0.999,
         "line_data_list": [
             {
-                "line": "B3 192.168.0.1 master/NBd@126t!",
-                "line_num": 3141,
+                "line": "A1 password is w3Ry5tR0nG",
+                "line_num": 1,
                 "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
-                "variable": null,
-                "variable_start": -1,
-                "variable_end": -1,
-                "value": "NBd@126t!",
-                "value_start": 22,
-                "value_end": 31,
-                "entropy": 3.16993
-            }
-        ]
-    },
-    {
-        "rule": "IP_ID_PASSWORD_TRIPLE",
-        "severity": "medium",
-        "confidence": "moderate",
-        "ml_probability": 0.523,
-        "line_data_list": [
-            {
-                "line": "F16 224.52.124.93 root/A0dM1Nka",
-                "line_num": 3387,
-                "path": "./tests/samples/sample.xls",
-                "info": "FILE:./tests/samples/sample.xls|STRINGS",
-                "variable": null,
-                "variable_start": -1,
-                "variable_end": -1,
-                "value": "A0dM1Nka",
-                "value_start": 23,
-                "value_end": 31,
-                "entropy": 3.0
+                "info": "FILE:./tests/samples/sample.xls|SheetAny:A1",
+                "variable": "password",
+                "variable_start": 3,
+                "variable_end": 11,
+                "value": "w3Ry5tR0nG",
+                "value_start": 15,
+                "value_end": 25,
+                "entropy": 3.12193
             }
         ]
     },
