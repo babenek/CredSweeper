@@ -4,7 +4,6 @@ from typing import List, Any, Tuple, Sequence
 from credsweeper.common.constants import MIN_DATA_LEN
 from credsweeper.config.config import Config
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
-from credsweeper.deep_scanner.byte_scanner import ByteScanner
 from credsweeper.deep_scanner.bzip2_scanner import Bzip2Scanner
 from credsweeper.deep_scanner.cpio_scanner import CpioScanner
 from credsweeper.deep_scanner.crx_scanner import CrxScanner
@@ -60,7 +59,6 @@ logger = logging.getLogger(__name__)
 
 
 class DeepScanner(
-    ByteScanner,  #
     Bzip2Scanner,  #
     CpioScanner,  #
     CrxScanner,  #
@@ -196,15 +194,14 @@ class DeepScanner(
                     # a formal patch looks like an eml
                     deep_scanners.append(PatchScanner)
                 fallback_scanners.append(EmlScanner)
-            fallback_scanners.append(ByteScanner)
             if data_provider.text:
                 fallback_scanners.append(TextScanner)
         elif MagicDetector.detect(data):
             # only StringsScanner may be applied for the formats effective
             fallback_scanners.append(StringsScanner)
         elif not Util.is_binary(data):
-            # keep ByteScanner first to apply real value position if possible
-            deep_scanners.append(ByteScanner)
+            # keep TextScanner first to apply real value position if possible
+            deep_scanners.append(TextScanner)
             if 0 < depth:
                 if PatchScanner.match(data):
                     deep_scanners.append(PatchScanner)
@@ -224,7 +221,6 @@ class DeepScanner(
                         deep_scanners.append(EncoderScanner)
                     if YamlScanner.match(data):
                         deep_scanners.append(YamlScanner)
-                    fallback_scanners.append(TextScanner)
         else:
             unknown_warning = not (data_provider.descriptor.info.endswith("|BASE64")
                                    or "|PROTO:" in data_provider.descriptor.info)
@@ -241,6 +237,6 @@ class DeepScanner(
                 logger.debug("Cannot apply a deep scanner for data(%d) %s %s", len(data), repr(data[:32]),
                              data_provider.descriptor)
         # set StringsScanner as fallback if not assigned for regular scanners
-        if not fallback_scanners and StringsScanner not in deep_scanners:
+        if not fallback_scanners and StringsScanner not in deep_scanners and TextScanner not in deep_scanners:
             fallback_scanners.append(StringsScanner)
         return deep_scanners, fallback_scanners

@@ -25,8 +25,8 @@ class TextScanner(AbstractScanner, ABC):
             data_provider: DataContentProvider,  #
             depth: int,  #
             recursive_limit_size: int) -> Optional[List[Candidate]]:
-        """Scan binary files for ASCII strings"""
-        string_data_provider = StringContentProvider(lines=data_provider.text.splitlines(),
+        """Scan binary files for well encoded text and split it into strings"""
+        string_data_provider = StringContentProvider(lines=data_provider.lines,
                                                      file_path=data_provider.file_path,
                                                      file_type=data_provider.file_type,
                                                      info=f"{data_provider.info}|TEXT")

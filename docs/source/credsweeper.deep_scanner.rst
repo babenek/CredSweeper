@@ -12,14 +12,6 @@ credsweeper.deep\_scanner.abstract\_scanner module
    :show-inheritance:
    :undoc-members:
 
-credsweeper.deep\_scanner.byte\_scanner module
-----------------------------------------------
-
-.. automodule:: credsweeper.deep_scanner.byte_scanner
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 credsweeper.deep\_scanner.bzip2\_scanner module
 -----------------------------------------------
 

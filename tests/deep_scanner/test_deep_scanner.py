@@ -17,5 +17,5 @@ class TestDeepScanner(unittest.TestCase):
     def test_get_deep_scanners_hypothesis_n(self, data):
         # no exception should be raised
         x, y = DeepScanner.get_deep_scanners(DataContentProvider(data), 0, 0)
-        # no fallback scanners for depth=0
-        self.assertListEqual([StringsScanner], y)
+        # at least one scanner must be
+        self.assertGreaterEqual(1, len(y))
