@@ -4,7 +4,6 @@ import tempfile
 import unittest
 import zipfile
 from typing import List
-from unittest.mock import patch
 
 from credsweeper.app import CredSweeper
 from credsweeper.credentials.candidate import Candidate

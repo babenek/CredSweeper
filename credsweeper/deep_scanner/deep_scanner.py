@@ -150,8 +150,8 @@ class DeepScanner(
         data = data_provider.data
         if not data or not isinstance(data, (bytes, bytearray)) or len(data) < MIN_DATA_LEN:
             # Guard clause: reject empty or invalid input data early
-            pass
-        elif binary_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.BINARY_SCANNERS):
+            return deep_scanners, fallback_scanners
+        if binary_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.BINARY_SCANNERS):
             # binary scanner detection
             if 0 < depth or binary_scanner.shelf:
                 deep_scanners.append(binary_scanner)
