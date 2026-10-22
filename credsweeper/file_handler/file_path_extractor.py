@@ -91,7 +91,6 @@ class FilePathExtractor:
 
                     # Cache already located repositories, so we would not need to load it for each new file
                     cls.located_repos[parent_directory] = repo
-                    print(f'>>>>>>>>>{repo}<<<<<<<<<<<<< {len(cls.located_repos)}', flush=True)
 
                 # Return True if there is no ignored file in 'path' and False if any.
                 return len(repo.ignored(path)) == 0
