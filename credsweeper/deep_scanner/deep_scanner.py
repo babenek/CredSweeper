@@ -41,6 +41,7 @@ from credsweeper.deep_scanner.sqlite3_scanner import Sqlite3Scanner
 from credsweeper.deep_scanner.squashfs_scanner import SquashfsScanner
 from credsweeper.deep_scanner.strings_scanner import StringsScanner
 from credsweeper.deep_scanner.tar_scanner import TarScanner
+from credsweeper.deep_scanner.text_scanner import TextScanner
 from credsweeper.deep_scanner.tmx_scanner import TmxScanner
 from credsweeper.deep_scanner.toml_scanner import TomlScanner
 from credsweeper.deep_scanner.xls_scanner import XlsScanner
@@ -94,6 +95,7 @@ class DeepScanner(
     SnkScanner,  #
     StringsScanner,  #
     TarScanner,  #
+    TextScanner,  #
     TomlScanner,  #
     DebScanner,  #
     XmlScanner,  #
@@ -106,12 +108,10 @@ class DeepScanner(
 ):  # yapf: disable
     """Advanced scanner with recursive exploring of data"""
 
-    BINARY_SCANNERS = (JksScanner, PdfScanner, SnkScanner)
-
-    CONTAINER_SCANNERS = (Sqlite3Scanner, CrxScanner, Bzip2Scanner, LzmaScanner, GzipScanner, ZstdScanner,
-                          SquashfsScanner, GritScanner, DebScanner, RpmScanner, PngScanner, JclassScanner, PkcsScanner,
-                          XlsScanner, TarScanner, PickleScanner, DexScanner, PlistScanner, RtfScanner, PycacheScanner,
-                          CpioScanner)
+    BINARY_SCANNERS = (JksScanner, PdfScanner, SnkScanner, Sqlite3Scanner, CrxScanner, Bzip2Scanner, LzmaScanner,
+                       GzipScanner, ZstdScanner, SquashfsScanner, GritScanner, DebScanner, RpmScanner, PngScanner,
+                       JclassScanner, PkcsScanner, XlsScanner, TarScanner, PickleScanner, DexScanner, PlistScanner,
+                       RtfScanner, PycacheScanner, CpioScanner)
 
     def __init__(self, config: Config, scanner: Scanner) -> None:
         """Initialize Advanced credential scanner.
@@ -152,13 +152,9 @@ class DeepScanner(
             # Guard clause: reject empty or invalid input data early
             pass
         elif binary_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.BINARY_SCANNERS):
-            # pure binaries are totally human-not-readable
-            deep_scanners.append(binary_scanner)
-        elif container_scanner := DeepScanner.get_matched_scanner(data, DeepScanner.CONTAINER_SCANNERS):
-            # sometimes it can be human-readable
+            # binary scanner detection
             if 0 < depth:
-                deep_scanners.append(container_scanner)
-                fallback_scanners.append(StringsScanner)
+                deep_scanners.append(binary_scanner)
             else:
                 deep_scanners.append(StringsScanner)
         elif ZipScanner.match(data):
@@ -177,7 +173,7 @@ class DeepScanner(
                         deep_scanners.append(PptxScanner)
                 if OdsScanner.match(data):
                     deep_scanners.append(PandasScanner)
-        elif XmlScanner.match(data):
+        elif XmlScanner.match(data) and data_provider.text:
             if HtmlScanner.match(data):
                 deep_scanners.append(HtmlScanner)
                 deep_scanners.append(XmlScanner)
@@ -189,7 +185,7 @@ class DeepScanner(
                 fallback_scanners.append(XmlScanner)
             else:
                 deep_scanners.append(XmlScanner)
-            fallback_scanners.append(ByteScanner)
+            fallback_scanners.append(TextScanner)
         elif EmlScanner.match(data):
             if data_provider.descriptor.extension in (".eml", ".mht"):
                 deep_scanners.append(EmlScanner)
@@ -199,10 +195,11 @@ class DeepScanner(
                     deep_scanners.append(PatchScanner)
                 fallback_scanners.append(EmlScanner)
             fallback_scanners.append(ByteScanner)
+            if data_provider.text:
+                fallback_scanners.append(TextScanner)
         elif MagicDetector.detect(data):
             # only StringsScanner may be applied for the formats effective
-            if 0 < depth:
-                fallback_scanners.append(StringsScanner)
+            fallback_scanners.append(StringsScanner)
         elif not Util.is_binary(data):
             # keep ByteScanner first to apply real value position if possible
             deep_scanners.append(ByteScanner)
@@ -225,21 +222,23 @@ class DeepScanner(
                         deep_scanners.append(EncoderScanner)
                     if YamlScanner.match(data):
                         deep_scanners.append(YamlScanner)
+                    fallback_scanners.append(TextScanner)
         else:
             unknown_warning = not (data_provider.descriptor.info.endswith("|BASE64")
                                    or "|PROTO:" in data_provider.descriptor.info)
             if 0 < depth:
                 if ZlibScanner.match(data):
                     deep_scanners.append(ZlibScanner)
-                    fallback_scanners.append(StringsScanner)
                     unknown_warning = False
                 elif ProtobufScanner.match(data):
                     deep_scanners.append(ProtobufScanner)
-                    fallback_scanners.append(StringsScanner)
                     unknown_warning = False
                 else:
                     deep_scanners.append(StringsScanner)
             if unknown_warning:
                 logger.debug("Cannot apply a deep scanner for data(%d) %s %s", len(data), repr(data[:32]),
                              data_provider.descriptor)
+        # set StringsScanner as fallback if not assigned for regular scanners
+        if not fallback_scanners and StringsScanner not in deep_scanners:
+            fallback_scanners.append(StringsScanner)
         return deep_scanners, fallback_scanners

@@ -23,6 +23,11 @@ class RtfScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     @staticmethod
     def get_lines(text: str) -> List[str]:
         """Extracts text lines from RTF format"""

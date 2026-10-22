@@ -26,6 +26,11 @@ class ZlibScanner(AbstractScanner, ABC):
                     return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """Depth must be greater than 0"""
+        return False
+
     @staticmethod
     def decompress(limit: int, data: bytes) -> bytes:
         """Returns decompressed data by chunks with a limit or exception in unusual cases"""

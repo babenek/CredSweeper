@@ -22,6 +22,11 @@ class SnkScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     @staticmethod
     def extract(data: bytes) -> None | str:
         """Extracts RSA parameters from .snk file and transform they into JWK representation

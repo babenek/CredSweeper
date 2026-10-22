@@ -22,6 +22,11 @@ class PatchScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     def data_scan(
             self,  #
             data_provider: DataContentProvider,  #

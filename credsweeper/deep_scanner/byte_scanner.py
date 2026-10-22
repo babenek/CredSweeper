@@ -18,6 +18,11 @@ class ByteScanner(AbstractScanner, ABC):
         """Match for any"""
         return bool(data)
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     def data_scan(
             self,  #
             data_provider: DataContentProvider,  #

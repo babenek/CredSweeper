@@ -16,3 +16,8 @@ class XlsxScanner(PandasScanner, ABC):
             # .xml or .bin inside for .xlsx and .xlsb respectively
             return True
         return False
+
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True

@@ -29,6 +29,11 @@ class PycacheScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """Depth must be greater than 0"""
+        return False
+
     @staticmethod
     def walk_pycache(data: bytes, limit: int) -> Generator[Tuple[int, bytes], None, None]:
         """Yields (offset, bytes) from python cache file"""

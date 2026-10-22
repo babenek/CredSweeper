@@ -21,6 +21,11 @@ class LzmaScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """Depth must be greater than 0"""
+        return False
+
     def data_scan(
             self,  #
             data_provider: DataContentProvider,  #

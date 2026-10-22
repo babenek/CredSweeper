@@ -52,6 +52,12 @@ class AbstractScanner(ABC):
         """Abstract method for any deep scanner"""
         raise NotImplementedError(__name__)
 
+    @property
+    @abstractmethod
+    def shelf(self) -> bool:
+        """Abstract property to mark possibility scan with depth = 0"""
+        raise NotImplementedError(__name__)
+
     @abstractmethod
     def data_scan(
             self,  #

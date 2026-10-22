@@ -53,6 +53,11 @@ class LexerScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     @staticmethod
     def get_lexer(text: str, descriptor: Descriptor) -> Lexer:
         """Select a lexer for the source text.

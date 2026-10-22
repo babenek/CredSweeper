@@ -27,6 +27,11 @@ class ZstdScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """Depth must be greater than 0"""
+        return False
+
     @staticmethod
     def decompress(limit: int, data: bytes) -> None | bytes:
         """Decompress zstd compressed data"""

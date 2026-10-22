@@ -38,6 +38,11 @@ class XmlScanner(AbstractScanner, ABC):
                     return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     def represent_xml_as_structure(self, lines: List[str]) -> List[str | dict]:
         """Parse XML to structure with possible tag combination"""
         structure: List[str | dict] = []

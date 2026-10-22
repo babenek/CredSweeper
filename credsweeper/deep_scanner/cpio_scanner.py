@@ -22,6 +22,11 @@ class CpioScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """Depth must be greater than 0"""
+        return False
+
     ASCII_HEADER = struct.Struct("6s8s8s8s8s8s8s8s8s8s8s8s8s8s")
 
     @staticmethod

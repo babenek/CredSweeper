@@ -37,6 +37,11 @@ class LangScanner(AbstractScanner, ABC):
             return True
         return False
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     @staticmethod
     def parse_python(source: str) -> list[str]:
         """Parse Python source and back to remove strings merge and line wrap"""

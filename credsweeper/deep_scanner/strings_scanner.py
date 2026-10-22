@@ -19,11 +19,17 @@ class StringsScanner(AbstractScanner, ABC):
         """Match logic in data_scan"""
         return True
 
+    @property
+    def shelf(self) -> bool:
+        """May be scanned with depth = 0"""
+        return True
+
     @staticmethod
     def get_enumerated_lines(data: bytes) -> List[Tuple[int, str]]:
         """Processes binary to found ASCII strings. Use offset instead line number."""
         enumerated_lines = []
         offset = -1
+        previous_line_length = 0
         line_items = []
         for i, x in enumerate(data):
             if 0x09 == x or 0x20 <= x <= 0x7E:
@@ -33,12 +39,16 @@ class StringsScanner(AbstractScanner, ABC):
                     offset = i
                 line_items.append(chr(x))
                 continue
-            if MIN_DATA_LEN <= len(line_items):
-                # add valuable lines only
-                enumerated_lines.append((offset, ''.join(line_items)))
+            if MIN_DATA_LEN <= len(line_items) or 64 <= previous_line_length and 4 <= len(line_items):
+                # minimal valuable line for a PEM sequence
+                line = ''.join(line_items)
+                enumerated_lines.append((offset, line))
+                previous_line_length = len(line)
+            else:
+                previous_line_length = 0
             offset = -1
             line_items.clear()
-        if MIN_DATA_LEN <= len(line_items):
+        if MIN_DATA_LEN <= len(line_items) or 64 <= previous_line_length and 4 <= len(line_items):
             enumerated_lines.append((offset, ''.join(line_items)))
         return enumerated_lines
 
