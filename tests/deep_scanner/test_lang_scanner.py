@@ -5,7 +5,6 @@ from credsweeper.deep_scanner.lang_scanner import LangScanner
 
 class TestLangScanner(unittest.TestCase):
 
-
     def test_parse_py_p(self):
         result = LangScanner.parse_python("""password = \
         "Hello" \

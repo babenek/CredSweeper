@@ -1,4 +1,3 @@
-import ast
 import base64
 import contextlib
 import json
@@ -412,7 +411,6 @@ class Util:
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logging.error("Failed to write: %s %s:%s", file_path, type(exc), exc)
-
 
     PEM_CLEANING_PATTERN = re.compile(r"\\[tnrvf]")
     WHITESPACE_TRANS_TABLE = str.maketrans('', '', string.whitespace)

@@ -16,7 +16,6 @@ from credsweeper.logger import TRACE
 logger = logging.getLogger(__name__)
 
 
-
 class LangScanner(AbstractScanner, ABC):
     """Implements scanning of data if it is a script of some markup language"""
 
@@ -46,7 +45,6 @@ class LangScanner(AbstractScanner, ABC):
             tree = ast.parse(source)
             result = ast.unparse(tree)
             return result.splitlines()
-
 
     def data_scan(
             self,  #
@@ -78,9 +76,9 @@ class LangScanner(AbstractScanner, ABC):
         try:
             structure = json.loads(data_provider.text)
             json_data_provider = StructContentProvider(struct=structure,
-                                                         file_path=data_provider.file_path,
-                                                         file_type=data_provider.file_type,
-                                                         info=f"{data_provider.info}|JSON")
+                                                       file_path=data_provider.file_path,
+                                                       file_type=data_provider.file_type,
+                                                       info=f"{data_provider.info}|JSON")
             candidates = self.structure_scan(json_data_provider, depth, new_limit)
             return candidates
         except Exception as exc:  # pylint: disable=broad-exception-caught
