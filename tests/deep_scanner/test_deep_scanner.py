@@ -18,11 +18,11 @@ class TestDeepScanner(unittest.TestCase):
         self.assertEqual(([], []), DeepScanner.get_deep_scanners(DataContentProvider(b''), 1, MAX_LINE_LENGTH))
         self.assertEqual(([], []), DeepScanner.get_deep_scanners(DataContentProvider(b'\xFF'), 1, MAX_LINE_LENGTH))
         self.assertEqual(([], [StringsScanner]),
-                         DeepScanner.get_deep_scanners(DataContentProvider(SAMPLE_ZIP.read_bytes()), 1,
-                                                       MIN_DATA_LEN))
+                         DeepScanner.get_deep_scanners(DataContentProvider(SAMPLE_ZIP.read_bytes()), 1, MIN_DATA_LEN))
 
     def test_get_deep_scanners_static_p(self):
-        self.assertEqual(([TextScanner], []), DeepScanner.get_deep_scanners(DataContentProvider(AZ_DATA), 1,MAX_LINE_LENGTH ))
+        self.assertEqual(([TextScanner], []),
+                         DeepScanner.get_deep_scanners(DataContentProvider(AZ_DATA), 1, MAX_LINE_LENGTH))
         self.assertEqual(
             ([StringsScanner], []),
             DeepScanner.get_deep_scanners(DataContentProvider(b'\xe47\x00\x00@7\x00\x00\x01\x00\x02\x00\x00\x00\x00'),
