@@ -74,3 +74,9 @@ core-metadata-version = "2.4"
 
 [project.scripts]
 credsweeper = "credsweeper.__main__:main"
+
+[project.optional-dependencies]
+gui = []
+
+[project.gui-scripts]
+credsweeper-gui = "credsweeper.gui:main"
