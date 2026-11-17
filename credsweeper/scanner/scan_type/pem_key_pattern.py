@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from credsweeper.common.constants import RuleType
+from credsweeper.common.constants import RuleType, PEM_BEGIN_PATTERN
 from credsweeper.config.config import Config
 from credsweeper.credentials.candidate import Candidate
 from credsweeper.file_handler.analysis_target import AnalysisTarget
@@ -33,8 +33,12 @@ class PemKeyPattern(ScanType):
             raise ValueError(f"Rule `{rule}` provided to `{cls.__name__}`.run "
                              f"should have pattern_type equal to `{RuleType.PEM_KEY.value}`")
         for candidate in cls._get_candidates(config, rule, target):
-            if pem_lines := PemKeyDetector(config).detect_pem_key(candidate.line_data_list[0], target):
-                candidate.line_data_list = pem_lines
-                return [candidate]
-
+            if candidate.line_data_list[0].value.startswith(PEM_BEGIN_PATTERN):
+                if pem_lines := PemKeyDetector(config).detect_pem_key(candidate.line_data_list[0], target):
+                    candidate.line_data_list = pem_lines
+                    return [candidate]
+            elif candidate.line_data_list[0].value.startswith(PEM_BEGIN_PATTERN):
+                if pem_lines := PemKeyDetector(config).detect(candidate.line_data_list[0], target):
+                    candidate.line_data_list = pem_lines
+                    return [candidate]
         return []

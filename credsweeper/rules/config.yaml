@@ -667,6 +667,17 @@
     - code
     - doc
 
+- name: PuTTY Private Key
+  severity: high
+  confidence: strong
+  type: pem_key
+  values:
+    - (?P<value>PuTTY-User-Key-File-[23][:] (ssh-dss|ecdsa-sha2-nistp384))
+  min_line_len: 30
+  target:
+    - code
+    - doc
+
 - name: PEM Private Key
   severity: high
   confidence: strong
