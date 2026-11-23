@@ -159,7 +159,7 @@
             "type": "SearchInAttribute",
             "comment": "VariableNotAllowedNameCheck - key rule",
             "kwargs": {
-                "pattern": "(?i:(?:hot|context|files?|filters?|resources?|projects?|uniq(?:ue)?|escap(?:e|ing)|quer(?:y|ies)?|search(ing)?|pub(?:lic)?)[_-]?keys?)",
+                "pattern": "(?i:(?:hot|error|context|files?|filters?|resources?|projects?|uniq(?:ue)?|escap(?:e|ing)|quer(?:y|ies)?|search(ing)?|pub(?:lic)?)[_-]?keys?)",
                 "attribute": "variable"
             }
         },
@@ -167,7 +167,7 @@
             "type": "SearchInAttribute",
             "comment": "VariableNotAllowedNameCheck - word at end",
             "kwargs": {
-                "pattern": "(?i:(icon|label|mode|field|format|charset|method|algo(rithm)?|number|sum|size|name|type|manager|algorithm|pattern|view|error|map|len(gth)?|date(time)?|time(stamp)?|tag|version|hash|rate|code|fingerprint)s?$)",
+                "pattern": "(?i:(icon|cron|label|mode|field|format|charset|method|number|sum|size|name|type|manager|pattern|view|error|map|tag|version|hash|rate|code|fingerprint|len(gth)?|algo(rithm)?|date(time)?|time(stamp)?)s?$)",
                 "attribute": "variable"
             }
         },
@@ -265,6 +265,7 @@
                 "words": [
                     "%",
                     " ",
+                    "*",
                     ":",
                     "=",
                     "$(",
