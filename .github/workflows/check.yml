@@ -22,7 +22,7 @@ jobs:
       # # # MUST be full history to check git workflow
 
       - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4 - 2026.05.21
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2 - 2026.10.19
         with:
           egress-policy: audit
 
@@ -43,7 +43,7 @@ jobs:
       - name: Check ml_config.json and ml_model.onnx integrity
         if: ${{ always() && steps.code_checkout.conclusion == 'success' }}
         run: |
-          echo "326a4f7543f5cee73e92e05289362664 *credsweeper/ml_model/ml_config.json" | md5sum --check
+          echo "11ba0f0270e62898beb657d6f67075b5 *credsweeper/ml_model/ml_config.json" | md5sum --check
           echo "a3054b55c88dd63a168f8e1fe27bbbdf *credsweeper/ml_model/ml_model.onnx" | md5sum --check
 
       # # # line ending
@@ -77,7 +77,7 @@ jobs:
       - name: Set up Python
         if: ${{ always() && steps.code_checkout.conclusion == 'success' }}
         id: setup_python
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0 - 2026.06.24
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0 - 2026.10.22
         with:
           python-version: "3.14"
 
@@ -96,7 +96,7 @@ jobs:
       - name: Banner and version check
         if: ${{ always() && steps.setup_credsweeper.conclusion == 'success' }}
         env:
-          CREDSWEEPER_BANNER: "CredSweeper 1.18.5 crc32:2cdbb58c"
+          CREDSWEEPER_BANNER: "CredSweeper 1.19.6 crc32:0e41d043"
         run: |
           banner="$(python -m credsweeper --banner | grep CredSweeper | head -1)"
           echo "banner = '${banner}'"
@@ -106,10 +106,6 @@ jobs:
           fi
 
       # # # pylint
-
-      - name: Analysing the code with pylint and minimum Python version 3.10
-        if: ${{ always() && steps.setup_credsweeper.conclusion == 'success' }}
-        run: pylint --py-version=3.10 --verbose credsweeper
 
       - name: Analysing the code with pylint and minimum Python version 3.11
         if: ${{ always() && steps.setup_credsweeper.conclusion == 'success' }}
@@ -153,7 +149,7 @@ jobs:
           pip install --requirement requirements.txt
           make html
           python -m sphinx -T -E -b html -d _build/doctrees -D language=en ./source/ ./_html
-          sphinx-apidoc --force --full --ext-autodoc ../credsweeper -o source/
+          sphinx-apidoc --force --full --no-toc --ext-autodoc ../credsweeper -o source/
           git checkout source/conf.py source/index.rst source/credsweeper.rst
           if [ 0 -ne $(git ls-files -m | wc -l) ]; then
             git diff

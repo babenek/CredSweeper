@@ -2472,6 +2472,48 @@
         ]
     },
     {
+        "rule": "CURL User Password",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "curl -U \"root:oMvB0aPi\" # Detected",
+                "line_num": 3,
+                "path": "./tests/samples/curl_user_password",
+                "info": "",
+                "variable": "curl",
+                "variable_start": 0,
+                "variable_end": 4,
+                "value": "oMvB0aPi",
+                "value_start": 14,
+                "value_end": 22,
+                "entropy": 3.0
+            }
+        ]
+    },
+    {
+        "rule": "CURL User Password",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "curl -U \"root:oMvB0Api\" # Filtered",
+                "line_num": 4,
+                "path": "./tests/samples/curl_user_password",
+                "info": "",
+                "variable": "curl",
+                "variable_start": 0,
+                "variable_end": 4,
+                "value": "oMvB0Api",
+                "value_start": 14,
+                "value_end": 22,
+                "entropy": 3.0
+            }
+        ]
+    },
+    {
         "rule": "Databricks Access Token",
         "severity": "medium",
         "confidence": "strong",
@@ -5168,7 +5210,7 @@
             {
                 "line": "Password:Prl23Db#@",
                 "line_num": 1,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 0,
@@ -5189,7 +5231,7 @@
             {
                 "line": "pw:Prl23Db#@",
                 "line_num": 3,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 0,
@@ -5210,7 +5252,7 @@
             {
                 "line": "Password=Prl23Db#@",
                 "line_num": 4,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 0,
@@ -5231,7 +5273,7 @@
             {
                 "line": "pwd:Prl23Db#@",
                 "line_num": 5,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 0,
@@ -5252,7 +5294,7 @@
             {
                 "line": "ANY_password=Prl23Db#@",
                 "line_num": 8,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANY_password",
                 "variable_start": 0,
@@ -5273,7 +5315,7 @@
             {
                 "line": "pass:Prl23Db#@",
                 "line_num": 10,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "pass",
                 "variable_start": 0,
@@ -5294,7 +5336,7 @@
             {
                 "line": "ANY-password=Prl23Db#@",
                 "line_num": 11,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANY-password",
                 "variable_start": 0,
@@ -5315,7 +5357,7 @@
             {
                 "line": "master@98.76.54.32 password:Prl23Db#@",
                 "line_num": 14,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 19,
@@ -5336,7 +5378,7 @@
             {
                 "line": "--Password Prl23Db#@",
                 "line_num": 15,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 2,
@@ -5357,7 +5399,7 @@
             {
                 "line": "ANY_PW:Prl23Db#@",
                 "line_num": 17,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANY_PW",
                 "variable_start": 0,
@@ -5378,7 +5420,7 @@
             {
                 "line": "default password:Prl23Db#@",
                 "line_num": 18,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 8,
@@ -5399,7 +5441,7 @@
             {
                 "line": "\"password\":\"Prl23Db#@\"",
                 "line_num": 21,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 1,
@@ -5420,7 +5462,7 @@
             {
                 "line": "Passwd:Prl23Db#@ Prl23Db#@",
                 "line_num": 23,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "Passwd",
                 "variable_start": 0,
@@ -5441,7 +5483,7 @@
             {
                 "line": "PW:Prl23Db#@,password:Prl23Db#@",
                 "line_num": 24,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 0,
@@ -5462,7 +5504,7 @@
             {
                 "line": "PW:Prl23Db#@,password:Prl23Db#@",
                 "line_num": 24,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 13,
@@ -5483,7 +5525,7 @@
             {
                 "line": "password:Prl23Db#@,\ube44\ubc88:Prl23Db#@",
                 "line_num": 25,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 0,
@@ -5504,7 +5546,7 @@
             {
                 "line": "passwd=Prl23Db#@",
                 "line_num": 26,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "passwd",
                 "variable_start": 0,
@@ -5525,7 +5567,7 @@
             {
                 "line": "password:Prl23Db#@, paasword:Prl23Db#@",
                 "line_num": 30,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 0,
@@ -5546,7 +5588,7 @@
             {
                 "line": "password:Prl23Db#@,ANYPassword:Prl23Db#@",
                 "line_num": 31,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 0,
@@ -5567,7 +5609,7 @@
             {
                 "line": "password:Prl23Db#@,ANYPassword:Prl23Db#@",
                 "line_num": 31,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANYPassword",
                 "variable_start": 19,
@@ -5588,7 +5630,7 @@
             {
                 "line": "Password:Prl23Db#@,pwd=Prl23Db#@",
                 "line_num": 32,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 0,
@@ -5609,7 +5651,7 @@
             {
                 "line": "Password:Prl23Db#@,pwd=Prl23Db#@",
                 "line_num": 32,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 19,
@@ -5630,7 +5672,7 @@
             {
                 "line": "-password \"Prl23Db#@\"",
                 "line_num": 33,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 1,
@@ -5651,7 +5693,7 @@
             {
                 "line": "ANY_password:Prl23Db#@",
                 "line_num": 34,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANY_password",
                 "variable_start": 0,
@@ -5672,7 +5714,7 @@
             {
                 "line": "--password=Prl23Db#@",
                 "line_num": 37,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 2,
@@ -5693,7 +5735,7 @@
             {
                 "line": "root/Prl23Db#@,root password:Prl23Db#@",
                 "line_num": 38,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 20,
@@ -5714,7 +5756,7 @@
             {
                 "line": "Prl23Db#@ username:Prl23Db#@,Prl23Db#@ password:Prl23Db#@",
                 "line_num": 40,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 39,
@@ -5735,7 +5777,7 @@
             {
                 "line": "Prl23Db#@:password:Prl23Db#@",
                 "line_num": 41,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 10,
@@ -5756,7 +5798,7 @@
             {
                 "line": "ANYpassword=Prl23Db#@",
                 "line_num": 45,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "ANYpassword",
                 "variable_start": 0,
@@ -5777,7 +5819,7 @@
             {
                 "line": "passwords:Prl23Db#@",
                 "line_num": 46,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "passwords",
                 "variable_start": 0,
@@ -5798,7 +5840,7 @@
             {
                 "line": "password=>Prl23Db#@",
                 "line_num": 48,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 0,
@@ -5819,7 +5861,7 @@
             {
                 "line": "# password: keep empty",
                 "line_num": 56,
-                "path": "./tests/samples/doc_passwd_pair",
+                "path": "./tests/samples/doc_passwd_pair-utf16le-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 2,
@@ -5840,7 +5882,7 @@
             {
                 "line": "ANY-Token:AIhq5Xyb1Gga9Q0",
                 "line_num": 1,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY-Token",
                 "variable_start": 0,
@@ -5861,7 +5903,7 @@
             {
                 "line": "token:AIhq5Xyb1Gga9Q2",
                 "line_num": 3,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "token",
                 "variable_start": 0,
@@ -5882,7 +5924,7 @@
             {
                 "line": "SECRET KEY:AIhq5Xyb1Gga9Q3",
                 "line_num": 4,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "KEY",
                 "variable_start": 7,
@@ -5903,7 +5945,7 @@
             {
                 "line": "SECRET KEY:AIhq5Xyb1Gga9Q3",
                 "line_num": 4,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "SECRET KEY",
                 "variable_start": 0,
@@ -5924,7 +5966,7 @@
             {
                 "line": "secret=AIhq5Xyb1Gga9Q4",
                 "line_num": 5,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret",
                 "variable_start": 0,
@@ -5945,7 +5987,7 @@
             {
                 "line": "--token AIhq5Xyb1Gga9Q5",
                 "line_num": 6,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "token",
                 "variable_start": 2,
@@ -5966,7 +6008,7 @@
             {
                 "line": "secret:AIhq5Xyb1Gga9Q6",
                 "line_num": 7,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret",
                 "variable_start": 0,
@@ -5987,7 +6029,7 @@
             {
                 "line": "ANY_token=AIhq5Xyb1Gga9Q7",
                 "line_num": 8,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY_token",
                 "variable_start": 0,
@@ -6008,7 +6050,7 @@
             {
                 "line": "-secret AIhq5Xyb1Gga9Q10",
                 "line_num": 11,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret",
                 "variable_start": 1,
@@ -6029,7 +6071,7 @@
             {
                 "line": "ANY.secret=AIhq5Xyb1Gga9Q19",
                 "line_num": 20,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY.secret",
                 "variable_start": 0,
@@ -6050,7 +6092,7 @@
             {
                 "line": "--secret=AIhq5Xyb1Gga9Q21",
                 "line_num": 22,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret",
                 "variable_start": 2,
@@ -6071,7 +6113,7 @@
             {
                 "line": "ANY_secret:AIhq5Xyb1Gga9Q22",
                 "line_num": 23,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY_secret",
                 "variable_start": 0,
@@ -6092,7 +6134,7 @@
             {
                 "line": "-Token:AIhq5Xyb1Gga9Q23",
                 "line_num": 24,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "Token",
                 "variable_start": 1,
@@ -6113,7 +6155,7 @@
             {
                 "line": "API Secret:AIhq5Xyb1Gga9Q24",
                 "line_num": 25,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "API Secret",
                 "variable_start": 0,
@@ -6134,7 +6176,7 @@
             {
                 "line": "API Secret:AIhq5Xyb1Gga9Q24",
                 "line_num": 25,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "Secret",
                 "variable_start": 4,
@@ -6155,7 +6197,7 @@
             {
                 "line": "access key:AIhq5Xyb1Gga9Q26",
                 "line_num": 27,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "key",
                 "variable_start": 7,
@@ -6176,7 +6218,7 @@
             {
                 "line": "Secret Key:AIhq5Xyb1Gga9Q27",
                 "line_num": 28,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "Key",
                 "variable_start": 7,
@@ -6197,7 +6239,7 @@
             {
                 "line": "Secret Key:AIhq5Xyb1Gga9Q27",
                 "line_num": 28,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "Secret Key",
                 "variable_start": 0,
@@ -6218,7 +6260,7 @@
             {
                 "line": "ANY_key=AIhq5Xyb1Gga9Q29",
                 "line_num": 30,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY_key",
                 "variable_start": 0,
@@ -6239,7 +6281,7 @@
             {
                 "line": "secret-ANYkey:AIhq5Xyb1Gga9Q30",
                 "line_num": 31,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret-ANYkey",
                 "variable_start": 0,
@@ -6260,7 +6302,7 @@
             {
                 "line": "secret-ANYkey:AIhq5Xyb1Gga9Q30",
                 "line_num": 31,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "secret-ANYkey",
                 "variable_start": 0,
@@ -6281,7 +6323,7 @@
             {
                 "line": "ANY_id=AIhq5Xyb1Gga9Q31 ANY_token=AIhq5Xyb1Gga9Q31",
                 "line_num": 32,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "ANY_token",
                 "variable_start": 24,
@@ -6302,7 +6344,7 @@
             {
                 "line": "access_token:AIhq5Xyb1Gga9Q33",
                 "line_num": 34,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "access_token",
                 "variable_start": 0,
@@ -6323,7 +6365,7 @@
             {
                 "line": "Authentication key:AIhq5Xyb1Gga9Q35",
                 "line_num": 36,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "key",
                 "variable_start": 15,
@@ -6344,7 +6386,7 @@
             {
                 "line": "Authentication key:AIhq5Xyb1Gga9Q35",
                 "line_num": 36,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "Authentication key",
                 "variable_start": 0,
@@ -6365,7 +6407,7 @@
             {
                 "line": "page.action?spaceKey=LOGIC&title=QUANTUM\",",
                 "line_num": 39,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "spaceKey",
                 "variable_start": 12,
@@ -6386,7 +6428,7 @@
             {
                 "line": "Enter token : This is a query parameter",
                 "line_num": 40,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "token",
                 "variable_start": 6,
@@ -6407,7 +6449,7 @@
             {
                 "line": "\"key\":\"attached_file_0\"",
                 "line_num": 41,
-                "path": "./tests/samples/doc_secret_pair",
+                "path": "./tests/samples/doc_secret_pair-utf16be-bom",
                 "info": "",
                 "variable": "key",
                 "variable_start": 1,
@@ -6428,7 +6470,7 @@
             {
                 "line": "master@98.76.54.32(pw:IhqSb1Gg)",
                 "line_num": 4,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 19,
@@ -6449,7 +6491,7 @@
             {
                 "line": "ID:gildong.hong@example.com mailto:{1} PW:IhqSb1Gg",
                 "line_num": 5,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 39,
@@ -6470,7 +6512,7 @@
             {
                 "line": "Password:master/IhqSb1Gg",
                 "line_num": 6,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 0,
@@ -6491,7 +6533,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} (PW:IhqSb1Gg)",
                 "line_num": 7,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 41,
@@ -6512,7 +6554,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} password:IhqSb1Gg",
                 "line_num": 8,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 40,
@@ -6533,7 +6575,7 @@
             {
                 "line": "ssh -P IhqSb1Gg gildong.hong@98.76.54.32 mailto:{1} (password:IhqSb1Gg)",
                 "line_num": 12,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 53,
@@ -6554,7 +6596,7 @@
             {
                 "line": "ID/Pass:xxxx:master/IhqSb1Gg,xxxx:master/IhqSb1Gg",
                 "line_num": 14,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Pass",
                 "variable_start": 3,
@@ -6575,7 +6617,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 pwd:IhqSb1Gg",
                 "line_num": 16,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 25,
@@ -6596,7 +6638,7 @@
             {
                 "line": "\uacc4\uc815:master(PW:IhqSb1Gg)",
                 "line_num": 17,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 10,
@@ -6617,7 +6659,7 @@
             {
                 "line": "98.76.54.32(pw:IhqSb1Gg)",
                 "line_num": 18,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 12,
@@ -6638,7 +6680,7 @@
             {
                 "line": "98.76.54.32/pw:IhqSb1Gg",
                 "line_num": 20,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 12,
@@ -6659,7 +6701,7 @@
             {
                 "line": "ID:gildong.hong@example.com mailto:{1}/pw:IhqSb1Gg",
                 "line_num": 21,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 39,
@@ -6680,7 +6722,7 @@
             {
                 "line": "ID:gildong.hong@any.example.com mailto:{1} PWD:IhqSb1Gg",
                 "line_num": 22,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PWD",
                 "variable_start": 43,
@@ -6701,7 +6743,7 @@
             {
                 "line": "sftp gildong.hong@98.76.54.32 mailto:{1} (pw:IhqSb1Gg)",
                 "line_num": 23,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 42,
@@ -6722,7 +6764,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 mailto:{1} (pw:IhqSb1Gg)",
                 "line_num": 24,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 37,
@@ -6743,7 +6785,7 @@
             {
                 "line": "-id:gildong.hong@example.com mailto:{1} -pwd:IhqSb1Gg",
                 "line_num": 25,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 41,
@@ -6764,7 +6806,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} (password:IhqSb1Gg)",
                 "line_num": 26,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 41,
@@ -6785,7 +6827,7 @@
             {
                 "line": "id:gildong.hong@example.com mailto:{1} password:IhqSb1Gg",
                 "line_num": 29,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 39,
@@ -6806,7 +6848,7 @@
             {
                 "line": "ANY_password,default:IhqSb1Gg",
                 "line_num": 32,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "ANY_password,default",
                 "variable_start": 0,
@@ -6827,7 +6869,7 @@
             {
                 "line": "Key(ANYSecret):IhqSb1Gg",
                 "line_num": 33,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "ANYSecret)",
                 "variable_start": 4,
@@ -6848,7 +6890,7 @@
             {
                 "line": "98.76.54.32 ANY_PW:IhqSb1Gg",
                 "line_num": 35,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "ANY_PW",
                 "variable_start": 12,
@@ -6869,7 +6911,7 @@
             {
                 "line": "98.76.54.32(ID/PW:IhqSb1Gg)",
                 "line_num": 37,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 15,
@@ -6890,7 +6932,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 (pwd:IhqSb1Gg)",
                 "line_num": 39,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 26,
@@ -6911,7 +6953,7 @@
             {
                 "line": "password for master:IhqSb1Gg",
                 "line_num": 44,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password for master",
                 "variable_start": 0,
@@ -6932,7 +6974,7 @@
             {
                 "line": "ID/Pass:xxxx:master/IhqSb1Gg xxxx:master/IhqSb1Gg",
                 "line_num": 46,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Pass",
                 "variable_start": 3,
@@ -6953,7 +6995,7 @@
             {
                 "line": "gildong.hong@98.76.54.32,pw:IhqSb1Gg",
                 "line_num": 48,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 25,
@@ -6974,7 +7016,7 @@
             {
                 "line": "98.76.54.32:xxxx(PW:IhqSb1Gg)",
                 "line_num": 52,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 17,
@@ -6995,7 +7037,7 @@
             {
                 "line": "\uacc4\uc815/Password-xxxx:master/IhqSb1Gg",
                 "line_num": 56,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Password-xxxx",
                 "variable_start": 3,
@@ -7016,7 +7058,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 PW:IhqSb1Gg",
                 "line_num": 57,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 25,
@@ -7037,7 +7079,7 @@
             {
                 "line": "ANY_user:xxxx ANY_pwd:IhqSb1Gg",
                 "line_num": 62,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "ANY_pwd",
                 "variable_start": 14,
@@ -7058,7 +7100,7 @@
             {
                 "line": "Acount name:xxxx Initial Password:IhqSb1Gg",
                 "line_num": 63,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 25,
@@ -7079,7 +7121,7 @@
             {
                 "line": "Access wifi:xxxx(PW:IhqSb1Gg)",
                 "line_num": 64,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 17,
@@ -7100,7 +7142,7 @@
             {
                 "line": "id/pw/port:master/IhqSb1Gg/xxxx",
                 "line_num": 65,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw/port",
                 "variable_start": 3,
@@ -7121,7 +7163,7 @@
             {
                 "line": "-User:master -PasswordANY:IhqSb1Gg",
                 "line_num": 67,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PasswordANY",
                 "variable_start": 14,
@@ -7142,7 +7184,7 @@
             {
                 "line": "98.76.54.32(ID/PW:master/IhqSb1Gg)",
                 "line_num": 71,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 15,
@@ -7163,7 +7205,7 @@
             {
                 "line": "(ID&PWD):master/IhqSb1Gg",
                 "line_num": 72,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PWD)",
                 "variable_start": 4,
@@ -7184,7 +7226,7 @@
             {
                 "line": "master@98.76.54.32(pw:IhqSb1Gg)",
                 "line_num": 74,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 19,
@@ -7205,7 +7247,7 @@
             {
                 "line": "master@98.76.54.32,PW:IhqSb1Gg",
                 "line_num": 75,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 19,
@@ -7226,7 +7268,7 @@
             {
                 "line": "98.76.54.32 pw:IhqSb1Gg",
                 "line_num": 76,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 12,
@@ -7247,7 +7289,7 @@
             {
                 "line": "config:xxxx,PW:IhqSb1Gg",
                 "line_num": 79,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW",
                 "variable_start": 12,
@@ -7268,7 +7310,7 @@
             {
                 "line": "-dbpwd VAL:xxxx",
                 "line_num": 81,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "dbpwd VAL",
                 "variable_start": 1,
@@ -7289,7 +7331,7 @@
             {
                 "line": "scp gildong.hong@98.76.54.32 mailto:{1} pw:IhqSb1Gg",
                 "line_num": 83,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 40,
@@ -7310,7 +7352,7 @@
             {
                 "line": "id:gildong.hong@xxx.com mailto:{1} pw:IhqSb1Gg",
                 "line_num": 84,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 35,
@@ -7331,7 +7373,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 mailto:{1} pw:IhqSb1Gg",
                 "line_num": 85,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 36,
@@ -7352,7 +7394,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1},pw:IhqSb1Gg",
                 "line_num": 86,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 40,
@@ -7373,7 +7415,7 @@
             {
                 "line": "(ssh gildong.hong@98.76.54.32 mailto{1}) pwd:IhqSb1Gg",
                 "line_num": 88,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 41,
@@ -7394,7 +7436,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1}, pw:IhqSb1Gg",
                 "line_num": 91,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 41,
@@ -7415,7 +7457,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} (pwd:IhqSb1Gg)",
                 "line_num": 94,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pwd",
                 "variable_start": 41,
@@ -7436,7 +7478,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 mailto:{1} (password:IhqSb1Gg)",
                 "line_num": 95,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 37,
@@ -7457,7 +7499,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 mailto:{1} Password:IhqSb1Gg",
                 "line_num": 97,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "Password",
                 "variable_start": 36,
@@ -7478,7 +7520,7 @@
             {
                 "line": "gildong.hong@98.76.54.32 mailto:{1} (pass:IhqSb1Gg)",
                 "line_num": 98,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pass",
                 "variable_start": 37,
@@ -7499,7 +7541,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} pw:IhqSb1Gg",
                 "line_num": 101,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 40,
@@ -7520,7 +7562,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1} pass:IhqSb1Gg",
                 "line_num": 102,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pass",
                 "variable_start": 40,
@@ -7541,7 +7583,7 @@
             {
                 "line": "id:gildong.hong@xxx.com mailto:{1}/password:IhqSb1Gg",
                 "line_num": 103,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 35,
@@ -7562,7 +7604,7 @@
             {
                 "line": "ID PW gildong.hong@example.com mailto:{1} IhqSb1Gg",
                 "line_num": 104,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW gildong.hong@example.com mailto",
                 "variable_start": 3,
@@ -7583,7 +7625,7 @@
             {
                 "line": "ssh gildong.hong@98.76.54.32 mailto:{1}/password:IhqSb1Gg",
                 "line_num": 105,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "password",
                 "variable_start": 40,
@@ -7604,7 +7646,7 @@
             {
                 "line": "-ANYID:gildong.hong@example.com mailto:{1} -pw:IhqSb1Gg",
                 "line_num": 106,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 44,
@@ -7625,7 +7667,7 @@
             {
                 "line": "ID:gildong.hong@xxxx.net mailto:{1} pw:IhqSb1Gg",
                 "line_num": 107,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 36,
@@ -7646,7 +7688,7 @@
             {
                 "line": "ID/PW 98.76.54.32:xxx master/IhqSb1Gg",
                 "line_num": 108,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "PW 98.76.54.32",
                 "variable_start": 3,
@@ -7667,7 +7709,7 @@
             {
                 "line": "http://98.76.54.32:xxx(pw:IhqSb1Gg)",
                 "line_num": 109,
-                "path": "./tests/samples/doc_various",
+                "path": "./tests/samples/doc_various-utf8-bom",
                 "info": "",
                 "variable": "pw",
                 "variable_start": 23,
@@ -9782,6 +9824,48 @@
         ]
     },
     {
+        "rule": "Kaggle API Token",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "KGAT_a96791586900115ddb1232c90a6a9612",
+                "line_num": 2,
+                "path": "./tests/samples/kaggle",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "KGAT_a96791586900115ddb1232c90a6a9612",
+                "value_start": 0,
+                "value_end": 37,
+                "entropy": 3.87205
+            }
+        ]
+    },
+    {
+        "rule": "Kaggle API Token",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "KGAT_a96791586900115ddb1232c90abcdef0",
+                "line_num": 4,
+                "path": "./tests/samples/kaggle",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "KGAT_a96791586900115ddb1232c90abcdef0",
+                "value_start": 0,
+                "value_end": 37,
+                "entropy": 4.10797
+            }
+        ]
+    },
+    {
         "rule": "Key",
         "severity": "high",
         "confidence": "moderate",
@@ -11031,6 +11115,48 @@
                 "value_start": 0,
                 "value_end": 56,
                 "entropy": 4.12555
+            }
+        ]
+    },
+    {
+        "rule": "OpenRouter API Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "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",
+                "line_num": 1,
+                "path": "./tests/samples/openrouter",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "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",
+                "value_start": 0,
+                "value_end": 73,
+                "entropy": 4.17462
+            }
+        ]
+    },
+    {
+        "rule": "OpenRouter API Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "sk-or-v1-0000000000000000000000000000000000000000000000000000000000000000",
+                "line_num": 2,
+                "path": "./tests/samples/openrouter",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "sk-or-v1-0000000000000000000000000000000000000000000000000000000000000000",
+                "value_start": 0,
+                "value_end": 73,
+                "entropy": 0.86442
             }
         ]
     },
@@ -16688,6 +16814,48 @@
         ]
     },
     {
+        "rule": "Resend API Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "re_URdbcjwf_xCzth4KJtUmaHokKonGf5fjz",
+                "line_num": 2,
+                "path": "./tests/samples/resend",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "re_URdbcjwf_xCzth4KJtUmaHokKonGf5fjz",
+                "value_start": 0,
+                "value_end": 36,
+                "entropy": 4.64896
+            }
+        ]
+    },
+    {
+        "rule": "Resend API Key",
+        "severity": "high",
+        "confidence": "strong",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "re_URdbcjwf_xCzth4KJtUmaHokKabcdefgh",
+                "line_num": 5,
+                "path": "./tests/samples/resend",
+                "info": "",
+                "variable": null,
+                "variable_start": -2,
+                "variable_end": -2,
+                "value": "re_URdbcjwf_xCzth4KJtUmaHokKabcdefgh",
+                "value_start": 0,
+                "value_end": 36,
+                "entropy": 4.55881
+            }
+        ]
+    },
+    {
         "rule": "Riot Games API Key",
         "severity": "high",
         "confidence": "strong",
@@ -18154,6 +18322,132 @@
                 "value_start": 24,
                 "value_end": 33,
                 "entropy": 3.16993
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
+                "line_num": 4,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "gi_reo_gi_token",
+                "variable_start": 0,
+                "variable_end": 15,
+                "value": "G1Re06G1BdgNseiJDN21Z094M",
+                "value_start": 19,
+                "value_end": 44,
+                "entropy": 4.13366
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "# Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
+                "line_num": 5,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "DemoToken",
+                "variable_start": 10,
+                "variable_end": 19,
+                "value": "Nxs094M3ed2s1Re0F4M3ed2GZ8M=",
+                "value_start": 21,
+                "value_end": 49,
+                "entropy": 4.03915
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "tp_token_value = \"b035d48j9X2dfjF0hb9sd8Guf5hWu2ia\"",
+                "line_num": 7,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "tp_token_value",
+                "variable_start": 0,
+                "variable_end": 14,
+                "value": "b035d48j9X2dfjF0hb9sd8Guf5hWu2ia",
+                "value_start": 18,
+                "value_end": 50,
+                "entropy": 4.22641
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "private_tokens = \"\"\"\\",
+                "line_num": 17,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "private_tokens",
+                "variable_start": 0,
+                "variable_end": 14,
+                "value": "",
+                "value_start": 20,
+                "value_end": 20,
+                "entropy": 0.0
+            }
+        ]
+    },
+    {
+        "rule": "Token",
+        "severity": "high",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "secret_tokens = \"\"\"",
+                "line_num": 24,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "secret_tokens",
+                "variable_start": 0,
+                "variable_end": 13,
+                "value": "",
+                "value_start": 17,
+                "value_end": 17,
+                "entropy": 0.0
+            }
+        ]
+    },
+    {
+        "rule": "Secret",
+        "severity": "medium",
+        "confidence": "moderate",
+        "ml_probability": null,
+        "line_data_list": [
+            {
+                "line": "secret_tokens = \"\"\"",
+                "line_num": 24,
+                "path": "./tests/samples/sample.toml",
+                "info": "",
+                "variable": "secret_tokens",
+                "variable_start": 0,
+                "variable_end": 13,
+                "value": "",
+                "value_start": 17,
+                "value_end": 17,
+                "entropy": 0.0
             }
         ]
     },
@@ -20689,69 +20983,6 @@
                 "value_start": 0,
                 "value_end": 50,
                 "entropy": 4.56278
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "gi_reo_gi_token = \"G1Re06G1BdgNseiJDN21Z094M\"",
-                "line_num": 1,
-                "path": "./tests/samples/token.toml",
-                "info": "",
-                "variable": "gi_reo_gi_token",
-                "variable_start": 0,
-                "variable_end": 15,
-                "value": "G1Re06G1BdgNseiJDN21Z094M",
-                "value_start": 19,
-                "value_end": 44,
-                "entropy": 4.13366
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "Token-> DemoToken: Nxs094M3ed2s1Re0F4M3ed2GZ8M= <- for User : demo",
-                "line_num": 2,
-                "path": "./tests/samples/token.toml",
-                "info": "",
-                "variable": "DemoToken",
-                "variable_start": 8,
-                "variable_end": 17,
-                "value": "Nxs094M3ed2s1Re0F4M3ed2GZ8M=",
-                "value_start": 19,
-                "value_end": 47,
-                "entropy": 4.03915
-            }
-        ]
-    },
-    {
-        "rule": "Token",
-        "severity": "high",
-        "confidence": "moderate",
-        "ml_probability": null,
-        "line_data_list": [
-            {
-                "line": "tp_token_value=\"b035d48j9X2dfjF0hb9sd8Guf5hWu2ia\"",
-                "line_num": 4,
-                "path": "./tests/samples/token.toml",
-                "info": "",
-                "variable": "tp_token_value",
-                "variable_start": 0,
-                "variable_end": 14,
-                "value": "b035d48j9X2dfjF0hb9sd8Guf5hWu2ia",
-                "value_start": 16,
-                "value_end": 48,
-                "entropy": 4.22641
             }
         ]
     },

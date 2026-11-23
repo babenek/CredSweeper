@@ -7,20 +7,27 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
-import time
+from pathlib import Path
 from typing import AnyStr, Tuple
 from unittest import TestCase
 
+import psutil
 import pytest
+from git import Repo
 
 from credsweeper.app import APP_PATH
-from credsweeper.common.constants import RECURSIVE_SCAN_LIMITATION
-from credsweeper.logger.logger import Logger
+from credsweeper.common.constants import RECURSIVE_SCAN_LIMITATION, ASCII, UTF_8
 from credsweeper.utils.util import Util
-from tests import SAMPLES_PATH, \
-    TESTS_PATH, SAMPLE_ZIP
+from tests import SAMPLES_PATH, TESTS_PATH
 
 CHECK_WORKFLOW_PATH = TESTS_PATH.parent / ".github" / "workflows" / "check.yml"
+
+GITHUB_ONNX_WARNS = [
+    "onnxruntime:Default",  #
+    "Skipping pci_bus_id for PCI path at",  #
+    "because filename",  #
+    "did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+",  #
+]
 
 
 class TestInt(TestCase):
@@ -28,6 +35,12 @@ class TestInt(TestCase):
 
     def setUp(self):
         self.maxDiff = None
+        try:
+            current_process = psutil.Process()
+            self.jobs = len(current_process.cpu_affinity())
+        except AttributeError:
+            # dalvik or something else
+            self.jobs = int(os.cpu_count())
 
     @staticmethod
     def _m_credsweeper(args) -> Tuple[str, str]:
@@ -100,6 +113,9 @@ class TestInt(TestCase):
             self.fail(f"Check output: '{_stdout}' or '{_stderr}'")
         else:
             self.assertRegex(banner_text, banner_regex, _stderr or _stdout)
+        if (TESTS_PATH.parent / "credsweeper").exists():
+            repo = Repo(TESTS_PATH.parent)
+            self.assertFalse(repo.is_dirty(), f"Repo {repo} has modified files - commit them")
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -154,7 +170,8 @@ class TestInt(TestCase):
 
     def test_it_works_with_patch_p(self) -> None:
         target_path = str(SAMPLES_PATH / "uuid-update.patch")
-        _stdout, _stderr = self._m_credsweeper(["--diff", target_path, "--log", "silence"])
+        _stdout, _stderr = self._m_credsweeper(
+            ["--ml_threads_limit", str(self.jobs), "--diff", target_path, "--log", "silence"])
         output = " ".join(_stdout.split()[:-1])
 
         expected = """
@@ -187,7 +204,8 @@ class TestInt(TestCase):
 
     def test_it_works_with_multiline_in_patch_p(self) -> None:
         target_path = str(SAMPLES_PATH / "multiline.patch")
-        _stdout, _stderr = self._m_credsweeper(["--diff_path", target_path, "--log", "silence"])
+        _stdout, _stderr = self._m_credsweeper(
+            ["--ml_threads_limit", str(self.jobs), "--diff_path", target_path, "--log", "silence"])
         output = " ".join(re.sub(r"(.*ml_probability: 0\.[0-9]{5})[0-9]*\b(.*)", r"\1\2", _stdout).split()[:-1])
 
         expected = """
@@ -233,8 +251,10 @@ class TestInt(TestCase):
 
     def test_it_works_with_patch_color_p(self) -> None:
         target_path = str(SAMPLES_PATH / "uuid-update.patch")
-        _stdout, _stderr = self._m_credsweeper(
-            ["--diff_path", target_path, "--log", "silence", "--color", "--no-stdout"])
+        _stdout, _stderr = self._m_credsweeper([
+            "--ml_threads_limit",
+            str(self.jobs), "--diff_path", target_path, "--log", "silence", "--color", "--no-stdout"
+        ])
         output = " ".join(_stdout.split()[:-1])
         expected = """
                    \x1b[1mUUID uuid:added:1\x1b[0m
@@ -253,6 +273,10 @@ class TestInt(TestCase):
 
         # Merge more than two whitespaces into one because _stdout and _stderr are changed based on the terminal size
         output = " ".join(_stderr.split())
+        # GitHub workaround
+        if all(x in output for x in GITHUB_ONNX_WARNS):
+            cutpos = output.find("usage:")
+            output = output[cutpos:]
 
         expected = "usage: python -m credsweeper [-h]" \
                    " (--path PATH [PATH ...]" \
@@ -310,30 +334,35 @@ class TestInt(TestCase):
 
     def test_log_p(self) -> None:
         # TRACE level and all others
-        _stdout, _stderr = self._m_credsweeper([
-            "--log",
-            "TRACE",
-            "--depth",
-            "7",
-            "--ml_config",
-            # should be CRITICAL for wrong config
-            str(APP_PATH / "secret" / "config.json"),
-            "--jobs",
-            "2",
-            "--path",
-            str(SAMPLES_PATH),
-            "not_existed_path_for_warning",
-        ])
-        if "Windows" != platform.system():
-            self.assertEqual('', _stderr, _stderr)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_filename = os.path.join(tmp_dir, "bad_ml_cfg.json")
+            with open(tmp_filename, 'w') as f:
+                f.write('{"char_set":"0123456789","thresholds":{"lowest":0.5,"low":0.6,"medium":0.7,"high":0.9,'
+                        '"highest":0.9},"features":[{"type":"FileExtension","kwargs":{}}]}')
+            _stdout, _stderr = self._m_credsweeper([
+                "--log",
+                "TRACE",
+                "--depth",
+                "7",
+                "--ml_config",
+                # should be ERROR + CRITICAL for wrong config
+                tmp_filename,
+                "--jobs",
+                str(self.jobs),
+                "--path",
+                str(SAMPLES_PATH),
+                "not_existed_path_for_warning",
+            ])
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS) and "Windows" != platform.system():
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
 
-        self.assertIn("| TRACE |", _stdout)
-        self.assertIn("| DEBUG |", _stdout)
-        self.assertIn("| INFO |", _stdout)
-        self.assertIn("| WARNING |", _stdout)
-        self.assertIn("| ERROR |", _stdout)
-        self.assertIn("| CRITICAL |", _stdout)
-        # no results produced due critical
+            self.assertIn("| TRACE |", _stdout)
+            self.assertIn("| DEBUG |", _stdout)
+            self.assertIn("| INFO |", _stdout)
+            self.assertIn("| WARNING |", _stdout)
+            self.assertIn("| ERROR |", _stdout)
+            self.assertIn("| CRITICAL |", _stdout)
+            # no results produced due critical
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -348,12 +377,15 @@ class TestInt(TestCase):
             # should be CRITICAL for wrong config
             str(APP_PATH / "secret" / "config.json"),
             "--jobs",
-            "2",
+            str(self.jobs),
             "--path",
             str(SAMPLES_PATH),
             "not_existed_path_for_warning",
         ])
-        self.assertEqual('', _stderr)
+
+        # workaround for GitHub Action
+        if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+            self.assertEqual('', _stderr, repr(_stderr.encode()))
 
         self.assertNotIn("| TRACE |", _stdout)
         self.assertNotIn("| DEBUG |", _stdout)
@@ -364,9 +396,62 @@ class TestInt(TestCase):
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+    def test_log_file_p(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            test_log_cfg = Path(tmp_dir) / "log.yaml"
+            with open(TESTS_PATH / "log.yaml", 'r', encoding=ASCII) as fi:
+                t = fi.read()
+            test_log_dir = Path(tmp_dir) / "log"
+            with open(test_log_cfg, 'w', encoding=ASCII) as fo:
+                # enable all handlers and add for the root
+                fo.write(t.replace("filename: ./log/", f"filename: {test_log_dir}/"))
+            _stdout, _stderr = TestInt._m_credsweeper([
+                "--ml_threads_limit",
+                str(self.jobs), "--jobs",
+                str(self.jobs), "--path",
+                str(SAMPLES_PATH), "--log_config",
+                str(test_log_cfg), "--log", "INFO", "--no-stdout"
+            ])
+            self.assertNotIn("| TRACE |", _stdout)
+            self.assertNotIn("| DEBUG |", _stdout)
+            self.assertIn("| INFO |", _stdout)
+            self.assertIn("| WARNING |", _stdout)
+            self.assertIn("SpawnPoolWorker", _stdout)
+
+            self.assertTrue(test_log_dir.exists())
+            utf8errors = "replace" if "Windows" == platform.system() else "strict"
+            with open(test_log_dir / "debug.log", 'r', encoding=UTF_8, errors=utf8errors) as debug_f:
+                debug_text = debug_f.read()
+                self.assertIn("| TRACE |", debug_text)
+                self.assertIn("| DEBUG |", debug_text)
+                self.assertIn("| INFO |", debug_text)
+                self.assertIn("| WARNING |", debug_text)
+                # spawned workers produces log into file
+                self.assertIn("SpawnPoolWorker", debug_text)
+                for line in debug_text.splitlines():
+                    if " | " not in line:
+                        # multiline debug
+                        continue
+                    self.assertTrue(any(x in line for x in ["| TRACE |", "| DEBUG |", "| INFO |", "| WARNING |"]), line)
+
+            with open(test_log_dir / "warning.log", 'r', encoding=UTF_8, errors=utf8errors) as warning_f:
+                warning_text = warning_f.read()
+                self.assertNotIn("| TRACE |", warning_text)
+                self.assertNotIn("| DEBUG |", warning_text)
+                self.assertNotIn("| INFO |", warning_text)
+                self.assertIn("| WARNING |", warning_text)
+                # spawned workers produces log into file
+                self.assertIn("SpawnPoolWorker", warning_text)
+                for line in warning_f.readlines():
+                    self.assertIn(" | WARNING | ", line)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     def test_log_silence_n(self) -> None:
         # silence - no log output
         _stdout, _stderr = self._m_credsweeper([
+            "--ml_threads_limit",
+            str(self.jobs),
             "--log",
             "SILENCE",
             "--depth",
@@ -375,22 +460,15 @@ class TestInt(TestCase):
             # should be CRITICAL for wrong config
             str(APP_PATH / "secret" / "config.json"),
             "--jobs",
-            "2",
+            str(self.jobs),
             "--path",
             str(SAMPLES_PATH),
             "not_existed_path_for_warning",
         ])
 
         # workaround for GitHub Action
-        if all(x in _stderr for x in [
-                "[W:onnxruntime:Default",
-                "Skipping pci_bus_id for PCI path at",
-                "because filename",
-                "did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+",
-        ]):
-            pass
-        else:
-            self.assertEqual('', _stderr)
+        if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+            self.assertEqual('', _stderr, repr(_stderr.encode()))
 
         self.assertNotIn("| TRACE |", _stdout)
         self.assertNotIn("| DEBUG |", _stdout)
@@ -402,10 +480,9 @@ class TestInt(TestCase):
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-    # todo: fix when python 3.10 support ends
     # todo: fix when python 3.11 support ends
     # todo: fix when python 3.12 support ends
-    @pytest.mark.skipif(sys.version_info.minor in (10, 11, 12), reason="argparse default was changed in 3.13")
+    @pytest.mark.skipif(sys.version_info.minor in (11, 12), reason="argparse default was changed in 3.13")
     def test_help_p(self) -> None:
         # check only last supported versions
         _stdout, _stderr = self._m_credsweeper(["--help"])
@@ -439,8 +516,11 @@ class TestInt(TestCase):
         target_path = str(SAMPLES_PATH / "password.patch")
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
-            _stdout, _stderr = self._m_credsweeper(
-                ["--diff_path", target_path, "--no-stdout", "--save-json", json_filename, "--log", "silence"])
+            _stdout, _stderr = self._m_credsweeper([
+                "--ml_threads_limit",
+                str(self.jobs), "--diff_path", target_path, "--no-stdout", "--save-json", json_filename, "--log",
+                "silence"
+            ])
             self.assertIn("Added File Credentials:", _stdout)
             self.assertIn("Deleted File Credentials:", _stdout)
             self.assertIn("Time Elapsed:", _stdout)
@@ -453,9 +533,18 @@ class TestInt(TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             custom_config = os.path.join(tmp_dir, f"{__name__}.json")
             shutil.copyfile(APP_PATH / "secret" / "config.json", custom_config)
-            args = ["--config", custom_config, "--path", str(APP_PATH), "--find-by-ext", "--log", "CRITICAL"]
+            args = [
+                "--ml_threads_limit",
+                str(self.jobs), "--jobs",
+                str(self.jobs), "--config", custom_config, "--path",
+                str(APP_PATH), "--find-by-ext", "--log", "CRITICAL"
+            ]
             _stdout, _stderr = self._m_credsweeper(args)
-            self.assertEqual("", _stderr, _stderr)
+
+            # workaround for GitHub Action
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
+
             self.assertNotIn("CRITICAL", _stdout)
             self.assertIn("Time Elapsed:", _stdout)
             self.assertIn("Detected Credentials: 0", _stdout)
@@ -467,7 +556,11 @@ class TestInt(TestCase):
             modified_config["find_by_ext_list"].append(".py")
             Util.json_dump(modified_config, custom_config)
             _stdout, _stderr = self._m_credsweeper(args)
-            self.assertEqual("", _stderr, _stderr)
+
+            # workaround for GitHub Action
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
+
             self.assertNotIn("CRITICAL", _stdout)
             self.assertIn("Time Elapsed:", _stdout)
             self.assertNotIn("Detected Credentials: 0", _stdout)
@@ -480,7 +573,11 @@ class TestInt(TestCase):
         _stdout, _stderr = self._m_credsweeper(
             ["--config", "not_existed_file", "--path",
              str(APP_PATH), "--log", "CRITICAL"])
-        self.assertEqual('', _stderr)
+
+        # workaround for GitHub Action
+        if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+            self.assertEqual('', _stderr, repr(_stderr.encode()))
+
         self.assertIn("CRITICAL", _stdout)
         # wrong config
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -490,7 +587,11 @@ class TestInt(TestCase):
             _stdout, _stderr = self._m_credsweeper(
                 ["--config", json_filename, "--path",
                  str(APP_PATH), "--log", "CRITICAL"])
-            self.assertEqual('', _stderr)
+
+            # workaround for GitHub Action
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
+
             self.assertIn("CRITICAL", _stdout)
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -498,7 +599,10 @@ class TestInt(TestCase):
     def test_external_ml_n(self) -> None:
         # not existed ml_config
         _stdout, _stderr = self._m_credsweeper([
-            "--jobs", "2", "--ml_threads_limit", "2", "--log", "INFO", "--error", "--progress", "--path",
+            "--ml_threads_limit",
+            str(self.jobs), "--jobs",
+            str(self.jobs), "--ml_threads_limit",
+            str(self.jobs), "--log", "INFO", "--error", "--progress", "--path",
             str(APP_PATH), "--ml_config",
             str(APP_PATH / "secret" / "config.json")
         ])
@@ -515,17 +619,23 @@ class TestInt(TestCase):
             _stdout, _stderr = self._m_credsweeper(
                 ["--ml_config", json_filename, "--path",
                  str(APP_PATH), "--log", "CRITICAL"])
-            self.assertEqual('', _stderr)
+
+            # workaround for GitHub Action
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
+
             self.assertIn("CRITICAL", _stdout)
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def test_external_ml_p(self) -> None:
-        log_pattern = re.compile(r".*Init ML validator with providers: \S+ ; threads:2 ;"
+        log_pattern = re.compile(r".*Init ML validator with providers: \S+ ; threads:[0-9]+ ;"
                                  r" model:'.+' md5:([0-9a-f]{32}) ;"
                                  r" config:'.+' md5:([0-9a-f]{32}).*")
         _stdout, _stderr = self._m_credsweeper([
-            "--jobs", "2", "--ml_threads_limit", "2", "--log", "INFO", "--error", "--progress", "--path",
+            "--ml_threads_limit",
+            str(self.jobs), "--jobs",
+            str(self.jobs), "--log", "INFO", "--error", "--progress", "--path",
             str(APP_PATH), "--ml_config",
             str(APP_PATH / "ml_model" / "ml_config.json")
         ])
@@ -553,7 +663,11 @@ class TestInt(TestCase):
                 str(APP_PATH), "--log", "INFO", "--error"
             ]
             _stdout, _stderr = self._m_credsweeper(args)
-            self.assertEqual("", _stderr, _stderr)
+
+            # workaround for GitHub Action
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
+
             self.assertNotIn("CRITICAL", _stdout, _stdout)
             # model hash is the same
             self.assertIn(md5_model, _stdout)
@@ -574,18 +688,13 @@ INSERT INTO t VALUES (1, 'root', 'P6V3T-M79JT-GP9CU-VW6XY-GJ7KV'), (2, 'user', '
 CREATE TABLE "t a, t b, t c, t d, t e, t f, t g, t h, t i, t j, t k, t l, t m, t n, t o, t p, t q, t r, t s, t t, t u, t v, t w, t x, t y" (id INTEGER);
 """)
                 conn.commit()
-            _stdout, _stderr = self._m_credsweeper(["--path", sqlite_filename, "--depth", "3", "--log", "DEBUG"])
+            _stdout, _stderr = self._m_credsweeper(
+                ["--ml_threads_limit",
+                 str(self.jobs), "--path", sqlite_filename, "--depth", "3", "--log", "DEBUG"])
 
             # workaround for GitHub Action
-            if all(x in _stderr for x in [
-                    "[W:onnxruntime:Default",
-                    "Skipping pci_bus_id for PCI path at",
-                    "because filename",
-                    "did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+",
-            ]):
-                pass
-            else:
-                self.assertEqual('', _stderr)
+            if not all(x in _stderr for x in GITHUB_ONNX_WARNS):
+                self.assertEqual('', _stderr, repr(_stderr.encode()))
 
             self.assertNotIn("WARNING", _stdout)
             self.assertNotIn("ERROR", _stdout)
@@ -594,12 +703,22 @@ CREATE TABLE "t a, t b, t c, t d, t e, t f, t g, t h, t i, t j, t k, t l, t m, t
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def test_timeout_n(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            args = ["--path", str(SAMPLES_PATH / "changeme_key.jks"), "--depth", "3", "--time_limit", "10"]
-            _stdout, _stderr = self._m_credsweeper(args)
-            self.assertNotIn("WARNING", _stdout)
-            self.assertNotIn("timed out", _stdout)
-            self.assertIn("Detected Credentials: 1", _stdout)
+        args = ["--path", str(SAMPLES_PATH / "changeme_key.jks"), "--depth", "3", "--time_limit", "10"]
+        # 10 seconds are enough
+        _stdout, _stderr = self._m_credsweeper(args)
+        self.assertNotIn("WARNING", _stdout)
+        self.assertNotIn("timed out", _stdout)
+        self.assertIn("Detected Credentials: 1", _stdout)
+
+        # negative case
+        args[-1] = "-10"
+        _stdout, _stderr = self._m_credsweeper(args)
+        self.assertIn("Time limit must be a positive number:", _stderr)
+
+        # zero case
+        args[-1] = "0.0"
+        _stdout, _stderr = self._m_credsweeper(args)
+        self.assertIn("Time limit must be a positive number:", _stderr)
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

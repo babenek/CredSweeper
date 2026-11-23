@@ -5,10 +5,13 @@ import os
 import platform
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
+import psutil
 import pytest
+import tabulate
 import yaml
 
 from credsweeper.common.constants import UTF_8
@@ -23,6 +26,12 @@ class TestMain(unittest.TestCase):
 
     def setUp(self):
         self.maxDiff = None
+        try:
+            current_process = psutil.Process()
+            self.jobs = len(current_process.cpu_affinity())
+        except AttributeError:
+            # dalvik or something else
+            self.jobs = int(os.cpu_count())
 
     def tearDown(self):
         pass
@@ -33,6 +42,8 @@ class TestMain(unittest.TestCase):
         target_path = SAMPLES_PATH / "password.patch"
         with tempfile.TemporaryDirectory() as tmp_dir:
             argv = [
+                "--ml_threshold",
+                "0",
                 "--diff",
                 str(target_path),
                 "--save-json",
@@ -56,9 +67,9 @@ class TestMain(unittest.TestCase):
         target_path = SAMPLES_PATH / "multifile.patch"
         with tempfile.TemporaryDirectory() as tmp_dir:
             argv = [
-                "--diff_path",
+                "--ml_threshold", "0", "--diff_path",
                 str(target_path), "--save-json",
-                str(os.path.join(tmp_dir, f"{__name__}.json")), "--ml_threshold", "0", "--depth", "9"
+                str(os.path.join(tmp_dir, f"{__name__}.json")), "--depth", "9"
             ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(os.path.join(tmp_dir, f"{__name__}.deleted.json")))
@@ -75,10 +86,10 @@ class TestMain(unittest.TestCase):
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             xlsx_filename = os.path.join(tmp_dir, f"{__name__}.xlsx")
             argv = [
-                "--path",
-                str(SAMPLES_PATH),
                 "--ml_threshold",
                 "0",
+                "--path",
+                str(SAMPLES_PATH),
                 "--save-json",
                 str(json_filename),
                 "--save-xlsx",
@@ -139,7 +150,9 @@ class TestMain(unittest.TestCase):
                         f"root:\n"
                         f"  level: NOTSET\n"
                         f"  handlers: [logfile]\n")
-            argv = ["--banner", "--log_config", test_filename, "--log", "notset", "--path", tmp_dir]
+            argv = [
+                "--ml_threshold", "0", "--banner", "--log_config", test_filename, "--log", "notset", "--path", tmp_dir
+            ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(os.path.join(tmp_dir, "log")))
             self.assertTrue(os.path.exists(os.path.join(tmp_dir, "log", "logfile.log")))
@@ -153,7 +166,10 @@ class TestMain(unittest.TestCase):
                 self.assertFalse(os.path.exists(file_path))
                 open(file_path, 'w').write(AZ_STRING)
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
-            argv = ["--path", tmp_dir, "--no-stdout", "--save-json", json_filename, "--log", "silence"]
+            argv = [
+                "--ml_threshold", "0", "--path", tmp_dir, "--no-stdout", "--save-json", json_filename, "--log",
+                "silence"
+            ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(json_filename))
             with open(json_filename, "r") as json_file:
@@ -185,15 +201,19 @@ class TestMain(unittest.TestCase):
                 open(file_path, 'w').write(AZ_STRING)
 
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
-            argv = ["--path", tmp_dir, "--find-by-ext", "--no-stdout", "--save-json", json_filename, "--log", "silence"]
+            argv = [
+                "--path", tmp_dir, "--pedantic", "--find-by-ext", "--no-stdout", "--save-json", json_filename, "--log",
+                "silence"
+            ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(json_filename))
             with open(json_filename, "r") as json_file:
                 report = json.load(json_file)
-                self.assertEqual(4, len(report), report)
+                self.assertEqual(6, len(report), report)
                 for t in report:
                     self.assertEqual(0, t["line_data_list"][0]["line_num"])
-                    self.assertIn(str(t["line_data_list"][0]["path"][-4:]), [".pem", ".cer", ".csr", ".deR"])
+                    self.assertIn(str(t["line_data_list"][0]["path"][-4:]),
+                                  [".pem", ".p12", ".pfx", ".cer", ".csr", ".deR"])
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -201,7 +221,11 @@ class TestMain(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             # depth is not set
-            argv = ["--log", "silence", "--path", str(SAMPLES_PATH), "--no-stdout", "--save-json", json_filename]
+            argv = [
+                "--ml_threads_limit",
+                str(self.jobs), "--log", "silence", "--path",
+                str(SAMPLES_PATH), "--no-stdout", "--save-json", json_filename
+            ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(json_filename))
             with open(json_filename, "r") as json_file:
@@ -219,13 +243,14 @@ class TestMain(unittest.TestCase):
                     cvs_checksum = hashlib.md5(f.read()).digest()
                 checksum = bytes(a ^ b for a, b in zip(checksum, cvs_checksum))
         # update the checksum manually and keep line endings in the samples as is (git config core.autocrlf false)
-        self.assertEqual("4f684eba85a84aa1504869c572994cfc", binascii.hexlify(checksum).decode())
+        self.assertEqual("83a3fa16fdcc1bde66250604c9735522", binascii.hexlify(checksum).decode())
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             # depth = 3
             argv = [
-                "--log", "silence", "--path",
-                str(SAMPLES_PATH), "--no-stdout", "--save-json", json_filename, "--depth", "3"
+                "--ml_threads_limit",
+                str(self.jobs), "--log", "silence", "--path",
+                str(SAMPLES_PATH), "--no-stdout", "--save-json", json_filename, "--depth", "3", "--pedantic"
             ]
             self.assertEqual(EXIT_SUCCESS, main(argv))
             self.assertTrue(os.path.exists(json_filename))
@@ -286,10 +311,10 @@ class TestMain(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             argv = [
-                "--path",
-                str(SAMPLES_PATH),
                 "--ml_threshold",
                 "0",
+                "--path",
+                str(SAMPLES_PATH),
                 "--save-json",
                 json_filename,
             ]
@@ -308,6 +333,8 @@ class TestMain(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             argv = [
+                "--ml_threads_limit",
+                str(self.jobs),
                 "--path",
                 str(SAMPLES_PATH),
                 "--save-json",
@@ -322,21 +349,24 @@ class TestMain(unittest.TestCase):
             all_names = [x["name"] for x in rules]
             uniq_names = set(all_names)
             self.assertListEqual(all_names, sorted(list(uniq_names)), "Duplicate names test")
+            headers = ["Name", "Type", "Target", "Severity", "Confidence", "Values"]
+            aligns = ["left", "center", "center", "center", "center", "left"]
+            rows = []
+            for rule in rules:
+                target = ','.join(sorted(list(rule["target"])))
+                values: list[str] = rule["values"]
+                rows.append((rule["name"], rule["type"], target, rule["severity"].strip(), rule["confidence"].strip(),
+                             f"```{values[0].replace('|', '&#124;')}```"))
+                for i in values[1:]:
+                    rows.append(('', '', '', '', '', f"```{i.replace('|', '&#124;')}```"))
+            table_text = tabulate.tabulate(rows, headers, tablefmt="pipe", colalign=aligns, headersalign=aligns)
             with open(TESTS_PATH / "RULES.md", 'w', encoding=UTF_8) as f:
-                f.write(f"# CredSweper rules\n")
-                f.write("| Name | Type | Target | Severity | Confidence | Values |\n")
-                f.write("| :--- | :---: | :---: | :---: | :---: | :--- |\n")
-                for rule in rules:
-                    target = ','.join(sorted(list(rule['target'])))
-                    values: list[str] = rule['values']
-                    f.write(f"| {rule['name']} | {rule['type']} | {target} | {rule['severity']} | {rule['confidence']}"
-                            f" | ```{values[0].replace('|', '&#124;')}``` |\n")  # safe Markdown vertical bar escaping
-                    for i in values[1:]:
-                        f.write(f"| | | | | | ```{i.replace('|', '&#124;')}``` |\n")
+                f.write(table_text)
+                f.write('\n')
             rules_text = yaml.dump_all(rules, sort_keys=True)
             checksum = hashlib.md5(rules_text.encode()).hexdigest()
             # update the expected value manually if some changes
-            self.assertEqual("15bcb3685d215292d8e2073d2ae43075", checksum)
+            self.assertEqual("703883a30e3c2f32ff97bc807b7bac5e", checksum)
             rules_set = set([i["name"] for i in rules if "code" in i["target"]])
             self.assertSetEqual(rules_set, report_set)
             self.assertEqual(SAMPLES_POST_CRED_COUNT, len(report))
@@ -348,10 +378,12 @@ class TestMain(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             json_filename = os.path.join(tmp_dir, f"{__name__}.json")
             argv = [
-                "--path",
-                str(SAMPLES_PATH),
+                "--ml_threads_limit",
+                str(self.jobs),
                 "--ml_threshold",
                 "0",
+                "--path",
+                str(SAMPLES_PATH),
                 "--no-filters",
                 "--save-json",
                 json_filename,
@@ -367,6 +399,8 @@ class TestMain(unittest.TestCase):
         # uuid is info level - no report
         with tempfile.TemporaryDirectory() as tmp_dir:
             argv = [  #
+                "--ml_threads_limit",
+                str(self.jobs),
                 "--severity",
                 "low",
                 "--confidence",
@@ -393,6 +427,8 @@ class TestMain(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             xlsx_filename = os.path.join(tmp_dir, f"{__name__}.xlsx")
             argv = [  #
+                "--ml_threads_limit",
+                str(self.jobs),
                 "--severity",
                 "info",
                 "--confidence",
@@ -419,3 +455,64 @@ class TestMain(unittest.TestCase):
             self.assertTrue(np.isin(deleted_value, book["deleted"].values))
             added_value = f'"{added_report[0]["line_data_list"][0]["value"]}"'
             self.assertTrue(np.isin(added_value, book["added"].values))
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+    def test_confidence_n(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            target_path = os.path.join(tmp_dir, "conf.py")
+            with open(target_path, "w", encoding=UTF_8) as f:
+                f.write('aws_id = "AKIAGIREOGIAWSKEY123"\n'
+                        'request_id = "c1f3a9e2-5b7d-4e8a-9f0c-2d6b8e4a7c31"\n')
+            json_filename = os.path.join(tmp_dir, "report.json")
+            argv = [  #
+                "--path",
+                target_path,
+                "--ml_threshold",
+                "0",
+                "--confidence",
+                "strong",
+                "--no-stdout",
+                "--save-json",
+                json_filename,
+            ]
+            self.assertEqual(EXIT_SUCCESS, main(argv))
+            report = Util.json_load(json_filename)
+            # only UUID with strong confidence is reported
+            self.assertEqual(1, len(report))
+            self.assertEqual("UUID", report[0]["rule"])
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+    def test_confidence_p(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            target_path = os.path.join(tmp_dir, "conf.py")
+            with open(target_path, "w", encoding=UTF_8) as f:
+                f.write('aws_id = "AKIAGIREOGIAWSKEY123"\n'
+                        'request_id = "c1f3a9e2-5b7d-4e8a-9f0c-2d6b8e4a7c31"\n')
+            json_filename = os.path.join(tmp_dir, "report.json")
+            argv = [  #
+                "--path",
+                target_path,
+                "--ml_threshold",
+                "0",
+                "--confidence",
+                "weak",
+                "--no-stdout",
+                "--save-json",
+                json_filename,
+            ]
+            self.assertEqual(EXIT_SUCCESS, main(argv))
+            report = Util.json_load(json_filename)
+            # both rules are reported
+            self.assertEqual(2, len(report))
+            self.assertSetEqual({"AWS Client ID", "UUID"}, {x["rule"] for x in report})
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+    def test_banner_only_p(self) -> None:
+        # only banner argument must succeed regardless of sys.argv
+        self.assertEqual(EXIT_SUCCESS, main(["--banner"]))
+        # the same arguments are taken from command line
+        with patch("sys.argv", ["credsweeper", "--banner"]):
+            self.assertEqual(EXIT_SUCCESS, main())

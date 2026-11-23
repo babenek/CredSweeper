@@ -10,12 +10,15 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.string_content_provider import StringContentProvider
+from credsweeper.utils.html_extractor import HtmlExtractor
 
 logger = logging.getLogger(__name__)
 
 
 class MxfileScanner(AbstractScanner, ABC):
     """Scanner for drawio diagram"""
+
+    shelf = True
 
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
@@ -42,7 +45,7 @@ class MxfileScanner(AbstractScanner, ABC):
                     if attr is None or not (value := attr.get("value")):
                         continue
                     if html := BeautifulSoup(value, features="html.parser"):
-                        _, value_lines, __ = data_provider.simple_html_representation(html)
+                        _, value_lines, __ = HtmlExtractor().render(html)
                         for line in value_lines:
                             lines.append(line)
                             line_numbers.append(line_number)

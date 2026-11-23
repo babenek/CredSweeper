@@ -1,8 +1,5 @@
 import logging
-import os.path
 import sqlite3
-import sys
-import tempfile
 from abc import ABC
 from typing import List, Optional, Tuple, Any, Generator
 
@@ -10,6 +7,7 @@ from credsweeper.credentials.candidate import Candidate
 from credsweeper.deep_scanner.abstract_scanner import AbstractScanner
 from credsweeper.file_handler.data_content_provider import DataContentProvider
 from credsweeper.file_handler.struct_content_provider import StructContentProvider
+from credsweeper.logger import TRACE
 
 logger = logging.getLogger(__name__)
 
@@ -36,33 +34,14 @@ class Sqlite3Scanner(AbstractScanner, ABC):
                 for row in cursor:
                     yield table_name, dict(row)
             except sqlite3.DatabaseError as exc:
-                print(f"Error reading table {table_name}: {exc}")
+                logger.log(TRACE, "Error reading table %s: %s", table_name, exc)
 
     @staticmethod
     def walk_sqlite(data: bytes) -> Generator[Tuple[str, Any], None, None]:
         """Yields data from sqlite3 database"""
-        if 10 < sys.version_info.minor:
-            # Added in version 3.11
-            with sqlite3.connect(":memory:") as sqlite3db:
-                sqlite3db.deserialize(data)  # type: ignore
-                yield from Sqlite3Scanner.__walk(sqlite3db)
-        elif "nt" != os.name:
-            # a tmpfile has to be used. TODO: remove when 3.10 will deprecate
-            with tempfile.NamedTemporaryFile(suffix=".sqlite") as t:
-                t.write(data)
-                t.flush()
-                with sqlite3.connect(t.name) as sqlite3db:
-                    yield from Sqlite3Scanner.__walk(sqlite3db)
-        elif "nt" == os.name:
-            # windows trick. TODO: remove when 3.10 will deprecate
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".sqlite") as t:
-                t.write(data)
-                t.flush()
-            sqlite3db = sqlite3.connect(t.name)
+        with sqlite3.connect(":memory:") as sqlite3db:
+            sqlite3db.deserialize(data)  # type: ignore
             yield from Sqlite3Scanner.__walk(sqlite3db)
-            sqlite3db.close()
-            if os.path.exists(t.name):
-                os.remove(t.name)
 
     def data_scan(
             self,  #
@@ -81,6 +60,8 @@ class Sqlite3Scanner(AbstractScanner, ABC):
                 if new_candidates := self.structure_scan(struct_content_provider, depth, new_limit):
                     candidates.extend(new_candidates)
             return candidates
+        except (sqlite3.DatabaseError, sqlite3.OperationalError) as sql_exc:
+            logger.log(TRACE, "%s %s", sql_exc, data_provider.descriptor)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logger.warning("%s:%s:%s", type(exc), exc, data_provider.descriptor)

@@ -23,7 +23,7 @@ jobs:
     steps:
 
       - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4 - 2026.05.21
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2 - 2026.10.19
         with:
           egress-policy: audit
 
@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0 - 2026.06.18
         with:
           repository: Samsung/CredData
-          ref: c09c0c52fc6dae4ae5438ae69ba486f9f8059f0d
+          ref: 2faad4f03c32c3ff1fe3e7d129fa60913b475ba4
 
       - name: Markup hashing
         run: |
@@ -48,11 +48,11 @@ jobs:
           path: data
           key: cred-data-${{ hashFiles('checksums.md5') }}
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         if: steps.cache-data.outputs.cache-hit != 'true'
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0 - 2026.06.24
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0 - 2026.10.22
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
@@ -79,7 +79,7 @@ jobs:
     steps:
 
       - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4 - 2026.05.21
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2 - 2026.10.19
         with:
           egress-policy: audit
 
@@ -87,7 +87,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0 - 2026.06.18
         with:
           repository: Samsung/CredData
-          ref: c09c0c52fc6dae4ae5438ae69ba486f9f8059f0d
+          ref: 2faad4f03c32c3ff1fe3e7d129fa60913b475ba4
 
       - name: Markup hashing
         run: |
@@ -112,10 +112,10 @@ jobs:
         if: steps.cache-data.outputs.cache-hit == 'true'
         run: ls -al . && ls -al data
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0 - 2026.06.24
+      - name: Set up Python 3.11
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0 - 2026.10.22
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
@@ -177,12 +177,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.10", "3.11", "3.12", "3.13", "3.14" ]
+        python-version: [ "3.11", "3.12", "3.13", "3.14" ]
 
     steps:
 
       - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4 - 2026.05.21
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2 - 2026.10.19
         with:
           egress-policy: audit
 
@@ -190,7 +190,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0 - 2026.06.18
         with:
           repository: Samsung/CredData
-          ref: c09c0c52fc6dae4ae5438ae69ba486f9f8059f0d
+          ref: 2faad4f03c32c3ff1fe3e7d129fa60913b475ba4
 
       - name: Markup hashing
         run: |
@@ -216,7 +216,7 @@ jobs:
         run: rm -rf data/0* data/2* data/7* data/8* data/a* data/b* data/d* data/e* data/f*
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0 - 2026.06.24
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0 - 2026.10.22
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -248,10 +248,6 @@ jobs:
           fi
           echo "RELEASE_TIME=${RELEASE_TIME}" >> $GITHUB_ENV
 
-      - name: Uninstall released CredSweeper
-        run: |
-          python -m pip uninstall -y credsweeper
-
       - name: Checkout base CredSweeper
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0 - 2026.06.18
         with:
@@ -260,6 +256,7 @@ jobs:
 
       - name: Install base CredSweeper
         run: |
+          python -m pip uninstall -y credsweeper
           python -m pip install temp/CredSweeper.base
           # check the banner
           credsweeper --banner
@@ -287,6 +284,7 @@ jobs:
 
       - name: Install current CredSweeper
         run: |
+          python -m pip uninstall -y credsweeper
           python -m pip install temp/CredSweeper.head
           # check the banner
           credsweeper --banner
@@ -372,7 +370,7 @@ jobs:
     steps:
 
       - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4 - 2026.05.21
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2 - 2026.10.19
         with:
           egress-policy: audit
 
@@ -380,7 +378,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0 - 2026.06.18
         with:
           repository: Samsung/CredData
-          ref: c09c0c52fc6dae4ae5438ae69ba486f9f8059f0d
+          ref: 2faad4f03c32c3ff1fe3e7d129fa60913b475ba4
 
       - name: Markup hashing
         run: |
@@ -409,10 +407,10 @@ jobs:
           mv data ${{ github.workspace }}/CredData/
           mv meta ${{ github.workspace }}/CredData/
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0 - 2026.06.24
+      - name: Set up Python 3.11
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0 - 2026.10.22
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Update PIP
         run: python -m pip install --upgrade pip
