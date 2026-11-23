@@ -53,7 +53,7 @@ def train(
 
     print(f"Train model on data from {cred_data_location}", flush=True)
     meta_checksum, data_checksum = prepare_train_data(cred_data_location, jobs, doc_target)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     df_all_file = RESULTS_DIR / f"{meta_checksum}-{data_checksum}.pkl"
     if df_all_file.exists():
         df_all = pd.read_pickle(df_all_file)
@@ -73,10 +73,8 @@ def train(
         del detected_data
         del meta_data
 
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
     ml_config_path = RESULTS_DIR / f"{stamp}.ml_config.json"
     thresholds = model_config_preprocess(df_all, doc_target, ml_config_path, cred_data_location)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
 
     # random split
     df_train, df_test = train_test_split(df_all, test_size=0.15, random_state=random.randint(1, 1 << 32))
@@ -89,7 +87,7 @@ def train(
     x_full_line, x_full_variable, x_full_value, x_full_features = prepare_data(df_all, ml_config_path)
     y_full: ndarray = get_y_labels(df_all)
     del df_all
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     print("Prepare train data", flush=True)
     x_train_line, x_train_variable, x_train_value, x_train_features = prepare_data(df_train, ml_config_path)
     print("x_train_value dtype ", x_train_value.dtype, flush=True)  # dbg
@@ -116,7 +114,7 @@ def train(
     del df_test
 
     print(f"Memory before search / compile: {LogCallback.get_memory_info()}", flush=True)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     log_callback = LogCallback()
     if tuner_trials:
         print(f"Tuner initial dict:{HP_DICT}", flush=True)
@@ -154,7 +152,7 @@ def train(
     else:
         print(f"Model is trained with params from dict:{HP_DICT}", flush=True)
         param_kwargs = {k: v[1] for k, v in HP_DICT.items()}
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     print(f"Model hyper parameters: {param_kwargs}", flush=True)
 
     # repeat train step to obtain actual history chart
@@ -168,7 +166,7 @@ def train(
         del x_full_value
         del x_full_features
         del y_full
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     early_stopping = EarlyStopping(monitor="val_loss",
                                    patience=patience,
                                    mode="min",
@@ -179,7 +177,7 @@ def train(
                                        save_best_only=True,
                                        mode="min",
                                        verbose=1)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     print(f"Memory before train: {LogCallback.get_memory_info()}", flush=True)
 
     fit_history = keras_model.fit(
@@ -192,7 +190,7 @@ def train(
         class_weight=class_weight,
         callbacks=[early_stopping, model_checkpoint, log_callback],
     )
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     # if best_val_loss is not None and best_val_loss + 0.00001 < early_stopping.best:
     #     print(f"CHECK BEST TUNER EARLY STOP : {best_val_loss} vs CURRENT: {early_stopping.best}",flush=True)
 
@@ -200,10 +198,10 @@ def train(
 
     with open(RESULTS_DIR / f"{stamp}.history.pickle", "wb") as f:
         pickle.dump(fit_history, f)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     model_path = RESULTS_DIR / f"{stamp}.model"
     keras_model.export(model_path, verbose=True, include_optimizer=False)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     if eval_test:
         print(f"Validate results on the test subset. Size: {len(y_test)} {np.mean(y_test):.4f}", flush=True)
         evaluate_model(thresholds, keras_model, [x_test_line, x_test_variable, x_test_value, x_test_features], y_test)
@@ -232,7 +230,7 @@ def train(
         del x_full_value
         del x_full_features
         del y_full
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     onnx_model_file = RESULTS_DIR / f"{stamp}.ml_model.onnx"
     # convert the model to onnx right now
     convert_args = [
@@ -248,7 +246,7 @@ def train(
     with open(ml_config_path, "rb") as f:
         config_md5 = hashlib.md5(f.read()).hexdigest()
         print(f"{ml_config_path}:{config_md5}", flush=True)
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     best_epoch = 1 + np.argmin(np.array(fit_history.history['val_loss']))
 
     # ml history analysis
@@ -260,5 +258,5 @@ def train(
         best_epoch=int(best_epoch),
         info=f"{ml_config_path}:{config_md5} ml_model.onnx:{onnx_md5} best_epoch:{best_epoch}",
     )
-    #assert hashlib.md5(MlValidator._default_config.read_bytes()).hexdigest() == "326a4f7543f5cee73e92e05289362664" # todo dbg
+
     return str(model_path.absolute())
