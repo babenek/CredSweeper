@@ -1,16 +1,36 @@
 import io
 import os
+import platform
+import shutil
 import tempfile
+import time
 import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+import git
+import pytest
+
 from credsweeper.common.constants import UTF_16_LE
 from credsweeper.file_handler.files_provider import FilesProvider
-from tests import AZ_DATA, AZ_STRING
+from tests import AZ_DATA, AZ_STRING, TESTS_PATH
 
 
 class TestFilesProvider(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.cwd = os.getcwd()
+        self.temp_dir_path = tempfile.mkdtemp(prefix=__name__)
+
+    def tearDown(self) -> None:
+        os.chdir(self.cwd)
+        if "Windows" == platform.system():
+            # workaround for the case
+            time.sleep(1)
+            shutil.rmtree(self.temp_dir_path, ignore_errors=True)
+        else:
+            # all others
+            shutil.rmtree(self.temp_dir_path)
 
     def test_get_scannable_files_io_p(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -80,3 +100,47 @@ class TestFilesProvider(unittest.TestCase):
         provider = FilesProvider([io_data])
         self.assertEqual(1, len(provider.get_scannable_files(config)))
         config.assert_not_called()
+
+    @pytest.mark.skipif(not (TESTS_PATH.parent / ".git").exists(), reason="Only for the real git repo")
+    def test_is_git_ignored_n(self) -> None:
+        # the file is tracked by git, so it cannot be ignored
+        self.assertFalse(FilesProvider([__file__]).is_git_ignored(__file__))
+
+    def test_is_git_ignored_p(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            dir_path = Path(tmp_dir)
+            repo = git.Repo.init(dir_path)
+            with open(dir_path / "password.txt", "w") as f:
+                f.write("PW:13263622")
+            repo.index.add("password.txt")
+            with open(dir_path / ".gitignore", "w") as f:
+                f.write(".*\n*.txt\n*.log\n*.so")
+            # init arguments
+            provider = FilesProvider(MagicMock())
+            self.assertTrue(provider.is_git_ignored(dir_path / ".idea"))
+            self.assertTrue(provider.is_git_ignored(dir_path / ".idea" / "secrets.cfg"))
+            self.assertTrue(provider.is_git_ignored(dir_path / ".idea" / "dir" / "file.txt"))
+            self.assertTrue(provider.is_git_ignored(dir_path / ".credentials"))
+            self.assertTrue(provider.is_git_ignored(dir_path / "system.log"))
+            self.assertTrue(provider.is_git_ignored(dir_path / "src" / "dir" / "file.so"))
+            # tracked by git already
+            self.assertFalse(provider.is_git_ignored(dir_path / "password.txt"))
+            # not ignored
+            self.assertFalse(provider.is_git_ignored(dir_path / "src" / "dir" / "file.cpp"))
+
+    def test_is_git_ignored_relative_p(self) -> None:
+        dir_path = Path(self.temp_dir_path)
+        git.Repo.init(dir_path)
+        (dir_path / "src").mkdir()
+        with open(dir_path / ".gitignore", "w") as f:
+            f.write("*.log\nsrc/local.cfg\n")
+        provider = FilesProvider(MagicMock())
+        # relative paths given from a subdirectory of the repository
+        os.chdir(dir_path / "src")
+        self.assertTrue(provider.is_git_ignored("local.cfg"))
+        self.assertTrue(provider.is_git_ignored(Path("local.cfg")))
+        self.assertTrue(provider.is_git_ignored("../system.log"))
+        self.assertTrue(provider.is_git_ignored("main.log"))
+        self.assertTrue(provider.is_git_ignored(Path("main.log")))
+        self.assertFalse(provider.is_git_ignored("main.cpp"))
+        self.assertFalse(provider.is_git_ignored("../src/main.cpp"))

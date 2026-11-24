@@ -1,4 +1,3 @@
-import ast
 import base64
 import contextlib
 import json
@@ -32,8 +31,9 @@ from cryptography.hazmat.primitives.serialization import load_der_private_key
 from cryptography.hazmat.primitives.serialization.pkcs12 import load_key_and_certificates
 from lxml import etree
 
-from credsweeper.common.constants import AVAILABLE_ENCODINGS, \
-    DEFAULT_ENCODING, LATIN_1, CHUNK_SIZE, MAX_LINE_LENGTH, CHUNK_STEP_SIZE, ASCII, UTF_16_LE, UTF_16_BE
+from credsweeper.logger import TRACE
+from credsweeper.common.constants import AVAILABLE_ENCODINGS, DEFAULT_ENCODING, LATIN_1, CHUNK_SIZE, MAX_LINE_LENGTH, \
+    CHUNK_STEP_SIZE, ASCII, UTF_16_LE, UTF_16_BE
 
 logger = logging.getLogger(__name__)
 
@@ -152,7 +152,7 @@ class Util:
         return entropy < min_entropy
 
     @staticmethod
-    def is_binary(data: Union[bytes, bytearray]) -> bool:
+    def is_binary(data: bytes | bytearray) -> bool:
         """
         Returns True when two zeroes sequence is found in begin of data.
         The sequence never exists in text format (UTF-8, UTF-16). UTF-32 is not supported.
@@ -167,7 +167,7 @@ class Util:
         .difference(set(x for x in range(0xA0, 0x100)))
 
     @staticmethod
-    def is_latin1(data: Union[bytes, bytearray]) -> bool:
+    def is_latin1(data: bytes | bytearray) -> bool:
         """Returns True when data looks like LATIN-1 for first MAX_LINE_LENGTH bytes."""
         result = False
         if data:
@@ -241,7 +241,7 @@ class Util:
                 return text
             except UnicodeError:
                 binary_suggest = True
-                logger.debug("UnicodeError: Can not decode content as %s.", encoding)
+                logger.log(TRACE, "UnicodeError: Can not decode content as %s.", encoding)
             except Exception as exc:  # pylint: disable=broad-exception-caught
                 # fallback
                 logger.error("Unexpected Error: Can not read content as %s. %s:%s", encoding, type(exc), exc)
@@ -274,7 +274,7 @@ class Util:
         return []
 
     @staticmethod
-    def get_asn1_size(data: Union[bytes, bytearray]) -> int:
+    def get_asn1_size(data: bytes | bytearray) -> int:
         """Only sequence type 0x30 and size correctness are checked
         Returns size of ASN1 data over 128 bytes or -1 if no interested data
         """
@@ -411,15 +411,6 @@ class Util:
         except Exception as exc:  # pylint: disable=broad-exception-caught
             # fallback
             logging.error("Failed to write: %s %s:%s", file_path, type(exc), exc)
-
-    @staticmethod
-    def parse_python(source: str) -> List[Any]:
-        """Parse Python source and back to remove strings merge and line wrap"""
-        with warnings.catch_warnings(record=True):
-            warnings.simplefilter("error", SyntaxWarning)
-            src = ast.parse(source)
-            result = ast.unparse(src).splitlines()
-            return result
 
     PEM_CLEANING_PATTERN = re.compile(r"\\[tnrvf]")
     WHITESPACE_TRANS_TABLE = str.maketrans('', '', string.whitespace)

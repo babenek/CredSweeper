@@ -12,10 +12,10 @@ credsweeper.deep\_scanner.abstract\_scanner module
    :show-inheritance:
    :undoc-members:
 
-credsweeper.deep\_scanner.byte\_scanner module
+credsweeper.deep\_scanner.arsc\_scanner module
 ----------------------------------------------
 
-.. automodule:: credsweeper.deep_scanner.byte_scanner
+.. automodule:: credsweeper.deep_scanner.arsc_scanner
    :members:
    :show-inheritance:
    :undoc-members:
@@ -140,6 +140,14 @@ credsweeper.deep\_scanner.jks\_scanner module
    :show-inheritance:
    :undoc-members:
 
+credsweeper.deep\_scanner.jmod\_scanner module
+----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.jmod_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 credsweeper.deep\_scanner.lang\_scanner module
 ----------------------------------------------
 
@@ -152,6 +160,14 @@ credsweeper.deep\_scanner.lexer\_scanner module
 -----------------------------------------------
 
 .. automodule:: credsweeper.deep_scanner.lexer_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+credsweeper.deep\_scanner.lz4\_scanner module
+---------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.lz4_scanner
    :members:
    :show-inheritance:
    :undoc-members:
@@ -316,10 +332,26 @@ credsweeper.deep\_scanner.tar\_scanner module
    :show-inheritance:
    :undoc-members:
 
+credsweeper.deep\_scanner.text\_scanner module
+----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.text_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 credsweeper.deep\_scanner.tmx\_scanner module
 ---------------------------------------------
 
 .. automodule:: credsweeper.deep_scanner.tmx_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+credsweeper.deep\_scanner.toml\_scanner module
+----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.toml_scanner
    :members:
    :show-inheritance:
    :undoc-members:
@@ -344,6 +376,14 @@ credsweeper.deep\_scanner.xml\_scanner module
 ---------------------------------------------
 
 .. automodule:: credsweeper.deep_scanner.xml_scanner
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+credsweeper.deep\_scanner.yaml\_scanner module
+----------------------------------------------
+
+.. automodule:: credsweeper.deep_scanner.yaml_scanner
    :members:
    :show-inheritance:
    :undoc-members:

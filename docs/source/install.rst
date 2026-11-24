@@ -6,8 +6,8 @@ Currently `CredSweeper` requires the following prerequisites:
 * Python version 3.11, 3.12, 3.13, 3.14
 
 .. note::
-    We recommend to use credsweeper in a separate virtual enviroment. Some heave dependencies as Tensorflow
-    might create a conflict with other dependencies othervise
+    We recommend to use credsweeper in a separate virtual environment. Some heavy dependencies as Tensorflow
+    might create a conflict with other dependencies otherwise
 
 Via pip
 -------
@@ -17,7 +17,7 @@ Via pip
     pip install credsweeper
 
 .. note::
-    If you didn't installed git, you may encounter the following error:
+    If you didn't install git, you may encounter the following error:
     
     .. code-block:: bash
 
@@ -72,7 +72,7 @@ Pre-commit git hook
     
     from credsweeper import CredSweeper
     from credsweeper.common.constants import DiffRowType
-    from credsweeper.file_handler.patch_provider import PatchProvider
+    from credsweeper.file_handler.patches_provider import PatchesProvider
     
     
     def main() -> int:
@@ -85,18 +85,24 @@ Pre-commit git hook
                 print(f"{command} EXIT CODE:{pipe.returncode}", flush=True)
                 return 1
     
-        patch = io.BytesIO(_stdout)
-        added = PatchProvider([patch], change_type=DiffRowType.ADDED)
-        deleted = PatchProvider([patch], change_type=DiffRowType.DELETED)
+        added = PatchesProvider(
+            [io.BytesIO(_stdout)],
+            change_type=DiffRowType.ADDED,
+        )
+        deleted = PatchesProvider(
+            [io.BytesIO(_stdout)],
+            change_type=DiffRowType.DELETED,
+        )
+
+        deleted_sweeper = CredSweeper()
     
-        credsweeper = CredSweeper()
-    
-        if credsweeper.run(content_provider=deleted):
+        if deleted_sweeper.run(content_provider=deleted):
             print(f"CREDENTIALS FOUND IN DELETED CONTENT", flush=True)
             # return 1  # <<< UNCOMMENT THE LINE IF YOU WANT TO MANAGE DELETED CREDENTIALS
     
-        if credsweeper.run(content_provider=added):
-            print(f"CREDENTIALS FOUND IN ADDED CONTENT", flush=True)
+        added_sweeper = CredSweeper()
+        if added_sweeper.run(content_provider=added):
+            print("CREDENTIALS FOUND IN ADDED CONTENT", flush=True)
             return 1
     
         return 0

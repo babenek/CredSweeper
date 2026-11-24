@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 class StringsScanner(AbstractScanner, ABC):
     """Implements known binary file scanning with ASCII strings representations"""
 
+    shelf = True
+
     @staticmethod
     def match(data: bytes | bytearray) -> bool:
         """Match logic in data_scan"""
@@ -24,21 +26,26 @@ class StringsScanner(AbstractScanner, ABC):
         """Processes binary to found ASCII strings. Use offset instead line number."""
         enumerated_lines = []
         offset = -1
+        previous_line_length = 0
         line_items = []
-        for n, x in enumerate(data):
+        for i, x in enumerate(data):
             if 0x09 == x or 0x20 <= x <= 0x7E:
                 # TAB, SPACE and visible ASCII symbols
                 if 0 > offset:
                     # use start of string as line number
-                    offset = n
+                    offset = i
                 line_items.append(chr(x))
                 continue
-            if MIN_DATA_LEN <= len(line_items):
-                # add valuable lines only
-                enumerated_lines.append((offset, ''.join(line_items)))
+            if MIN_DATA_LEN <= len(line_items) or 64 <= previous_line_length and 4 <= len(line_items):
+                # minimal valuable line for a PEM sequence
+                line = ''.join(line_items)
+                enumerated_lines.append((offset, line))
+                previous_line_length = len(line)
+            else:
+                previous_line_length = 0
             offset = -1
             line_items.clear()
-        if MIN_DATA_LEN <= len(line_items):
+        if MIN_DATA_LEN <= len(line_items) or 64 <= previous_line_length and 4 <= len(line_items):
             enumerated_lines.append((offset, ''.join(line_items)))
         return enumerated_lines
 
