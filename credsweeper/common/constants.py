@@ -168,5 +168,9 @@ DEFAULT_PATTERN_LEN = 4
 PEM_BEGIN_PATTERN = "-----BEGIN"
 PEM_END_PATTERN = "-----END"
 
+# PPK pattern
+PPK_BEGIN_PATTERN = "PuTTY-User-Key-File-"
+PPK_END_PATTERN = "Private-MAC: "
+
 # similar min_line_len in rule_template - no real credential in data less than 8 bytes
 MIN_DATA_LEN = 8

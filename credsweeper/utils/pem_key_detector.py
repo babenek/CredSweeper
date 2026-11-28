@@ -33,7 +33,7 @@ class PemKeyDetector:
     RE_PEM_VALUE = re.compile(fr"(?P<value>.{{0,{MAX_PEM_LENGTH}}})")
 
     def __init__(self, config: Config):
-        self.__config = config
+        self._config = config
         self._barrier_pos: int = -2
         self._barrier_cut: int = -2
         self._barrier: str = ''
@@ -98,7 +98,7 @@ class PemKeyDetector:
                     pem_line = target_line[:end_pattern_end]
                 else:
                     pem_line = target_line[:PemKeyDetector.MAX_PEM_LENGTH]
-                next_line = LineData(self.__config, target_line, line_pos, target.line_nums[line_pos], target.file_path,
+                next_line = LineData(self._config, target_line, line_pos, target.line_nums[line_pos], target.file_path,
                                      target.file_type, target.info, PemKeyDetector.RE_PEM_VALUE)
                 line_data_list.append(next_line)
                 pem_text += f"\n{pem_line}"

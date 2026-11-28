@@ -5,7 +5,7 @@ from typing import List, Type, Tuple, Union, Dict, Generator
 
 from credsweeper.app import APP_PATH
 from credsweeper.common.constants import RuleType, MIN_VARIABLE_LENGTH, MIN_SEPARATOR_LENGTH, MIN_VALUE_LENGTH, \
-    MAX_LINE_LENGTH, PEM_BEGIN_PATTERN
+    MAX_LINE_LENGTH, PEM_BEGIN_PATTERN, PPK_BEGIN_PATTERN
 from credsweeper.config.config import Config
 from credsweeper.credentials.candidate import Candidate
 from credsweeper.file_handler.analysis_target import AnalysisTarget
@@ -158,9 +158,9 @@ class Scanner:
                         or "\\u003d" in target_line_stripped_lower
                         or "<<<" in target_line_stripped_lower
                 )  #
-            matched_pem_key = \
-                target_line_stripped_len >= self.min_pem_key_len \
-                and PEM_BEGIN_PATTERN in target_line_stripped and "PRIVATE" in target_line_stripped
+            matched_pem_key = (target_line_stripped_len >= self.min_pem_key_len
+                               and (PEM_BEGIN_PATTERN in target_line_stripped and "PRIVATE" in target_line_stripped
+                                    or PPK_BEGIN_PATTERN in target_line_stripped))
             matched_pattern = target_line_stripped_len >= self.min_pattern_len
             matched_multi = target_line_stripped_len >= self.min_multi_len
 
